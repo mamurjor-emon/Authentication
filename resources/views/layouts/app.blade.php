@@ -20,13 +20,15 @@
     <!-- End layout styles -->
     <link rel="icon" href="{{ asset('frontend/assets/img/favicon.png') }}">
 
-    <!--============ CSS =============-->
+    <!--CSS -->
     <link href="https://cdn.datatables.net/1.11.3/css/dataTables.bootstrap4.min.css" rel="stylesheet">
     <link href="https://cdn.datatables.net/responsive/2.2.9/css/responsive.bootstrap4.min.css" rel="stylesheet">
 
     <!--Bootstrap 4  CSS Link-->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <!-- Toastr CSS-->
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
 
     <!-- Custom CSS-->
     @stack('styles')
@@ -55,6 +57,58 @@
             </div>
         </div>
     </div>
+    <!-- Toastr JS-->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <script>
+        function flashMessage(status, message) {
+            toastr.options = {
+                "closeButton": true,
+                "debug": false,
+                "newestOnTop": false,
+                "progressBar": true,
+                "positionClass": "toast-top-right",
+                "preventDuplicates": false,
+                "onclick": null,
+                "showDuration": "300",
+                "hideDuration": "1000",
+                "timeOut": "5000",
+                "extendedTimeOut": "1000",
+                "showEasing": "swing",
+                "hideEasing": "linear",
+                "showMethod": "fadeIn",
+                "hideMethod": "fadeOut"
+            }
+            switch (status) {
+                case 'success':
+                    toastr.success(message);
+                    break;
+
+                case 'error':
+                    toastr.error(message);
+                    break;
+
+                case 'info':
+                    toastr.info(message);
+                    break;
+
+                case 'warning':
+                    toastr.warning(message);
+                    break;
+            }
+        }
+
+        // session flash message
+        @if (Session::get('success'))
+            flashMessage('success', "{{ Session::get('success') }}")
+        @elseif (Session::get('error'))
+            flashMessage('error', "{{ Session::get('error') }}")
+        @elseif (Session::get('info'))
+            flashMessage('info', "{{ Session::get('info') }}")
+        @elseif (Session::get('warning'))
+            flashMessage('warning', "{{ Session::get('warning') }}")
+        @endif
+    </script>
     <!-- plugins:js -->
     <script src="{{ asset('backend/assets/vendors/js/vendor.bundle.base.js') }}"></script>
     <!-- endinject -->

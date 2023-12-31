@@ -21,7 +21,7 @@
                                                 <td style="padding-right: 0px;padding-left: 0px;"
                                                     align="center">
                                                     <img align="center" border="0"
-                                                        src="http://127.0.0.1:8000/frontend/assets/img/dark-logo.png"
+                                                        src="{{ asset('frontend/assets/img/dark-logo.png') }}"
                                                         alt="Image" title="Image"
                                                         style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: inline-block !important;border: none;height: auto;float: none;width: 42%;max-width: 235.2px;"
                                                         width="235.2" />

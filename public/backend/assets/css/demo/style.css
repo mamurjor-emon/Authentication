@@ -8,6 +8,10 @@
     color: red;
 }
 
+a {
+    text-decoration: none !important;
+}
+
 /*=========================
 	End Login  CSS
 ===========================*/
@@ -24504,6 +24508,10 @@ footer .vertical-divider {
 #verify-user .verify-title {
     color: #646161;
     font-size: 17px;
+}
+
+.email-template-search-bar #datatable-search {
+    padding: 5px 20px;
 }
 
 /* Verify User Blade End */

@@ -19,7 +19,8 @@ class VerifyMiddleware
         if(Auth::check() && Auth::user()->email_verified_at != null){
             return $next($request);
         }else{
-           return redirect()->route('verify.user');
+           Auth::logout();
+           return redirect()->route('login')->with('error','Please Cheak Your Email And Verify Your Account ');
         }
 
     }

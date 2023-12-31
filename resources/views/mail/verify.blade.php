@@ -1,5 +1,5 @@
 @extends('mail.layouts.app')
-@section('heading', 'Email Verify')
+@section('heading', $data['heading'])
 @section('content')
 <tr>
     <td align="left" style="padding-bottom:20px;Margin:0">
@@ -7,8 +7,7 @@
             <tbody>
                 <tr>
                     <td style="overflow-wrap:break-word;word-break:break-word;padding-right:55px;padding-left:55px;padding-bottom: 30px; font-family:'Cabin',sans-serif;" align="left">
-                        hello
-                       {{-- {!! $data['body'] !!} --}}
+                       {!! $data['body'] !!}
                     </td>
                 </tr>
             </tbody>

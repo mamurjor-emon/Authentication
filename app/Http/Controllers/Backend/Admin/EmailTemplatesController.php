@@ -31,18 +31,27 @@ class EmailTemplatesController extends Controller
                 ->filter(function ($query) use ($request){
                     if (!empty($request->search)) {
                         $query->when($request->search, function($query,$value){
-                            $query->whereHas('email_templates', function ($query) use ($value) {
-                                $query->where('name', 'like', "%{$value}%")
-                                ->orWhere('heading', 'like', "%{$value}%");
-                            })
-                            ->orWhere('subject', 'like', "%{$value}%");
+                            $query->where('name', 'like', "%{$value}%")
+                            ->orWhere('heading','like', "%{$value}%")
+                            ->orWhere('subject','like', "%{$value}%");
                         });
                     }
                 })
-                ->addColumn('id', function($data){
-                    return 'hii';
+                ->addColumn('name', function($data){
+                    return $data->name;
                 })
-                ->rawColumns([])
+                ->addColumn('heading', function($data){
+                    return $data->heading;
+                })
+                ->addColumn('subject', function($data){
+                    return $data->subject;
+                })
+                ->addColumn('action', function($data){
+                    return '<a href="" class="rounded mdc-button mdc-button--raised icon-button filled-button--success">
+                    <i class="material-icons mdc-button__icon">colorize</i>
+                  </a>';
+                })
+                ->rawColumns(['body','action'])
                 ->make(true);
         }
     }
