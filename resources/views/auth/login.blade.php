@@ -69,12 +69,11 @@
                                                         <span class="text-danger error-text">{{ $message }}</span>
                                                     @enderror
                                                 </div>
-                                                <div
-                                                    class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-6-desktop">
+                                                <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-6-desktop">
                                                     <div class="mdc-form-field">
                                                         <div class="mdc-checkbox">
                                                             <input type="checkbox" class="mdc-checkbox__native-control"
-                                                                id="checkbox-1" />
+                                                                id="checkbox-1" name="remember_me" />
                                                             <div class="mdc-checkbox__background">
                                                                 <svg class="mdc-checkbox__checkmark"
                                                                     viewBox="0 0 24 24">
@@ -118,58 +117,59 @@
             </div>
         </div>
     </div>
-     <!-- Toastr JS-->
-     <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
-     <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
-     <script>
-         function flashMessage(status, message) {
-             toastr.options = {
-                 "closeButton": true,
-                 "debug": false,
-                 "newestOnTop": false,
-                 "progressBar": true,
-                 "positionClass": "toast-top-right",
-                 "preventDuplicates": false,
-                 "onclick": null,
-                 "showDuration": "300",
-                 "hideDuration": "1000",
-                 "timeOut": "5000",
-                 "extendedTimeOut": "1000",
-                 "showEasing": "swing",
-                 "hideEasing": "linear",
-                 "showMethod": "fadeIn",
-                 "hideMethod": "fadeOut"
-             }
-             switch (status) {
-                 case 'success':
-                     toastr.success(message);
-                     break;
+    <!-- Toastr JS-->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <script>
+        function flashMessage(status, message) {
+            toastr.options = {
+                "closeButton": true,
+                "debug": false,
+                "newestOnTop": false,
+                "progressBar": true,
+                "positionClass": "toast-top-right",
+                "preventDuplicates": false,
+                "onclick": null,
+                "showDuration": "300",
+                "hideDuration": "1000",
+                "timeOut": "5000",
+                "extendedTimeOut": "1000",
+                "showEasing": "swing",
+                "hideEasing": "linear",
+                "showMethod": "fadeIn",
+                "hideMethod": "fadeOut"
+            }
+            switch (status) {
+                case 'success':
+                    toastr.success(message);
+                    break;
 
-                 case 'error':
-                     toastr.error(message);
-                     break;
+                case 'error':
+                    toastr.error(message);
+                    break;
 
-                 case 'info':
-                     toastr.info(message);
-                     break;
+                case 'info':
+                    toastr.info(message);
+                    break;
 
-                 case 'warning':
-                     toastr.warning(message);
-                     break;
-             }
-         }
+                case 'warning':
+                    toastr.warning(message);
+                    break;
+            }
+        }
 
-         // session flash message
-         @if (Session::get('success'))
-             flashMessage('success', "{{ Session::get('success') }}")
-         @elseif (Session::get('error'))
-             flashMessage('error', "{{ Session::get('error') }}")
-         @elseif (Session::get('info'))
-             flashMessage('info', "{{ Session::get('info') }}")
-         @elseif (Session::get('warning'))
-             flashMessage('warning', "{{ Session::get('warning') }}")
-         @endif
-     </script>
+        // session flash message
+        @if (Session::get('success'))
+            flashMessage('success', "{{ Session::get('success') }}")
+        @elseif (Session::get('error'))
+            flashMessage('error', "{{ Session::get('error') }}")
+        @elseif (Session::get('info'))
+            flashMessage('info', "{{ Session::get('info') }}")
+        @elseif (Session::get('warning'))
+            flashMessage('warning', "{{ Session::get('warning') }}")
+        @endif
+    </script>
     <!-- plugins:js -->
     <script src="{{ asset('backend/assets/vendors/js/vendor.bundle.base.js') }}"></script>
     <!-- endinject -->

@@ -34,7 +34,7 @@
                                  </a>
                              </div>
                              <div class="mdc-list-item mdc-drawer-item">
-                                 <a class="mdc-drawer-link" href="">
+                                 <a class="mdc-drawer-link {{ $Silders ?? '' }}" href="{{ route('admin.slider.index') }}">
                                      Silder Settings
                                  </a>
                              </div>

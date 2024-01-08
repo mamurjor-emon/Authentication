@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\URL;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\RegisterRequest;
 use App\Mail\VerifyUserMail;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -38,14 +39,8 @@ class AuthController extends Controller
      * @param Illuminate\Http\Request $request
      * @return Illuminate\Http\Request Response
      */
-    public function store(Request $request)
+    public function store(RegisterRequest $request)
     {
-        $request->validate([
-            'fname'    => 'required',
-            'lname'    => 'required',
-            'email'    => 'email|required|unique:users,email',
-            'password' => 'required|confirmed',
-        ]);
 
         $role = Roles::where('slug','client')->first();
         $verify_code = Str::random(64);
