@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('title', $title)
-@push('scripts')
+@push('styles')
     <style>
     </style>
 @endpush
@@ -8,7 +8,8 @@
     <div class="row mt-3">
         <div class="col-12 col-md-12">
             <div class="card px-3 py-3">
-                <div class="card-header bg-white border-bottom-0 pb-4 d-flex justify-content-end align-items-center flex-row">
+                <div class="bg-white border-bottom-0 pb-4 d-flex justify-content-between align-items-center flex-row">
+                    <h2 class="backend-title">{{ $title }}</h2>
                     <div class="email-template-search-bar btn-group d-flex align-items-center">
                         <input type="text" id="datatable-search" class="h-100 border" placeholder="Name,Heading,Subject....">
                         <button type="button" class="mdc-button mdc-button--raised filled-button--info mdc-ripple-upgraded"><i class="mdi mdi-magnify"></i></button>

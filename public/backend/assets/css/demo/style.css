@@ -24513,5 +24513,8 @@ footer .vertical-divider {
 .email-template-search-bar #datatable-search {
     padding: 5px 20px;
 }
-
+.backend-title {
+	color: #4c4343;
+	font-weight: 500;
+}
 /* Verify User Blade End */

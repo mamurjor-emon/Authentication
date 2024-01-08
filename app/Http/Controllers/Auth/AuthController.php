@@ -66,11 +66,10 @@ class AuthController extends Controller
         $subject = emailSubjectTemplate('NEW_USER_MAIL', $request);
         $body    = emailBodyTemplate('NEW_USER_MAIL', $request);
         $heading = emailHeadingTemplate('NEW_USER_MAIL', $request);
-
         $userMail = ['subject' => $subject, 'body' => $body, 'heading' => $heading];
         Mail::to($request->email)->send(new VerifyUserMail($userMail));
         Auth::login($user, true);
         DB::commit();
-        return redirect()->route('login')->with('success', 'Registration successfull!');
+        return redirect()->route('login')->with('success', 'Registration Successfull!');
     }
 }
