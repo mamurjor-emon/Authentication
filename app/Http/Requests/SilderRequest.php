@@ -34,7 +34,7 @@ class SilderRequest extends FormRequest
         $rulse['l_btn_title']    = ['required'];
         $rulse['l_btn_url']      = ['required'];
         $rulse['l_btn_target']   = ['required'];
-        $rulse['image']          = ['required'];
+        $rulse['image']          = ['required', 'image', 'mimes:jpeg,png,jpg,gif', 'max:2048', 'dimensions:min_width=1600,min_height=830,max_width=1600,max_height=830'];
         $rulse['order_by']       = ['required'];
         $rulse['status']         = ['required'];
 

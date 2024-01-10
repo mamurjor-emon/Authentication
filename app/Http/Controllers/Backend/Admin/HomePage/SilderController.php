@@ -54,7 +54,7 @@ class SilderController extends Controller
                         return $data->l_btn_title;
                     })
                     ->addColumn('image', function ($data) {
-                        return '<img id="getDataImage" src="'.asset($data->image).'" alt="image">';
+                        return '<img id="getDataImage" src="' . asset($data->image) . '" alt="image">';
                     })
                     ->addColumn('status', function ($data) {
                         return status($data->status);
@@ -69,7 +69,7 @@ class SilderController extends Controller
                     @csrf
                     @method("DELETE") </form></div>';
                     })
-                    ->rawColumns(['image','status', 'action'])
+                    ->rawColumns(['image', 'status', 'action'])
                     ->make(true);
             }
         } else {
@@ -96,7 +96,6 @@ class SilderController extends Controller
     public function store(SilderRequest $request)
     {
         if (Gate::allows('isAdmin')) {
-
             $image = '';
             if ($request->file('image')) {
                 $image = $this->imageUpload($request->file('image'), 'images/silders/', null, null);
@@ -133,7 +132,7 @@ class SilderController extends Controller
             $parentHomeSubMenu = 'style="display: block;"';
             $Silders = 'active';
             $breadcrumb = ['Silders' => route('admin.slider.index'), 'Edit Silders' => '',];
-            $editSilder = SilderSection::where('id',$id)->first();
+            $editSilder = SilderSection::where('id', $id)->first();
             return view('backend.pages.slider.edit', compact('parentHomeMenu', 'parentHomeSubMenu', 'Silders', 'breadcrumb', 'editSilder'));
         } else {
             abort(401);
@@ -143,18 +142,31 @@ class SilderController extends Controller
     public function update(SilderRequest $request)
     {
         if (Gate::allows('isAdmin')) {
-            $menu = Menu::where('id', $request->update_id)->first();
-            $menu->update([
-                'name'      => $request->name,
-                'slug'      => Str::slug($request->slug),
-                'url'       => $request->url,
-                'target'    => $request->target,
-                'order_by'  => $request->order_by,
-                'parent_id' => $request->parent_id ?? 0,
-                'child_id'  => $request->child_id ?? 0,
-                'status'    => $request->status,
+            $editSilder = SilderSection::where('id', $request->update_id)->first();
+
+            $image = '';
+            if ($request->file('image')) {
+                $image = $this->imageUpdate($request->file('image'), 'images/silders/', null, null, $editSilder->image);
+            } else {
+                $image = $editSilder->image;
+            }
+            $editSilder->update([
+                'f_title'        => $request->f_title,
+                'f_spcial_title' => $request->f_spcial_title,
+                'l_title'        => $request->l_title,
+                'l_spcial_title' => $request->l_spcial_title,
+                'description'    => $request->description,
+                'f_btn_title'    => $request->f_btn_title,
+                'f_btn_url'      => $request->f_btn_url,
+                'f_btn_target'   => $request->f_btn_target,
+                'l_btn_title'    => $request->l_btn_title,
+                'l_btn_url'      => $request->l_btn_url,
+                'l_btn_target'   => $request->l_btn_target,
+                'image'          => $image,
+                'order_by'       => $request->order_by,
+                'status'         => $request->status,
             ]);
-            return redirect()->route('admin.menu.index')->with('success', 'Menu Update Successfuly Done..!');
+            return redirect()->route('admin.slider.index')->with('success', 'Silder Update Successfuly Done..!');
         } else {
             abort(401);
         }
@@ -162,24 +174,12 @@ class SilderController extends Controller
     public function delete($id)
     {
         if (Gate::allows('isAdmin')) {
-            $menu = Menu::where('id', $id)->first();
-            $menu->delete();
-            return back()->with('success', 'Menu Delete Successfuly Done.. !');
+            $editSilder = SilderSection::where('id', $id)->first();
+            $this->imageDelete($editSilder->image);
+            $editSilder->delete();
+            return back()->with('success', 'Silder Delete Successfuly Done.. !');
         } else {
             abort(401);
         }
     }
 }
-
-
-// $image = '';
-// if ($request->file('image')) {
-//     $image = $this->imageUpdate($request->file('image'), 'images/brands/', null, null, $editValue->image);
-// } else {
-//     $image = $editValue->image;
-// }
-
-
-// $this->imageDelete($data->image);
-
-

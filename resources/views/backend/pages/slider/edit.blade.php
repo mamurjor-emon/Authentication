@@ -11,7 +11,7 @@
                     <h2 class="backend-title">{{ $title }}</h2>
                 </div>
                 <div class="menu-create-form">
-                    <form method="POST" action="{{ route('admin.slider.store') }}" enctype="multipart/form-data">
+                    <form method="POST" action="{{ route('admin.slider.update') }}" enctype="multipart/form-data">
                         @csrf
                         <div class="row g-5">
                             <input type="hidden" name="update_id" value="{{ $editSilder->id }}">

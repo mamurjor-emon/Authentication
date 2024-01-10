@@ -40,6 +40,3 @@ Route::post('register/store', [AuthController::class, 'store'])->name('user.regi
 //------------ Varify User ------------//
 Route::get('verify-code/{token}',[VerifyUserController::class,'verifiedCode'])->name('verify.code');
 
-Route::get('emon',function(){
-    return view('mail.verify');
-});
