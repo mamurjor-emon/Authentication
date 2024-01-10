@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Backend\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\EmailTemplateRequest;
 use App\Models\EmailTemplate;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
@@ -77,6 +78,20 @@ class EmailTemplatesController extends Controller
             $breadcrumb = ['Email Templates' => route('admin.email.templates.index'), 'Email Template Edit' => ''];
             $emailtemplate = EmailTemplate::where('id', $id)->first();
             return view('backend.pages.email-templates.edit', compact('parentCompanyMenu', 'parentEmailSubMenu', 'emailTemplate', 'breadcrumb', 'emailtemplate'));
+        } else {
+            abort(401);
+        }
+    }
+    public function update(EmailTemplateRequest $request)
+    {
+        if (Gate::allows('isAdmin')) {
+            $emailtemplate = EmailTemplate::where('id', $request->update_id)->first();
+            $emailtemplate->update([
+                'heading' => $request->heading,
+                'subject' => $request->subject,
+                'body' => $request->body
+            ]);
+            return redirect()->route('admin.email.templates.index')->with('success','Email Template Update Successfuly !');
         } else {
             abort(401);
         }

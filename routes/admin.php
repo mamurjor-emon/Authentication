@@ -40,5 +40,6 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth', 'i
         Route::get('/', [EmailTemplatesController::class, 'index'])->name('index');
         Route::post('getdata', [EmailTemplatesController::class, 'getData'])->name('get.data');
         Route::get('edit/{id}', [EmailTemplatesController::class, 'edit'])->name('edit');
+        Route::post('update', [EmailTemplatesController::class, 'update'])->name('update');
     });
 });
