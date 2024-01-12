@@ -1,14 +1,5 @@
 @extends('layouts.app')
 @section('title', $title)
-@section('add_button')
-    <div>
-        <a href="{{ route('admin.menu.create') }}"
-            class="create-btn btn btn-md mr-3 d-flex justify-content-between align-items-center text-white">
-            <i class="material-icons">add</i>
-            <span>Create</span>
-        </a>
-    </div>
-@endsection
 @push('styles')
 <link rel="stylesheet" href="{{ asset('backend/assets/css/demo/image-style.css') }}">
 @endpush

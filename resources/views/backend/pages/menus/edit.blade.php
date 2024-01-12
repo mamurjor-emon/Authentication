@@ -1,10 +1,5 @@
 @extends('layouts.app')
 @section('title', $title)
-@push('styles')
-    <style>
-
-    </style>
-@endpush
 @section('content')
     <div class="row mt-3">
         <div class="col-md-12">

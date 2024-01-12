@@ -13,7 +13,8 @@ class DashboardController extends Controller
     {
         if (Gate::allows('isAdmin')) {
             $this->setPageTitle('Dashboard');
-            return view('backend.pages.back');
+            $dashboard = 'active';
+            return view('backend.pages.back',compact('dashboard'));
         } else {
             abort(401);
         }

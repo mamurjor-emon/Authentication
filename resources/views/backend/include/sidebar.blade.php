@@ -11,7 +11,7 @@
          <div class="mdc-list-group">
              <nav class="mdc-list mdc-drawer-menu">
                  <div class="mdc-list-item mdc-drawer-item">
-                     <a class="mdc-drawer-link" href="{{ route('admin.dashboard') }}">
+                     <a class="mdc-drawer-link {{ $dashboard ?? '' }}" href="{{ route('admin.dashboard') }}">
                          <i class="material-icons mdc-list-item__start-detail mdc-drawer-item-icon"
                              aria-hidden="true">dashboard</i>
                          Dashboard
@@ -39,12 +39,12 @@
                                  </a>
                              </div>
                              <div class="mdc-list-item mdc-drawer-item">
-                                 <a class="mdc-drawer-link" href="">
+                                 <a class="mdc-drawer-link {{ $Schedule ?? '' }}" href="{{ route('admin.schedule.index') }}">
                                      Schedule Settings
                                  </a>
                              </div>
                              <div class="mdc-list-item mdc-drawer-item">
-                                 <a class="mdc-drawer-link" href="">
+                                 <a class="mdc-drawer-link {{ $Feautes ?? '' }}" href="{{ route('admin.feautes.index') }}">
                                      Feautes Settings
                                  </a>
                              </div>
@@ -111,6 +111,24 @@
                          </nav>
                      </div>
                  </div>
+                 <div class="mdc-list-item mdc-drawer-item">
+                    <a class="mdc-expansion-panel-link {{ $parentTitle ?? '' }}" href="#" data-toggle="expansionPanel"
+                        data-target="ui-sub-menu-title">
+                        <i class="material-icons mdc-list-item__start-detail mdc-drawer-item-icon"
+                            aria-hidden="true">build</i>
+                            Section Title
+                        <i class="mdc-drawer-arrow material-icons">chevron_right</i>
+                    </a>
+                    <div class="mdc-expansion-panel" id="ui-sub-menu-title" {!! $parentTitleSubMenu ?? '' !!}>
+                        <nav class="mdc-list mdc-drawer-submenu">
+                            <div class="mdc-list-item mdc-drawer-item">
+                                <a class="mdc-drawer-link {{ $TitleDiscription ?? '' }}" href="{{ route('admin.title.discription.index') }}">
+                                    All Title & Discrption
+                                </a>
+                            </div>
+                        </nav>
+                    </div>
+                </div>
                  <div class="mdc-list-item mdc-drawer-item">
                      <a class="mdc-expansion-panel-link {{ $parentCompanyMenu ?? '' }}" href="#" data-toggle="expansionPanel"
                          data-target="ui-sub-menu-company">
