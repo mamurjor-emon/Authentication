@@ -15,11 +15,11 @@ class TitleDiscriptionController extends Controller
     {
         if (Gate::allows('isAdmin')) {
             $this->setPageTitle('Title & Discription');
-            $parentTitle = 'expanded';
-            $parentTitleSubMenu = 'style="display: block;"';
-            $TitleDiscription = 'active';
-            $breadcrumb = ['Title & Discription' => '',];
-            return view('backend.pages.title-discrption.index', compact('parentTitle', 'parentTitleSubMenu', 'TitleDiscription', 'breadcrumb'));
+            $data['parentTitle'] = 'expanded';
+            $data['parentTitleSubMenu'] = 'style="display: block;"';
+            $data['TitleDiscription'] = 'active';
+            $data['breadcrumb'] = ['Title & Discription' => '',];
+            return view('backend.pages.title-discrption.index', $data);
         } else {
             abort(401);
         }
@@ -52,6 +52,9 @@ class TitleDiscriptionController extends Controller
                     ->addColumn('title', function ($data) {
                         return $data->title;
                     })
+                    ->addColumn('status', function ($data) {
+                        return status($data->status);
+                    })
                     ->addColumn('action', function ($data) {
                         return '<div class="text-right" ><a href="' . route('admin.title.discription.edit', ['id' => $data->id]) . '" class="rounded mdc-button mdc-button--raised icon-button filled-button--success">
                         <i class="material-icons mdc-button__icon">colorize</i>
@@ -62,7 +65,7 @@ class TitleDiscriptionController extends Controller
                     @csrf
                     @method("DELETE") </form></div>';
                     })
-                    ->rawColumns(['action'])
+                    ->rawColumns(['status','action'])
                     ->make(true);
             }
         } else {
@@ -74,11 +77,11 @@ class TitleDiscriptionController extends Controller
     {
         if (Gate::allows('isAdmin')) {
             $this->setPageTitle('Create Title & Discription');
-            $parentTitle = 'expanded';
-            $parentTitleSubMenu = 'style="display: block;"';
-            $TitleDiscription = 'active';
-            $breadcrumb = ['Title & Discription' => route('admin.title.discription.index'), 'Create Title & Discription' => '',];
-            return view('backend.pages.title-discrption.create', compact('parentTitle', 'parentTitleSubMenu', 'TitleDiscription', 'breadcrumb'));
+            $data['parentTitle'] = 'expanded';
+            $data['parentTitleSubMenu'] = 'style="display: block;"';
+            $data['TitleDiscription'] = 'active';
+            $data['breadcrumb'] = ['Title & Discription' => route('admin.title.discription.index'), 'Create Title & Discription' => '',];
+            return view('backend.pages.title-discrption.create', $data);
         } else {
             abort(401);
         }
@@ -104,12 +107,12 @@ class TitleDiscriptionController extends Controller
     {
         if (Gate::allows('isAdmin')) {
             $this->setPageTitle('Edit Title & Discription');
-            $parentTitle = 'expanded';
-            $parentTitleSubMenu = 'style="display: block;"';
-            $TitleDiscription = 'active';
-            $breadcrumb = ['Title & Discription' => route('admin.title.discription.index'), 'Edit Title & Discription' => ''];
-            $editTitleDiscription = TitleDiscrption::where('id',$id)->first();
-            return view('backend.pages.title-discrption.edit', compact('parentTitle', 'parentTitleSubMenu', 'TitleDiscription', 'breadcrumb', 'editTitleDiscription'));
+            $data['parentTitle'] = 'expanded';
+            $data['parentTitleSubMenu'] = 'style="display: block;"';
+            $data['TitleDiscription'] = 'active';
+            $data['breadcrumb'] = ['Title & Discription' => route('admin.title.discription.index'), 'Edit Title & Discription' => ''];
+            $data['editTitleDiscription'] = TitleDiscrption::where('id',$id)->first();
+            return view('backend.pages.title-discrption.edit', $data);
         } else {
             abort(401);
         }

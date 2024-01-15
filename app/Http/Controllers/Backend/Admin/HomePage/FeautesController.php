@@ -15,11 +15,11 @@ class FeautesController extends Controller
     {
         if (Gate::allows('isAdmin')) {
             $this->setPageTitle('Feautes');
-            $parentHomeMenu = 'expanded';
-            $parentHomeSubMenu = 'style="display: block;"';
-            $Feautes = 'active';
-            $breadcrumb = ['Feautes' => '',];
-            return view('backend.pages.feautes.index', compact('parentHomeMenu', 'parentHomeSubMenu', 'Feautes', 'breadcrumb'));
+            $data['parentHomeMenu'] = 'expanded';
+            $data['parentHomeSubMenu'] = 'style="display: block;"';
+            $data['Feautes'] = 'active';
+            $data['breadcrumb'] = ['Feautes' => '',];
+            return view('backend.pages.feautes.index', $data);
         } else {
             abort(401);
         }
@@ -77,12 +77,12 @@ class FeautesController extends Controller
     {
         if (Gate::allows('isAdmin')) {
             $this->setPageTitle('Create Feautes');
-            $parentHomeMenu = 'expanded';
-            $parentHomeSubMenu = 'style="display: block;"';
-            $Feautes = 'active';
-            $totalFeautes = Feautes::get();
-            $breadcrumb = ['Feautes' => route('admin.slider.index'), 'Create Feautes' => '',];
-            return view('backend.pages.feautes.create', compact('parentHomeMenu', 'parentHomeSubMenu', 'Feautes', 'totalFeautes', 'breadcrumb'));
+            $data['parentHomeMenu'] = 'expanded';
+            $data['parentHomeSubMenu'] = 'style="display: block;"';
+            $data['Feautes'] = 'active';
+            $data['totalFeautes'] = Feautes::get();
+            $data['breadcrumb'] = ['Feautes' => route('admin.slider.index'), 'Create Feautes' => '',];
+            return view('backend.pages.feautes.create', $data);
         } else {
             abort(401);
         }
@@ -109,12 +109,12 @@ class FeautesController extends Controller
     {
         if (Gate::allows('isAdmin')) {
             $this->setPageTitle('Edit Feautes');
-            $parentHomeMenu = 'expanded';
-            $parentHomeSubMenu = 'style="display: block;"';
-            $Feautes = 'active';
-            $breadcrumb = ['Feautes' => route('admin.feautes.index'), 'Edit Feautes' => '',];
-            $editFeautes = Feautes::where('id', $id)->first();
-            return view('backend.pages.feautes.edit', compact('parentHomeMenu', 'parentHomeSubMenu', 'Feautes', 'breadcrumb', 'editFeautes'));
+            $data['parentHomeMenu'] = 'expanded';
+            $data['parentHomeSubMenu'] = 'style="display: block;"';
+            $data['Feautes'] = 'active';
+            $data['breadcrumb'] = ['Feautes' => route('admin.feautes.index'), 'Edit Feautes' => '',];
+            $data['editFeautes'] = Feautes::where('id', $id)->first();
+            return view('backend.pages.feautes.edit', $data);
         } else {
             abort(401);
         }

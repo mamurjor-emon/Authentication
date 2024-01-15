@@ -49,17 +49,17 @@
                                  </a>
                              </div>
                              <div class="mdc-list-item mdc-drawer-item">
-                                 <a class="mdc-drawer-link" href="">
+                                 <a class="mdc-drawer-link {{ $Fun_facts ?? '' }}" href="{{ route('admin.fun_facts.index') }}">
                                      Fun Facts Settings
                                  </a>
                              </div>
                              <div class="mdc-list-item mdc-drawer-item">
-                                 <a class="mdc-drawer-link" href="">
+                                 <a class="mdc-drawer-link {{ $WhyChooseSection ?? '' }}" href="{{ route('admin.why.choose.index') }}">
                                      Why Choose
                                  </a>
                              </div>
                              <div class="mdc-list-item mdc-drawer-item">
-                                 <a class="mdc-drawer-link" href="">
+                                 <a class="mdc-drawer-link {{ $callToActionActive ?? '' }}" href="{{ route('admin.call.action.index') }}">
                                      Call Action Settings
                                  </a>
                              </div>

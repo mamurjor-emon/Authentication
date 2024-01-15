@@ -3,11 +3,15 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Backend\Admin\DashboardController;
 use App\Http\Controllers\Backend\Admin\EmailTemplatesController;
+use App\Http\Controllers\Backend\Admin\HomePage\CallActionController;
 use App\Http\Controllers\Backend\Admin\HomePage\FeautesController;
+use App\Http\Controllers\Backend\Admin\HomePage\FunFactsController;
 use App\Http\Controllers\Backend\Admin\HomePage\MenusController;
+use App\Http\Controllers\Backend\Admin\HomePage\PortfolioController;
 use App\Http\Controllers\Backend\Admin\HomePage\ScheduleController;
 use App\Http\Controllers\Backend\Admin\HomePage\SilderController;
 use App\Http\Controllers\Backend\Admin\HomePage\TitleDiscriptionController;
+use App\Http\Controllers\Backend\Admin\HomePage\WhyChooseController;
 use App\Models\TitleDiscrption;
 
 // Group Route
@@ -51,7 +55,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth', 'i
         Route::get('delete/{id}', [ScheduleController::class, 'delete'])->name('delete');
     });
 
-    //------------------------ Schedule Section -----------------------//
+    //------------------------ Feautes Section -----------------------//
     Route::prefix('feautes')->name('feautes.')->group(function () {
         Route::get('/', [FeautesController::class, 'index'])->name('index');
         Route::post('getdata', [FeautesController::class, 'getData'])->name('get.data');
@@ -60,6 +64,40 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth', 'i
         Route::get('edit/{id}', [FeautesController::class, 'edit'])->name('edit');
         Route::post('update', [FeautesController::class, 'update'])->name('update');
         Route::get('delete/{id}', [FeautesController::class, 'delete'])->name('delete');
+    });
+
+    //------------------------ Fun Facts Section -----------------------//
+    Route::prefix('fun_facts')->name('fun_facts.')->group(function () {
+        Route::get('/', [FunFactsController::class, 'index'])->name('index');
+        Route::post('getdata', [FunFactsController::class, 'getData'])->name('get.data');
+        Route::get('create', [FunFactsController::class, 'create'])->name('create');
+        Route::post('store', [FunFactsController::class, 'store'])->name('store');
+        Route::get('edit/{id}', [FunFactsController::class, 'edit'])->name('edit');
+        Route::post('update', [FunFactsController::class, 'update'])->name('update');
+        Route::get('delete/{id}', [FunFactsController::class, 'delete'])->name('delete');
+    });
+
+    //------------------------ Why Choose Section -----------------------//
+    Route::prefix('why-choose')->name('why.choose.')->group(function () {
+        Route::get('/', [WhyChooseController::class, 'index'])->name('index');
+        Route::post('create', [WhyChooseController::class, 'createOrUpdate'])->name('create.or.update');
+    });
+
+    //------------------------ Call To Action Section -----------------------//
+    Route::prefix('call-action')->name('call.action.')->group(function () {
+        Route::get('/', [CallActionController::class, 'index'])->name('index');
+        Route::post('create', [CallActionController::class, 'createOrUpdate'])->name('create.or.update');
+    });
+
+    //------------------------ Portfolio Section -----------------------//
+    Route::prefix('portfolio')->name('portfolio.')->group(function () {
+        Route::get('/', [PortfolioController::class, 'index'])->name('index');
+        Route::post('getdata', [PortfolioController::class, 'getData'])->name('get.data');
+        Route::get('create', [PortfolioController::class, 'create'])->name('create');
+        Route::post('store', [PortfolioController::class, 'store'])->name('store');
+        Route::get('edit/{id}', [PortfolioController::class, 'edit'])->name('edit');
+        Route::post('update', [PortfolioController::class, 'update'])->name('update');
+        Route::get('delete/{id}', [PortfolioController::class, 'delete'])->name('delete');
     });
 
 

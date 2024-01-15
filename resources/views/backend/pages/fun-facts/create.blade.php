@@ -8,29 +8,33 @@
                     <h2 class="backend-title">{{ $title }}</h2>
                 </div>
                 <div class="menu-create-form">
-                    <form method="POST" action="{{ route('admin.title.discription.store') }}" enctype="multipart/form-data">
+                    <form method="POST" action="{{ route('admin.fun_facts.store') }}" enctype="multipart/form-data">
                         @csrf
                         <div class="row g-5">
-                            <input type="hidden" name="update_id" value="{{ $editTitleDiscription->id }}">
-                            <x-form.textbox labelName="Section Name" parantClass="col-12 col-md-6" name="name"
-                                required="required" placeholder="Enter Section Name..!" errorName="name" class="py-2"
-                                value="{{ $editTitleDiscription->section_name }}" readonly="readonly"></x-form.textbox>
+                            <x-form.textbox labelName="Icon" parantClass="col-12 col-md-6" name="icons"
+                                required="required" placeholder="Enter Fontawesome 4.7 Icon..!" errorName="icons"
+                                class="py-2" value="{{ old('icons') }}"></x-form.textbox>
 
                             <x-form.textbox labelName="Title" parantClass="col-12 col-md-6" name="title"
                                 required="required" placeholder="Enter Title..!" errorName="title" class="py-2"
-                                value="{{ $editTitleDiscription->title }}"></x-form.textbox>
+                                value="{{ old('title') }}"></x-form.textbox>
                         </div>
 
                         <div class="row g-5 mt-2">
+                            <x-form.textbox labelName="Counter" type="number" parantClass="col-12 col-md-6" name="counter"
+                                required="required" placeholder="Enter Counter..!" errorName="counter" class="py-2"
+                                value="{{ old('counter') }}"></x-form.textbox>
 
-                            <x-form.textarea labelName="Discrption" parantClass="col-md-6" name="discrption"
-                                required="required" errorName="discrption"
-                                value="{{ $editTitleDiscription->discrption  }}"></x-form.textarea>
+                            <x-form.textbox labelName="Order By" parantClass="col-12 col-md-6" name="order_by"
+                                required="required" placeholder="Enter Order By..!" errorName="order_by" class="py-2"
+                                value="{{ $totalFunFacts->count() > 0 ? $totalFunFacts->count() + 1 : 1 }}"></x-form.textbox>
+                        </div>
 
+                        <div class="row g-5 mt-2">
                             <x-form.selectbox parantClass="col-12 col-md-6" class="form-control py-2" name="status"
                                 required="required" labelName="Status" errorName="status">
-                                <option value="0" {{ $editTitleDiscription->status == '0' ? 'selected' : ''  }}>Pending</option>
-                                <option value="1" {{ $editTitleDiscription->status == '1' ? 'selected' : ''  }}>Publish</option>
+                                <option value="0">Pending</option>
+                                <option value="1">Publish</option>
                             </x-form.selectbox>
                         </div>
                         <div class="d-flex justify-content-end align-items-center mt-3">
@@ -43,12 +47,4 @@
         </div>
     </div>
 @endsection
-@push('scripts')
-    <script>
-        $('#discrption').summernote({
-            placeholder: 'Enter Your Discrption',
-            tabsize: 2,
-            height: 100
-        });
-    </script>
-@endpush
+

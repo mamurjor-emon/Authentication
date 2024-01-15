@@ -5,9 +5,9 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="section-title">
-                        <h2>We Maintain Cleanliness Rules Inside Our Hospital</h2>
+                        <h2>{{ $portfolioSection->title ?? '' }}</h2>
                         <img src="{{ asset('frontend/assets/img/section-img.png') }}" alt="#">
-                        <p>Lorem ipsum dolor sit amet consectetur adipiscing elit praesent aliquet. pretiumts</p>
+                        {!! $portfolioSection->discrption !!}
                     </div>
                 </div>
             </div>
@@ -18,7 +18,7 @@
                     <div class="owl-carousel portfolio-slider">
                         <div class="single-pf">
                             <img src="{{ asset('frontend/assets/img/pf1.jpg') }}" alt="#">
-                            <a href="portfolio-details.html" class="btn">View Details</a>
+                            <a href="portfolio-details.html" class="btn">View Details</a>   
                         </div>
                         <div class="single-pf">
                             <img src="{{ asset('frontend/assets/img/pf2.jpg') }}" alt="#">

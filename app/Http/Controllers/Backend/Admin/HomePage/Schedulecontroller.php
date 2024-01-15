@@ -15,10 +15,10 @@ class ScheduleController extends Controller
     {
         if (Gate::allows('isAdmin')) {
             $this->setPageTitle('Schedule');
-            $parentHomeMenu = 'expanded';
-            $parentHomeSubMenu = 'style="display: block;"';
-            $Schedule = 'active';
-            $breadcrumb = ['Schedule' => '',];
+            $data['parentHomeMenu'] = 'expanded';
+            $data['parentHomeSubMenu'] = 'style="display: block;"';
+            $data['Schedule'] = 'active';
+            $data['breadcrumb'] = ['Schedule' => '',];
             return view('backend.pages.schedule.index', compact('parentHomeMenu', 'parentHomeSubMenu', 'Schedule', 'breadcrumb'));
         } else {
             abort(401);
@@ -80,12 +80,12 @@ class ScheduleController extends Controller
     {
         if (Gate::allows('isAdmin')) {
             $this->setPageTitle('Create Schedule');
-            $parentHomeMenu = 'expanded';
-            $parentHomeSubMenu = 'style="display: block;"';
-            $Schedule = 'active';
-            $totalSchedule = Schedule::get();
-            $breadcrumb = ['Schedule' => route('admin.schedule.index'), 'Create Schedule' => '',];
-            return view('backend.pages.schedule.create', compact('parentHomeMenu', 'parentHomeSubMenu', 'Schedule', 'totalSchedule', 'breadcrumb'));
+            $data['parentHomeMenu'] = 'expanded';
+            $data['parentHomeSubMenu'] = 'style="display: block;"';
+            $data['Schedule'] = 'active';
+            $data['totalSchedule'] = Schedule::get();
+            $data['breadcrumb'] = ['Schedule' => route('admin.schedule.index'), 'Create Schedule' => '',];
+            return view('backend.pages.schedule.create', $data);
         } else {
             abort(401);
         }
@@ -116,12 +116,12 @@ class ScheduleController extends Controller
     {
         if (Gate::allows('isAdmin')) {
             $this->setPageTitle('Edit Schedule');
-            $parentHomeMenu = 'expanded';
-            $parentHomeSubMenu = 'style="display: block;"';
-            $Schedule = 'active';
-            $breadcrumb = ['Schedule' => route('admin.schedule.index'), 'Edit Schedule' => '',];
-            $editSchedule = Schedule::where('id', $id)->first();
-            return view('backend.pages.schedule.edit', compact('parentHomeMenu', 'parentHomeSubMenu', 'Schedule', 'breadcrumb', 'editSchedule'));
+            $data['parentHomeMenu'] = 'expanded';
+            $data['parentHomeSubMenu'] = 'style="display: block;"';
+            $data['Schedule'] = 'active';
+            $data['breadcrumb'] = ['Schedule' => route('admin.schedule.index'), 'Edit Schedule' => '',];
+            $data['editSchedule'] = Schedule::where('id', $id)->first();
+            return view('backend.pages.schedule.edit', $data);
         } else {
             abort(401);
         }

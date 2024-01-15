@@ -15,11 +15,11 @@ class SilderController extends Controller
     {
         if (Gate::allows('isAdmin')) {
             $this->setPageTitle('Silders');
-            $parentHomeMenu = 'expanded';
-            $parentHomeSubMenu = 'style="display: block;"';
-            $Silders = 'active';
-            $breadcrumb = ['Silders' => '',];
-            return view('backend.pages.slider.index', compact('parentHomeMenu', 'parentHomeSubMenu', 'Silders', 'breadcrumb'));
+            $data['parentHomeMenu'] = 'expanded';
+            $data['parentHomeSubMenu'] = 'style="display: block;"';
+            $data['Silders'] = 'active';
+            $data['breadcrumb'] = ['Silders' => '',];
+            return view('backend.pages.slider.index', $data);
         } else {
             abort(401);
         }
@@ -81,12 +81,12 @@ class SilderController extends Controller
     {
         if (Gate::allows('isAdmin')) {
             $this->setPageTitle('Create Silders');
-            $parentHomeMenu = 'expanded';
-            $parentHomeSubMenu = 'style="display: block;"';
-            $Silders = 'active';
-            $totalSilders = SilderSection::get();
-            $breadcrumb = ['Silders' => route('admin.slider.index'), 'Create Silders' => '',];
-            return view('backend.pages.slider.create', compact('parentHomeMenu', 'parentHomeSubMenu', 'Silders', 'totalSilders', 'breadcrumb'));
+            $data['parentHomeMenu'] = 'expanded';
+            $data['parentHomeSubMenu'] = 'style="display: block;"';
+            $data['Silders'] = 'active';
+            $data['totalSilders'] = SilderSection::get();
+            $data['breadcrumb'] = ['Silders' => route('admin.slider.index'), 'Create Silders' => '',];
+            return view('backend.pages.slider.create', $data);
         } else {
             abort(401);
         }
@@ -128,12 +128,12 @@ class SilderController extends Controller
     {
         if (Gate::allows('isAdmin')) {
             $this->setPageTitle('Edit Silders');
-            $parentHomeMenu = 'expanded';
-            $parentHomeSubMenu = 'style="display: block;"';
-            $Silders = 'active';
-            $breadcrumb = ['Silders' => route('admin.slider.index'), 'Edit Silders' => '',];
-            $editSilder = SilderSection::where('id', $id)->first();
-            return view('backend.pages.slider.edit', compact('parentHomeMenu', 'parentHomeSubMenu', 'Silders', 'breadcrumb', 'editSilder'));
+            $data['parentHomeMenu'] = 'expanded';
+            $data['parentHomeSubMenu'] = 'style="display: block;"';
+            $data['Silders'] = 'active';
+            $data['breadcrumb'] = ['Silders' => route('admin.slider.index'), 'Edit Silders' => '',];
+            $data['editSilder'] = SilderSection::where('id', $id)->first();
+            return view('backend.pages.slider.edit', $data);
         } else {
             abort(401);
         }

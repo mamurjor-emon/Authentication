@@ -100,6 +100,7 @@
                                         <span class="text-danger error-text">{{ $message }}</span>
                                     @enderror
                                 </div>
+                                <p class="text-warning">Image Fixed Width 1600px & Height 830px</p>
                             </div>
                         </div>
                         <div class="d-flex justify-content-end align-items-center mt-3">

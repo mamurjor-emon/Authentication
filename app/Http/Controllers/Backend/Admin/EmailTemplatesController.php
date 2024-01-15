@@ -15,11 +15,11 @@ class EmailTemplatesController extends Controller
     {
         if (Gate::allows('isAdmin')) {
             $this->setPageTitle('Email Templates');
-            $parentCompanyMenu = 'expanded';
-            $parentEmailSubMenu = 'style="display: block;"';
-            $emailTemplate = 'active';
-            $breadcrumb = ['Email Templates' => '',];
-            return view('backend.pages.email-templates.index', compact('parentCompanyMenu', 'parentEmailSubMenu', 'emailTemplate', 'breadcrumb'));
+            $data['parentCompanyMenu'] = 'expanded';
+            $data['parentEmailSubMenu'] = 'style="display: block;"';
+            $data['emailTemplate'] = 'active';
+            $data['breadcrumb'] = ['Email Templates' => '',];
+            return view('backend.pages.email-templates.index', $data);
         } else {
             abort(401);
         }
@@ -72,12 +72,12 @@ class EmailTemplatesController extends Controller
     {
         if (Gate::allows('isAdmin')) {
             $this->setPageTitle('Email Template Edit');
-            $parentCompanyMenu = 'expanded';
-            $parentEmailSubMenu = 'style="display: block;"';
-            $emailTemplate = 'active';
-            $breadcrumb = ['Email Templates' => route('admin.email.templates.index'), 'Email Template Edit' => ''];
-            $emailtemplate = EmailTemplate::where('id', $id)->first();
-            return view('backend.pages.email-templates.edit', compact('parentCompanyMenu', 'parentEmailSubMenu', 'emailTemplate', 'breadcrumb', 'emailtemplate'));
+            $data['parentCompanyMenu'] = 'expanded';
+            $data['parentEmailSubMenu'] = 'style="display: block;"';
+            $data['emailTemplate'] = 'active';
+            $data['breadcrumb'] = ['Email Templates' => route('admin.email.templates.index'), 'Email Template Edit' => ''];
+            $data['emailtemplate'] = EmailTemplate::where('id', $id)->first();
+            return view('backend.pages.email-templates.edit', $data);
         } else {
             abort(401);
         }
