@@ -64,12 +64,12 @@
                                  </a>
                              </div>
                              <div class="mdc-list-item mdc-drawer-item">
-                                 <a class="mdc-drawer-link" href="">
+                                 <a class="mdc-drawer-link {{ $portfolioActive ?? '' }}" href="{{ route('admin.portfolio.index') }}">
                                      Portfolio Settings
                                  </a>
                              </div>
                              <div class="mdc-list-item mdc-drawer-item">
-                                 <a class="mdc-drawer-link" href="">
+                                 <a class="mdc-drawer-link {{ $servicesActive ?? '' }}" href="{{ route('admin.services.index') }}">
                                      Services Settings
                                  </a>
                              </div>

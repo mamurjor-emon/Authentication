@@ -16,38 +16,13 @@
             <div class="row">
                 <div class="col-lg-12 col-12">
                     <div class="owl-carousel portfolio-slider">
+                        @forelse ($portfolioDatas as $portfolioData)
                         <div class="single-pf">
-                            <img src="{{ asset('frontend/assets/img/pf1.jpg') }}" alt="#">
-                            <a href="portfolio-details.html" class="btn">View Details</a>   
+                            <img src="{{ asset($portfolioData->image ?? '') }}" alt="image">
+                            <a href="{{ $portfolioData->btn_url ?? '' }}" target="{{ $portfolioData->btn_target == 1 ? '_blank' : '' }}" class="btn">{{ $portfolioData->btn_title }}</a>
                         </div>
-                        <div class="single-pf">
-                            <img src="{{ asset('frontend/assets/img/pf2.jpg') }}" alt="#">
-                            <a href="portfolio-details.html" class="btn">View Details</a>
-                        </div>
-                        <div class="single-pf">
-                            <img src="{{ asset('frontend/assets/img/pf3.jpg') }}" alt="#">
-                            <a href="portfolio-details.html" class="btn">View Details</a>
-                        </div>
-                        <div class="single-pf">
-                            <img src="{{ asset('frontend/assets/img/pf4.jpg') }}" alt="#">
-                            <a href="portfolio-details.html" class="btn">View Details</a>
-                        </div>
-                        <div class="single-pf">
-                            <img src="{{ asset('frontend/assets/img/pf1.jpg') }}" alt="#">
-                            <a href="portfolio-details.html" class="btn">View Details</a>
-                        </div>
-                        <div class="single-pf">
-                            <img src="{{ asset('frontend/assets/img/pf2.jpg') }}" alt="#">
-                            <a href="portfolio-details.html" class="btn">View Details</a>
-                        </div>
-                        <div class="single-pf">
-                            <img src="{{ asset('frontend/assets/img/pf3.jpg') }}" alt="#">
-                            <a href="portfolio-details.html" class="btn">View Details</a>
-                        </div>
-                        <div class="single-pf">
-                            <img src="{{ asset('frontend/assets/img/pf4.jpg') }}" alt="#">
-                            <a href="portfolio-details.html" class="btn">View Details</a>
-                        </div>
+                        @empty
+                        @endforelse
                     </div>
                 </div>
             </div>

@@ -124,9 +124,13 @@
         $(function() {
             ImagePriviewInsert('picture__input', 'picture__image','Choose Image');
         });
-         var editdata = "{{ asset($editSilder->image ?? '') }}";
-        $(function() {
-            ImagePriviewUpdate('picture__input', 'picture__image', 'Choose Image',editdata);
-        });
+
+        var editdata = "{{ $editSilder->image ?? '' }}";
+        if (editdata != '') {
+            var myData = "{{ asset($editSilder->image ?? '') }}";
+            $(function() {
+                ImagePriviewUpdate('picture__input', 'picture__image', 'Choose Image', myData);
+            });
+        }
     </script>
 @endpush

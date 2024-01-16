@@ -2,7 +2,7 @@
 @section('title', $title)
 @section('add_button')
     <div>
-        <a href="{{ route('admin.portfolio.create') }}" class="create-btn btn btn-md mr-3 d-flex justify-content-between align-items-center text-white">
+        <a href="{{ route('admin.services.create') }}" class="create-btn btn btn-md mr-3 d-flex justify-content-between align-items-center text-white">
             <i class="material-icons">add</i>
             <span>Create</span>
         </a>
@@ -16,7 +16,7 @@
                 <h2 class="backend-title">{{ $title }}</h2>
                 <div class="email-template-search-bar btn-group d-flex align-items-center">
                     <input type="text" id="datatable-search" class="h-100 border"
-                        placeholder="Button Title,Order By....">
+                        placeholder="Title,Order By....">
                     <button type="button"
                         class="mdc-button mdc-button--raised filled-button--info mdc-ripple-upgraded"><i
                             class="mdi mdi-magnify"></i></button>
@@ -26,9 +26,9 @@
                 <thead>
                     <tr>
                         <th>Sl</th>
-                        <th>Image</th>
-                        <th>Button Title</th>
-                        <th>Button Url</th>
+                        <th>Icon</th>
+                        <th>Title</th>
+                        <th>Url</th>
                         <th>Status</th>
                         <th class="text-right">Action</th>
                     </tr>
@@ -57,7 +57,7 @@
         ],
         pageLength: 25, //number of data show per page
         ajax: {
-            url: "{{ route('admin.portfolio.get.data') }}",
+            url: "{{ route('admin.services.get.data') }}",
             type: "POST",
             dataType: "JSON",
             data: function(d) {
@@ -67,9 +67,9 @@
         },
         columns: [
             {data: 'DT_RowIndex',orderable: false, searchable: false},
-            {data: 'image'},
-            {data: 'btn_title'},
-            {data: 'btn_url'},
+            {data: 'icon'},
+            {data: 'title'},
+            {data: 'url'},
             {data: 'status'},
             {data: 'action'},
         ],
@@ -97,8 +97,8 @@
                 },
                 {
                     extend: 'pdf',
-                    title: 'Portfolio',
-                    filename: 'portfolio_{{ date('d-m-Y') }}',
+                    title: 'Services',
+                    filename: 'services_{{ date('d-m-Y') }}',
                     text: '<i class="fa fa-file-pdf-o" aria-hidden="true"></i> PDF',
                     className: 'pdfButton mdc-button mdc-button--raised filled-button--info mdc-ripple-upgraded mb-3',
                     orientation: "landscape",
@@ -112,8 +112,8 @@
                 },
                 {
                     extend: 'excel',
-                    title: 'Portfolio',
-                    filename: 'portfolio_{{ date('d-m-Y') }}',
+                    title: 'Services',
+                    filename: 'services_{{ date('d-m-Y') }}',
                     text: '<i class="fa fa-file-excel-o" aria-hidden="true"></i> Excel',
                     className: 'excelButton mdc-button mdc-button--raised filled-button--info mdc-ripple-upgraded mb-3',
                     exportOptions: {

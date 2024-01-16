@@ -47,7 +47,7 @@ class FunFactsController extends Controller
                         }
                     })
                     ->addColumn('icon', function ($data) {
-                        return $data->icon;
+                        return $data->icons;
                     })
                     ->addColumn('counter', function ($data) {
                         return $data->counter;
@@ -68,7 +68,7 @@ class FunFactsController extends Controller
                     @csrf
                     @method("DELETE") </form></div>';
                     })
-                    ->rawColumns(['image', 'status', 'action'])
+                    ->rawColumns(['status', 'action'])
                     ->make(true);
             }
         } else {

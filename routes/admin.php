@@ -9,6 +9,7 @@ use App\Http\Controllers\Backend\Admin\HomePage\FunFactsController;
 use App\Http\Controllers\Backend\Admin\HomePage\MenusController;
 use App\Http\Controllers\Backend\Admin\HomePage\PortfolioController;
 use App\Http\Controllers\Backend\Admin\HomePage\ScheduleController;
+use App\Http\Controllers\Backend\Admin\HomePage\ServicesController;
 use App\Http\Controllers\Backend\Admin\HomePage\SilderController;
 use App\Http\Controllers\Backend\Admin\HomePage\TitleDiscriptionController;
 use App\Http\Controllers\Backend\Admin\HomePage\WhyChooseController;
@@ -98,6 +99,17 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth', 'i
         Route::get('edit/{id}', [PortfolioController::class, 'edit'])->name('edit');
         Route::post('update', [PortfolioController::class, 'update'])->name('update');
         Route::get('delete/{id}', [PortfolioController::class, 'delete'])->name('delete');
+    });
+
+    //------------------------ Services Section -----------------------//
+    Route::prefix('services')->name('services.')->group(function () {
+        Route::get('/', [ServicesController::class, 'index'])->name('index');
+        Route::post('getdata', [ServicesController::class, 'getData'])->name('get.data');
+        Route::get('create', [ServicesController::class, 'create'])->name('create');
+        Route::post('store', [ServicesController::class, 'store'])->name('store');
+        Route::get('edit/{id}', [ServicesController::class, 'edit'])->name('edit');
+        Route::post('update', [ServicesController::class, 'update'])->name('update');
+        Route::get('delete/{id}', [ServicesController::class, 'delete'])->name('delete');
     });
 
 

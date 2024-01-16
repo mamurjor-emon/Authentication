@@ -7,7 +7,9 @@ use App\Models\CallToAction;
 use App\Models\Feautes;
 use App\Models\FunFacts;
 use App\Models\Menu;
+use App\Models\PortfolioSection;
 use App\Models\Schedule;
+use App\Models\Service;
 use App\Models\SilderSection;
 use App\Models\TitleDiscrption;
 use App\Models\WhyChoose;
@@ -27,6 +29,9 @@ class FrontendController extends Controller
         $data['whyChooseData'] = WhyChoose::where('status','1')->first();
         $data['callToAction'] = CallToAction::where('status','1')->first();
         $data['portfolioSection'] = TitleDiscrption::where('section_name','Portfolio_section')->where('status','1')->first();
+        $data['portfolioDatas'] = PortfolioSection::where('status', '1')->orderBy('order_by','asc')->get();
+        $data['servicesSection'] = TitleDiscrption::where('section_name','Services_section')->where('status','1')->first();
+        $data['servicesDatas'] = Service::where('status', '1')->orderBy('order_by','asc')->get();
         return view('frontend.pages.home',$data);
     }
 }
