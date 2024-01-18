@@ -19,7 +19,7 @@ class ScheduleController extends Controller
             $data['parentHomeSubMenu'] = 'style="display: block;"';
             $data['Schedule'] = 'active';
             $data['breadcrumb'] = ['Schedule' => '',];
-            return view('backend.pages.schedule.index', compact('parentHomeMenu', 'parentHomeSubMenu', 'Schedule', 'breadcrumb'));
+            return view('backend.pages.schedule.index', $data);
         } else {
             abort(401);
         }

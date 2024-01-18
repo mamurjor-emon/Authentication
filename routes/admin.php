@@ -3,11 +3,14 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Backend\Admin\DashboardController;
 use App\Http\Controllers\Backend\Admin\EmailTemplatesController;
+use App\Http\Controllers\Backend\Admin\HomePage\AppointmentsController;
 use App\Http\Controllers\Backend\Admin\HomePage\CallActionController;
+use App\Http\Controllers\Backend\Admin\HomePage\ClientsController;
 use App\Http\Controllers\Backend\Admin\HomePage\FeautesController;
 use App\Http\Controllers\Backend\Admin\HomePage\FunFactsController;
 use App\Http\Controllers\Backend\Admin\HomePage\MenusController;
 use App\Http\Controllers\Backend\Admin\HomePage\PortfolioController;
+use App\Http\Controllers\Backend\Admin\HomePage\PricingController;
 use App\Http\Controllers\Backend\Admin\HomePage\ScheduleController;
 use App\Http\Controllers\Backend\Admin\HomePage\ServicesController;
 use App\Http\Controllers\Backend\Admin\HomePage\SilderController;
@@ -79,9 +82,9 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth', 'i
     });
 
     //------------------------ Why Choose Section -----------------------//
-    Route::prefix('why-choose')->name('why.choose.')->group(function () {
-        Route::get('/', [WhyChooseController::class, 'index'])->name('index');
-        Route::post('create', [WhyChooseController::class, 'createOrUpdate'])->name('create.or.update');
+    Route::prefix('appointment')->name('appointment.')->group(function () {
+        Route::get('/', [AppointmentsController::class, 'index'])->name('index');
+        Route::post('create', [AppointmentsController::class, 'createOrUpdate'])->name('create.or.update');
     });
 
     //------------------------ Call To Action Section -----------------------//
@@ -112,6 +115,33 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth', 'i
         Route::get('delete/{id}', [ServicesController::class, 'delete'])->name('delete');
     });
 
+    //------------------------ Pricing Section -----------------------//
+    Route::prefix('pricing')->name('pricing.')->group(function () {
+        Route::get('/', [PricingController::class, 'index'])->name('index');
+        Route::post('getdata', [PricingController::class, 'getData'])->name('get.data');
+        Route::get('create', [PricingController::class, 'create'])->name('create');
+        Route::post('store', [PricingController::class, 'store'])->name('store');
+        Route::get('edit/{id}', [PricingController::class, 'edit'])->name('edit');
+        Route::post('update', [PricingController::class, 'update'])->name('update');
+        Route::get('delete/{id}', [PricingController::class, 'delete'])->name('delete');
+    });
+
+    //------------------------ Clients Section -----------------------//
+    Route::prefix('clients')->name('clients.')->group(function () {
+        Route::get('/', [ClientsController::class, 'index'])->name('index');
+        Route::post('getdata', [ClientsController::class, 'getData'])->name('get.data');
+        Route::get('create', [ClientsController::class, 'create'])->name('create');
+        Route::post('store', [ClientsController::class, 'store'])->name('store');
+        Route::get('edit/{id}', [ClientsController::class, 'edit'])->name('edit');
+        Route::post('update', [ClientsController::class, 'update'])->name('update');
+        Route::get('delete/{id}', [ClientsController::class, 'delete'])->name('delete');
+    });
+
+    //------------------------Appointment Section -----------------------//
+    Route::prefix('Appointment')->name('why.choose.')->group(function () {
+        Route::get('/', [WhyChooseController::class, 'index'])->name('index');
+        Route::post('create', [WhyChooseController::class, 'createOrUpdate'])->name('create.or.update');
+    });
 
 
     //------------------------ Title & Discription All Section -----------------------//

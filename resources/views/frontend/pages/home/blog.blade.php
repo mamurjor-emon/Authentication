@@ -4,9 +4,9 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="section-title">
-                    <h2>Keep up with Our Most Recent Medical News.</h2>
+                    <h2>{{ $blogsSection->title ?? ''}}</h2>
                     <img src="{{ asset('frontend/assets/img/section-img.png') }}" alt="#">
-                    <p>Lorem ipsum dolor sit amet consectetur adipiscing elit praesent aliquet. pretiumts</p>
+                    {!! $blogsSection->discrption ?? '' !!}
                 </div>
             </div>
         </div>

@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class ServicesRequest extends FormRequest
+class PricingRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,13 +22,16 @@ class ServicesRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'icon'         => ['required'],
-            'title'        => ['required'],
-            'title_url'    => ['required'],
-            'title_target' => ['required'],
-            'discrption'   => ['required'],
-            'order_by'     => ['required'],
-            'status'       => ['required']
+            'icon'        => ['required'],
+            'title'       => ['required'],
+            'price'       => ['required'],
+            'price_label' => ['required'],
+            'discrption'  => ['required'],
+            'btn_title'   => ['required'],
+            'btn_url'     => ['required'],
+            'btn_target'  => ['required'],
+            'order_by'    => ['required'],
+            'status'      => ['required'],
         ];
     }
 }

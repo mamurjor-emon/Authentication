@@ -74,22 +74,17 @@
                                  </a>
                              </div>
                              <div class="mdc-list-item mdc-drawer-item">
-                                 <a class="mdc-drawer-link" href="">
+                                 <a class="mdc-drawer-link {{ $pricingActive ?? '' }}" href="{{ route('admin.pricing.index') }}">
                                      Pricing Table
                                  </a>
                              </div>
                              <div class="mdc-list-item mdc-drawer-item">
-                                 <a class="mdc-drawer-link" href="">
-                                     Blog Settings
-                                 </a>
-                             </div>
-                             <div class="mdc-list-item mdc-drawer-item">
-                                 <a class="mdc-drawer-link" href="">
+                                 <a class="mdc-drawer-link {{ $Clients ?? '' }}" href="{{ route('admin.clients.index') }}">
                                      Clients Settings
                                  </a>
                              </div>
                              <div class="mdc-list-item mdc-drawer-item">
-                                 <a class="mdc-drawer-link" href="">
+                                 <a class="mdc-drawer-link {{ $appointmentActive ?? '' }}" href="{{ route('admin.appointment.index') }}">
                                      Appointment
                                  </a>
                              </div>
@@ -111,6 +106,36 @@
                          </nav>
                      </div>
                  </div>
+
+                 <div class="mdc-list-item mdc-drawer-item">
+                    <a class="mdc-expansion-panel-link {{ $parentBlogs ?? '' }}" href="#" data-toggle="expansionPanel"
+                        data-target="ui-sub-menu-blog">
+                        <i class="material-icons mdc-list-item__start-detail mdc-drawer-item-icon"
+                            aria-hidden="true">book</i>
+                            Blog Section
+                        <i class="mdc-drawer-arrow material-icons">chevron_right</i>
+                    </a>
+                    <div class="mdc-expansion-panel" id="ui-sub-menu-blog" {!! $parentBlogsSubMenu ?? '' !!}>
+                        <nav class="mdc-list mdc-drawer-submenu">
+                            <div class="mdc-list-item mdc-drawer-item">
+                                <a class="mdc-drawer-link {{ $blogCategorie ?? '' }}" href="">
+                                    Blog Categorie
+                                </a>
+                            </div>
+                            <div class="mdc-list-item mdc-drawer-item">
+                                <a class="mdc-drawer-link {{ $blogTag ?? '' }}" href="">
+                                    Blog Tag
+                                </a>
+                            </div>
+                            <div class="mdc-list-item mdc-drawer-item">
+                                <a class="mdc-drawer-link {{ $singleBlog ?? '' }}" href="">
+                                    Single Blog
+                                </a>
+                            </div>
+                        </nav>
+                    </div>
+                </div>
+
                  <div class="mdc-list-item mdc-drawer-item">
                     <a class="mdc-expansion-panel-link {{ $parentTitle ?? '' }}" href="#" data-toggle="expansionPanel"
                         data-target="ui-sub-menu-title">
@@ -129,6 +154,7 @@
                         </nav>
                     </div>
                 </div>
+
                  <div class="mdc-list-item mdc-drawer-item">
                      <a class="mdc-expansion-panel-link {{ $parentCompanyMenu ?? '' }}" href="#" data-toggle="expansionPanel"
                          data-target="ui-sub-menu-company">
@@ -152,6 +178,7 @@
                          </nav>
                      </div>
                  </div>
+
              </nav>
          </div>
      </div>

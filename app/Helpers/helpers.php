@@ -88,7 +88,7 @@ function userStatus ($status){
 }
 
 /**
- * user role name get
+ * Status
  *
  * @param $status
  * @param \Illuminate\Http\Response
@@ -106,7 +106,7 @@ function status($status){
     return '<span class="badge badge-sm '.$badgeClass.' py-1 px-2">'.$badgeTitle.'</span>';
 }
 /**
- * user role name get
+ * Target
  *
  * @param $target
  * @param \Illuminate\Http\Response

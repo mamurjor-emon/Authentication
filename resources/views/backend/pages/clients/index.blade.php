@@ -2,7 +2,7 @@
 @section('title', $title)
 @section('add_button')
     <div>
-        <a href="{{ route('admin.title.discription.create') }}" class="create-btn btn btn-md mr-3 d-flex justify-content-between align-items-center text-white">
+        <a href="{{ route('admin.clients.create') }}" class="create-btn btn btn-md mr-3 d-flex justify-content-between align-items-center text-white">
             <i class="material-icons">add</i>
             <span>Create</span>
         </a>
@@ -16,18 +16,18 @@
                 <h2 class="backend-title">{{ $title }}</h2>
                 <div class="email-template-search-bar btn-group d-flex align-items-center">
                     <input type="text" id="datatable-search" class="h-100 border"
-                        placeholder="Section Name ,Title....">
+                        placeholder="Name,Order By....">
                     <button type="button"
                         class="mdc-button mdc-button--raised filled-button--info mdc-ripple-upgraded"><i
                             class="mdi mdi-magnify"></i></button>
                 </div>
             </div>
-            <table id="titleDiscription" class="display" style="width:100%">
+            <table id="clients" class="display" style="width:100%">
                 <thead>
                     <tr>
                         <th>Sl</th>
-                        <th>Section Name</th>
-                        <th>Title</th>
+                        <th>Name</th>
+                        <th>Image</th>
                         <th>Status</th>
                         <th class="text-right">Action</th>
                     </tr>
@@ -42,7 +42,7 @@
 @endsection
 @push('scripts')
 <script>
-    var tables  = $('#titleDiscription').DataTable({
+    var tables  = $('#clients').DataTable({
         processing: true,
         serverSide: true,
         order: [], //Initial no order
@@ -56,7 +56,7 @@
         ],
         pageLength: 25, //number of data show per page
         ajax: {
-            url: "{{ route('admin.title.discription.get.data') }}",
+            url: "{{ route('admin.clients.get.data') }}",
             type: "POST",
             dataType: "JSON",
             data: function(d) {
@@ -67,7 +67,7 @@
         columns: [
             {data: 'DT_RowIndex',orderable: false, searchable: false},
             {data: 'name'},
-            {data: 'title'},
+            {data: 'image'},
             {data: 'status'},
             {data: 'action'},
         ],
@@ -95,8 +95,8 @@
                 },
                 {
                     extend: 'pdf',
-                    title: 'Title Discription',
-                    filename: 'title_discription_{{ date('d-m-Y') }}',
+                    title: 'Clients',
+                    filename: 'clients_{{ date('d-m-Y') }}',
                     text: '<i class="fa fa-file-pdf-o" aria-hidden="true"></i> PDF',
                     className: 'pdfButton mdc-button mdc-button--raised filled-button--info mdc-ripple-upgraded mb-3',
                     orientation: "landscape",
@@ -110,8 +110,8 @@
                 },
                 {
                     extend: 'excel',
-                    title: 'Title Discription',
-                    filename: 'title_discription_{{ date('d-m-Y') }}',
+                    title: 'Clients',
+                    filename: 'clients_{{ date('d-m-Y') }}',
                     text: '<i class="fa fa-file-excel-o" aria-hidden="true"></i> Excel',
                     className: 'excelButton mdc-button mdc-button--raised filled-button--info mdc-ripple-upgraded mb-3',
                     exportOptions: {

@@ -20,7 +20,7 @@
     <!-- End layout styles -->
     <link rel="icon" href="{{ asset('frontend/assets/img/favicon.png') }}">
 
-    <!--CSS -->
+    <!-- Datatables CSS -->
     <link href="https://cdn.datatables.net/1.11.3/css/dataTables.bootstrap4.min.css" rel="stylesheet">
     <link href="https://cdn.datatables.net/responsive/2.2.9/css/responsive.bootstrap4.min.css" rel="stylesheet">
 
@@ -34,6 +34,23 @@
         integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.css" rel="stylesheet">
     <!-- Custom CSS-->
+    <style>
+        .toast-success {
+            background-color: #51A351;
+        }
+
+        .toast-error {
+            background-color: #BD362F;
+        }
+
+        .toast-info {
+            background-color: #2F96B4;
+        }
+
+        .toast-warning {
+            background-color: #F89406;
+        }
+    </style>
     @stack('styles')
 </head>
 
@@ -164,8 +181,8 @@
     </script>
     <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script>
 
-     <!--=================== Image Preview Script ==================-->
-     <script src="{{ asset('backend/assets/js/image-preview.js') }}"></script>
+    <!--=================== Image Preview Script ==================-->
+    <script src="{{ asset('backend/assets/js/image-preview.js') }}"></script>
     <script>
         var _token = "{{ csrf_token() }}";
     </script>

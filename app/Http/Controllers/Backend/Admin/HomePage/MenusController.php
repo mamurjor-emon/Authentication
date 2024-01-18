@@ -20,7 +20,7 @@ class MenusController extends Controller
             $data['parentHomeSubMenu'] = 'style="display: block;"';
             $data['Menus'] = 'active';
             $data['breadcrumb'] = ['Menus' => '',];
-            return view('backend.pages.menus.index', compact('parentHomeMenu', 'parentHomeSubMenu', 'Menus', 'breadcrumb'));
+            return view('backend.pages.menus.index', $data);
         } else {
             abort(401);
         }

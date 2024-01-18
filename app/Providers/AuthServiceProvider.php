@@ -28,7 +28,6 @@ class AuthServiceProvider extends ServiceProvider
             if ($user->role->slug == 'admin') {
                 return true;
             }
-
             return false;
         });
 

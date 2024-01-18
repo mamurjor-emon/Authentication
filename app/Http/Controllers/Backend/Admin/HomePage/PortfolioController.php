@@ -47,7 +47,7 @@ class PortfolioController extends Controller
                         }
                     })
                     ->addColumn('image', function ($data) {
-                        return '<img id="getDataImage" src="' . asset($data->image) . '" alt="image">';;
+                        return '<img id="getDataImage" src="' . asset($data->image) . '" alt="image">';
                     })
                     ->addColumn('btn_title', function ($data) {
                         return $data->btn_title;
