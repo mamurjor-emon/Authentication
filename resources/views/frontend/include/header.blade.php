@@ -72,7 +72,7 @@
                     <div class="col-lg-3 col-md-3 col-12">
                         <!-- Start Logo -->
                         <div class="logo">
-                            <a href="index.html"><img src="{{ asset('frontend/assets/img/logo.png') }}"
+                            <a href="{{ url('/') }}"><img src="{{ asset('frontend/assets/img/logo.png') }}"
                                     alt="#"></a>
                         </div>
                         <!-- End Logo -->
@@ -85,24 +85,31 @@
                         <div class="main-menu">
                             <nav class="navigation">
                                 <ul class="nav menu">
-                                    <li class="active"><a href="#">Home <i class="icofont-rounded-down"></i></a>
-                                        <ul class="dropdown">
-                                            <li><a href="index.html">Home Page 1</a></li>
-                                        </ul>
-                                    </li>
-                                    <li><a href="#">Doctos </a></li>
-                                    <li><a href="#">Services </a></li>
-                                    <li><a href="#">Pages <i class="icofont-rounded-down"></i></a>
-                                        <ul class="dropdown">
-                                            <li><a href="404.html">404 Error</a></li>
-                                        </ul>
-                                    </li>
-                                    <li><a href="#">Blogs <i class="icofont-rounded-down"></i></a>
-                                        <ul class="dropdown">
-                                            <li><a href="blog-single.html">Blog Details</a></li>
-                                        </ul>
-                                    </li>
-                                    <li><a href="contact.html">Contact Us</a></li>
+                                    @forelse ($parentMenus->take(6) as $key=>$parentMenu)
+                                        @php
+                                            $subMenus = DB::table('menus')
+                                                ->where('parent_id', $parentMenu->id)
+                                                ->where('child_id', 0)
+                                                ->where('status', '1')
+                                                ->get();
+
+                                        @endphp
+                                        <li class="{{ $key == 0 ? 'active' : '' }}">
+                                            <a href="{{ $parentMenu->url ?? '' }}">{{ $parentMenu->name ?? '' }}
+                                                {!! $subMenus->count() > 0 ? '<i class="icofont-rounded-down"></i>' : '' !!}</a>
+                                            @if ($subMenus->count() > 0)
+                                                <ul class="dropdown">
+                                                    @forelse ($subMenus as $subMenu)
+                                                        <li><a href="{{ $subMenu->url ?? '' }}">{{ $subMenu->name }}</a></li>
+                                                    @empty
+                                                    @endforelse
+                                                </ul>
+                                            @else
+                                            @endif
+                                        </li>
+                                    @empty
+                                        <p class="text-center text-danger">Create Menu</p>
+                                    @endforelse
                                 </ul>
                             </nav>
                         </div>
@@ -110,7 +117,7 @@
                     </div>
                     <div class="col-lg-2 col-12">
                         <div class="get-quote">
-                            <a href="appointment.html" class="btn">Book Appointment</a>
+                            <a href="" class="btn">Book Appointment</a>
                         </div>
                     </div>
                 </div>

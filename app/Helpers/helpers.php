@@ -88,7 +88,7 @@ function userStatus ($status){
 }
 
 /**
- * user role name get
+ * Status
  *
  * @param $status
  * @param \Illuminate\Http\Response
@@ -100,7 +100,25 @@ function status($status){
     }
     else{
         $badgeClass = 'badge-danger';
-        $badgeTitle = 'Inactive';
+        $badgeTitle = 'Pending';
+    }
+
+    return '<span class="badge badge-sm '.$badgeClass.' py-1 px-2">'.$badgeTitle.'</span>';
+}
+/**
+ * Target
+ *
+ * @param $target
+ * @param \Illuminate\Http\Response
+ */
+function target($target){
+    if ($target == 0) {
+        $badgeClass = 'badge-success';
+        $badgeTitle = 'Same Page';
+    }
+    else{
+        $badgeClass = 'badge-danger';
+        $badgeTitle = 'New Page';
     }
 
     return '<span class="badge badge-sm '.$badgeClass.' py-1 px-2">'.$badgeTitle.'</span>';
@@ -176,8 +194,9 @@ if (!function_exists('emailSubjectTemplate')) {
 
 if (!function_exists('emailBodyTemplate')) {
     function emailBodyTemplate($template,$request){
+
         // verify button
-        $emailVerifyBtn = '<a href="'.$request->button_url.'" class="account-button" target="_blank" ><span class="account-span"><span style="font-size: 18px; line-height: 21.6px;">'.$request->button_title.'</span></span></a>';
+        $emailVerifyBtn = '<a href="'.htmlspecialchars($request->button_url).'" class="account-button" target="_blank" ><span class="account-span"><span style="font-size: 18px; line-height: 21.6px;">'.$request->button_title.'</span></span></a>';
 
         $emailNotyBtn = '<a href="'.$request->button_url_noty.'" class="account-button" target="_blank" ><span class="account-span"><span style="font-size: 18px; line-height: 21.6px;">'.$request->button_title_noty.'</span></span></a>';
 

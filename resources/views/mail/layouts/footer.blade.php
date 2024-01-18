@@ -161,9 +161,9 @@
                                         align="left">
 
                                         <div
-                                            style="color: #fafafa; line-height: 180%; text-align: center; word-wrap: break-word;">
+                                            style="color: #ffffff; line-height: 180%; text-align: center; word-wrap: break-word;">
                                             <p style="font-size: 14px; line-height: 180%;"><span
-                                                    style="font-size: 16px; line-height: 28.8px;">Copyrights
+                                                    style="font-size: 16px; line-height: 28.8px; color: #fff">Copyrights
                                                     © MEDI PLUS  All Rights Reserved.</span></p>
                                         </div>
 

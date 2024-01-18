@@ -1,28 +1,24 @@
 @extends('layouts.app')
 @section('title', $title)
-@push('scripts')
-    <style>
-    </style>
-@endpush
 @section('content')
     <div class="row mt-3">
         <div class="col-12 col-md-12">
             <div class="card px-3 py-3">
-                <div class="card-header bg-white border-bottom-0 pb-0 d-flex justify-content-end align-items-center flex-row">
-                    <div class="search-bar d-flex align-items-center">
-                        <input type="text" id="datatable-search" class="h-100 border" placeholder="Name, Size, Resource Type,User Name">
-                        <button type="button" class="h-100 bg-primary"><i class="mdi mdi-magnify"></i></button>
+                <div class="bg-white border-bottom-0 pb-4 d-flex justify-content-between align-items-center flex-row">
+                    <h2 class="backend-title">{{ $title }}</h2>
+                    <div class="email-template-search-bar btn-group d-flex align-items-center">
+                        <input type="text" id="datatable-search" class="h-100 border" placeholder="Name,Heading,Subject....">
+                        <button type="button" class="mdc-button mdc-button--raised filled-button--info mdc-ripple-upgraded"><i class="mdi mdi-magnify"></i></button>
                     </div>
                 </div>
-                <table id="example" class="display" style="width:100%">
+                <table id="email_templates" class="display" style="width:100%">
                     <thead>
                         <tr>
+                            <th>Sl</th>
                             <th>Name</th>
-                            <th>Position</th>
-                            <th>Office</th>
-                            <th>Age</th>
-                            <th>Start date</th>
-                            <th>Salary</th>
+                            <th>Heading</th>
+                            <th>Subject</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -35,8 +31,8 @@
 @endsection
 @push('scripts')
     <script>
-        $('#example').DataTable({
-            // processing: true,
+        var tables  = $('#email_templates').DataTable({
+            processing: true,
             serverSide: true,
             order: [], //Initial no order
             bInfo: true, //TO show the total number of data
@@ -57,9 +53,12 @@
                     d.search   = $('#datatable-search').val();
                 },
             },
-            columns: [{
-                    data: 'id'
-                },
+            columns: [
+                {data: 'DT_RowIndex',orderable: false, searchable: false},
+                {data: 'name'},
+                {data: 'heading'},
+                {data: 'subject'},
+                {data: 'action'},
             ],
             language: {
                 processing: '<img src="{{ asset('backend/assets/images/table-loading.svg') }}">',
@@ -78,21 +77,21 @@
             buttons: {
                 buttons: [{
                         text: '<i class="fa fa-refresh" aria-hidden="true"></i> Reload',
-                        className: 'btn btn-sm btn-primary',
+                        className: 'mdc-button mdc-button--raised filled-button--info mdc-ripple-upgraded mb-3',
                         action: function(e, dt, node, config) {
                             dt.ajax.reload(null, false);
                         }
                     },
                     {
                         extend: 'pdf',
-                        title: 'Role List',
-                        filename: 'roles_{{ date('d-m-Y') }}',
+                        title: 'Email Templates',
+                        filename: 'email_{{ date('d-m-Y') }}',
                         text: '<i class="fa fa-file-pdf-o" aria-hidden="true"></i> PDF',
-                        className: 'pdfButton btn btn-sm btn-primary',
+                        className: 'pdfButton mdc-button mdc-button--raised filled-button--info mdc-ripple-upgraded mb-3',
                         orientation: "landscape",
-                        pageSize: "A3",
+                        pageSize: "A4",
                         exportOptions: {
-                            columns: '0,1,2,3,4'
+                            columns: '0,1,2,3'
                         },
                         customize: function(doc) {
                             doc.defaultStyle.alignment = 'center';
@@ -100,26 +99,29 @@
                     },
                     {
                         extend: 'excel',
-                        title: 'Role List',
-                        filename: 'roles_{{ date('d-m-Y') }}',
+                        title: 'Email Templates',
+                        filename: 'email_{{ date('d-m-Y') }}',
                         text: '<i class="fa fa-file-excel-o" aria-hidden="true"></i> Excel',
-                        className: 'excelButton btn btn-sm btn-primary',
+                        className: 'excelButton mdc-button mdc-button--raised filled-button--info mdc-ripple-upgraded mb-3',
                         exportOptions: {
-                            columns: '0,1,2,3,4'
+                            columns: '0,1,2,3'
                         },
                     },
                     {
                         extend: 'print',
                         text: '<i class="fa fa-print" aria-hidden="true"></i> Print',
-                        className: 'printButton btn btn-sm btn-primary',
+                        className: 'printButton mdc-button mdc-button--raised filled-button--info mdc-ripple-upgraded mb-3',
                         orientation: "landscape",
-                        pageSize: "A3",
+                        pageSize: "A4",
                         exportOptions: {
-                            columns: '0,1,2,3,4'
+                            columns: '0,1,2,3'
                         }
                     }
                 ]
             }
+        });
+        $(document).on('keyup keyup','input#datatable-search',function(e){
+            tables.draw();
         });
     </script>
 @endpush

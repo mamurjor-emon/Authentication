@@ -4,9 +4,9 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="section-title">
-                        <h2>We Are Always Ready to Help You. Book An Appointment</h2>
+                        <h2>{{ $appointmentSection->title ?? '' }}</h2>
                         <img src="{{ asset('frontend/assets/img/section-img.png') }}" alt="#">
-                        <p>Lorem ipsum dolor sit amet consectetur adipiscing elit praesent aliquet. pretiumts</p>
+                        {!! $appointmentSection->discrption ?? '' !!}
                     </div>
                 </div>
             </div>
@@ -71,19 +71,19 @@
                             <div class="col-lg-5 col-md-4 col-12">
                                 <div class="form-group">
                                     <div class="button">
-                                        <button type="submit" class="btn">Book An Appointment</button>
+                                        <button type="submit" class="btn">{{ $appointmentData->btn_title ?? '' }}</button>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-lg-7 col-md-8 col-12">
-                                <p>( We will be confirm by an Text Message )</p>
+                                <p>{{ $appointmentData->title ?? '' }}</p>
                             </div>
                         </div>
                     </form>
                 </div>
                 <div class="col-lg-6 col-md-12 ">
                     <div class="appointment-image">
-                        <img src="{{ asset('frontend/assets/img/contact-img.png') }}" alt="#">
+                        <img src="{{ asset($appointmentData->image ?? '') }}" alt="appointment image">
                     </div>
                 </div>
             </div>

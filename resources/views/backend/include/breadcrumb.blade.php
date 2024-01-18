@@ -3,8 +3,23 @@
         float: none !important;
         padding-right: 0rem !important;
     }
+
+    .page-header {
+        border: 1px solid #dee2e6 !important;
+        display: flex;
+        justify-content: space-between;
+        background: white;
+        align-items: center;
+    }
+
+    .page-header .material-icons {
+        font-size: 20px !important;
+    }
+    .page-header .create-btn {
+        background:var(--mdc-theme-primary);
+    }
 </style>
-<div class="page-header  border">
+<div class="page-header border">
     <nav>
         <ol class="breadcrumb mb-0 border-0 bg-white">
             @foreach ($breadcrumb as $title => $url)

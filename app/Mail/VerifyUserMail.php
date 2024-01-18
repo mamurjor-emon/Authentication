@@ -13,13 +13,13 @@ class VerifyUserMail extends Mailable
 {
     use Queueable, SerializesModels;
 
-    protected $user;
+    public $data;
     /**
      * Create a new message instance.
      */
-    public function __construct($user)
+    public function __construct($data)
     {
-        $this->user = $user;
+        $this->data = $data;
     }
 
     /**
@@ -28,7 +28,7 @@ class VerifyUserMail extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Verify User Mail',
+            subject: $this->data['subject'],
         );
     }
 

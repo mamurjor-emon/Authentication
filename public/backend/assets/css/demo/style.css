@@ -8,6 +8,10 @@
     color: red;
 }
 
+a {
+    text-decoration: none !important;
+}
+
 /*=========================
 	End Login  CSS
 ===========================*/
@@ -24506,4 +24510,14 @@ footer .vertical-divider {
     font-size: 17px;
 }
 
+.email-template-search-bar #datatable-search {
+    padding: 5px 20px;
+}
+.backend-title {
+	color: #4c4343;
+	font-weight: 500;
+}
+#getDataImage {
+	width: 70px;
+}
 /* Verify User Blade End */
