@@ -4,6 +4,9 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Backend\Admin\DashboardController;
 use App\Http\Controllers\Backend\Admin\EmailTemplatesController;
 use App\Http\Controllers\Backend\Admin\HomePage\AppointmentsController;
+use App\Http\Controllers\Backend\Admin\HomePage\BlogCategorieController;
+use App\Http\Controllers\Backend\Admin\HomePage\BlogsController;
+use App\Http\Controllers\Backend\Admin\HomePage\BlogTagController;
 use App\Http\Controllers\Backend\Admin\HomePage\CallActionController;
 use App\Http\Controllers\Backend\Admin\HomePage\ClientsController;
 use App\Http\Controllers\Backend\Admin\HomePage\FeautesController;
@@ -14,6 +17,7 @@ use App\Http\Controllers\Backend\Admin\HomePage\PricingController;
 use App\Http\Controllers\Backend\Admin\HomePage\ScheduleController;
 use App\Http\Controllers\Backend\Admin\HomePage\ServicesController;
 use App\Http\Controllers\Backend\Admin\HomePage\SilderController;
+use App\Http\Controllers\Backend\Admin\HomePage\SocalMediaController;
 use App\Http\Controllers\Backend\Admin\HomePage\TitleDiscriptionController;
 use App\Http\Controllers\Backend\Admin\HomePage\WhyChooseController;
 use App\Models\TitleDiscrption;
@@ -81,10 +85,10 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth', 'i
         Route::get('delete/{id}', [FunFactsController::class, 'delete'])->name('delete');
     });
 
-    //------------------------ Why Choose Section -----------------------//
-    Route::prefix('appointment')->name('appointment.')->group(function () {
-        Route::get('/', [AppointmentsController::class, 'index'])->name('index');
-        Route::post('create', [AppointmentsController::class, 'createOrUpdate'])->name('create.or.update');
+    //------------------------WhyChoose Section -----------------------//
+    Route::prefix('why-choose')->name('why.choose.')->group(function () {
+        Route::get('/', [WhyChooseController::class, 'index'])->name('index');
+        Route::post('create', [WhyChooseController::class, 'createOrUpdate'])->name('create.or.update');
     });
 
     //------------------------ Call To Action Section -----------------------//
@@ -137,12 +141,55 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth', 'i
         Route::get('delete/{id}', [ClientsController::class, 'delete'])->name('delete');
     });
 
-    //------------------------Appointment Section -----------------------//
-    Route::prefix('Appointment')->name('why.choose.')->group(function () {
-        Route::get('/', [WhyChooseController::class, 'index'])->name('index');
-        Route::post('create', [WhyChooseController::class, 'createOrUpdate'])->name('create.or.update');
+    //------------------------ Appointment Section -----------------------//
+    Route::prefix('appointment')->name('appointment.')->group(function () {
+        Route::get('/', [AppointmentsController::class, 'index'])->name('index');
+        Route::post('create', [AppointmentsController::class, 'createOrUpdate'])->name('create.or.update');
     });
 
+    //------------------------ Blog Categories Section -----------------------//
+    Route::prefix('blog-categories')->name('blog.categories.')->group(function () {
+        Route::get('/', [BlogCategorieController::class, 'index'])->name('index');
+        Route::post('getdata', [BlogCategorieController::class, 'getData'])->name('get.data');
+        Route::get('create', [BlogCategorieController::class, 'create'])->name('create');
+        Route::post('store', [BlogCategorieController::class, 'store'])->name('store');
+        Route::get('edit/{id}', [BlogCategorieController::class, 'edit'])->name('edit');
+        Route::post('update', [BlogCategorieController::class, 'update'])->name('update');
+        Route::get('delete/{id}', [BlogCategorieController::class, 'delete'])->name('delete');
+    });
+
+    //------------------------ Blog Tag Section -----------------------//
+    Route::prefix('blog-tags')->name('blog.tags.')->group(function () {
+        Route::get('/', [BlogTagController::class, 'index'])->name('index');
+        Route::post('getdata', [BlogTagController::class, 'getData'])->name('get.data');
+        Route::get('create', [BlogTagController::class, 'create'])->name('create');
+        Route::post('store', [BlogTagController::class, 'store'])->name('store');
+        Route::get('edit/{id}', [BlogTagController::class, 'edit'])->name('edit');
+        Route::post('update', [BlogTagController::class, 'update'])->name('update');
+        Route::get('delete/{id}', [BlogTagController::class, 'delete'])->name('delete');
+    });
+
+    //------------------------ Socal Media Section -----------------------//
+    Route::prefix('socal-media')->name('socal.media.')->group(function () {
+        Route::get('/', [SocalMediaController::class, 'index'])->name('index');
+        Route::post('getdata', [SocalMediaController::class, 'getData'])->name('get.data');
+        Route::get('create', [SocalMediaController::class, 'create'])->name('create');
+        Route::post('store', [SocalMediaController::class, 'store'])->name('store');
+        Route::get('edit/{id}', [SocalMediaController::class, 'edit'])->name('edit');
+        Route::post('update', [SocalMediaController::class, 'update'])->name('update');
+        Route::get('delete/{id}', [SocalMediaController::class, 'delete'])->name('delete');
+    });
+
+    //------------------------ Blog  Section -----------------------//
+    Route::prefix('blog')->name('blog.')->group(function () {
+        Route::get('/', [BlogsController::class, 'index'])->name('index');
+        Route::post('getdata', [BlogsController::class, 'getData'])->name('get.data');
+        Route::get('create', [BlogsController::class, 'create'])->name('create');
+        Route::post('store', [BlogsController::class, 'store'])->name('store');
+        Route::get('edit/{id}', [BlogsController::class, 'edit'])->name('edit');
+        Route::post('update', [BlogsController::class, 'update'])->name('update');
+        Route::get('delete/{id}', [BlogsController::class, 'delete'])->name('delete');
+    });
 
     //------------------------ Title & Discription All Section -----------------------//
     Route::prefix('title-discription')->name('title.discription.')->group(function () {

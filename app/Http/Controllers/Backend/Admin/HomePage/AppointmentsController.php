@@ -14,11 +14,11 @@ class AppointmentsController extends Controller
     {
         if (Gate::allows('isAdmin')) {
             $this->setPageTitle('Appointment Section');
-            $data['parentHomeMenu'] = 'expanded';
+            $data['parentHomeMenu']    = 'expanded';
             $data['parentHomeSubMenu'] = 'style="display: block;"';
             $data['appointmentActive'] = 'active';
-            $data['breadcrumb'] = ['Appointment Section' => '',];
-            $data['appointmentData'] = Appointment::first();
+            $data['breadcrumb']        = ['Appointment Section' => '',];
+            $data['appointmentData']   = Appointment::first();
             return view('backend.pages.appointment.index', $data);
         } else {
             abort(401);

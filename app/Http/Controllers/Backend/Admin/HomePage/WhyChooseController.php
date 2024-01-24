@@ -14,11 +14,11 @@ class WhyChooseController extends Controller
     {
         if (Gate::allows('isAdmin')) {
             $this->setPageTitle('Why Choose Section');
-            $data['parentHomeMenu'] = 'expanded';
+            $data['parentHomeMenu']    = 'expanded';
             $data['parentHomeSubMenu'] = 'style="display: block;"';
-            $data['WhyChooseSection'] = 'active';
-            $data['breadcrumb'] = ['Why Choose Section' => '',];
-            $data['chooseData'] = WhyChoose::first();
+            $data['WhyChooseSection']  = 'active';
+            $data['breadcrumb']        = ['Why Choose Section' => '',];
+            $data['chooseData']        = WhyChoose::first();
             return view('backend.pages.why-choose.index', $data);
         } else {
             abort(401);

@@ -15,10 +15,10 @@ class SilderController extends Controller
     {
         if (Gate::allows('isAdmin')) {
             $this->setPageTitle('Silders');
-            $data['parentHomeMenu'] = 'expanded';
+            $data['parentHomeMenu']    = 'expanded';
             $data['parentHomeSubMenu'] = 'style="display: block;"';
-            $data['Silders'] = 'active';
-            $data['breadcrumb'] = ['Silders' => '',];
+            $data['Silders']           = 'active';
+            $data['breadcrumb']        = ['Silders' => '',];
             return view('backend.pages.slider.index', $data);
         } else {
             abort(401);
@@ -81,11 +81,11 @@ class SilderController extends Controller
     {
         if (Gate::allows('isAdmin')) {
             $this->setPageTitle('Create Silders');
-            $data['parentHomeMenu'] = 'expanded';
+            $data['parentHomeMenu']    = 'expanded';
             $data['parentHomeSubMenu'] = 'style="display: block;"';
-            $data['Silders'] = 'active';
-            $data['totalSilders'] = SilderSection::get();
-            $data['breadcrumb'] = ['Silders' => route('admin.slider.index'), 'Create Silders' => '',];
+            $data['Silders']           = 'active';
+            $data['totalSilders']      = SilderSection::get();
+            $data['breadcrumb']        = ['Silders' => route('admin.slider.index'), 'Create Silders' => '',];
             return view('backend.pages.slider.create', $data);
         } else {
             abort(401);
@@ -128,11 +128,11 @@ class SilderController extends Controller
     {
         if (Gate::allows('isAdmin')) {
             $this->setPageTitle('Edit Silders');
-            $data['parentHomeMenu'] = 'expanded';
+            $data['parentHomeMenu']    = 'expanded';
             $data['parentHomeSubMenu'] = 'style="display: block;"';
-            $data['Silders'] = 'active';
-            $data['breadcrumb'] = ['Silders' => route('admin.slider.index'), 'Edit Silders' => '',];
-            $data['editSilder'] = SilderSection::where('id', $id)->first();
+            $data['Silders']           = 'active';
+            $data['breadcrumb']        = ['Silders' => route('admin.slider.index'), 'Edit Silders' => '',];
+            $data['editSilder']        = SilderSection::where('id', $id)->first();
             return view('backend.pages.slider.edit', $data);
         } else {
             abort(401);

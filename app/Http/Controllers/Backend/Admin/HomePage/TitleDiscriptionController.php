@@ -15,10 +15,10 @@ class TitleDiscriptionController extends Controller
     {
         if (Gate::allows('isAdmin')) {
             $this->setPageTitle('Title & Discription');
-            $data['parentTitle'] = 'expanded';
+            $data['parentTitle']        = 'expanded';
             $data['parentTitleSubMenu'] = 'style="display: block;"';
-            $data['TitleDiscription'] = 'active';
-            $data['breadcrumb'] = ['Title & Discription' => '',];
+            $data['TitleDiscription']   = 'active';
+            $data['breadcrumb']         = ['Title & Discription' => '',];
             return view('backend.pages.title-discrption.index', $data);
         } else {
             abort(401);
@@ -77,10 +77,10 @@ class TitleDiscriptionController extends Controller
     {
         if (Gate::allows('isAdmin')) {
             $this->setPageTitle('Create Title & Discription');
-            $data['parentTitle'] = 'expanded';
+            $data['parentTitle']        = 'expanded';
             $data['parentTitleSubMenu'] = 'style="display: block;"';
-            $data['TitleDiscription'] = 'active';
-            $data['breadcrumb'] = ['Title & Discription' => route('admin.title.discription.index'), 'Create Title & Discription' => '',];
+            $data['TitleDiscription']   = 'active';
+            $data['breadcrumb']         = ['Title & Discription' => route('admin.title.discription.index'), 'Create Title & Discription' => '',];
             return view('backend.pages.title-discrption.create', $data);
         } else {
             abort(401);
@@ -107,10 +107,10 @@ class TitleDiscriptionController extends Controller
     {
         if (Gate::allows('isAdmin')) {
             $this->setPageTitle('Edit Title & Discription');
-            $data['parentTitle'] = 'expanded';
-            $data['parentTitleSubMenu'] = 'style="display: block;"';
-            $data['TitleDiscription'] = 'active';
-            $data['breadcrumb'] = ['Title & Discription' => route('admin.title.discription.index'), 'Edit Title & Discription' => ''];
+            $data['parentTitle']          = 'expanded';
+            $data['parentTitleSubMenu']   = 'style="display: block;"';
+            $data['TitleDiscription']     = 'active';
+            $data['breadcrumb']           = ['Title & Discription' => route('admin.title.discription.index'), 'Edit Title & Discription' => ''];
             $data['editTitleDiscription'] = TitleDiscrption::where('id',$id)->first();
             return view('backend.pages.title-discrption.edit', $data);
         } else {

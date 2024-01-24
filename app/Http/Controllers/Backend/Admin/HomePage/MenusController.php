@@ -16,10 +16,10 @@ class MenusController extends Controller
     {
         if (Gate::allows('isAdmin')) {
             $this->setPageTitle('Menus');
-            $data['parentHomeMenu'] = 'expanded';
+            $data['parentHomeMenu']    = 'expanded';
             $data['parentHomeSubMenu'] = 'style="display: block;"';
-            $data['Menus'] = 'active';
-            $data['breadcrumb'] = ['Menus' => '',];
+            $data['Menus']             = 'active';
+            $data['breadcrumb']        = ['Menus' => '',];
             return view('backend.pages.menus.index', $data);
         } else {
             abort(401);
@@ -85,12 +85,12 @@ class MenusController extends Controller
     {
         if (Gate::allows('isAdmin')) {
             $this->setPageTitle('Create Menus');
-            $data['parentHomeMenu'] = 'expanded';
+            $data['parentHomeMenu']    = 'expanded';
             $data['parentHomeSubMenu'] = 'style="display: block;"';
-            $data['Menus'] = 'active';
-            $data['parentMenu'] = Menu::where('parent_id', 0)->where('status', '1')->orderBy('id', 'desc')->get();
-            $data['totalMenus'] = Menu::get();
-            $data['breadcrumb'] = ['Menus' => route('admin.menu.index'), 'Create Menus' => '',];
+            $data['Menus']             = 'active';
+            $data['parentMenu']        = Menu::where('parent_id', 0)->where('status', '1')->orderBy('id', 'desc')->get();
+            $data['totalMenus']        = Menu::get();
+            $data['breadcrumb']        = ['Menus' => route('admin.menu.index'), 'Create Menus' => '',];
             return view('backend.pages.menus.create', $data);
         } else {
             abort(401);
@@ -134,12 +134,12 @@ class MenusController extends Controller
     {
         if (Gate::allows('isAdmin')) {
             $this->setPageTitle('Edit Menus');
-            $data['parentHomeMenu'] = 'expanded';
+            $data['parentHomeMenu']    = 'expanded';
             $data['parentHomeSubMenu'] = 'style="display: block;"';
-            $data['Menus'] = 'active';
-            $data['breadcrumb'] = ['Menus' => route('admin.menu.index'), 'Edit Menus' => '',];
-            $data['parentMenu'] = Menu::where('parent_id', 0)->where('status', '1')->orderBy('id', 'desc')->get();
-            $data['editMenu'] = Menu::where('id', $id)->first();
+            $data['Menus']             = 'active';
+            $data['breadcrumb']        = ['Menus' => route('admin.menu.index'), 'Edit Menus' => '',];
+            $data['parentMenu']        = Menu::where('parent_id', 0)->where('status', '1')->orderBy('id', 'desc')->get();
+            $data['editMenu']          = Menu::where('id', $id)->first();
             return view('backend.pages.menus.edit', $data);
         } else {
             abort(401);

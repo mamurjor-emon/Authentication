@@ -15,10 +15,10 @@ class PricingController extends Controller
     {
         if (Gate::allows('isAdmin')) {
             $this->setPageTitle('Pricing Section');
-            $data['parentHomeMenu'] = 'expanded';
+            $data['parentHomeMenu']    = 'expanded';
             $data['parentHomeSubMenu'] = 'style="display: block;"';
-            $data['pricingActive'] = 'active';
-            $data['breadcrumb'] = ['Pricing' => '',];
+            $data['pricingActive']     = 'active';
+            $data['breadcrumb']        = ['Pricing' => '',];
             return view('backend.pages.pricing.index', $data);
         } else {
             abort(401);
@@ -89,11 +89,11 @@ class PricingController extends Controller
     {
         if (Gate::allows('isAdmin')) {
             $this->setPageTitle('Create Pricing');
-            $data['parentHomeMenu'] = 'expanded';
+            $data['parentHomeMenu']    = 'expanded';
             $data['parentHomeSubMenu'] = 'style="display: block;"';
-            $data['pricingActive'] = 'active';
-            $data['totalPricing'] = PricingTable::get();
-            $data['breadcrumb'] = ['Pricing' => route('admin.pricing.index'), 'Create Pricing' => '',];
+            $data['pricingActive']     = 'active';
+            $data['totalPricing']      = PricingTable::get();
+            $data['breadcrumb']        = ['Pricing' => route('admin.pricing.index'), 'Create Pricing' => '',];
             return view('backend.pages.pricing.create', $data);
         } else {
             abort(401);
@@ -126,11 +126,11 @@ class PricingController extends Controller
     {
         if (Gate::allows('isAdmin')) {
             $this->setPageTitle('Edit Pricing');
-            $data['parentHomeMenu'] = 'expanded';
+            $data['parentHomeMenu']    = 'expanded';
             $data['parentHomeSubMenu'] = 'style="display: block;"';
-            $data['pricingActive'] = 'active';
-            $data['breadcrumb'] = ['Pricing' => route('admin.pricing.index'), 'Edit Pricing' => '',];
-            $data['editPricing'] = PricingTable::where('id', $id)->first();
+            $data['pricingActive']     = 'active';
+            $data['breadcrumb']        = ['Pricing' => route('admin.pricing.index'), 'Edit Pricing' => '',];
+            $data['editPricing']       = PricingTable::where('id', $id)->first();
             return view('backend.pages.pricing.edit', $data);
         } else {
             abort(401);

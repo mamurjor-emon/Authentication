@@ -118,17 +118,22 @@
                     <div class="mdc-expansion-panel" id="ui-sub-menu-blog" {!! $parentBlogsSubMenu ?? '' !!}>
                         <nav class="mdc-list mdc-drawer-submenu">
                             <div class="mdc-list-item mdc-drawer-item">
-                                <a class="mdc-drawer-link {{ $blogCategorie ?? '' }}" href="">
-                                    Blog Categorie
+                                <a class="mdc-drawer-link {{ $blogCategorie ?? '' }}" href="{{ route('admin.blog.categories.index') }}">
+                                    Blog Categories
                                 </a>
                             </div>
                             <div class="mdc-list-item mdc-drawer-item">
-                                <a class="mdc-drawer-link {{ $blogTag ?? '' }}" href="">
-                                    Blog Tag
+                                <a class="mdc-drawer-link {{ $blogTag ?? '' }}" href="{{ route('admin.blog.tags.index') }}">
+                                    Blog Tags
                                 </a>
                             </div>
                             <div class="mdc-list-item mdc-drawer-item">
-                                <a class="mdc-drawer-link {{ $singleBlog ?? '' }}" href="">
+                                <a class="mdc-drawer-link {{ $socalMedia ?? '' }}" href="{{ route('admin.socal.media.index') }}">
+                                    Socal Media
+                                </a>
+                            </div>
+                            <div class="mdc-list-item mdc-drawer-item">
+                                <a class="mdc-drawer-link {{ $singleBlog ?? '' }}" href="{{ route('admin.blog.index') }}">
                                     Single Blog
                                 </a>
                             </div>

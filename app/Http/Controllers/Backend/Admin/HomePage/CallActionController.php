@@ -13,11 +13,11 @@ class CallActionController extends Controller
   public function index(){
     if (Gate::allows('isAdmin')) {
         $this->setPageTitle('Call To Action');
-        $data['parentHomeMenu'] = 'expanded';
-        $data['parentHomeSubMenu'] = 'style="display: block;"';
+        $data['parentHomeMenu']     = 'expanded';
+        $data['parentHomeSubMenu']  = 'style="display: block;"';
         $data['callToActionActive'] = 'active';
-        $data['breadcrumb'] = ['Call To Action' => '',];
-        $data['callToAction'] = CallToAction::first();
+        $data['breadcrumb']         = ['Call To Action' => '',];
+        $data['callToAction']       = CallToAction::first();
         return view('backend.pages.call-to-action.index', $data);
     } else {
         abort(401);

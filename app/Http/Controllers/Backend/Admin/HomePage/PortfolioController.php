@@ -15,10 +15,10 @@ class PortfolioController extends Controller
     {
         if (Gate::allows('isAdmin')) {
             $this->setPageTitle('Portfolio Section');
-            $data['parentHomeMenu'] = 'expanded';
+            $data['parentHomeMenu']    = 'expanded';
             $data['parentHomeSubMenu'] = 'style="display: block;"';
-            $data['portfolioActive'] = 'active';
-            $data['breadcrumb'] = ['Portfolio' => '',];
+            $data['portfolioActive']   = 'active';
+            $data['breadcrumb']        = ['Portfolio' => '',];
             return view('backend.pages.portfolio.index', $data);
         } else {
             abort(401);
@@ -80,11 +80,11 @@ class PortfolioController extends Controller
     {
         if (Gate::allows('isAdmin')) {
             $this->setPageTitle('Create Portfolio');
-            $data['parentHomeMenu'] = 'expanded';
+            $data['parentHomeMenu']    = 'expanded';
             $data['parentHomeSubMenu'] = 'style="display: block;"';
-            $data['portfolioActive'] = 'active';
-            $data['totalPortfolio'] = PortfolioSection::get();
-            $data['breadcrumb'] = ['Portfolio' => route('admin.portfolio.index'), 'Create Portfolio' => '',];
+            $data['portfolioActive']   = 'active';
+            $data['totalPortfolio']    = PortfolioSection::get();
+            $data['breadcrumb']        = ['Portfolio' => route('admin.portfolio.index'), 'Create Portfolio' => '',];
             return view('backend.pages.portfolio.create', $data);
         } else {
             abort(401);
@@ -119,11 +119,11 @@ class PortfolioController extends Controller
     {
         if (Gate::allows('isAdmin')) {
             $this->setPageTitle('Edit Portfolio');
-            $data['parentHomeMenu'] = 'expanded';
+            $data['parentHomeMenu']    = 'expanded';
             $data['parentHomeSubMenu'] = 'style="display: block;"';
-            $data['portfolioActive'] = 'active';
-            $data['breadcrumb'] = ['Portfolio' => route('admin.portfolio.index'), 'Edit Portfolio' => '',];
-            $data['editPortfolio'] = PortfolioSection::where('id', $id)->first();
+            $data['portfolioActive']   = 'active';
+            $data['breadcrumb']        = ['Portfolio' => route('admin.portfolio.index'), 'Edit Portfolio' => '',];
+            $data['editPortfolio']     = PortfolioSection::where('id', $id)->first();
             return view('backend.pages.portfolio.edit', $data);
         } else {
             abort(401);

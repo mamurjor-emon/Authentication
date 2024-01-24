@@ -15,10 +15,10 @@ class ServicesController extends Controller
     {
         if (Gate::allows('isAdmin')) {
             $this->setPageTitle('Services Section');
-            $data['parentHomeMenu'] = 'expanded';
+            $data['parentHomeMenu']    = 'expanded';
             $data['parentHomeSubMenu'] = 'style="display: block;"';
-            $data['servicesActive'] = 'active';
-            $data['breadcrumb'] = ['Services' => '',];
+            $data['servicesActive']    = 'active';
+            $data['breadcrumb']        = ['Services' => '',];
             return view('backend.pages.services.index', $data);
         } else {
             abort(401);
@@ -80,11 +80,11 @@ class ServicesController extends Controller
     {
         if (Gate::allows('isAdmin')) {
             $this->setPageTitle('Create Service');
-            $data['parentHomeMenu'] = 'expanded';
+            $data['parentHomeMenu']    = 'expanded';
             $data['parentHomeSubMenu'] = 'style="display: block;"';
-            $data['servicesActive'] = 'active';
-            $data['totalService'] = Service::get();
-            $data['breadcrumb'] = ['Service' => route('admin.services.index'), 'Create Service' => '',];
+            $data['servicesActive']    = 'active';
+            $data['totalService']      = Service::get();
+            $data['breadcrumb']        = ['Service' => route('admin.services.index'), 'Create Service' => '',];
             return view('backend.pages.services.create', $data);
         } else {
             abort(401);
@@ -114,11 +114,11 @@ class ServicesController extends Controller
     {
         if (Gate::allows('isAdmin')) {
             $this->setPageTitle('Edit Service');
-            $data['parentHomeMenu'] = 'expanded';
+            $data['parentHomeMenu']    = 'expanded';
             $data['parentHomeSubMenu'] = 'style="display: block;"';
-            $data['servicesActive'] = 'active';
-            $data['breadcrumb'] = ['Service' => route('admin.services.index'), 'Edit Service' => '',];
-            $data['editService'] = Service::where('id', $id)->first();
+            $data['servicesActive']    = 'active';
+            $data['breadcrumb']        = ['Service' => route('admin.services.index'), 'Edit Service' => '',];
+            $data['editService']       = Service::where('id', $id)->first();
             return view('backend.pages.services.edit', $data);
         } else {
             abort(401);

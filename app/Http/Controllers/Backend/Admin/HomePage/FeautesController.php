@@ -15,10 +15,10 @@ class FeautesController extends Controller
     {
         if (Gate::allows('isAdmin')) {
             $this->setPageTitle('Feautes');
-            $data['parentHomeMenu'] = 'expanded';
+            $data['parentHomeMenu']    = 'expanded';
             $data['parentHomeSubMenu'] = 'style="display: block;"';
-            $data['Feautes'] = 'active';
-            $data['breadcrumb'] = ['Feautes' => '',];
+            $data['Feautes']           = 'active';
+            $data['breadcrumb']        = ['Feautes' => '',];
             return view('backend.pages.feautes.index', $data);
         } else {
             abort(401);
@@ -77,11 +77,11 @@ class FeautesController extends Controller
     {
         if (Gate::allows('isAdmin')) {
             $this->setPageTitle('Create Feautes');
-            $data['parentHomeMenu'] = 'expanded';
+            $data['parentHomeMenu']    = 'expanded';
             $data['parentHomeSubMenu'] = 'style="display: block;"';
-            $data['Feautes'] = 'active';
-            $data['totalFeautes'] = Feautes::get();
-            $data['breadcrumb'] = ['Feautes' => route('admin.slider.index'), 'Create Feautes' => '',];
+            $data['Feautes']           = 'active';
+            $data['totalFeautes']      = Feautes::get();
+            $data['breadcrumb']        = ['Feautes' => route('admin.slider.index'), 'Create Feautes' => '',];
             return view('backend.pages.feautes.create', $data);
         } else {
             abort(401);
@@ -109,11 +109,11 @@ class FeautesController extends Controller
     {
         if (Gate::allows('isAdmin')) {
             $this->setPageTitle('Edit Feautes');
-            $data['parentHomeMenu'] = 'expanded';
+            $data['parentHomeMenu']    = 'expanded';
             $data['parentHomeSubMenu'] = 'style="display: block;"';
-            $data['Feautes'] = 'active';
-            $data['breadcrumb'] = ['Feautes' => route('admin.feautes.index'), 'Edit Feautes' => '',];
-            $data['editFeautes'] = Feautes::where('id', $id)->first();
+            $data['Feautes']           = 'active';
+            $data['breadcrumb']        = ['Feautes' => route('admin.feautes.index'), 'Edit Feautes' => '',];
+            $data['editFeautes']       = Feautes::where('id', $id)->first();
             return view('backend.pages.feautes.edit', $data);
         } else {
             abort(401);

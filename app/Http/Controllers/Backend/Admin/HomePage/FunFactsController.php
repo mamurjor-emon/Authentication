@@ -15,10 +15,10 @@ class FunFactsController extends Controller
     {
         if (Gate::allows('isAdmin')) {
             $this->setPageTitle('Fun Facts');
-            $data['parentHomeMenu'] = 'expanded';
+            $data['parentHomeMenu']    = 'expanded';
             $data['parentHomeSubMenu'] = 'style="display: block;"';
-            $data['Fun_facts'] = 'active';
-            $data['breadcrumb'] = ['Fun Facts' => '',];
+            $data['Fun_facts']         = 'active';
+            $data['breadcrumb']        = ['Fun Facts' => '',];
             return view('backend.pages.fun-facts.index', $data);
         } else {
             abort(401);
@@ -80,11 +80,11 @@ class FunFactsController extends Controller
     {
         if (Gate::allows('isAdmin')) {
             $this->setPageTitle('Create Fun Facts');
-            $data['parentHomeMenu'] = 'expanded';
+            $data['parentHomeMenu']    = 'expanded';
             $data['parentHomeSubMenu'] = 'style="display: block;"';
-            $data['Fun_facts'] = 'active';
-            $data['totalFunFacts'] = FunFacts::get();
-            $data['breadcrumb'] = ['FunFacts' => route('admin.fun_facts.index'), 'Create FunFacts' => '',];
+            $data['Fun_facts']         = 'active';
+            $data['totalFunFacts']     = FunFacts::get();
+            $data['breadcrumb']        = ['FunFacts' => route('admin.fun_facts.index'), 'Create FunFacts' => '',];
             return view('backend.pages.fun-facts.create', $data);
         } else {
             abort(401);
@@ -112,11 +112,11 @@ class FunFactsController extends Controller
     {
         if (Gate::allows('isAdmin')) {
             $this->setPageTitle('Edit Fun Facts');
-            $data['parentHomeMenu'] = 'expanded';
+            $data['parentHomeMenu']    = 'expanded';
             $data['parentHomeSubMenu'] = 'style="display: block;"';
-            $data['Fun_facts'] = 'active';
-            $data['breadcrumb'] = ['Fun Facts' => route('admin.fun_facts.index'), 'Edit Fun Facts' => '',];
-            $data['editFunFacts'] = FunFacts::where('id', $id)->first();
+            $data['Fun_facts']         = 'active';
+            $data['breadcrumb']        = ['Fun Facts' => route('admin.fun_facts.index'), 'Edit Fun Facts' => '',];
+            $data['editFunFacts']      = FunFacts::where('id', $id)->first();
             return view('backend.pages.fun-facts.edit', $data);
         } else {
             abort(401);

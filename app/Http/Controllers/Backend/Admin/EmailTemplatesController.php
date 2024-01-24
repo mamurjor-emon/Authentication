@@ -15,10 +15,10 @@ class EmailTemplatesController extends Controller
     {
         if (Gate::allows('isAdmin')) {
             $this->setPageTitle('Email Templates');
-            $data['parentCompanyMenu'] = 'expanded';
+            $data['parentCompanyMenu']  = 'expanded';
             $data['parentEmailSubMenu'] = 'style="display: block;"';
-            $data['emailTemplate'] = 'active';
-            $data['breadcrumb'] = ['Email Templates' => '',];
+            $data['emailTemplate']      = 'active';
+            $data['breadcrumb']         = ['Email Templates' => '',];
             return view('backend.pages.email-templates.index', $data);
         } else {
             abort(401);
@@ -72,11 +72,11 @@ class EmailTemplatesController extends Controller
     {
         if (Gate::allows('isAdmin')) {
             $this->setPageTitle('Email Template Edit');
-            $data['parentCompanyMenu'] = 'expanded';
+            $data['parentCompanyMenu']  = 'expanded';
             $data['parentEmailSubMenu'] = 'style="display: block;"';
-            $data['emailTemplate'] = 'active';
-            $data['breadcrumb'] = ['Email Templates' => route('admin.email.templates.index'), 'Email Template Edit' => ''];
-            $data['emailtemplate'] = EmailTemplate::where('id', $id)->first();
+            $data['emailTemplate']      = 'active';
+            $data['breadcrumb']         = ['Email Templates' => route('admin.email.templates.index'), 'Email Template Edit' => ''];
+            $data['emailtemplate']      = EmailTemplate::where('id', $id)->first();
             return view('backend.pages.email-templates.edit', $data);
         } else {
             abort(401);
@@ -89,7 +89,7 @@ class EmailTemplatesController extends Controller
             $emailtemplate->update([
                 'heading' => $request->heading,
                 'subject' => $request->subject,
-                'body' => $request->body
+                'body'    => $request->body
             ]);
             return redirect()->route('admin.email.templates.index')->with('success','Email Template Update Successfuly !');
         } else {
