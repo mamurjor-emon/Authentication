@@ -24520,4 +24520,10 @@ footer .vertical-divider {
 #getDataImage {
 	width: 70px;
 }
+.fa-browser-container > .close {
+	top: 3rem !important;
+}
+.fa-browser-container > .window {
+	top: 4rem !important;
+}
 /* Verify User Blade End */

@@ -23,7 +23,7 @@ class SocalMediaRequest extends FormRequest
     {
         return [
             'icon'     => ['required'],
-            'name'     => ['nullable'],
+            'name'     => ['required'],
             'url'      => ['required'],
             'target'   => ['required'],
             'order_by' => ['required'],

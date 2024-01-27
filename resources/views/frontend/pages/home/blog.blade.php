@@ -11,57 +11,30 @@
             </div>
         </div>
         <div class="row">
+            @if (!empty($blogsDatas))
+            @forelse ($blogsDatas->take(3) as $blog)
             <div class="col-lg-4 col-md-6 col-12">
                 <!-- Single Blog -->
                 <div class="single-news">
-                    <div class="news-head">
-                        <img src="{{ asset('frontend/assets/img/blog1.jpg') }}" alt="#">
+                    <div class="news-head positon-relative">
+                        <img src="{{ asset($blog->image ?? '') }}" alt="image">
                     </div>
+                    @if ($blog->tag == 1)
+                    <span id="tag" class="btn btn-sm btn-primary text-white px-4 py-2">New</span>
+                    @endif
                     <div class="news-body">
                         <div class="news-content">
-                            <div class="date">22 Aug, 2020</div>
-                            <h2><a href="blog-single.html">We have annnocuced our new product.</a></h2>
-                            <p class="text">Lorem ipsum dolor a sit ameti, consectetur adipisicing elit, sed do
-                                eiusmod tempor incididunt sed do incididunt sed.</p>
+                            <div class="date">{{ $blog->created_at->format('d M, Y') }}</div>
+                            <h2><a href="{{ route('frontend.blog',['id' => $blog->id ]) }}" onclick="countView({{ $blog->id }})">{{ Str::limit($blog->title,56)  }}</a></h2>
+                            {!! Str::limit($blog->sub_title,156) !!}
                         </div>
                     </div>
                 </div>
                 <!-- End Single Blog -->
             </div>
-            <div class="col-lg-4 col-md-6 col-12">
-                <!-- Single Blog -->
-                <div class="single-news">
-                    <div class="news-head">
-                        <img src="{{ asset('frontend/assets/img/blog2.jpg') }}" alt="#">
-                    </div>
-                    <div class="news-body">
-                        <div class="news-content">
-                            <div class="date">15 Jul, 2020</div>
-                            <h2><a href="blog-single.html">Top five way for solving teeth problems.</a></h2>
-                            <p class="text">Lorem ipsum dolor a sit ameti, consectetur adipisicing elit, sed do
-                                eiusmod tempor incididunt sed do incididunt sed.</p>
-                        </div>
-                    </div>
-                </div>
-                <!-- End Single Blog -->
-            </div>
-            <div class="col-lg-4 col-md-6 col-12">
-                <!-- Single Blog -->
-                <div class="single-news">
-                    <div class="news-head">
-                        <img src="{{ asset('frontend/assets/img/blog3.jpg') }}" alt="#">
-                    </div>
-                    <div class="news-body">
-                        <div class="news-content">
-                            <div class="date">05 Jan, 2020</div>
-                            <h2><a href="blog-single.html">We provide highly business soliutions.</a></h2>
-                            <p class="text">Lorem ipsum dolor a sit ameti, consectetur adipisicing elit, sed do
-                                eiusmod tempor incididunt sed do incididunt sed.</p>
-                        </div>
-                    </div>
-                </div>
-                <!-- End Single Blog -->
-            </div>
+            @empty
+            @endforelse
+            @endif
         </div>
     </div>
 </section>

@@ -4,11 +4,11 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
 use App\Models\Appointment;
+use App\Models\Blog;
 use App\Models\CallToAction;
 use App\Models\Client;
 use App\Models\Feautes;
 use App\Models\FunFacts;
-use App\Models\Menu;
 use App\Models\PortfolioSection;
 use App\Models\PricingTable;
 use App\Models\Schedule;
@@ -22,7 +22,6 @@ class FrontendController extends Controller
 {
     public function index(){
         $this->setPageTitle('Home');
-        $data['parentMenus'] = Menu::where('parent_id', 0)->where('status', '1')->orderBy('order_by','asc')->get();
         $data['silders'] = SilderSection::where('status','1')->orderBy('order_by','asc')->get();
         $data['schedules'] = Schedule::where('status','1')->orderBy('order_by','asc')->get();
         $data['feautesTitle'] = TitleDiscrption::where('section_name','Feautes_section')->where('status','1')->first();
@@ -38,6 +37,7 @@ class FrontendController extends Controller
         $data['pricingSection'] = TitleDiscrption::where('section_name','Pricing_table_section')->where('status','1')->first();
         $data['pricingDatas'] = PricingTable::where('status', '1')->orderBy('order_by','asc')->get();
         $data['blogsSection'] = TitleDiscrption::where('section_name','Blog_section')->where('status','1')->first();
+        $data['blogsDatas'] = Blog::where('status','1')->orderBy('order_by','asc')->get();
         $data['clientDatas'] = Client::where('status', '1')->orderBy('order_by','asc')->get();
         $data['appointmentSection'] = TitleDiscrption::where('section_name','Appointment')->where('status','1')->first();
         $data['appointmentData'] = Appointment::where('status','1')->first();

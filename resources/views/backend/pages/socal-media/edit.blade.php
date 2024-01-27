@@ -17,7 +17,7 @@
                                 value="{!! $editSocalMedia->icon ?? old('icon') !!}"></x-form.textbox>
 
                             <x-form.textbox labelName="Name" parantClass="col-12 col-md-6" name="name"
-                                placeholder="Enter Name..!" errorName="name" class="py-2"
+                                placeholder="Enter Name..!" errorName="name" class="py-2"  required="required"
                                 value="{{ $editSocalMedia->name ?? old('name') }}"></x-form.textbox>
                         </div>
 

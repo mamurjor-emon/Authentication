@@ -2421,6 +2421,12 @@ body {
     margin-top: 30px;
 }
 
+#blog #tag{
+    position: absolute;
+    top: 0px;
+    right: 0px;
+}
+
 /* Blog Sidebar */
 .main-sidebar {
     background: #fff;
@@ -2656,8 +2662,6 @@ body {
     border-radius: 8px;
 }
 
-.news-single .news-head {}
-
 .news-single .news-head img {
     width: 100%;
     height: 100%;
@@ -2769,7 +2773,7 @@ body {
 
 /* Blockqoute */
 .news-single blockquote {
-    background-image: url('img/blockqoute-bg.jpg');
+    background-image: url('../img/blockqoute-bg.jpg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;

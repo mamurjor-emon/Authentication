@@ -5,6 +5,7 @@ use App\Http\Controllers\Auth\LoginController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Backend\DashboardController;
+use App\Http\Controllers\Frontend\BlogController;
 use App\Http\Controllers\Frontend\FrontendController;
 use App\Http\Controllers\VerifyUserController;
 
@@ -39,4 +40,12 @@ Route::post('register/store', [AuthController::class, 'store'])->name('user.regi
 
 //------------ Varify User ------------//
 Route::get('verify-code/{token}',[VerifyUserController::class,'verifiedCode'])->name('verify.code');
+
+//------------ Blog  ------------//
+//------------------------ Appointment Section -----------------------//
+Route::prefix('frontend')->name('frontend.')->group(function () {
+    Route::get('blog/{id}', [BlogController::class, 'blog'])->name('blog');
+    Route::post('view/count', [BlogController::class, 'viewCount'])->name('view.count');
+    Route::post('blog/comment', [BlogController::class, 'blogcomment'])->name('blog.comment');
+});
 

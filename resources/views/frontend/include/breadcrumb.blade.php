@@ -12,7 +12,8 @@
                             @else
                                 <li><a href="{{ $url }}">{{ $title }}</a></li>
                                 <li><i class="icofont-simple-right"></i></li>
-                            @endforeach
+                            @endif
+                        @endforeach
                     </ul>
                 </div>
             </div>

@@ -71,7 +71,9 @@
     <!-- Header Area -->
     @include('frontend.include.header')
     <!-- End Header Area -->
-
+    @isset($breadcrumb)
+        @include('frontend.include.breadcrumb')
+    @endisset
     <!-- All Content  -->
     @yield('content')
     <!--End All Content  -->
@@ -120,7 +122,25 @@
     <script src="{{ asset('frontend/assets/js/bootstrap.min.js') }}"></script>
     <!-- Main JS -->
     <script src="{{ asset('frontend/assets/js/main.js') }}"></script>
-
+    <!-- Ajax CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script>
+        var _token = "{{ csrf_token() }}";
+    </script>
+    <script>
+        function countView(id){
+            $.ajax({
+                type: "POST",
+                url: "{{ route('frontend.view.count') }}",
+                data: {
+                    _token : _token,
+                    blog_id : id
+                },
+                success: function (response) {
+                }
+            });
+        }
+    </script>
     <!-- Custome Js -->
     @stack('scripts')
 </body>

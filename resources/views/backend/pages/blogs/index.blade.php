@@ -2,7 +2,7 @@
 @section('title', $title)
 @section('add_button')
     <div>
-        <a href="{{ route('admin.slider.create') }}" class="create-btn btn btn-md mr-3 d-flex justify-content-between align-items-center text-white">
+        <a href="{{ route('admin.blog.create') }}" class="create-btn btn btn-md mr-3 d-flex justify-content-between align-items-center text-white">
             <i class="material-icons">add</i>
             <span>Create</span>
         </a>
@@ -16,19 +16,18 @@
                 <h2 class="backend-title">{{ $title }}</h2>
                 <div class="email-template-search-bar btn-group d-flex align-items-center">
                     <input type="text" id="datatable-search" class="h-100 border"
-                        placeholder="First Button Title,Last Button Title,Order By....">
+                        placeholder="Title....">
                     <button type="button"
                         class="mdc-button mdc-button--raised filled-button--info mdc-ripple-upgraded"><i
                             class="mdi mdi-magnify"></i></button>
                 </div>
             </div>
-            <table id="silders" class="display" style="width:100%">
+            <table id="blogs" class="display" style="width:100%">
                 <thead>
                     <tr>
                         <th>Sl</th>
-                        <th>First Button Title</th>
-                        <th>Last Button Title</th>
                         <th>Image</th>
+                        <th>Title</th>
                         <th>Status</th>
                         <th class="text-right">Action</th>
                     </tr>
@@ -43,7 +42,7 @@
 @endsection
 @push('scripts')
 <script>
-    var tables  = $('#silders').DataTable({
+    var tables  = $('#blogs').DataTable({
         processing: true,
         serverSide: true,
         order: [], //Initial no order
@@ -57,7 +56,7 @@
         ],
         pageLength: 25, //number of data show per page
         ajax: {
-            url: "{{ route('admin.slider.get.data') }}",
+            url: "{{ route('admin.blog.get.data') }}",
             type: "POST",
             dataType: "JSON",
             data: function(d) {
@@ -67,9 +66,8 @@
         },
         columns: [
             {data: 'DT_RowIndex',orderable: false, searchable: false},
-            {data: 'f_btn_title'},
-            {data: 'l_btn_title'},
             {data: 'image'},
+            {data: 'title'},
             {data: 'status'},
             {data: 'action'},
         ],
@@ -97,8 +95,8 @@
                 },
                 {
                     extend: 'pdf',
-                    title: 'Silders',
-                    filename: 'silders_{{ date('d-m-Y') }}',
+                    title: 'Blogs',
+                    filename: 'blogs_{{ date('d-m-Y') }}',
                     text: '<i class="fa fa-file-pdf-o" aria-hidden="true"></i> PDF',
                     className: 'pdfButton mdc-button mdc-button--raised filled-button--info mdc-ripple-upgraded mb-3',
                     orientation: "landscape",
@@ -112,8 +110,8 @@
                 },
                 {
                     extend: 'excel',
-                    title: 'Silders',
-                    filename: 'sliders_{{ date('d-m-Y') }}',
+                    title: 'Blogs',
+                    filename: 'blogs_{{ date('d-m-Y') }}',
                     text: '<i class="fa fa-file-excel-o" aria-hidden="true"></i> Excel',
                     className: 'excelButton mdc-button mdc-button--raised filled-button--info mdc-ripple-upgraded mb-3',
                     exportOptions: {

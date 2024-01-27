@@ -1,4 +1,4 @@
-#picture__input {
+#picture__input, #first__image , #second__image{
     display: none;
 }
 
@@ -6,7 +6,7 @@
     display: none;
 }
 
-.picture {
+.picture , .first__picture , .second_picture{
     width: 200px;
     height: 100px;
     aspect-ratio: 16/9;
@@ -23,24 +23,26 @@
     overflow: hidden;
 }
 
-.picture:hover {
+.picture:hover , .first__picture:hover , .second_picture:hover{
     color: #777;
     background: #ccc;
 }
 
-.picture:active {
+.picture:active , .first__picture:active , .second_picture:active {
     border-color: turquoise;
     color: turquoise;
     background: #eee;
 }
 
-.picture:focus {
+.picture:focus , .first__picture:focus , .second_picture:focus{
     color: #777;
     background: #ccc;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
 }
 
 .picture__img,
+.picture__first,
+.picture__second,
 .signature__image {
     max-width: 100%;
 }

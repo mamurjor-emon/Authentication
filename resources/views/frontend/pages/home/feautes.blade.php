@@ -11,21 +11,22 @@
             </div>
         </div>
         <div class="row">
-            @forelse ($feautes->take(3) as $feaute)
-                <div class="col-lg-4 col-12">
-                    <!-- Start Single features -->
-                    <div class="single-features {{ $loop->last ? 'last' : '' }}">
-                        <div class="signle-icon">
-                            {!! $feaute->icon !!}
+            @if (!empty($feautes))
+                @forelse ($feautes->take(3) as $feaute)
+                    <div class="col-lg-4 col-12">
+                        <!-- Start Single features -->
+                        <div class="single-features {{ $loop->last ? 'last' : '' }}">
+                            <div class="signle-icon">
+                                {!! $feaute->icon !!}
+                            </div>
+                            <h3>{{ Str::limit($feaute->title, 20) }} </h3>
+                            {!! Str::limit($feaute->discrption, 80) !!}
                         </div>
-                        <h3>{{ Str::limit($feaute->title, 20) }} </h3>
-                        {!! Str::limit($feaute->discrption, 80) !!}
+                        <!-- End Single features -->
                     </div>
-                    <!-- End Single features -->
-                </div>
-            @empty
-            @endforelse
-
+                @empty
+                @endforelse
+            @endif
         </div>
     </div>
 </section>

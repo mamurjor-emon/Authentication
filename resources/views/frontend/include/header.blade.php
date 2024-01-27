@@ -80,6 +80,9 @@
                         <div class="mobile-nav"></div>
                         <!-- End Mobile Nav -->
                     </div>
+                    @php
+                        $parentMenus = App\Models\Menu::where('parent_id', 0)->where('status', '1')->orderBy('order_by','asc')->get();
+                    @endphp
                     <div class="col-lg-7 col-md-9 col-12">
                         <!-- Main Menu -->
                         <div class="main-menu">

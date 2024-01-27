@@ -90,11 +90,6 @@
                              </div>
                              <div class="mdc-list-item mdc-drawer-item">
                                  <a class="mdc-drawer-link" href="">
-                                     Newsletter Settings
-                                 </a>
-                             </div>
-                             <div class="mdc-list-item mdc-drawer-item">
-                                 <a class="mdc-drawer-link" href="">
                                      Footer Settings
                                  </a>
                              </div>

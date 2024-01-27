@@ -14,7 +14,9 @@ class Blog extends Model
      * @var array
      */
     protected $fillable = [
+        'categorie_id',
         'user_id',
+        'tag_ids',
         'image',
         'title',
         'sub_title',
@@ -26,7 +28,20 @@ class Blog extends Model
         'l_discrption',
         'socal_media',
         'tag',
+        'total_view',
+        'meta_title',
+        'meta_keyword',
+        'meta_discrption',
         'order_by',
         'status'
     ];
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+    
+    public function categorie()
+    {
+        return $this->belongsTo(BlogCategories::class, 'categorie_id', 'id');
+    }
 }

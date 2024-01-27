@@ -55,7 +55,16 @@ class MenusController extends Controller
                         return $data->slug;
                     })
                     ->addColumn('parent_menu', function ($data) {
-                        return $data->parent_id;
+                        $menu_id = Menu::pluck('id')->toArray();
+                        $parentMenuName = Menu::where('id', $data->parent_id)->first();
+                        $parentSubMenuName = Menu::where('id', $data->child_id)->first();
+                        if (in_array($data->parent_id, $menu_id) && in_array($data->child_id, $menu_id)) {
+                            return $parentSubMenuName->name . '<span class="badge bg-info text-white">Megamenu</span>';
+                        } elseif (in_array($data->parent_id, $menu_id)) {
+                            return $parentMenuName->name . '<span class="badge bg-warning text-white">Submenu</span>';
+                        } else {
+                            return '<span class="badge bg-success text-white">Parent Menu</span>';
+                        }
                     })
                     ->addColumn('target', function ($data) {
                         return target($data->target);
@@ -68,12 +77,12 @@ class MenusController extends Controller
                         <i class="material-icons mdc-button__icon">colorize</i>
                       </a> <button class="mdc-button mdc-button--raised icon-button filled-button--secondary" onclick="delete_data(' . $data->id . ')">
                       <i class="material-icons mdc-button__icon">delete</i>
-                    </button><form action="'.route('admin.menu.delete',['id' => $data->id]).'"
+                    </button><form action="' . route('admin.menu.delete', ['id' => $data->id]) . '"
                     id="delete-form-' . $data->id . '" method="DELETE" class="d-none">
                     @csrf
                     @method("DELETE") </form></div>';
                     })
-                    ->rawColumns(['target','status', 'action'])
+                    ->rawColumns(['parent_menu','target', 'status', 'action'])
                     ->make(true);
             }
         } else {
@@ -168,9 +177,9 @@ class MenusController extends Controller
     public function delete($id)
     {
         if (Gate::allows('isAdmin')) {
-            $menu = Menu::where('id',$id)->first();
+            $menu = Menu::where('id', $id)->first();
             $menu->delete();
-            return back()->with('success','Menu Delete Successfuly Done.. !');
+            return back()->with('success', 'Menu Delete Successfuly Done.. !');
         } else {
             abort(401);
         }
