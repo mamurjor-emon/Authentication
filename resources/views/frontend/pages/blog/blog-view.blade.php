@@ -14,24 +14,34 @@
                                     <img src="{{ asset($blog->image ?? '') }}" alt="Blog Image">
                                 </div>
                                 <!-- News Title -->
-                                <h1 class="news-title"><a
+                                <h1 class="news-title"><a onclick="countView({{ $blog->id }})"
                                         href="{{ route('frontend.blog', ['id' => $blog->id]) }}">{{ $blog->title }}</a>
                                 </h1>
                                 <!-- Meta -->
                                 <div class="meta">
                                     <div class="meta-left">
-                                        <span class="author"><a href="#"><img
-                                                    src="{{ asset($blog->user->avatar ?? '') }}"
-                                                    alt="{{ $blog->user->fname }}">{{ $blog->user->fname }}
-                                                {{ $blog->user->lname }}</a></span>
+                                        <span class="author">
+                                            <a href="#">
+                                                @if ($blog->user->avatar != null)
+                                                    <img
+                                                        src="{{ asset($blog->user->avatar ?? '') }}"alt="{{ $blog->user->fname }}">
+                                                @else
+                                                    <img src="{{ asset('common/5907-removebg-preview.png') }}"
+                                                        alt="Avatar" />
+                                                @endif
+                                                {{ $blog->user->fname }} {{ $blog->user->lname }}
+                                            </a>
+                                        </span>
                                         <span class="date"><i
                                                 class="fa fa-clock-o"></i>{{ $blog->created_at->format('d M, Y') }}</span>
                                     </div>
                                     <div class="meta-right">
-                                        <span class="comments"><a href="#"><i class="fa fa-comments"></i>05
-                                                Comments</a></span>
+                                        <span class="comments"><a href="javascript:"><i
+                                                    class="fa fa-comments"></i>{{ $blogComments->count() > 1 ? $blogComments->count() . ' Comments' : $blogComments->count() . ' Comment' }}
+                                            </a></span>
                                         <span class="views"><i
-                                                class="fa fa-eye"></i>{{ formatNumber($blog->total_view ?? 0) }}</span>
+                                                class="fa fa-eye"></i>{{ formatNumber($blog->total_view ?? 0) }}
+                                            {{ 'View' }}</span>
                                     </div>
                                 </div>
                                 <!-- News Text -->
@@ -78,80 +88,91 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-12">
-                            <div class="blog-comments">
-                                <h2>All Comments</h2>
-                                <div class="comments-body">
-                                    <!-- Single Comments -->
-                                    <div class="single-comments">
-                                        <div class="main">
-                                            <div class="head">
-                                                <img src="img/author1.jpg" alt="#" />
+                        @if (!empty($blogComments))
+                            <div class="col-12">
+                                <div class="blog-comments">
+                                    <h2>All Comments</h2>
+                                    @forelse ($blogComments as $blogComment)
+                                        <div class="comments-body mb-5">
+                                            <!-- Single Comments -->
+                                            <div class="single-comments">
+                                                <div class="main">
+                                                    <div class="head">
+                                                        @if ($blogComment->user->avatar != null)
+                                                            <img src="{{ asset($blogComment->user->avatar ?? '') }}"
+                                                                alt="Avatar" />
+                                                        @else
+                                                            <img src="{{ asset('common/5907-removebg-preview.png') }}"
+                                                                alt="Avatar" />
+                                                        @endif
+                                                    </div>
+                                                    <div class="body">
+                                                        <h4>{{ $blogComment->user->fname ?? '' }}
+                                                            {{ $blogComment->user->lname ?? '' }}</h4>
+                                                        <div class="comment-meta"><span class="meta"><i
+                                                                    class="fa fa-calendar"></i>{{ $blogComment->created_at->format('d M, Y') }}</span><span
+                                                                class="meta"><i
+                                                                    class="fa fa-clock-o"></i>{{ $blogComment->created_at->format('h:i A') }}</span>
+                                                        </div>
+                                                        <p>{{ $blogComment->comment }}</p>
+                                                        <a href="javascript:"
+                                                            onclick="replayComment({{ $blogComment->id }})"><i
+                                                                class="fa fa-reply"></i>replay</a>
+                                                    </div>
+                                                </div>
                                             </div>
-                                            <div class="body">
-                                                <h4>Afsana Mimi</h4>
-                                                <div class="comment-meta"><span class="meta"><i
-                                                            class="fa fa-calendar"></i>March 05, 2019</span><span
-                                                        class="meta"><i class="fa fa-clock-o"></i>03:38 AM</span></div>
-                                                <p>Lorem Ipsum available, but the majority have suffered alteration in some
-                                                    form, by injected humour, or randomised words Mirum est notare quam
-                                                    littera gothica, quam nunc putamus parum claram, anteposuerit litterarum
-                                                    formas</p>
-                                                <a href="#"><i class="fa fa-reply"></i>replay</a>
-                                            </div>
+                                            <!--/ End Single Comments -->
+                                            @if (!empty($blogComment->replayComment))
+                                                @forelse ($blogComment->replayComment->take(5) as $comment)
+                                                    @php
+                                                        $user = DB::table('users')
+                                                            ->where('id', $comment->user_id)
+                                                            ->first();
+                                                    @endphp
+                                                    <!-- Single Comments -->
+                                                    <div class="single-comments left">
+                                                        <div class="main">
+                                                            <div class="head">
+                                                                @if ($user->avatar != null)
+                                                                    <img src="{{ asset($user->avatar ?? '') }}"
+                                                                        alt="Avatar" />
+                                                                @else
+                                                                    <img src="{{ asset('common/5907-removebg-preview.png') }}"
+                                                                        alt="Avatar" />
+                                                                @endif
+                                                            </div>
+                                                            <div class="body">
+                                                                <h4>{{ $user->fname ?? '' }} {{ $user->lname ?? '' }}
+                                                                </h4>
+                                                                <div class="comment-meta"><span class="meta"><i
+                                                                            class="fa fa-calendar"></i>{{ $comment->created_at->format('d M, Y') }}</span><span
+                                                                        class="meta"><i
+                                                                            class="fa fa-clock-o"></i>{{ $comment->created_at->format('h:i A') }}</span>
+                                                                </div>
+                                                                <p>{{ $comment->replay_comment ?? '' }}</p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <!--/ End Single Comments -->
+                                                @empty
+                                                @endforelse
+                                            @else
+                                            @endif
                                         </div>
-                                    </div>
-                                    <!--/ End Single Comments -->
-                                    <!-- Single Comments -->
-                                    <div class="single-comments left">
-                                        <div class="main">
-                                            <div class="head">
-                                                <img src="img/author2.jpg" alt="#" />
-                                            </div>
-                                            <div class="body">
-                                                <h4>Naimur Rahman</h4>
-                                                <div class="comment-meta"><span class="meta"><i
-                                                            class="fa fa-calendar"></i>March 05, 2019</span><span
-                                                        class="meta"><i class="fa fa-clock-o"></i>03:38 AM</span></div>
-                                                <p>Lorem Ipsum available, but the majority have suffered alteration in some
-                                                    form, by injected humour, or randomised words Mirum est notare quam
-                                                    littera gothica, quam nunc putamus parum claram, anteposuerit litterarum
-                                                    formas</p>
-                                                <a href="#"><i class="fa fa-reply"></i>replay</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!--/ End Single Comments -->
-                                    <!-- Single Comments -->
-                                    <div class="single-comments">
-                                        <div class="main">
-                                            <div class="head">
-                                                <img src="img/author3.jpg" alt="#" />
-                                            </div>
-                                            <div class="body">
-                                                <h4>Suriya Molharta</h4>
-                                                <div class="comment-meta"><span class="meta"><i
-                                                            class="fa fa-calendar"></i>March 05, 2019</span><span
-                                                        class="meta"><i class="fa fa-clock-o"></i>03:38 AM</span></div>
-                                                <p>Lorem Ipsum available, but the majority have suffered alteration in some
-                                                    form, by injected humour, or randomised words Mirum est notare quam
-                                                    littera gothica, quam nunc putamus parum claram, anteposuerit litterarum
-                                                    formas</p>
-                                                <a href="#"><i class="fa fa-reply"></i>replay</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!--/ End Single Comments -->
+                                    @empty
+                                    @endforelse
                                 </div>
                             </div>
-                        </div>
+                        @endif
                         @if (Auth::check() && Auth::user())
                             <div class="col-12">
                                 <div class="comments-form">
                                     <h2>Leave Comments</h2>
                                     <!-- Contact Form -->
-                                    <form class="form" method="post" action="">
+                                    <form class="form" method="post" action="{{ route('frontend.blog.comment') }}">
+                                        @csrf
                                         <div class="row">
+                                            <input type="hidden" name="blog_id" value="{{ $blog->id }}">
                                             <div class="col-lg-4 col-md-4 col-12">
                                                 <div class="form-group">
                                                     <i class="fa fa-user"></i>
@@ -170,16 +191,20 @@
                                                 <div class="form-group">
                                                     <i class="fa fa-envelope"></i>
                                                     <input type="email" name="email" placeholder="Your Email"
-                                                        required="required" value="{{ Auth::user()->email ?? '' }}">
+                                                        required="required" value="{{ Auth::user()->email ?? '' }}"
+                                                        readonly>
                                                 </div>
                                             </div>
                                             <div class="col-12">
                                                 <div class="form-group message">
                                                     <i class="fa fa-pencil"></i>
-                                                    <textarea name="message" rows="7" placeholder="Type Your Message Here"></textarea>
+                                                    <textarea name="comment" rows="7" placeholder="Type Your Message Here"></textarea>
                                                 </div>
+                                                @error('comment')
+                                                    <span class="text-danger error-text">{{ $message }}</span>
+                                                @enderror
                                             </div>
-                                            <div class="col-12">
+                                            <div class="col-12 mt-3">
                                                 <div class="form-group button">
                                                     <button type="submit" class="btn primary"><i
                                                             class="fa fa-send"></i>Submit Comment</button>
@@ -209,18 +234,25 @@
                                 <h3 class="title">Recent post</h3>
                                 @if (!empty($resentPosts))
                                     @forelse ($resentPosts as $posts)
+                                        @php
+                                            $blogComments = App\Models\BlogComment::where('blog_id', $posts->id)
+                                                ->where('comment_id', null)
+                                                ->get();
+                                        @endphp
                                         <!-- Single Post -->
                                         <div class="single-post">
                                             <div class="image">
                                                 <img src="{{ asset($posts->image ?? '') }}" alt="Image">
                                             </div>
                                             <div class="content">
-                                                <h5><a href="#">{{ $posts->title }}</a></h5>
+                                                <h5><a onclick="countView({{ $posts->id }})" href="{{ route('frontend.blog', ['id' => $posts->id]) }}">{{ $posts->title }}</a>
+                                                </h5>
                                                 <ul class="comment">
                                                     <li><i class="fa fa-calendar"
                                                             aria-hidden="true"></i>{{ $posts->created_at->format('d M, Y') }}
                                                     </li>
-                                                    <li><i class="fa fa-commenting-o" aria-hidden="true"></i>35</li>
+                                                    <li><i class="fa fa-commenting-o"
+                                                            aria-hidden="true"></i>{{ $blogComments->count() }}</li>
                                                 </ul>
                                             </div>
                                         </div>
@@ -238,7 +270,9 @@
                                 <ul class="categor-list">
                                     @if (!empty($categories))
                                         @forelse ($categories as $categorie)
-                                            <li><a href="#">{{ $categorie->categorie_name ?? '' }}</a></li>
+                                            <li><a
+                                                    href="{{ route('frontend.categorie.blog', ['id' => $categorie->id]) }}">{{ $categorie->categorie_name ?? '' }}</a>
+                                            </li>
                                         @empty
                                         @endforelse
                                     @endif
@@ -280,4 +314,21 @@
         </div>
     </section>
     <!--/ End Single News -->
+    <!--Include Comment Replay Modal-->
+    @include('frontend.modals.blog-replay')
 @endsection
+@push('scripts')
+    <script>
+        var blog_id = "{{ $blog->id }}";
+        var modal = new bootstrap.Modal(document.getElementById('blog_comment_replay'), {
+            keyboard: false,
+            backdrop: 'static'
+        });
+
+        function replayComment(commentId) {
+            $('#blog_id').val(blog_id);
+            $('#comment_id').val(commentId);
+            modal.show();
+        }
+    </script>
+@endpush
