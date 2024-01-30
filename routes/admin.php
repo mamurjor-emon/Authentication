@@ -10,6 +10,7 @@ use App\Http\Controllers\Backend\Admin\HomePage\BlogTagController;
 use App\Http\Controllers\Backend\Admin\HomePage\CallActionController;
 use App\Http\Controllers\Backend\Admin\HomePage\ClientsController;
 use App\Http\Controllers\Backend\Admin\HomePage\FeautesController;
+use App\Http\Controllers\Backend\Admin\HomePage\FooterBottomController;
 use App\Http\Controllers\Backend\Admin\HomePage\FunFactsController;
 use App\Http\Controllers\Backend\Admin\HomePage\MenusController;
 use App\Http\Controllers\Backend\Admin\HomePage\PortfolioController;
@@ -145,6 +146,12 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth', 'i
     Route::prefix('appointment')->name('appointment.')->group(function () {
         Route::get('/', [AppointmentsController::class, 'index'])->name('index');
         Route::post('create', [AppointmentsController::class, 'createOrUpdate'])->name('create.or.update');
+    });
+
+    //------------------------ Footer Bottom Section -----------------------//
+    Route::prefix('footer-bottom')->name('footer.bottom.')->group(function () {
+        Route::get('/', [FooterBottomController::class, 'index'])->name('index');
+        Route::post('create', [FooterBottomController::class, 'createOrUpdate'])->name('create.or.update');
     });
 
     //------------------------ Blog Categories Section -----------------------//

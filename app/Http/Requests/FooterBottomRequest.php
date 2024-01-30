@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class SocalMediaRequest extends FormRequest
+class FooterBottomRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,13 +22,11 @@ class SocalMediaRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'icon'     => ['required'],
-            'name'     => ['required'],
-            'url'      => ['required'],
-            'target'   => ['required'],
-            'order_by' => ['required'],
-            'status'   => ['required'],
-            'class'   => ['required'],
+            'title'  => ['required'],
+            'name'   => ['required'],
+            'url'    => ['required'],
+            'target' => ['required'],
+            'status' => ['required'],
         ];
     }
 }

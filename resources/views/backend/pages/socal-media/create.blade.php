@@ -43,7 +43,11 @@
                                 <option value="1">Publish</option>
                             </x-form.selectbox>
                         </div>
-
+                        <div class="row g-5 mt-2">
+                            <x-form.textbox labelName="Background Color" parantClass="col-12 col-md-6" name="class"
+                               type="color" required="required" errorName="class"   placeholder="Enter Background Color..!"
+                                value="{{ old('class') }}"></x-form.textbox>
+                        </div>
                         <div class="d-flex justify-content-end align-items-center mt-3">
                             <button type="submit"
                                 class="mdc-button mdc-button--unelevated filled-button--success mdc-ripple-upgraded">Create</button>

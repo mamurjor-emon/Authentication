@@ -224,9 +224,11 @@ body {
 .color-plate span:hover {
     cursor: pointer;
 }
-.primary-color{
+
+.primary-color {
     color: var(--primary-color);
 }
+
 .color-plate span.color1 {
     background: var(--primary-color);
 }
@@ -355,6 +357,7 @@ body {
     font-size: 20px;
     font-weight: bold;
 }
+
 .header .header-inner {
     background: #fff;
     z-index: 999;
@@ -753,7 +756,7 @@ body {
 }
 
 .slider .single-slider .btn.primary:before {
-    background:var(--primary-color);
+    background: var(--primary-color);
 }
 
 .slider .owl-carousel .owl-nav {
@@ -832,7 +835,7 @@ body {
     text-align: left;
     z-index: 3;
     border-radius: 5px;
-    background:var(--primary-color);
+    background: var(--primary-color);
     -webkit-transition: all .3s ease-out 0s;
     -moz-transition: all .3s ease-out 0s;
     -ms-transition: all .3s ease-out 0s;
@@ -2421,7 +2424,7 @@ body {
     margin-top: 30px;
 }
 
-#blog #tag{
+#blog #tag {
     position: absolute;
     top: 0px;
     right: 0px;
@@ -2495,7 +2498,7 @@ body {
     position: absolute;
     right: 40px;
     top: 40px;
-    height: 44px;
+    height: 45px;
     width: 50px;
     line-height: 45px;
     box-shadow: none;
@@ -4865,3 +4868,29 @@ body {
 ===========================*/
 
 
+/*=========================
+	Custome  CSS Start
+===========================*/
+
+.blog-comments .pagination .page-link {
+    padding: 1.1rem 1.75rem !important;
+}
+.blog-comments .text-muted{
+    display: none !important;
+}
+.main-sidebar .search-result {
+	padding: 0px 18px;
+	background: #fff;
+	-webkit-box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.10);
+	-moz-box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.10);
+	box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.10);
+	border-radius: 8px;
+	position: absolute;
+	top: 154px;
+	z-index: 9;
+	width: 93%;
+	padding-bottom: 18px;
+}
+/*=========================
+	Custome  CSS End
+===========================*/

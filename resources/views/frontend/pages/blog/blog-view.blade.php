@@ -76,16 +76,24 @@
                                     @endif
                                     {!! $blog->l_discrption ?? '' !!}
                                 </div>
-                                <div class="blog-bottom">
-                                    <!-- Social Share -->
-                                    <ul class="social-share">
-                                        <li class="facebook"><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                        <li class="twitter"><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                        <li class="google-plus"><a href="#"><i class="fa fa-google-plus"></i></a></li>
-                                        <li class="linkedin"><a href="#"><i class="fa fa-linkedin"></i></a></li>
-                                        <li class="pinterest"><a href="#"><i class="fa fa-pinterest"></i></a></li>
-                                    </ul>
-                                </div>
+                                @if (!empty($blog->socal_media))
+                                    @php
+                                        $socal_medias = json_decode($blog->socal_media);
+                                    @endphp
+                                    <div class="blog-bottom d-flex justify-content-center">
+                                        <!-- Social Share -->
+                                        <ul class="social-share">
+                                            @forelse ($socal_medias as $media)
+                                                @php
+                                                    $socal = DB::table('socal_media') ->where('id', $media)->first();
+                                                    $background = 'style="background: ' . ($socal->class ?? '') . '"';
+                                                @endphp
+                                                <li {!! $background ?? '' !!}><a target="{{ $socal->target == 1 ? '_blank' : '' }}" href="{{ $socal->url.url()->full() ?? '' }}" >{!! $socal->icon ?? '' !!}</a></li>
+                                            @empty
+                                            @endforelse
+                                        </ul>
+                                    </div>
+                                @endif
                             </div>
                         </div>
                         @if (!empty($blogComments))
@@ -161,6 +169,7 @@
                                         </div>
                                     @empty
                                     @endforelse
+                                    {{ $blogComments->links() }}
                                 </div>
                             </div>
                         @endif
@@ -221,11 +230,14 @@
                 <div class="col-lg-4 col-12">
                     <div class="main-sidebar">
                         <!-- Single Widget -->
-                        <div class="single-widget search">
+                        <div class="single-widget search position-relative">
                             <div class="form">
-                                <input type="email" placeholder="Search Here...">
-                                <a class="button" href="#"><i class="fa fa-search"></i></a>
+                                <input type="text" placeholder="Search Here..." id="blog_search">
+                                <a class="button" href="javascrpt:"><i class="fa fa-search"></i></a>
                             </div>
+                        </div>
+                        <div id="search-result">
+
                         </div>
                         <!--/ End Single Widget -->
                         <!-- Single Widget -->
@@ -245,7 +257,8 @@
                                                 <img src="{{ asset($posts->image ?? '') }}" alt="Image">
                                             </div>
                                             <div class="content">
-                                                <h5><a onclick="countView({{ $posts->id }})" href="{{ route('frontend.blog', ['id' => $posts->id]) }}">{{ $posts->title }}</a>
+                                                <h5><a onclick="countView({{ $posts->id }})"
+                                                        href="{{ route('frontend.blog', ['id' => $posts->id]) }}">{{ $posts->title }}</a>
                                                 </h5>
                                                 <ul class="comment">
                                                     <li><i class="fa fa-calendar"
@@ -330,5 +343,26 @@
             $('#comment_id').val(commentId);
             modal.show();
         }
+        
+        $(document).on('keyup', '#blog_search', function() {
+            var data = $(this).val();
+            $.ajax({
+                type: "POST",
+                url: "{{ route('frontend.blog.search') }}",
+                data: {
+                    _token: _token,
+                    data: data
+                },
+                success: function(res) {
+                    var getId = $('#search-result').html('');
+                    if (res.status == 'success') {
+                        getId.html('');
+                        getId.html(res.data);
+                    } else {
+                        getId.html('');
+                    }
+                }
+            });
+        })
     </script>
 @endpush

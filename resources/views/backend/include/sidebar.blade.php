@@ -94,7 +94,7 @@
                                  </a>
                              </div>
                              <div class="mdc-list-item mdc-drawer-item">
-                                 <a class="mdc-drawer-link" href="">
+                                 <a class="mdc-drawer-link {{ $footerBottomActive ?? '' }}" href="{{ route('admin.footer.bottom.index') }}">
                                      Footer Bottom
                                  </a>
                              </div>
@@ -151,6 +151,46 @@
                                     All Title & Discrption
                                 </a>
                             </div>
+                        </nav>
+                    </div>
+                </div>
+
+                 <div class="mdc-list-item mdc-drawer-item">
+                    <a class="mdc-expansion-panel-link" href="#" data-toggle="expansionPanel"
+                        data-target="ui-sub-menu-user-management">
+                        <i class="material-icons mdc-list-item__start-detail mdc-drawer-item-icon"
+                            aria-hidden="true">build</i>
+                           User Management
+                        <i class="mdc-drawer-arrow material-icons">chevron_right</i>
+                    </a>
+                    <div class="mdc-expansion-panel" id="ui-sub-menu-user-management">
+                        <nav class="mdc-list mdc-drawer-submenu">
+                            <div class="mdc-list-item mdc-drawer-item">
+                                <a class="mdc-drawer-link " href="">
+                                   All Admins
+                                </a>
+                            </div>
+                            <div class="mdc-list-item mdc-drawer-item">
+                                <a class="mdc-drawer-link " href="">
+                                   All Doctores
+                                </a>
+                            </div>
+                            <div class="mdc-list-item mdc-drawer-item">
+                                <a class="mdc-drawer-link " href="">
+                                    Pending Doctors
+                                </a>
+                            </div>
+                            <div class="mdc-list-item mdc-drawer-item">
+                                <a class="mdc-drawer-link " href="">
+                                    Cancel Doctors
+                                </a>
+                            </div>
+                            <div class="mdc-list-item mdc-drawer-item">
+                                <a class="mdc-drawer-link " href="">
+                                   All Clients
+                                </a>
+                            </div>
+
                         </nav>
                     </div>
                 </div>

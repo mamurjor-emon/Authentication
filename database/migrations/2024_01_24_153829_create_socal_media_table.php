@@ -19,6 +19,7 @@ return new class extends Migration
             $table->enum('target',[0,1])->comment('0 = Same Page, 1 = New Tab');
             $table->string('order_by');
             $table->enum('status',[0,1])->comment('0 = Pending , 1 = Publish');
+            $table->string('class');
             $table->timestamps();
         });
     }

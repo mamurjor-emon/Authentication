@@ -52,6 +52,9 @@ class SocalMediaController extends Controller
                     ->addColumn('name', function ($data) {
                         return $data->name ?? '--';
                     })
+                    ->addColumn('class', function ($data) {
+                        return $data->class ?? '--';
+                    })
                     ->addColumn('target', function ($data) {
                         return target($data->target);
                     })
@@ -101,6 +104,7 @@ class SocalMediaController extends Controller
                 'target'   => $request->target,
                 'order_by' => $request->order_by,
                 'status'   => $request->status,
+                'class'    => $request->class,
             ]);
             return redirect()->route('admin.socal.media.index')->with('success', 'Socal Media Create Successfuly Done..!');
         } else {
@@ -134,6 +138,7 @@ class SocalMediaController extends Controller
                 'target'   => $request->target,
                 'order_by' => $request->order_by,
                 'status'   => $request->status,
+                'class'    => $request->class,
             ]);
             return redirect()->route('admin.socal.media.index')->with('success', 'Socal Media Update Successfuly Done..!');
         } else {

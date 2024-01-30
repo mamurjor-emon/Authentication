@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class SocalMedia extends Model
+class FooterBottom extends Model
 {
     use HasFactory;
     /**
@@ -14,12 +14,10 @@ class SocalMedia extends Model
      * @var array
      */
     protected $fillable = [
-        'icon',
+        'title',
         'name',
         'url',
         'target',
-        'order_by',
-        'status',
-        'class'
+        'status'
     ];
 }

@@ -49,5 +49,6 @@ Route::prefix('frontend')->name('frontend.')->group(function () {
     Route::post('blog/comment', [BlogController::class, 'blogComment'])->name('blog.comment');
     Route::post('blog/comment/replay', [BlogController::class, 'blogCommentRepay'])->name('blog.comment.repay')->middleware('auth');
     Route::get('categorie/{id}',[BlogController::class, 'categorieBlog'])->name('categorie.blog');
+    Route::post('blog/search',[BlogController::class, 'blogSearch'])->name('blog.search');
 });
 
