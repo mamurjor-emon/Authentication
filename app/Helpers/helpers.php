@@ -127,6 +127,27 @@ if (!function_exists('status')) {
 }
 
 /**
+ * side
+ *
+ * @param $side
+ * @param \Illuminate\Http\Response
+ */
+if (!function_exists('side')) {
+    function side($side)
+    {
+        if ($side == 1) {
+            $badgeClass = 'badge-success';
+            $badgeTitle = 'Right Side';
+        } else {
+            $badgeClass = 'badge-danger';
+            $badgeTitle = 'Left Side';
+        }
+
+        return '<span class="badge badge-sm ' . $badgeClass . ' py-1 px-2">' . $badgeTitle . '</span>';
+    }
+}
+
+/**
  * Target
  *
  * @param $target

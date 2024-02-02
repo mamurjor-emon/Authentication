@@ -1,3 +1,31 @@
+@php
+    $footerone = DB::table('footer_ones')
+        ->where('status', '1')
+        ->first();
+    $footer_socals = json_decode($footerone->socal_media);
+
+    $footertwoleft = DB::table('footer_twos')
+        ->where('status', '1')
+        ->where('side', 0)
+        ->get();
+    $footertworight = DB::table('footer_twos')
+        ->where('status', '1')
+        ->where('side', 1)
+        ->get();
+
+    $footerthree = DB::table('footer_threes')
+        ->where('status', '1')
+        ->first();
+
+    $footerfour = DB::table('footer_fours')
+        ->where('status', '1')
+        ->first();
+    $footerBottom = DB::table('footer_bottoms')
+        ->where('status', '1')
+        ->first();
+
+@endphp
+
 <!-- Footer Area -->
 <footer id="footer" class="footer ">
     <!-- Footer Top -->
@@ -6,76 +34,78 @@
             <div class="row">
                 <div class="col-lg-3 col-md-6 col-12">
                     <div class="single-footer">
-                        <h2>About Us</h2>
-                        <p>Lorem ipsum dolor sit am consectetur adipisicing elit do eiusmod tempor incididunt ut labore
-                            dolore magna.</p>
+                        <h2>{{ $footerone->title ?? '' }}</h2>
+                        {!! $footerone->discrption !!}
                         <!-- Social -->
                         <ul class="social">
-                            <li><a href="#"><i class="icofont-facebook"></i></a></li>
-                            <li><a href="#"><i class="icofont-google-plus"></i></a></li>
-                            <li><a href="#"><i class="icofont-twitter"></i></a></li>
-                            <li><a href="#"><i class="icofont-vimeo"></i></a></li>
-                            <li><a href="#"><i class="icofont-pinterest"></i></a></li>
+                            @if (!empty($footer_socals))
+                                @forelse ($footer_socals as $footer_socal)
+                                    @php
+                                        $data = DB::table('socal_media')
+                                            ->where('id', $footer_socal)
+                                            ->first();
+                                    @endphp
+                                    <li><a target="_blank" href="{{ $data->url . asset('') }}">{!! $data->icon ?? '' !!}</a>
+                                    </li>
+                                @empty
+                                @endforelse
+                            @endif
                         </ul>
                         <!-- End Social -->
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6 col-12">
                     <div class="single-footer f-link">
-                        <h2>Quick Links</h2>
+                        <h2>{{ config('settings.footertwotitle') ?? '' }}</h2>
                         <div class="row">
-                            <div class="col-lg-6 col-md-6 col-12">
-                                <ul>
-                                    <li><a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i>Home</a>
-                                    </li>
-                                    <li><a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i>About
-                                            Us</a></li>
-                                    <li><a href="#"><i class="fa fa-caret-right"
-                                                aria-hidden="true"></i>Services</a></li>
-                                    <li><a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i>Our
-                                            Cases</a></li>
-                                    <li><a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i>Other
-                                            Links</a></li>
-                                </ul>
-                            </div>
-                            <div class="col-lg-6 col-md-6 col-12">
-                                <ul>
-                                    <li><a href="#"><i class="fa fa-caret-right"
-                                                aria-hidden="true"></i>Consuling</a></li>
-                                    <li><a href="#"><i class="fa fa-caret-right"
-                                                aria-hidden="true"></i>Finance</a></li>
-                                    <li><a href="#"><i class="fa fa-caret-right"
-                                                aria-hidden="true"></i>Testimonials</a></li>
-                                    <li><a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i>FAQ</a>
-                                    </li>
-                                    <li><a href="#"><i class="fa fa-caret-right" aria-hidden="true"></i>Contact
-                                            Us</a></li>
-                                </ul>
-                            </div>
+                            @if (!empty($footertwoleft))
+                                <div class="col-lg-6 col-md-6 col-12">
+                                    <ul>
+                                        @forelse ($footertwoleft as $twoleft)
+                                            <li><a href="{{ $twoleft->url ?? '' }}"
+                                                    target="{{ $twoleft->target == 1 ? '_blank' : '' }}"><i
+                                                        class="fa fa-caret-right"
+                                                        aria-hidden="true"></i>{{ $twoleft->name ?? '' }}</a> </li>
+                                        @empty
+                                        @endforelse
+                                    </ul>
+                                </div>
+                            @endif
+                            @if (!empty($footertworight))
+                                <div class="col-lg-6 col-md-6 col-12">
+                                    <ul>
+                                        @forelse ($footertworight as $twoleft)
+                                            <li><a href="{{ $twoleft->url ?? '' }}"
+                                                    target="{{ $twoleft->target == 1 ? '_blank' : '' }}"><i
+                                                        class="fa fa-caret-right"
+                                                        aria-hidden="true"></i>{{ $twoleft->name ?? '' }}</a> </li>
+                                        @empty
+                                        @endforelse
+                                    </ul>
+                                </div>
+                            @endif
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6 col-12">
                     <div class="single-footer">
-                        <h2>Open Hours</h2>
-                        <p>Lorem ipsum dolor sit ame consectetur adipisicing elit do eiusmod tempor incididunt.</p>
+                        <h2>{{ $footerthree->title ?? '' }}</h2>
+                        {!! $footerthree->sub_title ?? '' !!}
                         <ul class="time-sidual">
-                            <li class="day">Monday - Fridayp <span>8.00-20.00</span></li>
-                            <li class="day">Saturday <span>9.00-18.30</span></li>
-                            <li class="day">Monday - Thusday <span>9.00-15.00</span></li>
+                            {!! $footerthree->discription ?? '' !!}
                         </ul>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6 col-12">
                     <div class="single-footer">
-                        <h2>Newsletter</h2>
-                        <p>subscribe to our newsletter to get allour news in your inbox.. Lorem ipsum dolor sit amet,
-                            consectetur adipisicing elit,</p>
-                        <form action="mail/mail.php" method="get" target="_blank" class="newsletter-inner">
+                        <h2>{{ $footerfour->title ?? '' }}</h2>
+                        {!! $footerfour->discription ?? '' !!}
+                        <form action="{{ route('subscribe.store') }}" method="POST" class="newsletter-inner">
+                            @csrf
                             <input name="email" placeholder="Email Address" class="common-input"
                                 onfocus="this.placeholder = ''" onblur="this.placeholder = 'Your email address'"
-                                required="" type="email">
-                            <button class="button"><i class="icofont icofont-paper-plane"></i></button>
+                                type="email" name="email">
+                            <button type="submit" class="button"><i class="icofont icofont-paper-plane"></i></button>
                         </form>
                     </div>
                 </div>
@@ -83,11 +113,6 @@
         </div>
     </div>
     <!--/ End Footer Top -->
-    @php
-        $footerBottom = DB::table('footer_bottoms')
-            ->where('status', '1')
-            ->first();
-    @endphp
     @if (!empty($footerBottom))
         <!-- Copyright -->
         <div class="copyright">
@@ -95,8 +120,9 @@
                 <div class="row">
                     <div class="col-lg-12 col-md-12 col-12">
                         <div class="copyright-content">
-                            <p>{{ $footerBottom->title ?? ''}}<a href="{{ $footerBottom->url ?? '' }}"
-                                    target="{{ $footerBottom->target == 1 ? '_blank' : '' }}">{{ $footerBottom->name ?? '' }}</a> </p>
+                            <p>{{ $footerBottom->title ?? '' }}<a href="{{ $footerBottom->url ?? '' }}"
+                                    target="{{ $footerBottom->target == 1 ? '_blank' : '' }}">{{ $footerBottom->name ?? '' }}</a>
+                            </p>
                         </div>
                     </div>
                 </div>

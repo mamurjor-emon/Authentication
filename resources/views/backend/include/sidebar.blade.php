@@ -64,11 +64,6 @@
                                  </a>
                              </div>
                              <div class="mdc-list-item mdc-drawer-item">
-                                 <a class="mdc-drawer-link {{ $portfolioActive ?? '' }}" href="{{ route('admin.portfolio.index') }}">
-                                     Portfolio Settings
-                                 </a>
-                             </div>
-                             <div class="mdc-list-item mdc-drawer-item">
                                  <a class="mdc-drawer-link {{ $servicesActive ?? '' }}" href="{{ route('admin.services.index') }}">
                                      Services Settings
                                  </a>
@@ -88,19 +83,33 @@
                                      Appointment
                                  </a>
                              </div>
-                             <div class="mdc-list-item mdc-drawer-item">
-                                 <a class="mdc-drawer-link" href="">
-                                     Footer Settings
-                                 </a>
-                             </div>
-                             <div class="mdc-list-item mdc-drawer-item">
-                                 <a class="mdc-drawer-link {{ $footerBottomActive ?? '' }}" href="{{ route('admin.footer.bottom.index') }}">
-                                     Footer Bottom
-                                 </a>
-                             </div>
                          </nav>
                      </div>
                  </div>
+
+                 <div class="mdc-list-item mdc-drawer-item">
+                    <a class="mdc-expansion-panel-link {{ $parentPortfolio ?? '' }}" href="#" data-toggle="expansionPanel"
+                        data-target="ui-sub-menu-portfolio">
+                        <i class="material-icons mdc-list-item__start-detail mdc-drawer-item-icon"
+                            aria-hidden="true">pie_chart</i>
+                            Portfolio Section
+                        <i class="mdc-drawer-arrow material-icons">chevron_right</i>
+                    </a>
+                    <div class="mdc-expansion-panel" id="ui-sub-menu-portfolio" {!! $parentPortfolioSubMenu ?? '' !!}>
+                        <nav class="mdc-list mdc-drawer-submenu">
+                            <div class="mdc-list-item mdc-drawer-item">
+                                <a class="mdc-drawer-link" href="">
+                                    Portfolio Categories
+                                </a>
+                            </div>
+                            <div class="mdc-list-item mdc-drawer-item">
+                                <a class="mdc-drawer-link {{ $portfolioActive ?? '' }}" href="{{ route('admin.portfolio.index') }}">
+                                    Portfolio Settings
+                                </a>
+                            </div>
+                        </nav>
+                    </div>
+                </div>
 
                  <div class="mdc-list-item mdc-drawer-item">
                     <a class="mdc-expansion-panel-link {{ $parentBlogs ?? '' }}" href="#" data-toggle="expansionPanel"
@@ -123,13 +132,47 @@
                                 </a>
                             </div>
                             <div class="mdc-list-item mdc-drawer-item">
-                                <a class="mdc-drawer-link {{ $socalMedia ?? '' }}" href="{{ route('admin.socal.media.index') }}">
-                                    Socal Media
+                                <a class="mdc-drawer-link {{ $singleBlog ?? '' }}" href="{{ route('admin.blog.index') }}">
+                                    Single Blog
+                                </a>
+                            </div>
+                        </nav>
+                    </div>
+                </div>
+
+                 <div class="mdc-list-item mdc-drawer-item">
+                    <a class="mdc-expansion-panel-link {{ $parentFooter ?? '' }}" href="#" data-toggle="expansionPanel"
+                        data-target="ui-sub-menu-footer">
+                        <i class="material-icons mdc-list-item__start-detail mdc-drawer-item-icon"
+                            aria-hidden="true">label_outline</i>
+                            Footer Section
+                        <i class="mdc-drawer-arrow material-icons">chevron_right</i>
+                    </a>
+                    <div class="mdc-expansion-panel" id="ui-sub-menu-footer" {!! $parentFooterSubMenu ?? '' !!}>
+                        <nav class="mdc-list mdc-drawer-submenu">
+                            <div class="mdc-list-item mdc-drawer-item">
+                                <a class="mdc-drawer-link {{ $footerCardOne ?? '' }}" href="{{ route('admin.footer.index') }}">
+                                    Footer Card One
                                 </a>
                             </div>
                             <div class="mdc-list-item mdc-drawer-item">
-                                <a class="mdc-drawer-link {{ $singleBlog ?? '' }}" href="{{ route('admin.blog.index') }}">
-                                    Single Blog
+                                <a class="mdc-drawer-link {{ $footerCardTwo ?? '' }}" href="{{ route('admin.footer.two.index') }}">
+                                    Footer Card Two
+                                </a>
+                            </div>
+                            <div class="mdc-list-item mdc-drawer-item">
+                                <a class="mdc-drawer-link {{ $footerCardThree ?? '' }}" href="{{ route('admin.footer.three.index') }}">
+                                    Footer Card Three
+                                </a>
+                            </div>
+                            <div class="mdc-list-item mdc-drawer-item">
+                                <a class="mdc-drawer-link {{ $footerCardFour ?? '' }}" href="{{ route('admin.footer.four.index') }}">
+                                    Footer Card Four
+                                </a>
+                            </div>
+                            <div class="mdc-list-item mdc-drawer-item">
+                                <a class="mdc-drawer-link {{ $footerBottomActive ?? '' }}" href="{{ route('admin.footer.bottom.index') }}">
+                                    Footer Bottom
                                 </a>
                             </div>
                         </nav>
@@ -156,10 +199,29 @@
                 </div>
 
                  <div class="mdc-list-item mdc-drawer-item">
+                    <a class="mdc-expansion-panel-link {{ $parentSocal ?? '' }}" href="#" data-toggle="expansionPanel"
+                        data-target="ui-sub-menu-socal">
+                        <i class="material-icons mdc-list-item__start-detail mdc-drawer-item-icon"
+                            aria-hidden="true">share</i>
+                            Socal Section
+                        <i class="mdc-drawer-arrow material-icons">chevron_right</i>
+                    </a>
+                    <div class="mdc-expansion-panel" id="ui-sub-menu-socal" {!! $parentSocalSubMenu ?? '' !!}>
+                        <nav class="mdc-list mdc-drawer-submenu">
+                            <div class="mdc-list-item mdc-drawer-item">
+                                <a class="mdc-drawer-link {{ $socalMedia ?? '' }}" href="{{ route('admin.socal.media.index') }}">
+                                    Socal Media
+                                </a>
+                            </div>
+                        </nav>
+                    </div>
+                </div>
+
+                 <div class="mdc-list-item mdc-drawer-item">
                     <a class="mdc-expansion-panel-link" href="#" data-toggle="expansionPanel"
                         data-target="ui-sub-menu-user-management">
                         <i class="material-icons mdc-list-item__start-detail mdc-drawer-item-icon"
-                            aria-hidden="true">build</i>
+                            aria-hidden="true">people_outline</i>
                            User Management
                         <i class="mdc-drawer-arrow material-icons">chevron_right</i>
                     </a>
@@ -188,6 +250,11 @@
                             <div class="mdc-list-item mdc-drawer-item">
                                 <a class="mdc-drawer-link " href="">
                                    All Clients
+                                </a>
+                            </div>
+                            <div class="mdc-list-item mdc-drawer-item">
+                                <a class="mdc-drawer-link " href="">
+                                   All Subscribers
                                 </a>
                             </div>
 

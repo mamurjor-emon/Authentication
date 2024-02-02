@@ -15,8 +15,8 @@ class SocalMediaController extends Controller
     {
         if (Gate::allows('isAdmin')) {
             $this->setPageTitle('Socal Media');
-            $data['parentBlogs']        = 'expanded';
-            $data['parentBlogsSubMenu'] = 'style="display: block;"';
+            $data['parentSocal']        = 'expanded';
+            $data['parentSocalSubMenu'] = 'style="display: block;"';
             $data['socalMedia']         = 'active';
             $data['breadcrumb']         = ['Socal Media' => '',];
             return view('backend.pages.socal-media.index', $data);
@@ -83,11 +83,11 @@ class SocalMediaController extends Controller
     {
         if (Gate::allows('isAdmin')) {
             $this->setPageTitle('Create Socal Media');
-            $data['parentHomeMenu']    = 'expanded';
-            $data['parentHomeSubMenu'] = 'style="display: block;"';
-            $data['socalMedia']        = 'active';
-            $data['totalSocalMedia']   = SocalMedia::get();
-            $data['breadcrumb']        = ['Socal Medias' => route('admin.socal.media.index'), 'Create Socal Media' => '',];
+            $data['parentSocal']        = 'expanded';
+            $data['parentSocalSubMenu'] = 'style="display: block;"';
+            $data['socalMedia']         = 'active';
+            $data['totalSocalMedia']    = SocalMedia::get();
+            $data['breadcrumb']         = ['Socal Medias' => route('admin.socal.media.index'), 'Create Socal Media' => '',];
             return view('backend.pages.socal-media.create', $data);
         } else {
             abort(401);
@@ -116,11 +116,11 @@ class SocalMediaController extends Controller
     {
         if (Gate::allows('isAdmin')) {
             $this->setPageTitle('Edit Socal Media');
-            $data['parentHomeMenu']    = 'expanded';
-            $data['parentHomeSubMenu'] = 'style="display: block;"';
-            $data['socalMedia']           = 'active';
-            $data['breadcrumb']        = ['Socal Medias' => route('admin.socal.media.index'), 'Edit Socal Media' => '',];
-            $data['editSocalMedia']        = SocalMedia::where('id', $id)->first();
+            $data['parentSocal']        = 'expanded';
+            $data['parentSocalSubMenu'] = 'style="display: block;"';
+            $data['socalMedia']         = 'active';
+            $data['breadcrumb']         = ['Socal Medias' => route('admin.socal.media.index'), 'Edit Socal Media' => '',];
+            $data['editSocalMedia']     = SocalMedia::where('id', $id)->first();
             return view('backend.pages.socal-media.edit', $data);
         } else {
             abort(401);

@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Backend\DashboardController;
 use App\Http\Controllers\Frontend\BlogController;
 use App\Http\Controllers\Frontend\FrontendController;
+use App\Http\Controllers\Frontend\SubscriberController;
 use App\Http\Controllers\VerifyUserController;
 
 /*
@@ -42,7 +43,6 @@ Route::post('register/store', [AuthController::class, 'store'])->name('user.regi
 Route::get('verify-code/{token}',[VerifyUserController::class,'verifiedCode'])->name('verify.code');
 
 //------------ Blog  ------------//
-//------------------------ Appointment Section -----------------------//
 Route::prefix('frontend')->name('frontend.')->group(function () {
     Route::get('blog/{id}', [BlogController::class, 'blog'])->name('blog');
     Route::post('view/count', [BlogController::class, 'viewCount'])->name('view.count');
@@ -50,5 +50,11 @@ Route::prefix('frontend')->name('frontend.')->group(function () {
     Route::post('blog/comment/replay', [BlogController::class, 'blogCommentRepay'])->name('blog.comment.repay')->middleware('auth');
     Route::get('categorie/{id}',[BlogController::class, 'categorieBlog'])->name('categorie.blog');
     Route::post('blog/search',[BlogController::class, 'blogSearch'])->name('blog.search');
+});
+
+
+//------------ Subscribe  ------------//
+Route::prefix('subscribe')->name('subscribe.')->group(function () {
+    Route::post('store',[SubscriberController::class,'store'])->name('store');
 });
 

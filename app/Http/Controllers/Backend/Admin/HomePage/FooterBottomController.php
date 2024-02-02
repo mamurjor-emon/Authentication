@@ -14,12 +14,12 @@ class FooterBottomController extends Controller
     {
         if (Gate::allows('isAdmin')) {
             $this->setPageTitle('Footer Bottom Section');
-            $data['parentHomeMenu']     = 'expanded';
-            $data['parentHomeSubMenu']  = 'style="display: block;"';
-            $data['footerBottomActive'] = 'active';
-            $data['breadcrumb']         = ['Footer Bottom Section' => '',];
-            $data['footerBottomData']   = FooterBottom::first();
-            return view('backend.pages.footer-bottom.index', $data);
+            $data['parentFooter']         = 'expanded';
+            $data['parentFooterSubMenu']  = 'style="display: block;"';
+            $data['footerBottomActive']   = 'active';
+            $data['breadcrumb']           = ['Footer Bottom Section' => '',];
+            $data['footerBottomData']     = FooterBottom::first();
+            return view('backend.pages.footer.footer-bottom.index', $data);
         } else {
             abort(401);
         }

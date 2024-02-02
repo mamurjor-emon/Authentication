@@ -2,8 +2,7 @@
 <header class="mdc-top-app-bar">
     <div class="mdc-top-app-bar__row">
         <div class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start">
-            <button
-                class="material-icons mdc-top-app-bar__navigation-icon mdc-icon-button sidebar-toggler">menu</button>
+            <button class="material-icons mdc-top-app-bar__navigation-icon mdc-icon-button sidebar-toggler">menu</button>
             <span class="mdc-top-app-bar__title">Greetings Clyde!</span>
             <div
                 class="mdc-text-field mdc-text-field--outlined mdc-text-field--with-leading-icon search-text-field d-none d-md-flex">
@@ -29,8 +28,7 @@
                             <div class="item-thumbnail item-thumbnail-icon-only">
                                 <i class="mdi mdi-alert-circle-outline text-primary"></i>
                             </div>
-                            <div
-                                class="item-content d-flex align-items-start flex-column justify-content-center">
+                            <div class="item-content d-flex align-items-start flex-column justify-content-center">
                                 <h6 class="item-subject font-weight-normal">Settings</h6>
                             </div>
                         </li>
@@ -38,8 +36,7 @@
                             <div class="item-thumbnail item-thumbnail-icon-only">
                                 <i class="mdi mdi-progress-download text-primary"></i>
                             </div>
-                            <div
-                                class="item-content d-flex align-items-start flex-column justify-content-center">
+                            <div class="item-content d-flex align-items-start flex-column justify-content-center">
                                 <h6 class="item-subject font-weight-normal">Update</h6>
                             </div>
                         </li>
@@ -57,8 +54,7 @@
                             <div class="item-thumbnail item-thumbnail-icon">
                                 <i class="mdi mdi-email-outline"></i>
                             </div>
-                            <div
-                                class="item-content d-flex align-items-start flex-column justify-content-center">
+                            <div class="item-content d-flex align-items-start flex-column justify-content-center">
                                 <h6 class="item-subject font-weight-normal">You received a new message</h6>
                                 <small class="text-muted"> 6 min ago </small>
                             </div>
@@ -67,8 +63,7 @@
                             <div class="item-thumbnail item-thumbnail-icon">
                                 <i class="mdi mdi-account-outline"></i>
                             </div>
-                            <div
-                                class="item-content d-flex align-items-start flex-column justify-content-center">
+                            <div class="item-content d-flex align-items-start flex-column justify-content-center">
                                 <h6 class="item-subject font-weight-normal">New user registered</h6>
                                 <small class="text-muted"> 15 min ago </small>
                             </div>
@@ -77,8 +72,7 @@
                             <div class="item-thumbnail item-thumbnail-icon">
                                 <i class="mdi mdi-alert-circle-outline"></i>
                             </div>
-                            <div
-                                class="item-content d-flex align-items-start flex-column justify-content-center">
+                            <div class="item-content d-flex align-items-start flex-column justify-content-center">
                                 <h6 class="item-subject font-weight-normal">System Alert</h6>
                                 <small class="text-muted"> 2 days ago </small>
                             </div>
@@ -87,8 +81,7 @@
                             <div class="item-thumbnail item-thumbnail-icon">
                                 <i class="mdi mdi-update"></i>
                             </div>
-                            <div
-                                class="item-content d-flex align-items-start flex-column justify-content-center">
+                            <div class="item-content d-flex align-items-start flex-column justify-content-center">
                                 <h6 class="item-subject font-weight-normal">You have a new update</h6>
                                 <small class="text-muted"> 3 days ago </small>
                             </div>
@@ -110,8 +103,7 @@
                             <div class="item-thumbnail">
                                 <img src="../assets/images/faces/face4.jpg" alt="user">
                             </div>
-                            <div
-                                class="item-content d-flex align-items-start flex-column justify-content-center">
+                            <div class="item-content d-flex align-items-start flex-column justify-content-center">
                                 <h6 class="item-subject font-weight-normal">Mark send you a message</h6>
                                 <small class="text-muted"> 1 Minutes ago </small>
                             </div>
@@ -120,8 +112,7 @@
                             <div class="item-thumbnail">
                                 <img src="../assets/images/faces/face2.jpg" alt="user">
                             </div>
-                            <div
-                                class="item-content d-flex align-items-start flex-column justify-content-center">
+                            <div class="item-content d-flex align-items-start flex-column justify-content-center">
                                 <h6 class="item-subject font-weight-normal">Cregh send you a message</h6>
                                 <small class="text-muted"> 15 Minutes ago </small>
                             </div>
@@ -130,8 +121,7 @@
                             <div class="item-thumbnail">
                                 <img src="../assets/images/faces/face3.jpg" alt="user">
                             </div>
-                            <div
-                                class="item-content d-flex align-items-start flex-column justify-content-center">
+                            <div class="item-content d-flex align-items-start flex-column justify-content-center">
                                 <h6 class="item-subject font-weight-normal">Profile picture updated</h6>
                                 <small class="text-muted"> 18 Minutes ago </small>
                             </div>
@@ -149,8 +139,7 @@
                             <div class="item-thumbnail item-thumbnail-icon-only">
                                 <i class="mdi mdi-lock-outline text-primary"></i>
                             </div>
-                            <div
-                                class="item-content d-flex align-items-start flex-column justify-content-center">
+                            <div class="item-content d-flex align-items-start flex-column justify-content-center">
                                 <h6 class="item-subject font-weight-normal">Lock screen</h6>
                             </div>
                         </li>
@@ -158,8 +147,7 @@
                             <div class="item-thumbnail item-thumbnail-icon-only">
                                 <i class="mdi mdi-logout-variant text-primary"></i>
                             </div>
-                            <div
-                                class="item-content d-flex align-items-start flex-column justify-content-center">
+                            <div class="item-content d-flex align-items-start flex-column justify-content-center">
                                 <h6 class="item-subject font-weight-normal">Logout</h6>
                             </div>
                         </li>
@@ -171,7 +159,12 @@
                 <button class="mdc-button mdc-menu-button">
                     <span class="d-flex align-items-center">
                         <span class="figure">
-                            <img src="{{ asset('backend/assets/images/faces/face1.jpg  ') }}" alt="user" class="user">
+                            @if (Auth::check() && Auth::user()->avatar != null)
+                                <img src="{{ asset(Auth::user()->avatar ?? '') }}" alt="user" class="user" />
+                            @else
+                                <img src="{{ asset('common/5907-removebg-preview.png') }}" alt="user"
+                                    class="user" />
+                            @endif
                         </span>
                         <span class="user-name">{{ Auth::user()->fname ?? '' }}</span>
                     </span>
@@ -182,8 +175,7 @@
                             <div class="item-thumbnail item-thumbnail-icon-only">
                                 <i class="mdi mdi-account-edit-outline text-primary"></i>
                             </div>
-                            <div
-                                class="item-content d-flex align-items-start flex-column justify-content-center">
+                            <div class="item-content d-flex align-items-start flex-column justify-content-center">
                                 <h6 class="item-subject font-weight-normal">Edit profile</h6>
                             </div>
                         </li>
@@ -191,9 +183,11 @@
                             <div class="item-thumbnail item-thumbnail-icon-only">
                                 <i class="mdi mdi-settings-outline text-primary"></i>
                             </div>
-                            <div
-                                class="item-content d-flex align-items-start flex-column justify-content-center">
-                                <h6 class="item-subject font-weight-normal">Logout</h6>
+                            <div class="item-content d-flex align-items-start flex-column justify-content-center">
+                                <form action="{{ route('logout') }}" method="POST">
+                                    @csrf
+                                    <button type="submit" class="item-subject font-weight-normal border-0 bg-transparent">Logout</button>
+                                </form>
                             </div>
                         </li>
                     </ul>
