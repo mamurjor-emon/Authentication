@@ -60,19 +60,20 @@ if (!function_exists('id_generate')) {
  * @param $formatNumber
  * @param \Illuminate\Http\Response
  */
-function formatNumber($number)
-{
-    $suffix = '';
-    if ($number >= 1000000) {
-        $number = $number / 1000000;
-        $suffix = 'M';
-    } elseif ($number >= 1000) {
-        $number = $number / 1000;
-        $suffix = 'K';
+if (!function_exists('formatNumber')) {
+    function formatNumber($number)
+    {
+        $suffix = '';
+        if ($number >= 1000000) {
+            $number = $number / 1000000;
+            $suffix = 'M';
+        } elseif ($number >= 1000) {
+            $number = $number / 1000;
+            $suffix = 'K';
+        }
+        return number_format($number) . $suffix;
     }
-    return number_format($number) . $suffix;
 }
-
 /**
  * user role name get
  *

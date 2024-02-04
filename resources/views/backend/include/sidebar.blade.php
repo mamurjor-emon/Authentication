@@ -98,7 +98,7 @@
                     <div class="mdc-expansion-panel" id="ui-sub-menu-portfolio" {!! $parentPortfolioSubMenu ?? '' !!}>
                         <nav class="mdc-list mdc-drawer-submenu">
                             <div class="mdc-list-item mdc-drawer-item">
-                                <a class="mdc-drawer-link" href="">
+                                <a class="mdc-drawer-link {{ $protfolioCategorie ?? '' }}" href="{{ route('admin.portfolio.categories.index') }}">
                                     Portfolio Categories
                                 </a>
                             </div>
@@ -210,7 +210,7 @@
                         <nav class="mdc-list mdc-drawer-submenu">
                             <div class="mdc-list-item mdc-drawer-item">
                                 <a class="mdc-drawer-link {{ $socalMedia ?? '' }}" href="{{ route('admin.socal.media.index') }}">
-                                    Socal Media
+                                    Blog Socal Media
                                 </a>
                             </div>
                         </nav>
@@ -218,23 +218,23 @@
                 </div>
 
                  <div class="mdc-list-item mdc-drawer-item">
-                    <a class="mdc-expansion-panel-link" href="#" data-toggle="expansionPanel"
+                    <a class="mdc-expansion-panel-link {{ $parentUserManage ?? '' }}" href="#" data-toggle="expansionPanel"
                         data-target="ui-sub-menu-user-management">
                         <i class="material-icons mdc-list-item__start-detail mdc-drawer-item-icon"
                             aria-hidden="true">people_outline</i>
                            User Management
                         <i class="mdc-drawer-arrow material-icons">chevron_right</i>
                     </a>
-                    <div class="mdc-expansion-panel" id="ui-sub-menu-user-management">
+                    <div class="mdc-expansion-panel" id="ui-sub-menu-user-management" {!! $parentUserManageSubMenu ?? '' !!}>
                         <nav class="mdc-list mdc-drawer-submenu">
                             <div class="mdc-list-item mdc-drawer-item">
-                                <a class="mdc-drawer-link " href="">
+                                <a class="mdc-drawer-link {{ $allAdmins ?? '' }}" href="{{ route('admin.user.management.admins') }}">
                                    All Admins
                                 </a>
                             </div>
                             <div class="mdc-list-item mdc-drawer-item">
                                 <a class="mdc-drawer-link " href="">
-                                   All Doctores
+                                   All Doctors
                                 </a>
                             </div>
                             <div class="mdc-list-item mdc-drawer-item">

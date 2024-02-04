@@ -14,6 +14,7 @@ use App\Http\Controllers\Backend\Admin\HomePage\FooterBottomController;
 use App\Http\Controllers\Backend\Admin\HomePage\FooterController;
 use App\Http\Controllers\Backend\Admin\HomePage\FunFactsController;
 use App\Http\Controllers\Backend\Admin\HomePage\MenusController;
+use App\Http\Controllers\Backend\Admin\HomePage\PortfolioCategorieController;
 use App\Http\Controllers\Backend\Admin\HomePage\PortfolioController;
 use App\Http\Controllers\Backend\Admin\HomePage\PricingController;
 use App\Http\Controllers\Backend\Admin\HomePage\ScheduleController;
@@ -22,6 +23,7 @@ use App\Http\Controllers\Backend\Admin\HomePage\SilderController;
 use App\Http\Controllers\Backend\Admin\HomePage\SocalMediaController;
 use App\Http\Controllers\Backend\Admin\HomePage\TitleDiscriptionController;
 use App\Http\Controllers\Backend\Admin\HomePage\WhyChooseController;
+use App\Http\Controllers\Backend\Admin\UserManageMentController;
 use App\Models\TitleDiscrption;
 
 // Group Route
@@ -99,17 +101,6 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth', 'i
         Route::post('create', [CallActionController::class, 'createOrUpdate'])->name('create.or.update');
     });
 
-    //------------------------ Portfolio Section -----------------------//
-    Route::prefix('portfolio')->name('portfolio.')->group(function () {
-        Route::get('/', [PortfolioController::class, 'index'])->name('index');
-        Route::post('getdata', [PortfolioController::class, 'getData'])->name('get.data');
-        Route::get('create', [PortfolioController::class, 'create'])->name('create');
-        Route::post('store', [PortfolioController::class, 'store'])->name('store');
-        Route::get('edit/{id}', [PortfolioController::class, 'edit'])->name('edit');
-        Route::post('update', [PortfolioController::class, 'update'])->name('update');
-        Route::get('delete/{id}', [PortfolioController::class, 'delete'])->name('delete');
-    });
-
     //------------------------ Services Section -----------------------//
     Route::prefix('services')->name('services.')->group(function () {
         Route::get('/', [ServicesController::class, 'index'])->name('index');
@@ -149,6 +140,61 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth', 'i
         Route::post('create', [AppointmentsController::class, 'createOrUpdate'])->name('create.or.update');
     });
 
+    //------------------------ Portfolio Categories Section -----------------------//
+    Route::prefix('portfolio-categories')->name('portfolio.categories.')->group(function () {
+        Route::get('/', [PortfolioCategorieController::class, 'index'])->name('index');
+        Route::post('getdata', [PortfolioCategorieController::class, 'getData'])->name('get.data');
+        Route::get('create', [PortfolioCategorieController::class, 'create'])->name('create');
+        Route::post('store', [PortfolioCategorieController::class, 'store'])->name('store');
+        Route::get('edit/{id}', [PortfolioCategorieController::class, 'edit'])->name('edit');
+        Route::post('update', [PortfolioCategorieController::class, 'update'])->name('update');
+        Route::get('delete/{id}', [PortfolioCategorieController::class, 'delete'])->name('delete');
+    });
+
+    //------------------------ Portfolio Section -----------------------//
+    Route::prefix('portfolio')->name('portfolio.')->group(function () {
+        Route::get('/', [PortfolioController::class, 'index'])->name('index');
+        Route::post('getdata', [PortfolioController::class, 'getData'])->name('get.data');
+        Route::get('create', [PortfolioController::class, 'create'])->name('create');
+        Route::post('store', [PortfolioController::class, 'store'])->name('store');
+        Route::get('edit/{id}', [PortfolioController::class, 'edit'])->name('edit');
+        Route::post('update', [PortfolioController::class, 'update'])->name('update');
+        Route::get('delete/{id}', [PortfolioController::class, 'delete'])->name('delete');
+    });
+
+    //------------------------ Blog Categories Section -----------------------//
+    Route::prefix('blog-categories')->name('blog.categories.')->group(function () {
+        Route::get('/', [BlogCategorieController::class, 'index'])->name('index');
+        Route::post('getdata', [BlogCategorieController::class, 'getData'])->name('get.data');
+        Route::get('create', [BlogCategorieController::class, 'create'])->name('create');
+        Route::post('store', [BlogCategorieController::class, 'store'])->name('store');
+        Route::get('edit/{id}', [BlogCategorieController::class, 'edit'])->name('edit');
+        Route::post('update', [BlogCategorieController::class, 'update'])->name('update');
+        Route::get('delete/{id}', [BlogCategorieController::class, 'delete'])->name('delete');
+    });
+
+    //------------------------ Blog Tag Section -----------------------//
+    Route::prefix('blog-tags')->name('blog.tags.')->group(function () {
+        Route::get('/', [BlogTagController::class, 'index'])->name('index');
+        Route::post('getdata', [BlogTagController::class, 'getData'])->name('get.data');
+        Route::get('create', [BlogTagController::class, 'create'])->name('create');
+        Route::post('store', [BlogTagController::class, 'store'])->name('store');
+        Route::get('edit/{id}', [BlogTagController::class, 'edit'])->name('edit');
+        Route::post('update', [BlogTagController::class, 'update'])->name('update');
+        Route::get('delete/{id}', [BlogTagController::class, 'delete'])->name('delete');
+    });
+
+    //------------------------ Blog  Section -----------------------//
+    Route::prefix('blog')->name('blog.')->group(function () {
+        Route::get('/', [BlogsController::class, 'index'])->name('index');
+        Route::post('getdata', [BlogsController::class, 'getData'])->name('get.data');
+        Route::get('create', [BlogsController::class, 'create'])->name('create');
+        Route::post('store', [BlogsController::class, 'store'])->name('store');
+        Route::get('edit/{id}', [BlogsController::class, 'edit'])->name('edit');
+        Route::post('update', [BlogsController::class, 'update'])->name('update');
+        Route::get('delete/{id}', [BlogsController::class, 'delete'])->name('delete');
+    });
+
     //------------------------ Footer Section -----------------------//
     Route::prefix('footer')->name('footer.')->group(function () {
         Route::get('/', [FooterController::class, 'index'])->name('index');
@@ -176,26 +222,15 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth', 'i
         Route::post('create', [FooterBottomController::class, 'createOrUpdate'])->name('create.or.update');
     });
 
-    //------------------------ Blog Categories Section -----------------------//
-    Route::prefix('blog-categories')->name('blog.categories.')->group(function () {
-        Route::get('/', [BlogCategorieController::class, 'index'])->name('index');
-        Route::post('getdata', [BlogCategorieController::class, 'getData'])->name('get.data');
-        Route::get('create', [BlogCategorieController::class, 'create'])->name('create');
-        Route::post('store', [BlogCategorieController::class, 'store'])->name('store');
-        Route::get('edit/{id}', [BlogCategorieController::class, 'edit'])->name('edit');
-        Route::post('update', [BlogCategorieController::class, 'update'])->name('update');
-        Route::get('delete/{id}', [BlogCategorieController::class, 'delete'])->name('delete');
-    });
-
-    //------------------------ Blog Tag Section -----------------------//
-    Route::prefix('blog-tags')->name('blog.tags.')->group(function () {
-        Route::get('/', [BlogTagController::class, 'index'])->name('index');
-        Route::post('getdata', [BlogTagController::class, 'getData'])->name('get.data');
-        Route::get('create', [BlogTagController::class, 'create'])->name('create');
-        Route::post('store', [BlogTagController::class, 'store'])->name('store');
-        Route::get('edit/{id}', [BlogTagController::class, 'edit'])->name('edit');
-        Route::post('update', [BlogTagController::class, 'update'])->name('update');
-        Route::get('delete/{id}', [BlogTagController::class, 'delete'])->name('delete');
+    //------------------------ Title & Discription All Section -----------------------//
+    Route::prefix('title-discription')->name('title.discription.')->group(function () {
+        Route::get('/', [TitleDiscriptionController::class, 'index'])->name('index');
+        Route::post('getdata', [TitleDiscriptionController::class, 'getData'])->name('get.data');
+        Route::get('create', [TitleDiscriptionController::class, 'create'])->name('create');
+        Route::post('store', [TitleDiscriptionController::class, 'store'])->name('store');
+        Route::get('edit/{id}', [TitleDiscriptionController::class, 'edit'])->name('edit');
+        Route::post('update', [TitleDiscriptionController::class, 'update'])->name('update');
+        Route::get('delete/{id}', [TitleDiscriptionController::class, 'delete'])->name('delete');
     });
 
     //------------------------ Socal Media Section -----------------------//
@@ -209,28 +244,14 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth', 'i
         Route::get('delete/{id}', [SocalMediaController::class, 'delete'])->name('delete');
     });
 
-    //------------------------ Blog  Section -----------------------//
-    Route::prefix('blog')->name('blog.')->group(function () {
-        Route::get('/', [BlogsController::class, 'index'])->name('index');
-        Route::post('getdata', [BlogsController::class, 'getData'])->name('get.data');
-        Route::get('create', [BlogsController::class, 'create'])->name('create');
-        Route::post('store', [BlogsController::class, 'store'])->name('store');
-        Route::get('edit/{id}', [BlogsController::class, 'edit'])->name('edit');
-        Route::post('update', [BlogsController::class, 'update'])->name('update');
-        Route::get('delete/{id}', [BlogsController::class, 'delete'])->name('delete');
-    });
+    //------------------------ User Management Section -----------------------//
+    Route::prefix('user-management')->name('user.management.')->group(function () {
+        Route::get('/', [UserManageMentController::class, 'admins'])->name('admins');
+        Route::post('getdata', [UserManageMentController::class, 'getData'])->name('get.data');
 
-    //------------------------ Title & Discription All Section -----------------------//
-    Route::prefix('title-discription')->name('title.discription.')->group(function () {
-        Route::get('/', [TitleDiscriptionController::class, 'index'])->name('index');
-        Route::post('getdata', [TitleDiscriptionController::class, 'getData'])->name('get.data');
-        Route::get('create', [TitleDiscriptionController::class, 'create'])->name('create');
-        Route::post('store', [TitleDiscriptionController::class, 'store'])->name('store');
-        Route::get('edit/{id}', [TitleDiscriptionController::class, 'edit'])->name('edit');
-        Route::post('update', [TitleDiscriptionController::class, 'update'])->name('update');
-        Route::get('delete/{id}', [TitleDiscriptionController::class, 'delete'])->name('delete');
+        Route::get('/doctors', [UserManageMentController::class, 'doctors'])->name('doctors');
+        Route::post('doctors/getdata', [UserManageMentController::class, 'doctorsGetData'])->name('doctors.get.data');
     });
-
     //------------------------ Email Templates -----------------------//
     Route::prefix('email/templates')->name('email.templates.')->group(function () {
         Route::get('/', [EmailTemplatesController::class, 'index'])->name('index');

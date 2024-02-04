@@ -26,6 +26,7 @@ return new class extends Migration
             $table->string('city')->nullable();
             $table->string('state')->nullable();
             $table->string('zip_code')->nullable();
+            $table->enum('status',[1,2,3])->comment('1 = Active, 2 = Pending, 3 = Cancel');
             $table->rememberToken();
             $table->timestamps();
         });

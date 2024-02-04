@@ -15,8 +15,8 @@ class PortfolioController extends Controller
     {
         if (Gate::allows('isAdmin')) {
             $this->setPageTitle('Portfolio Section');
-            $data['parentHomeMenu']    = 'expanded';
-            $data['parentHomeSubMenu'] = 'style="display: block;"';
+            $data['parentPortfolio']    = 'expanded';
+            $data['parentPortfolioSubMenu'] = 'style="display: block;"';
             $data['portfolioActive']   = 'active';
             $data['breadcrumb']        = ['Portfolio' => '',];
             return view('backend.pages.portfolio.index', $data);
@@ -80,8 +80,8 @@ class PortfolioController extends Controller
     {
         if (Gate::allows('isAdmin')) {
             $this->setPageTitle('Create Portfolio');
-            $data['parentHomeMenu']    = 'expanded';
-            $data['parentHomeSubMenu'] = 'style="display: block;"';
+            $data['parentPortfolio']    = 'expanded';
+            $data['parentPortfolioSubMenu'] = 'style="display: block;"';
             $data['portfolioActive']   = 'active';
             $data['totalPortfolio']    = PortfolioSection::get();
             $data['breadcrumb']        = ['Portfolio' => route('admin.portfolio.index'), 'Create Portfolio' => '',];
@@ -119,8 +119,8 @@ class PortfolioController extends Controller
     {
         if (Gate::allows('isAdmin')) {
             $this->setPageTitle('Edit Portfolio');
-            $data['parentHomeMenu']    = 'expanded';
-            $data['parentHomeSubMenu'] = 'style="display: block;"';
+            $data['parentPortfolio']    = 'expanded';
+            $data['parentPortfolioSubMenu'] = 'style="display: block;"';
             $data['portfolioActive']   = 'active';
             $data['breadcrumb']        = ['Portfolio' => route('admin.portfolio.index'), 'Edit Portfolio' => '',];
             $data['editPortfolio']     = PortfolioSection::where('id', $id)->first();
