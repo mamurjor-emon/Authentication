@@ -14,7 +14,7 @@
                             class="mdi mdi-magnify"></i></button>
                 </div>
             </div>
-            <table id="titleDiscription" class="display" style="width:100%">
+            <table id="allDoctors" class="display" style="width:100%">
                 <thead>
                     <tr>
                         <th>Sl</th>
@@ -37,7 +37,7 @@
 @endsection
 @push('scripts')
 <script>
-    var tables  = $('#titleDiscription').DataTable({
+    var tables  = $('#allDoctors').DataTable({
         processing: true,
         serverSide: true,
         order: [], //Initial no order
@@ -51,7 +51,7 @@
         ],
         pageLength: 25, //number of data show per page
         ajax: {
-            url: "{{ route('admin.user.management.get.data') }}",
+            url: "{{ route('admin.user.management.doctors.get.data') }}",
             type: "POST",
             dataType: "JSON",
             data: function(d) {
@@ -93,14 +93,14 @@
                 },
                 {
                     extend: 'pdf',
-                    title: 'Title Discription',
-                    filename: 'title_discription_{{ date('d-m-Y') }}',
+                    title: 'Doctors',
+                    filename: 'doctors_{{ date('d-m-Y') }}',
                     text: '<i class="fa fa-file-pdf-o" aria-hidden="true"></i> PDF',
                     className: 'pdfButton mdc-button mdc-button--raised filled-button--info mdc-ripple-upgraded mb-3',
                     orientation: "landscape",
                     pageSize: "A4",
                     exportOptions: {
-                        columns: '0,1,2,3'
+                        columns: '0,1,2,3,4,5,6'
                     },
                     customize: function(doc) {
                         doc.defaultStyle.alignment = 'center';
@@ -108,12 +108,12 @@
                 },
                 {
                     extend: 'excel',
-                    title: 'Title Discription',
-                    filename: 'title_discription_{{ date('d-m-Y') }}',
+                    title: 'Doctors',
+                    filename: 'doctors_{{ date('d-m-Y') }}',
                     text: '<i class="fa fa-file-excel-o" aria-hidden="true"></i> Excel',
                     className: 'excelButton mdc-button mdc-button--raised filled-button--info mdc-ripple-upgraded mb-3',
                     exportOptions: {
-                        columns: '0,1,2,3'
+                        columns: '0,1,2,3,4,5,6'
                     },
                 },
                 {
@@ -123,7 +123,7 @@
                     orientation: "landscape",
                     pageSize: "A4",
                     exportOptions: {
-                        columns: '0,1,2,3'
+                        columns: '0,1,2,3,4,5,6'
                     }
                 }
             ]
@@ -132,5 +132,40 @@
     $(document).on('keyup keyup','input#datatable-search',function(e){
         tables.draw();
     });
+
+     // Doctors Status Change
+     function roleChange(userid){
+        var role = $('#role_change_'+userid).val();
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able change this user role!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, Change It !"
+            }).then((result) => {
+            if (result.isConfirmed) {
+                $.ajax({
+                    url: "{{ route('admin.user.management.role.change') }}",
+                    method: "POST",
+                    data: {
+                        _token : _token,
+                        userid : userid,
+                        role: role
+                    },
+                    success: function(res) {
+                        if(res.status == 'success'){
+                            flashMessage(res.status,res.message);
+                            location.reload();
+                        }
+                    },
+                    error: function(xhr, status, error) {
+                        console.error(error);
+                    }
+                });
+            }
+        });
+    }
 </script>
 @endpush

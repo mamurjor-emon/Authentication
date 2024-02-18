@@ -132,5 +132,41 @@
     $(document).on('keyup keyup','input#datatable-search',function(e){
         tables.draw();
     });
+
+    // Admin Status Change
+    function roleChange(userid){
+        var role = $('#role_change_'+userid).val();
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able change this user role!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, Change It !"
+            }).then((result) => {
+            if (result.isConfirmed) {
+                $.ajax({
+                    url: "{{ route('admin.user.management.role.change') }}",
+                    method: "POST",
+                    data: {
+                        _token : _token,
+                        userid : userid,
+                        role: role
+                    },
+                    success: function(res) {
+                        if(res.status == 'success'){
+                            flashMessage(res.status,res.message);
+                            location.reload();
+                        }
+                    },
+                    error: function(xhr, status, error) {
+                        console.error(error);
+                    }
+                });
+            }
+        });
+    }
+
 </script>
 @endpush
