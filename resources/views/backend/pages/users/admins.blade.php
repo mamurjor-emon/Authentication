@@ -8,7 +8,7 @@
                 <h2 class="backend-title">{{ $title }}</h2>
                 <div class="email-template-search-bar btn-group d-flex align-items-center">
                     <input type="text" id="datatable-search" class="h-100 border"
-                        placeholder="Section Name ,Title....">
+                        placeholder="Fname,Lname,Email,Phone....">
                     <button type="button"
                         class="mdc-button mdc-button--raised filled-button--info mdc-ripple-upgraded"><i
                             class="mdi mdi-magnify"></i></button>

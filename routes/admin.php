@@ -254,9 +254,17 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth', 'i
 
         Route::get('/pending-doctors', [UserManageMentController::class, 'pendingDoctors'])->name('pending.doctors');
         Route::post('pending/doctors/getdata', [UserManageMentController::class, 'pendingDoctorsGetData'])->name('pending.doctors.get.data');
+
+        Route::get('/cancel-doctors', [UserManageMentController::class, 'cancelDoctors'])->name('cancel.doctors');
+        Route::post('cancel/doctors/getdata', [UserManageMentController::class, 'cancelDoctorsGetData'])->name('cancel.doctors.get.data');
+
+        Route::get('/clients', [UserManageMentController::class, 'clients'])->name('clients');
+        Route::post('clients/getdata', [UserManageMentController::class, 'clientsGetData'])->name('clients.get.data');
+
+        Route::get('/subscribers', [UserManageMentController::class, 'subscribers'])->name('subscribers');
+        Route::post('subscribers/getdata', [UserManageMentController::class, 'subscribersGetData'])->name('subscribers.get.data');
+
         Route::post('doctors/status', [UserManageMentController::class, 'doctorStatusChange'])->name('doctor.status.change');
-
-
         Route::post('role/change', [UserManageMentController::class, 'roleChange'])->name('role.change');
     });
     //------------------------ Email Templates -----------------------//

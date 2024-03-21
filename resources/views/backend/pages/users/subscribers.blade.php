@@ -14,17 +14,12 @@
                             class="mdi mdi-magnify"></i></button>
                 </div>
             </div>
-            <table id="allPendingDoctors" class="display" style="width:100%">
+            <table id="allSubscribers" class="display" style="width:100%">
                 <thead>
                     <tr>
                         <th>Sl</th>
-                        <th>First Name</th>
-                        <th>Last Name</th>
                         <th>Email</th>
-                        <th>Avatar</th>
-                        <th>Phone</th>
                         <th>Status</th>
-                        <th class="text-right">Change Status</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -37,7 +32,7 @@
 @endsection
 @push('scripts')
 <script>
-    var tables  = $('#allPendingDoctors').DataTable({
+    var tables  = $('#allSubscribers').DataTable({
         processing: true,
         serverSide: true,
         order: [], //Initial no order
@@ -51,7 +46,7 @@
         ],
         pageLength: 25, //number of data show per page
         ajax: {
-            url: "{{ route('admin.user.management.pending.doctors.get.data') }}",
+            url: "{{ route('admin.user.management.subscribers.get.data') }}",
             type: "POST",
             dataType: "JSON",
             data: function(d) {
@@ -61,13 +56,8 @@
         },
         columns: [
             {data: 'DT_RowIndex',orderable: false, searchable: false},
-            {data: 'fname'},
-            {data: 'lname'},
             {data: 'email'},
-            {data: 'avatar'},
-            {data: 'phone'},
             {data: 'status'},
-            {data: 'change_status'},
         ],
         language: {
             processing: '<img src="{{ asset('backend/assets/images/table-loading.svg') }}">',
@@ -93,8 +83,8 @@
                 },
                 {
                     extend: 'pdf',
-                    title: 'Pending Doctors',
-                    filename: 'pending_doctors_{{ date('d-m-Y') }}',
+                    title: 'All Subscribers',
+                    filename: 'all_subscribers_{{ date('d-m-Y') }}',
                     text: '<i class="fa fa-file-pdf-o" aria-hidden="true"></i> PDF',
                     className: 'pdfButton mdc-button mdc-button--raised filled-button--info mdc-ripple-upgraded mb-3',
                     orientation: "landscape",
@@ -108,8 +98,8 @@
                 },
                 {
                     extend: 'excel',
-                    title: 'Pending Doctors',
-                    filename: 'pending_doctors_{{ date('d-m-Y') }}',
+                    title: 'All Subscribers',
+                    filename: 'all_subscribers_{{ date('d-m-Y') }}',
                     text: '<i class="fa fa-file-excel-o" aria-hidden="true"></i> Excel',
                     className: 'excelButton mdc-button mdc-button--raised filled-button--info mdc-ripple-upgraded mb-3',
                     exportOptions: {
@@ -132,41 +122,5 @@
     $(document).on('keyup keyup','input#datatable-search',function(e){
         tables.draw();
     });
-
-    // Doctor Status Change
-    function doctorStatuschange(userid){
-        var status = $('#doctor_status_'+userid).val();
-        Swal.fire({
-            title: "Are you sure?",
-            text: "You won't be able change this user status!",
-            icon: "warning",
-            showCancelButton: true,
-            confirmButtonColor: "#3085d6",
-            cancelButtonColor: "#d33",
-            confirmButtonText: "Yes, Change It !"
-            }).then((result) => {
-            if (result.isConfirmed) {
-                $.ajax({
-                    url: "{{ route('admin.user.management.doctor.status.change') }}",
-                    method: "POST",
-                    data: {
-                        _token : _token,
-                        userid : userid,
-                        status: status
-                    },
-                    success: function(res) {
-                        if(res.status == 'success'){
-                            flashMessage(res.status,res.message);
-                            location.reload();
-                        }
-                    },
-                    error: function(xhr, status, error) {
-                        console.error(error);
-                    }
-                });
-            }
-        });
-    }
-
 </script>
 @endpush

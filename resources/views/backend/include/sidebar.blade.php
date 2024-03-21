@@ -243,21 +243,20 @@
                                 </a>
                             </div>
                             <div class="mdc-list-item mdc-drawer-item">
-                                <a class="mdc-drawer-link " href="">
+                                <a class="mdc-drawer-link {{ $cancelDoctors ?? '' }}" href="{{ route('admin.user.management.cancel.doctors') }}">
                                     Cancel Doctors
                                 </a>
                             </div>
                             <div class="mdc-list-item mdc-drawer-item">
-                                <a class="mdc-drawer-link " href="">
+                                <a class="mdc-drawer-link {{ $allClients ?? '' }}" href="{{ route('admin.user.management.clients') }}">
                                    All Clients
                                 </a>
                             </div>
                             <div class="mdc-list-item mdc-drawer-item">
-                                <a class="mdc-drawer-link " href="">
+                                <a class="mdc-drawer-link {{ $allSubscribers ?? '' }}" href="{{ route('admin.user.management.subscribers') }}">
                                    All Subscribers
                                 </a>
                             </div>
-
                         </nav>
                     </div>
                 </div>
@@ -274,7 +273,7 @@
                          <nav class="mdc-list mdc-drawer-submenu">
                              <div class="mdc-list-item mdc-drawer-item">
                                  <a class="mdc-drawer-link" href="">
-                                    Company Setting
+                                    Company Settings
                                  </a>
                              </div>
                              <div class="mdc-list-item mdc-drawer-item">

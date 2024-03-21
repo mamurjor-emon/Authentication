@@ -102,7 +102,6 @@ if (!function_exists('userStatus')) {
             $badgeClass = 'badge-info';
             $badgeTitle = 'Unsuspend';
         }
-
         return '<span class="badge badge-sm ' . $badgeClass . ' py-1 px-2">' . $badgeTitle . '</span>';
     }
 }
@@ -122,7 +121,6 @@ if (!function_exists('status')) {
             $badgeClass = 'badge-danger';
             $badgeTitle = 'Pending';
         }
-
         return '<span class="badge badge-sm ' . $badgeClass . ' py-1 px-2">' . $badgeTitle . '</span>';
     }
 }
@@ -164,7 +162,6 @@ if (!function_exists('target')) {
             $badgeClass = 'badge-danger';
             $badgeTitle = 'New Page';
         }
-
         return '<span class="badge badge-sm ' . $badgeClass . ' py-1 px-2">' . $badgeTitle . '</span>';
     }
 }
@@ -187,7 +184,6 @@ if (!function_exists('emalTemplateShortcodeConverter')) {
         } elseif ($template == 'PACKAGE_ACTIVATE_NOTIFICATION') {
             $shortcodeName = '[name], [email], [redirect-orders-button]';
         }
-
         return $shortcodeName;
     }
 }
@@ -215,7 +211,6 @@ if (!function_exists('emailTemplateBodyShortCodeForm')) {
             $button = "<a href='' class='account-button' target='_blank'><span class='account-span'><span style='font-size: 18px; line-height: 21.6px;'>Got To Order List</span></span></a>";
             $shortcode = str_replace('[redirect-orders-button]', $button, $body);
         }
-
         return $shortcode;
     }
 }
@@ -234,7 +229,6 @@ if (!function_exists('emailSubjectTemplate')) {
 if (!function_exists('emailBodyTemplate')) {
     function emailBodyTemplate($template, $request)
     {
-
         // verify button
         $emailVerifyBtn = '<a href="' . htmlspecialchars($request->button_url) . '" class="account-button" target="_blank" ><span class="account-span"><span style="font-size: 18px; line-height: 21.6px;">' . $request->button_title . '</span></span></a>';
 
@@ -261,7 +255,6 @@ if (!function_exists('emailBodyTemplate')) {
         $shortcode = str_replace('[redirect-dashboard-button]', $emailVerifyBtn, $shortcode);
         $shortcode = str_replace('[verify-token]', $verifyToken, $shortcode);
         $shortcode = str_replace('[reset-token]', $verifyToken, $shortcode);
-
         return $shortcode;
     }
 }

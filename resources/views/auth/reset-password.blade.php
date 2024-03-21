@@ -34,7 +34,7 @@
                             <div
                                 class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-4-desktop mdc-layout-grid__cell--span-6-tablet">
                                 <div class="mdc-card">
-                                    <form method="POST" action="{{ route('login') }}" enctype="multipart/form-data">
+                                    <form method="POST" action="{{ route('forgot.password.sent') }}" enctype="multipart/form-data">
                                         @csrf
                                         <div class="logo d-flex align-items-center justify-content-center">
                                             <a href="{{ url('/') }}"><img
@@ -56,52 +56,9 @@
                                                         <span class="text-danger error-text">{{ $message }}</span>
                                                     @enderror
                                                 </div>
-                                                <div class="mdc-layout-grid__cell  mdc-layout-grid__cell--span-12">
-                                                    <div class="mdc-text-field w-100">
-                                                        <input class="mdc-text-field__input" type="password"
-                                                            id="text-field-hero-input" name="password">
-                                                        <div class="mdc-line-ripple"></div>
-                                                        <label for="text-field-hero-input"
-                                                            class="mdc-floating-label">Password <span
-                                                                class="required"></span></label>
-                                                    </div>
-                                                    @error('password')
-                                                        <span class="text-danger error-text">{{ $message }}</span>
-                                                    @enderror
-                                                </div>
-                                                <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-6-desktop">
-                                                    <div class="mdc-form-field">
-                                                        <div class="mdc-checkbox">
-                                                            <input type="checkbox" class="mdc-checkbox__native-control"
-                                                                id="checkbox-1" name="remember_me" />
-                                                            <div class="mdc-checkbox__background">
-                                                                <svg class="mdc-checkbox__checkmark"
-                                                                    viewBox="0 0 24 24">
-                                                                    <path class="mdc-checkbox__checkmark-path"
-                                                                        fill="none"
-                                                                        d="M1.73,12.91 8.1,19.28 22.79,4.59" />
-                                                                </svg>
-                                                                <div class="mdc-checkbox__mixedmark"></div>
-                                                            </div>
-                                                        </div>
-                                                        <label for="checkbox-1">Remember me</label>
-                                                    </div>
-                                                </div>
-                                                <div
-                                                    class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-6-desktop d-flex align-items-center justify-content-end">
-                                                    <a href="{{ route('forgot.password') }}">Forgot Password</a>
-                                                </div>
-                                                <div
-                                                    class="mdc-form-field mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-12 align-items-center">
-                                                    <span class="mr-2">You Have Not Account ? </span><a
-                                                        class="text-primary"
-                                                        href="{{ route('user.register') }}">Register
-                                                        Now</a>
-                                                </div>
-                                                <div
-                                                    class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-12">
-                                                    <button class="mdc-button mdc-button--raised w-100"
-                                                        type="submit">Login</button>
+                                                <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-12 justify-content-between">
+                                                    <a href="{{ route('login') }}" class="mdc-button mdc-button--raised w-40">Back</a>
+                                                    <button class="mdc-button mdc-button--unelevated filled-button--success mdc-ripple-upgraded w-40" type="submit">Submit</button>
                                                 </div>
                                             </div>
                                         </div>

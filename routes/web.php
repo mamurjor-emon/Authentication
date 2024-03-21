@@ -42,6 +42,12 @@ Route::post('register/store', [AuthController::class, 'store'])->name('user.regi
 //------------ Varify User ------------//
 Route::get('verify-code/{token}',[VerifyUserController::class,'verifiedCode'])->name('verify.code');
 
+// Forgot password
+Route::get('forgot-passowrd', [AuthController::class, 'forgotPassword'])->name('forgot.password');
+Route::post('forgot-passowrd/sent', [AuthController::class, 'forgotPasswordSent'])->name('forgot.password.sent');
+Route::get('forgot-passowrd-token/{token}', [AuthController::class, 'forgotPasswordToken'])->name('forgot.password.token');
+Route::post('password-update', [AuthController::class, 'passwordUpdate'])->name('password.update');
+
 //------------ Blog  ------------//
 Route::prefix('frontend')->name('frontend.')->group(function () {
     Route::get('blog/{id}', [BlogController::class, 'blog'])->name('blog');
