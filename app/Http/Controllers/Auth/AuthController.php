@@ -127,9 +127,7 @@ class AuthController extends Controller
         if (! $request->hasValidSignature()) {
             abort(401);
         }
-        dd($verify_token);
         $user = User::where('verify_code', $verify_token)->first();
-        dd($user);
         if ($user) {
             $this->setPageTitle('Password Update');
             return view('auth.update-password', compact('user',));
@@ -151,10 +149,9 @@ class AuthController extends Controller
 
         if ($user) {
             if (!is_null($user->email_verified_at)) {
-                $user['verify_token'] = '';
+                $user['verify_code'] = '';
                 $user['password'] = Hash::make($request->password);
                 $user->save();
-
                 Auth::logout();
                 return redirect()->route('login')->with('success', 'Your password has been changed.');
             }
@@ -165,7 +162,6 @@ class AuthController extends Controller
         else{
             session()->flash('error', 'Something went wrong.');
         }
-
         return back();
     }
 }

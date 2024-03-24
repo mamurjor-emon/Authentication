@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Register - {{ env('APP_NAME') }}</title>
+    <title>Update Password - {{ env('APP_NAME') }}</title>
     <!-- plugins:css -->
     <link rel="stylesheet" href="{{ asset('backend/assets/vendors/mdi/css/materialdesignicons.min.css') }}">
     <link rel="stylesheet" href="{{ asset('backend/assets/vendors/css/vendor.bundle.base.css') }}">
@@ -34,7 +34,7 @@
                             <div
                                 class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-4-desktop mdc-layout-grid__cell--span-6-tablet">
                                 <div class="mdc-card">
-                                    <form method="POST" action="{{ route('user.register.store') }}" enctype="multipart/form-data">
+                                    <form method="POST" action="{{ route('user.password.update') }}" enctype="multipart/form-data">
                                         @csrf
                                         <div class="logo d-flex align-items-center justify-content-center">
                                             <a href="{{ url('/') }}"><img src="{{ asset('frontend/assets/img/logo.png') }}"
@@ -84,7 +84,7 @@
                                                 <div
                                                     class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-12">
                                                     <button type="submit"
-                                                        class="mdc-button mdc-button--raised w-100">Register</button>
+                                                        class="mdc-button mdc-button--raised w-100">Update Password</button>
                                                 </div>
                                             </div>
                                         </div>

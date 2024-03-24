@@ -88,10 +88,34 @@
                  </div>
 
                  <div class="mdc-list-item mdc-drawer-item">
+                    <a class="mdc-expansion-panel-link {{ $parentDoctors ?? '' }}" href="#" data-toggle="expansionPanel"
+                        data-target="ui-sub-menu-doctors">
+                        <i class="material-icons mdc-list-item__start-detail mdc-drawer-item-icon"
+                            aria-hidden="true">group_add</i>
+                            Doctors Section
+                        <i class="mdc-drawer-arrow material-icons">chevron_right</i>
+                    </a>
+                    <div class="mdc-expansion-panel" id="ui-sub-menu-doctors" {!! $parentDoctorsSubMenu ?? '' !!}>
+                        <nav class="mdc-list mdc-drawer-submenu">
+                            <div class="mdc-list-item mdc-drawer-item">
+                                <a class="mdc-drawer-link {{ $doctorDepartment ?? '' }}" href="{{ route('admin.doctor.department.index') }}">
+                                    Add Department
+                                </a>
+                            </div>
+                            <div class="mdc-list-item mdc-drawer-item">
+                                <a class="mdc-drawer-link {{ $addDoctor ?? '' }}" href="">
+                                    Add Doctor
+                                </a>
+                            </div>
+                        </nav>
+                    </div>
+                </div>
+
+                 <div class="mdc-list-item mdc-drawer-item">
                     <a class="mdc-expansion-panel-link {{ $parentPortfolio ?? '' }}" href="#" data-toggle="expansionPanel"
                         data-target="ui-sub-menu-portfolio">
                         <i class="material-icons mdc-list-item__start-detail mdc-drawer-item-icon"
-                            aria-hidden="true">pie_chart</i>
+                            aria-hidden="true">local_library</i>
                             Portfolio Section
                         <i class="mdc-drawer-arrow material-icons">chevron_right</i>
                     </a>

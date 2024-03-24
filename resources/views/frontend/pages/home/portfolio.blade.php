@@ -19,7 +19,7 @@
                         @forelse ($portfolioDatas as $portfolioData)
                             <div class="single-pf">
                                 <img src="{{ asset($portfolioData->image ?? '') }}" alt="image">
-                                <a href="{{ $portfolioData->btn_url ?? '' }}"
+                                <a href="{{ route('frontend.portfolio',['id' =>$portfolioData->id ]) }}"
                                     target="{{ $portfolioData->btn_target == 1 ? '_blank' : '' }}"
                                     class="btn">{{ $portfolioData->btn_title }}</a>
                             </div>

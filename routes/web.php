@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Backend\DashboardController;
 use App\Http\Controllers\Frontend\BlogController;
 use App\Http\Controllers\Frontend\FrontendController;
+use App\Http\Controllers\Frontend\PortfolioController;
 use App\Http\Controllers\Frontend\SubscriberController;
 use App\Http\Controllers\VerifyUserController;
 
@@ -46,7 +47,7 @@ Route::get('verify-code/{token}',[VerifyUserController::class,'verifiedCode'])->
 Route::get('forgot-passowrd', [AuthController::class, 'forgotPassword'])->name('forgot.password');
 Route::post('forgot-passowrd/sent', [AuthController::class, 'forgotPasswordSent'])->name('forgot.password.sent');
 Route::get('forgot-passowrd-token/{token}', [AuthController::class, 'forgotPasswordToken'])->name('forgot.password.token');
-Route::post('password-update', [AuthController::class, 'passwordUpdate'])->name('password.update');
+Route::post('password-update', [AuthController::class, 'passwordUpdate'])->name('user.password.update');
 
 //------------ Blog  ------------//
 Route::prefix('frontend')->name('frontend.')->group(function () {
@@ -56,6 +57,10 @@ Route::prefix('frontend')->name('frontend.')->group(function () {
     Route::post('blog/comment/replay', [BlogController::class, 'blogCommentRepay'])->name('blog.comment.repay')->middleware('auth');
     Route::get('categorie/{id}',[BlogController::class, 'categorieBlog'])->name('categorie.blog');
     Route::post('blog/search',[BlogController::class, 'blogSearch'])->name('blog.search');
+});
+//------------ 	Portfolio Details  ------------//
+Route::prefix('frontend')->name('frontend.')->group(function () {
+    Route::get('portfolio/{id}', [PortfolioController::class, 'portfolio'])->name('portfolio');
 });
 
 

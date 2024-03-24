@@ -4,9 +4,11 @@ namespace App\Http\Controllers\Backend\Admin\HomePage;
 
 use Illuminate\Http\Request;
 use App\Models\PortfolioSection;
+use App\Models\ProtfolioGallery;
+use App\Models\PorfolioCategorie;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\PortfolioRequest;
 use Illuminate\Support\Facades\Gate;
+use App\Http\Requests\PortfolioRequest;
 use Yajra\DataTables\Facades\DataTables;
 
 class PortfolioController extends Controller
@@ -15,10 +17,10 @@ class PortfolioController extends Controller
     {
         if (Gate::allows('isAdmin')) {
             $this->setPageTitle('Portfolio Section');
-            $data['parentPortfolio']    = 'expanded';
+            $data['parentPortfolio']        = 'expanded';
             $data['parentPortfolioSubMenu'] = 'style="display: block;"';
-            $data['portfolioActive']   = 'active';
-            $data['breadcrumb']        = ['Portfolio' => '',];
+            $data['portfolioActive']        = 'active';
+            $data['breadcrumb']             = ['Portfolio' => '',];
             return view('backend.pages.portfolio.index', $data);
         } else {
             abort(401);
@@ -52,6 +54,15 @@ class PortfolioController extends Controller
                     ->addColumn('btn_title', function ($data) {
                         return $data->btn_title;
                     })
+                    ->addColumn('client_name', function ($data) {
+                        return $data->client_name;
+                    })
+                    ->addColumn('age', function ($data) {
+                        return $data->age;
+                    })
+                    ->addColumn('phone', function ($data) {
+                        return $data->phone;
+                    })
                     ->addColumn('btn_url', function ($data) {
                         return $data->btn_url;
                     })
@@ -80,11 +91,12 @@ class PortfolioController extends Controller
     {
         if (Gate::allows('isAdmin')) {
             $this->setPageTitle('Create Portfolio');
-            $data['parentPortfolio']    = 'expanded';
+            $data['parentPortfolio']        = 'expanded';
             $data['parentPortfolioSubMenu'] = 'style="display: block;"';
-            $data['portfolioActive']   = 'active';
-            $data['totalPortfolio']    = PortfolioSection::get();
-            $data['breadcrumb']        = ['Portfolio' => route('admin.portfolio.index'), 'Create Portfolio' => '',];
+            $data['portfolioActive']        = 'active';
+            $data['totalPortfolio']         = PortfolioSection::get();
+            $data['portfolioCategories']    = PorfolioCategorie::where('status','1')->get();
+            $data['breadcrumb']             = ['Portfolio' => route('admin.portfolio.index'), 'Create Portfolio' => '',];
             return view('backend.pages.portfolio.create', $data);
         } else {
             abort(401);
@@ -101,15 +113,31 @@ class PortfolioController extends Controller
             } else {
                 $image = null;
             }
-            PortfolioSection::create([
-                'image'      => $image,
-                'btn_title'  => $request->btn_title,
-                'btn_url'    => $request->btn_url,
-                'btn_target' => $request->btn_target,
-                'order_by'   => $request->order_by,
-                'status'     => $request->status,
+            $createProtfolio = PortfolioSection::create([
+                'category_id' => $request->category_id,
+                'client_name' => $request->client_name,
+                'date'        => $request->date,
+                'phone'       => $request->phone,
+                'age'         => $request->age,
+                'title'       => $request->title,
+                'btn_title'   => $request->btn_title,
+                'btn_url'     => $request->btn_url,
+                'btn_target'  => $request->btn_target,
+                'order_by'    => $request->order_by,
+                'discription' => $request->discription,
+                'status'      => $request->status,
+                'image'       => $image,
             ]);
-            return redirect()->route('admin.portfolio.index')->with('success', 'Portfolio Successfuly Done..!');
+            if($request->portfolio_gallery != null){
+                foreach($request->portfolio_gallery as $gallery){
+                    $image = $this->imageUpload($gallery, 'images/potfolio/gallery/', null, null);
+                    ProtfolioGallery::create([
+                        'portfolio_id' => $createProtfolio->id,
+                        'image'        => $image,
+                    ]);
+                }
+            }
+            return redirect()->route('admin.portfolio.index')->with('success', 'Portfolio Create Successfuly Done..!');
         } else {
             abort(401);
         }
@@ -119,11 +147,13 @@ class PortfolioController extends Controller
     {
         if (Gate::allows('isAdmin')) {
             $this->setPageTitle('Edit Portfolio');
-            $data['parentPortfolio']    = 'expanded';
+            $data['parentPortfolio']        = 'expanded';
             $data['parentPortfolioSubMenu'] = 'style="display: block;"';
-            $data['portfolioActive']   = 'active';
-            $data['breadcrumb']        = ['Portfolio' => route('admin.portfolio.index'), 'Edit Portfolio' => '',];
-            $data['editPortfolio']     = PortfolioSection::where('id', $id)->first();
+            $data['portfolioActive']        = 'active';
+            $data['breadcrumb']             = ['Portfolio' => route('admin.portfolio.index'), 'Edit Portfolio' => '',];
+            $data['editPortfolio']          = PortfolioSection::where('id', $id)->first();
+            $data['portfolioCategories']    = PorfolioCategorie::where('status','1')->get();
+            $data['portfolioGallerys']      = ProtfolioGallery::where('portfolio_id',$id)->get();
             return view('backend.pages.portfolio.edit', $data);
         } else {
             abort(401);
@@ -141,18 +171,35 @@ class PortfolioController extends Controller
                 $image = $editPortfolio->image;
             }
             $editPortfolio->update([
-                'image'      => $image,
-                'btn_title'  => $request->btn_title,
-                'btn_url'    => $request->btn_url,
-                'btn_target' => $request->btn_target,
-                'order_by'   => $request->order_by,
-                'status'     => $request->status,
+                'category_id' => $request->category_id,
+                'client_name' => $request->client_name,
+                'date'        => $request->date,
+                'phone'       => $request->phone,
+                'age'         => $request->age,
+                'title'       => $request->title,
+                'btn_title'   => $request->btn_title,
+                'btn_url'     => $request->btn_url,
+                'btn_target'  => $request->btn_target,
+                'order_by'    => $request->order_by,
+                'discription' => $request->discription,
+                'status'      => $request->status,
+                'image'       => $image,
             ]);
+            if($request->portfolio_gallery != null){
+                foreach($request->portfolio_gallery as $gallery){
+                    $image = $this->imageUpload($gallery, 'images/potfolio/gallery/', null, null);
+                    ProtfolioGallery::create([
+                        'portfolio_id' => $request->update_id,
+                        'image'        => $image,
+                    ]);
+                }
+            }
             return redirect()->route('admin.portfolio.index')->with('success', 'Portfolio Update Successfuly Done..!');
         } else {
             abort(401);
         }
     }
+
     public function delete($id)
     {
         if (Gate::allows('isAdmin')) {
@@ -160,6 +207,31 @@ class PortfolioController extends Controller
             $this->imageDelete($editPortfolio->image);
             $editPortfolio->delete();
             return back()->with('success', 'Portfolio Delete Successfuly Done.. !');
+        } else {
+            abort(401);
+        }
+    }
+
+       /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function galleryDelete(Request $request)
+    {
+        if (Gate::allows('isAdmin')) {
+            if ($request->ajax()) {
+                $gallery = ProtfolioGallery::find($request->id);
+                if ($gallery->image  != null) {
+                    $this->imageDelete($gallery->image);
+                }
+                $gallery->delete();
+                return response()->json([
+                    'status' => 'success',
+                    'message' => 'Gallery Image Deleted.',
+                ]);
+            }
         } else {
             abort(401);
         }

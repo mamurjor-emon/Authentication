@@ -23,15 +23,23 @@ class PortfolioRequest extends FormRequest
     {
         $rulse = [];
 
-        $rulse['image']      = ['required', 'image', 'mimes:jpeg,png,jpg,gif', 'max:2048', 'dimensions:min_width=320,min_height=253,max_width=320,max_height=253'];
-        $rulse['btn_title']  = ['required'];
-        $rulse['btn_url']    = ['required'];
-        $rulse['btn_target'] = ['required'];
-        $rulse['order_by']   = ['required'];
-        $rulse['status']     = ['required'];
-
+        $rulse['category_id']       = ['required'];
+        $rulse['client_name']       = ['required'];
+        $rulse['date']              = ['required'];
+        $rulse['phone']             = ['required'];
+        $rulse['age']               = ['required'];
+        $rulse['title']             = ['required'];
+        $rulse['btn_title']         = ['required'];
+        $rulse['btn_url']           = ['required'];
+        $rulse['btn_target']        = ['required'];
+        $rulse['order_by']          = ['required'];
+        $rulse['discription']       = ['required'];
+        $rulse['status']            = ['required'];
+        $rulse['portfolio_gallery'] = ['required'];
+        $rulse['image']             = ['required', 'image', 'mimes:jpeg,png,jpg,gif', 'max:2048', 'dimensions:min_width=320,min_height=253,max_width=320,max_height=253'];
         if (request()->update_id) {
-            $rulse['image'][0] = request()->update_id;
+            $rulse['portfolio_gallery'][0] = request()->update_id;
+            $rulse['image'][0]             = request()->update_id;
         }
         return $rulse;
     }

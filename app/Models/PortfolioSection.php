@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\ProtfolioGallery;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class PortfolioSection extends Model
 {
@@ -14,11 +15,21 @@ class PortfolioSection extends Model
      * @var array
      */
     protected $fillable = [
-        'image',
+        'category_id',
+        'client_name',
+        'date',
+        'phone',
+        'age',
+        'title',
         'btn_title',
         'btn_url',
         'btn_target',
         'order_by',
-        'status'
+        'discription',
+        'status',
+        'image',
     ];
+    public function galleryImages(){
+        return $this->hasMany(ProtfolioGallery::class,'portfolio_id','id');
+    }
 }
