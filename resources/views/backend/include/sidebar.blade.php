@@ -103,7 +103,7 @@
                                 </a>
                             </div>
                             <div class="mdc-list-item mdc-drawer-item">
-                                <a class="mdc-drawer-link {{ $addDoctor ?? '' }}" href="">
+                                <a class="mdc-drawer-link {{ $addDoctor ?? '' }}" href="{{ route('admin.doctor.index') }}">
                                     Add Doctor
                                 </a>
                             </div>

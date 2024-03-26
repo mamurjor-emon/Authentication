@@ -2,10 +2,203 @@
 
 namespace App\Http\Controllers\Backend\Admin\HomePage;
 
-use App\Http\Controllers\Controller;
+use App\Models\User;
+use App\Mail\NewDoctorMail;
+use App\Models\DoctorModel;
 use Illuminate\Http\Request;
+use App\Models\DepartmentModel;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\DoctorRequest;
+use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Mail;
+use Yajra\DataTables\Facades\DataTables;
 
 class DoctorController extends Controller
 {
-    //
+    public function index()
+    {
+        if (Gate::allows('isAdmin')) {
+            $this->setPageTitle('Doctor Section');
+            $data['parentDoctors']          = 'expanded';
+            $data['parentDoctorsSubMenu']   = 'style="display: block;"';
+            $data['addDoctor']              = 'active';
+            $data['breadcrumb']             = ['Doctors' => '',];
+            return view('backend.pages.doctors.doctor.index', $data);
+        } else {
+            abort(401);
+        }
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\Response
+     */
+    public function getData(Request $request)
+    {
+        if (Gate::allows('isAdmin')) {
+            if ($request->ajax()) {
+                $getData = DoctorModel::with(['user','department'])->latest('id');
+                return DataTables::eloquent($getData)
+                    ->addIndexColumn()
+                    ->filter(function ($query) use ($request) {
+                        if (!empty($request->search)) {
+                            $query->when($request->search, function ($query, $value) {
+                                // $query->where('name', 'like', "%{$value}%");
+                            });
+                        }
+                    })
+
+                    ->addColumn('name', function ($data) {
+                        return $data->user ? $data->user->fname : '--';
+                    })
+                    ->addColumn('email', function ($data) {
+                        return $data->user ? $data->user->email : '--';
+                    })
+                    ->addColumn('department', function ($data) {
+                        return $data->department ? $data->department->name : '--';
+                    })
+                    ->addColumn('phone', function ($data) {
+                        return $data->phone ? $data->phone : '--';
+                    })
+                    ->addColumn('image', function ($data) {
+                        return '<img class="bg-dark" id="getDataImage" src="' . asset($data->image) . '" alt="image">';
+                    })
+                    ->addColumn('position', function ($data) {
+                        return $data->position ? $data->position : '--';
+                    })
+                    ->addColumn('status', function ($data) {
+                        return status($data->status);
+                    })
+                    ->addColumn('action', function ($data) {
+                        return '<div class="text-right" ><a href="' . route('admin.doctor.edit', ['id' => $data->id]) . '" class="rounded mdc-button mdc-button--raised icon-button filled-button--success">
+                        <i class="material-icons mdc-button__icon">colorize</i>
+                      </a> <a href="' . route('admin.doctor.department.edit', ['id' => $data->id]) . '" class="mdc-button mdc-button--raised icon-button mdc-ripple-upgraded">
+                      <i class="material-icons mdc-button__icon">visibility</i>
+                    </a> <button class="mdc-button mdc-button--raised icon-button filled-button--secondary" onclick="delete_data(' . $data->id . ')">
+                      <i class="material-icons mdc-button__icon">delete</i>
+                    </button><form action="' . route('admin.doctor.delete', ['id' => $data->id]) . '"
+                    id="delete-form-' . $data->id . '" method="DELETE" class="d-none">
+                    @csrf
+                    @method("DELETE") </form></div>';
+                    })
+                    ->rawColumns(['image','status', 'action'])
+                    ->make(true);
+            }
+        } else {
+            abort(401);
+        }
+    }
+
+    public function create()
+    {
+        if (Gate::allows('isAdmin')) {
+            $this->setPageTitle('Create Doctor');
+            $data['parentDoctors']          = 'expanded';
+            $data['parentDoctorsSubMenu']   = 'style="display: block;"';
+            $data['addDoctor']              = 'active';
+            $data['breadcrumb']             = ['Doctors' => route('admin.doctor.index'), 'Create Doctor' => '',];
+            $data['allActiveClients']       = User::where('role_id', 3)->where('status','1')->get();
+            $data['allDepartments']         = DepartmentModel::where('status','1')->get();
+            return view('backend.pages.doctors.doctor.create', $data);
+        } else {
+            abort(401);
+        }
+    }
+
+
+    public function store(DoctorRequest $request)
+    {
+        if (Gate::allows('isAdmin')) {
+            $image = '';
+            if ($request->file('image')) {
+                $image = $this->imageUpload($request->file('image'), 'images/doctors/', null, null);
+            } else {
+                $image = null;
+            }
+             DoctorModel::create([
+                'user_id'       => $request->user_id,
+                'department_id' => $request->department_id,
+                'image'         => $image,
+                'phone'         => $request->phone,
+                'location'      => $request->location,
+                'facebook'      => $request->facebook,
+                'twitter'       => $request->twitter,
+                'vimo'          => $request->vimo,
+                'pinterest'     => $request->pinterest,
+                'position'      => $request->position,
+                'fdegree'       => $request->fdegree,
+                'sdegree'       => $request->sdegree,
+                'tdegree'       => $request->tdegree,
+                'ldegree'       => $request->ldegree,
+                'workday'       => $request->workday,
+                'fbiography'    => $request->fbiography,
+                'education'     => $request->education,
+                'lbiography'    => $request->lbiography,
+                'status'        => $request->status,
+            ]);
+            $user = User::where('id',$request->user_id)->first();
+            $user->update([
+                'email_verified_at' => now(),
+                'role_id'           => '2',
+            ]);
+            $request['full_name']    = $user->fname . ' ' . $user->lname;
+            $request['button_title'] = 'Click To Dashboard';
+            $request['button_url']   = route('doctor.dashboard');
+            // New Doctor Mail
+            $subject = emailSubjectTemplate('NEW_DOCTOR_MAIL', $request);
+            $body    = emailBodyTemplate('NEW_DOCTOR_MAIL', $request);
+            $heading = emailHeadingTemplate('NEW_DOCTOR_MAIL', $request);
+
+            $userMail = ['subject' => $subject, 'body' => $body, 'heading' => $heading];
+            Mail::to($user->email)->send(new NewDoctorMail($userMail));
+            return redirect()->route('admin.doctor.index')->with('success', 'Doctor Create Successfuly Done..!');
+        } else {
+            abort(401);
+        }
+    }
+
+    public function edit($id)
+    {
+        if (Gate::allows('isAdmin')) {
+            $this->setPageTitle('Edit Doctor');
+            $data['parentDoctors']          = 'expanded';
+            $data['parentDoctorsSubMenu']   = 'style="display: block;"';
+            $data['addDoctor']              = 'active';
+            $data['breadcrumb']             = ['Doctors' => route('admin.doctor.index'), 'Edit Doctor' => '',];
+            $data['editDoctor']             = DoctorModel::where('id', $id)->first();
+            $data['allActiveClients']       = User::where('role_id', 3)->where('status','1')->get();
+            $data['allDepartments']         = DepartmentModel::where('status','1')->get();
+            return view('backend.pages.doctors.doctor.edit', $data);
+        } else {
+            abort(401);
+        }
+    }
+
+    // public function update(DepartmentRequest $request)
+    // {
+    //     if (Gate::allows('isAdmin')) {
+    //         $editDepartment = DepartmentModel::where('id', $request->update_id)->first();
+    //         $editDepartment->update([
+    //             'name'     => $request->name,
+    //             'status'   => $request->status,
+    //         ]);
+    //         return redirect()->route('admin.doctor.department.index')->with('success', 'Department Update Successfuly Done..!');
+    //     } else {
+    //         abort(401);
+    //     }
+    // }
+
+    // public function delete($id)
+    // {
+    //     if (Gate::allows('isAdmin')) {
+    //         $editDepartment = DepartmentModel::where('id', $id)->first();
+    //         $editDepartment->delete();
+    //         return back()->with('success', 'Department Delete Successfuly Done.. !');
+    //     } else {
+    //         abort(401);
+    //     }
+    // }
 }
+

@@ -10,6 +10,7 @@ use App\Http\Controllers\Backend\Admin\HomePage\BlogTagController;
 use App\Http\Controllers\Backend\Admin\HomePage\CallActionController;
 use App\Http\Controllers\Backend\Admin\HomePage\ClientsController;
 use App\Http\Controllers\Backend\Admin\HomePage\DepartmentController;
+use App\Http\Controllers\Backend\Admin\HomePage\DoctorController;
 use App\Http\Controllers\Backend\Admin\HomePage\FeautesController;
 use App\Http\Controllers\Backend\Admin\HomePage\FooterBottomController;
 use App\Http\Controllers\Backend\Admin\HomePage\FooterController;
@@ -155,21 +156,20 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth', 'i
     //------------------------ Doctors Section -----------------------//
     Route::prefix('doctor')->name('doctor.')->group(function () {
         Route::get('/department', [DepartmentController::class, 'index'])->name('department.index');
-        Route::post('getdata', [DepartmentController::class, 'getData'])->name('department.get.data');
-        Route::get('create', [DepartmentController::class, 'create'])->name('department.create');
-        Route::post('store', [DepartmentController::class, 'store'])->name('department.store');
-        Route::get('edit/{id}', [DepartmentController::class, 'edit'])->name('department.edit');
-        Route::post('update', [DepartmentController::class, 'update'])->name('department.update');
-        Route::get('delete/{id}', [DepartmentController::class, 'delete'])->name('department.delete');
+        Route::post('department/getdata', [DepartmentController::class, 'getData'])->name('department.get.data');
+        Route::get('department/create', [DepartmentController::class, 'create'])->name('department.create');
+        Route::post('department/store', [DepartmentController::class, 'store'])->name('department.store');
+        Route::get('department/edit/{id}', [DepartmentController::class, 'edit'])->name('department.edit');
+        Route::post('department/update', [DepartmentController::class, 'update'])->name('department.update');
+        Route::get('department/delete/{id}', [DepartmentController::class, 'delete'])->name('department.delete');
 
-        // Route::get('/', [PortfolioController::class, 'index'])->name('index');
-        // Route::post('getdata', [PortfolioController::class, 'getData'])->name('get.data');
-        // Route::get('create', [PortfolioController::class, 'create'])->name('create');
-        // Route::post('store', [PortfolioController::class, 'store'])->name('store');
-        // Route::get('edit/{id}', [PortfolioController::class, 'edit'])->name('edit');
-        // Route::post('update', [PortfolioController::class, 'update'])->name('update');
-        // Route::get('delete/{id}', [PortfolioController::class, 'delete'])->name('delete');
-        // Route::post('gallery/delete', [PortfolioController::class, 'galleryDelete'])->name('gallery.delete');
+        Route::get('/', [DoctorController::class, 'index'])->name('index');
+        Route::post('getdata', [DoctorController::class, 'getData'])->name('get.data');
+        Route::get('create', [DoctorController::class, 'create'])->name('create');
+        Route::post('store', [DoctorController::class, 'store'])->name('store');
+        Route::get('edit/{id}', [DoctorController::class, 'edit'])->name('edit');
+        Route::post('update', [DoctorController::class, 'update'])->name('update');
+        Route::get('delete/{id}', [DoctorController::class, 'delete'])->name('delete');
     });
 
     //------------------------ Portfolio Section -----------------------//

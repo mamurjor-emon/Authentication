@@ -179,7 +179,7 @@ if (!function_exists('emalTemplateShortcodeConverter')) {
             $shortcodeName = '[name], [email], [account-login-button], [role-name]';
         } elseif ($template == 'PASSWORD_RESET_MAIL') {
             $shortcodeName = '[name], [email], [reset-password-button], [reset-token]';
-        } elseif ($template == 'PACKAGE_ACTIVATE_EMAIL') {
+        } elseif ($template == 'NEW_DOCTOR_MAIL') {
             $shortcodeName = '[name], [email], [redirect-dashboard-button]';
         } elseif ($template == 'PACKAGE_ACTIVATE_NOTIFICATION') {
             $shortcodeName = '[name], [email], [redirect-orders-button]';
@@ -204,8 +204,8 @@ if (!function_exists('emailTemplateBodyShortCodeForm')) {
         } elseif ($template_name == 'PASSWORD_RESET_MAIL') {
             $button = "<a href='' class='account-button' target='_blank'><span class='account-span'><span style='font-size: 18px; line-height: 21.6px;'>Reset Password</span></span></a>";
             $shortcode = str_replace('[reset-password-button]', $button, $body);
-        } elseif ($template_name == 'PACKAGE_ACTIVATE_EMAIL') {
-            $button = "<a href='' class='account-button' target='_blank'><span class='account-span'><span style='font-size: 18px; line-height: 21.6px;'>Got To Dashboard</span></span></a>";
+        } elseif ($template_name == 'NEW_DOCTOR_MAIL') {
+            $button = "<a href='' class='account-button' target='_blank'><span class='account-span'><span style='font-size: 18px; line-height: 21.6px;'>Go To Dashboard</span></span></a>";
             $shortcode = str_replace('[redirect-dashboard-button]', $button, $body);
         } elseif ($template_name == 'PACKAGE_ACTIVATE_NOTIFICATION') {
             $button = "<a href='' class='account-button' target='_blank'><span class='account-span'><span style='font-size: 18px; line-height: 21.6px;'>Got To Order List</span></span></a>";
@@ -222,6 +222,7 @@ if (!function_exists('emailSubjectTemplate')) {
         $shortcode = str_replace('[name]', $request->full_name, $data->subject);
         $shortcode = str_replace('[email]', $request->email, $shortcode);
         $shortcode = str_replace('[role-name]', $request->roleName, $shortcode);
+        $shortcode = str_replace('[redirect-dashboard-button]', $request->dashboard, $shortcode);
         return $shortcode;
     }
 }
