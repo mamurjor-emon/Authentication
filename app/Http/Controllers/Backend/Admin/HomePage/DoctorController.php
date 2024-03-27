@@ -176,19 +176,19 @@ class DoctorController extends Controller
         }
     }
 
-    // public function update(DepartmentRequest $request)
-    // {
-    //     if (Gate::allows('isAdmin')) {
-    //         $editDepartment = DepartmentModel::where('id', $request->update_id)->first();
-    //         $editDepartment->update([
-    //             'name'     => $request->name,
-    //             'status'   => $request->status,
-    //         ]);
-    //         return redirect()->route('admin.doctor.department.index')->with('success', 'Department Update Successfuly Done..!');
-    //     } else {
-    //         abort(401);
-    //     }
-    // }
+    public function update(DoctorRequest $request)
+    {
+        if (Gate::allows('isAdmin')) {
+            $editDoctor = DoctorModel::where('id', $request->update_id)->first();
+            $editDoctor->update([
+                'name'     => $request->name,
+                'status'   => $request->status,
+            ]);
+            return redirect()->route('admin.doctor.department.index')->with('success', 'Department Update Successfuly Done..!');
+        } else {
+            abort(401);
+        }
+    }
 
     // public function delete($id)
     // {
