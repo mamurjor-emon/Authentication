@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers\Backend\Admin\HomePage;
 
+use App\Models\Setting;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
-use App\Http\Requests\TitleDiscriptionRequest;
 use App\Models\TitleDiscrption;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Gate;
 use Yajra\DataTables\Facades\DataTables;
+use App\Http\Requests\TitleDiscriptionRequest;
 
 class TitleDiscriptionController extends Controller
 {
@@ -139,6 +140,61 @@ class TitleDiscriptionController extends Controller
             $editTitleDiscription = TitleDiscrption::where('id', $id)->first();
             $editTitleDiscription->delete();
             return back()->with('success', 'Title Discription Delete Successfuly Done.. !');
+        } else {
+            abort(401);
+        }
+    }
+
+    public function sectionImage()
+    {
+        if (Gate::allows('isAdmin')) {
+            $this->setPageTitle('Section Background Images');
+            $data['breadcrumb']         = ['Background Image' => '',];
+            $data['parentTitle']        = 'expanded';
+            $data['parentTitleSubMenu'] = 'style="display: block;"';
+            $data['BgImage']            = 'active';
+            return view('backend.pages.bg-image.index',$data);
+        } else {
+            abort(401);
+        }
+    }
+
+    public function funfactImage(Request $request)
+    {
+        if (Gate::allows('isAdmin')) {
+            $image = null;
+            if ($request->hasFile('funfact_image')) {
+                $image = $this->imageUpload($request->file('funfact_image'), 'images/section-bg/', null, null);
+            }
+            Setting::updateOrCreate(['option_key' => 'funfact_image'], ['option_value' => $image]);
+            return back()->with('success', 'Fun Fact Image Store Successfully!');
+        } else {
+            abort(401);
+        }
+    }
+    public function callActionImage(Request $request)
+    {
+        if (Gate::allows('isAdmin')) {
+            $image = null;
+            if ($request->hasFile('call_action_image')) {
+                $image = $this->imageUpload($request->file('call_action_image'), 'images/section-bg/', null, null);
+            }
+            Setting::updateOrCreate(['option_key' => 'call_action_image'], ['option_value' => $image]);
+            return back()->with('success', 'Call To Action Image Store Successfully!');
+        } else {
+            abort(401);
+        }
+    }
+
+    public function testimonialImage(Request $request)
+    {
+        if (Gate::allows('isAdmin')) {
+            $image = null;
+            if ($request->hasFile('testimonials_image')) {
+                $image = $this->imageUpload($request->file('testimonials_image'), 'images/section-bg/', null, null);
+            }
+            Setting::updateOrCreate(['option_key' => 'testimonials_image'], ['option_value' => $image]);
+            return back()->with('success', 'Testimonial Image Store Successfully!');
         } else {
             abort(401);
         }

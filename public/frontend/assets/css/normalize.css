@@ -509,13 +509,13 @@ Preloader Area CSS
 }
 /* Bread Crumbs */
 .breadcrumbs {
-	background-image: url('../img/bread-bg.jpg');
 	background-size: cover;
 	background-position: center;
 	background-repeat: no-repeat;
 	position: relative;
 	padding: 120px 0px;
 }
+
 .breadcrumbs .bread-inner{
 	z-index:22;
 	text-align:center;

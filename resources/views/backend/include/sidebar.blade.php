@@ -218,6 +218,11 @@
                                     All Title & Discrption
                                 </a>
                             </div>
+                            <div class="mdc-list-item mdc-drawer-item">
+                                <a class="mdc-drawer-link {{ $BgImage ?? '' }}" href="{{ route('admin.title.discription.section.image') }}">
+                                    Section BG Image
+                                </a>
+                            </div>
                         </nav>
                     </div>
                 </div>

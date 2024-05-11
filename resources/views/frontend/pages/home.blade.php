@@ -37,6 +37,10 @@
     @include('frontend.pages.home.pricing-table')
     <!--/ End Pricing Table -->
 
+    <!--Team Section -->
+    @include('frontend.pages.home.team')
+    <!--/ End Team Section -->
+
     <!--  Blog Area -->
     @include('frontend.pages.home.blog')
     <!--/ End Blog Area -->
