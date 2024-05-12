@@ -1,6 +1,6 @@
 
 <!-- Breadcrumbs -->
-<div class="breadcrumbs overlay" style="background-image: url('{{ asset('frontend/assets/img/bread-bg.jpg') }}')">
+<div class="breadcrumbs overlay" style="background-image: url('{{ asset(config('settings.breadcrumb_image') ?? '') }}')">
     <div class="container">
         <div class="bread-inner">
             <div class="row">

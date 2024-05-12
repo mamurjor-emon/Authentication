@@ -1,5 +1,5 @@
 <!-- Start Call to action -->
-<section class="call-action overlay" data-stellar-background-ratio="0.5">
+<section class="call-action overlay commonbg" data-stellar-background-ratio="0.5" style="background-image: url('{{ asset(config('settings.call_action_image') ?? '') }}')">
     <div class="container">
         <div class="row">
             <div class="col-lg-12 col-md-12 col-12">

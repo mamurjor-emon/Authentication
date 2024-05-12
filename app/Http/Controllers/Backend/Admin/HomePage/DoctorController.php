@@ -180,25 +180,48 @@ class DoctorController extends Controller
     {
         if (Gate::allows('isAdmin')) {
             $editDoctor = DoctorModel::where('id', $request->update_id)->first();
+            $image = '';
+            if ($request->file('image')) {
+                $image = $this->imageUpdate($request->file('image'), 'images/doctors/', null, null,$editDoctor->image);
+            } else {
+                $image = $editDoctor->image;
+            }
             $editDoctor->update([
-                'name'     => $request->name,
-                'status'   => $request->status,
+                'department_id' => $request->department_id,
+                'image'         => $image,
+                'phone'         => $request->phone,
+                'location'      => $request->location,
+                'facebook'      => $request->facebook,
+                'twitter'       => $request->twitter,
+                'vimo'          => $request->vimo,
+                'pinterest'     => $request->pinterest,
+                'position'      => $request->position,
+                'fdegree'       => $request->fdegree,
+                'sdegree'       => $request->sdegree,
+                'tdegree'       => $request->tdegree,
+                'ldegree'       => $request->ldegree,
+                'workday'       => $request->workday,
+                'fbiography'    => $request->fbiography,
+                'education'     => $request->education,
+                'lbiography'    => $request->lbiography,
+                'status'        => $request->status,
             ]);
-            return redirect()->route('admin.doctor.department.index')->with('success', 'Department Update Successfuly Done..!');
+            return redirect()->route('admin.doctor.index')->with('success', 'Doctor Update Successfuly Done..!');
         } else {
             abort(401);
         }
     }
 
-    // public function delete($id)
-    // {
-    //     if (Gate::allows('isAdmin')) {
-    //         $editDepartment = DepartmentModel::where('id', $id)->first();
-    //         $editDepartment->delete();
-    //         return back()->with('success', 'Department Delete Successfuly Done.. !');
-    //     } else {
-    //         abort(401);
-    //     }
-    // }
+    public function delete($id)
+    {
+        if (Gate::allows('isAdmin')) {
+            $editDoctor = DoctorModel::where('id', $id)->first();
+            $this->imageDelete($editDoctor->image);
+            $editDoctor->delete();
+            return back()->with('success', 'Doctor Delete Successfuly Done.. !');
+        } else {
+            abort(401);
+        }
+    }
 }
 

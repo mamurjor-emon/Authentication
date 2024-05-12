@@ -258,6 +258,11 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth', 'i
         Route::post('funfact/image',[TitleDiscriptionController::class,'funfactImage'])->name('funfact.image');
         Route::post('call-action/image',[TitleDiscriptionController::class,'callActionImage'])->name('call.action.image');
         Route::post('testimonials/image',[TitleDiscriptionController::class,'testimonialImage'])->name('testimonials.image');
+        Route::post('team/image',[TitleDiscriptionController::class,'teamImage'])->name('team.image');
+        Route::post('client/image',[TitleDiscriptionController::class,'clientImage'])->name('client.image');
+        Route::post('breadcrumb/image',[TitleDiscriptionController::class,'breadcrumbImage'])->name('breadcrumb.image');
+        Route::post('common/image',[TitleDiscriptionController::class,'commonImage'])->name('common.image');
+        Route::post('common-white/image',[TitleDiscriptionController::class,'commonWhiteImage'])->name('common.white.image');
     });
 
     //------------------------ Socal Media Section -----------------------//

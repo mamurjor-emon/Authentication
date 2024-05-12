@@ -88,7 +88,6 @@ class TitleDiscriptionController extends Controller
         }
     }
 
-
     public function store(TitleDiscriptionRequest $request)
     {
         if (Gate::allows('isAdmin')) {
@@ -134,6 +133,7 @@ class TitleDiscriptionController extends Controller
             abort(401);
         }
     }
+
     public function delete($id)
     {
         if (Gate::allows('isAdmin')) {
@@ -163,8 +163,12 @@ class TitleDiscriptionController extends Controller
     {
         if (Gate::allows('isAdmin')) {
             $image = null;
+            $oldImage =  config('settings.funfact_image');
             if ($request->hasFile('funfact_image')) {
+                $this->imageDelete($oldImage);
                 $image = $this->imageUpload($request->file('funfact_image'), 'images/section-bg/', null, null);
+            }else{
+                $image = $oldImage;
             }
             Setting::updateOrCreate(['option_key' => 'funfact_image'], ['option_value' => $image]);
             return back()->with('success', 'Fun Fact Image Store Successfully!');
@@ -172,12 +176,17 @@ class TitleDiscriptionController extends Controller
             abort(401);
         }
     }
+
     public function callActionImage(Request $request)
     {
         if (Gate::allows('isAdmin')) {
             $image = null;
+            $oldImage =  config('settings.call_action_image');
             if ($request->hasFile('call_action_image')) {
+                $this->imageDelete($oldImage);
                 $image = $this->imageUpload($request->file('call_action_image'), 'images/section-bg/', null, null);
+            }else{
+                $image = $oldImage;
             }
             Setting::updateOrCreate(['option_key' => 'call_action_image'], ['option_value' => $image]);
             return back()->with('success', 'Call To Action Image Store Successfully!');
@@ -190,11 +199,105 @@ class TitleDiscriptionController extends Controller
     {
         if (Gate::allows('isAdmin')) {
             $image = null;
+            $oldImage =  config('settings.testimonials_image');
             if ($request->hasFile('testimonials_image')) {
+                $this->imageDelete($oldImage);
                 $image = $this->imageUpload($request->file('testimonials_image'), 'images/section-bg/', null, null);
+            }else{
+                $image = $oldImage;
             }
             Setting::updateOrCreate(['option_key' => 'testimonials_image'], ['option_value' => $image]);
             return back()->with('success', 'Testimonial Image Store Successfully!');
+        } else {
+            abort(401);
+        }
+    }
+
+    public function teamImage(Request $request)
+    {
+        if (Gate::allows('isAdmin')) {
+            $image = null;
+            $oldImage =  config('settings.team_image');
+            if ($request->hasFile('team_image')) {
+                $this->imageDelete($oldImage);
+                $image = $this->imageUpload($request->file('team_image'), 'images/section-bg/', null, null);
+            }else{
+                $image = $oldImage;
+            }
+            Setting::updateOrCreate(['option_key' => 'team_image'], ['option_value' => $image]);
+            return back()->with('success', 'Team Image Store Successfully!');
+        } else {
+            abort(401);
+        }
+    }
+
+    public function clientImage(Request $request)
+    {
+        if (Gate::allows('isAdmin')) {
+            $image = null;
+            $oldImage =  config('settings.client_image');
+            if ($request->hasFile('client_image')) {
+                $this->imageDelete($oldImage);
+                $image = $this->imageUpload($request->file('client_image'), 'images/section-bg/', null, null);
+            }else{
+                $image = $oldImage;
+            }
+            Setting::updateOrCreate(['option_key' => 'client_image'], ['option_value' => $image]);
+            return back()->with('success', 'Team Image Store Successfully!');
+        } else {
+            abort(401);
+        }
+    }
+
+    public function breadcrumbImage(Request $request)
+    {
+        if (Gate::allows('isAdmin')) {
+            $image = null;
+            $oldImage =  config('settings.breadcrumb_image');
+            if ($request->hasFile('breadcrumb_image')) {
+                $this->imageDelete($oldImage);
+                $image = $this->imageUpload($request->file('breadcrumb_image'), 'images/section-bg/', null, null);
+            }else{
+                $image = $oldImage;
+            }
+            Setting::updateOrCreate(['option_key' => 'breadcrumb_image'], ['option_value' => $image]);
+            return back()->with('success', 'Breadcrumb Image Store Successfully!');
+        } else {
+            abort(401);
+        }
+    }
+
+    public function commonImage(Request $request)
+    {
+        if (Gate::allows('isAdmin')) {
+            $image = null;
+            $oldImage =  config('settings.common_image');
+            if ($request->hasFile('common_image')) {
+                $this->imageDelete($oldImage);
+                $image = $this->imageUpload($request->file('common_image'), 'images/section-bg/', null, null);
+            }else{
+                $image = $oldImage;
+            }
+            Setting::updateOrCreate(['option_key' => 'common_image'], ['option_value' => $image]);
+            return back()->with('success', 'Common Image Store Successfully!');
+        } else {
+            abort(401);
+        }
+    }
+
+    public function commonWhiteImage(Request $request)
+    {
+        if (Gate::allows('isAdmin')) {
+            $image = null;
+            $oldImage =  config('settings.common_white_image');
+            if ($request->hasFile('common_white_image')) {
+                $this->imageDelete($oldImage);
+                $image = $this->imageUpload($request->file('common_white_image'), 'images/section-bg/', null, null);
+            }else{
+                $image = $oldImage;
+            }
+            Setting::updateOrCreate(['option_key' => 'common_white_image'], ['option_value' => $image]);
+            return back()->with('success', 'Common White Image Store Successfully!');
         } else {
             abort(401);
         }

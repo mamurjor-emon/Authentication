@@ -4862,7 +4862,11 @@ body {
     display: inline-block;
     margin-left: 4px;
 }
-
+.commonbg{
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
 /*=========================
 	End Footer CSS
 ===========================*/

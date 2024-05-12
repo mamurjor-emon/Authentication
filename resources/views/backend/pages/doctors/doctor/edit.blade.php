@@ -14,6 +14,7 @@
                     <form method="POST" action="{{ route('admin.doctor.update') }}" enctype="multipart/form-data">
                         @csrf
                         <input type="hidden" name="update_id" value="{{ $editDoctor->id }}">
+                        <input type="hidden" name="user_id" value="{{ $editDoctor->user_id }}">
                         <div class="row g-5 mt-2">
                             <x-form.selectbox parantClass="col-12 col-md-6" class="form-control" name="department_id"
                             required="required" labelName="Select Department" errorName="department_id">

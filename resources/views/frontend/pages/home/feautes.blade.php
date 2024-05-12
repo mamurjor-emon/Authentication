@@ -5,11 +5,12 @@
             <div class="col-lg-12">
                 <div class="section-title">
                     <h2>{{ $feautesTitle->title }}</h2>
-                    <img src="img/section-img.png" alt="#">
+                    <img src="{{ config('settings.common_image') ?? '' }}" alt="image">
                     {!! $feautesTitle->discrption !!}
                 </div>
             </div>
         </div>
+       
         <div class="row">
             @if (!empty($feautes))
                 @forelse ($feautes->take(3) as $feaute)

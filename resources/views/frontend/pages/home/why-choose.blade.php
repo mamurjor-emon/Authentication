@@ -6,7 +6,7 @@
                 <div class="col-lg-12">
                     <div class="section-title">
                         <h2>{{ $whyChooseTitle->title }}</h2>
-                        <img src="{{ asset('frontend/assets/img/section-img.png') }}" alt="#">
+                        <img src="{{ config('settings.common_image') ?? '' }}" alt="image">
                        {!! $whyChooseTitle->discrption !!}
                     </div>
                 </div>

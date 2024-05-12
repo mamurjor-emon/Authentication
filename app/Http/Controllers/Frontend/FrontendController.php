@@ -7,6 +7,7 @@ use App\Models\Appointment;
 use App\Models\Blog;
 use App\Models\CallToAction;
 use App\Models\Client;
+use App\Models\DepartmentModel;
 use App\Models\Feautes;
 use App\Models\FunFacts;
 use App\Models\PortfolioSection;
@@ -42,7 +43,9 @@ class FrontendController extends Controller
         $data['appointmentSection'] = TitleDiscrption::where('section_name','Appointment')->where('status','1')->first();
         $data['appointmentData']    = Appointment::where('status','1')->first();
         $data['newsletterSection']  = TitleDiscrption::where('section_name','Newsletter_section')->where('status','1')->first();
-        $data['teamSection']        = TitleDiscrption::where('section_name','teamSection')->where('status','1')->first();
+        $data['teamSection']        = TitleDiscrption::where('section_name','TeamSection')->where('status','1')->first();
+        $data['teamMembers']        = DepartmentModel::with(['doctors'])->where('status','1')->get();
+        $data['testimonialSection'] = TitleDiscrption::where('section_name','TestimonialSection')->where('status','1')->first();
         return view('frontend.pages.home',$data);
     }
 }

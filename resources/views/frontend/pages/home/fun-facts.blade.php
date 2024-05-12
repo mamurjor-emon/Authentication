@@ -1,5 +1,5 @@
  <!-- Start Fun-facts -->
- <div id="fun-facts" class="fun-facts section overlay">
+ <div id="fun-facts" class="fun-facts section overlay commonbg" style="background-image: url('{{ asset(config('settings.funfact_image') ?? '') }}')">
      <div class="container">
          <div class="row">
              @if (!empty($funFacts))

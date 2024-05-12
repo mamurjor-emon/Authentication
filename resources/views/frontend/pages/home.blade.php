@@ -33,6 +33,14 @@
     @include('frontend.pages.home.services')
     <!--/ End service -->
 
+    <!-- Testimonials -->
+    @include('frontend.pages.home.testimonials')
+    <!--/ End Testimonials -->
+
+    <!-- Departments -->
+    @include('frontend.pages.home.departments')
+    <!--/ End  Departments -->
+
     <!--Pricing Table -->
     @include('frontend.pages.home.pricing-table')
     <!--/ End Pricing Table -->

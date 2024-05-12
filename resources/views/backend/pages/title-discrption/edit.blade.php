@@ -35,7 +35,7 @@
                         </div>
                         <div class="d-flex justify-content-end align-items-center mt-3">
                             <button type="submit"
-                                class="mdc-button mdc-button--unelevated filled-button--success mdc-ripple-upgraded">Create</button>
+                                class="mdc-button mdc-button--unelevated filled-button--success mdc-ripple-upgraded">Update</button>
                         </div>
                     </form>
                 </div>

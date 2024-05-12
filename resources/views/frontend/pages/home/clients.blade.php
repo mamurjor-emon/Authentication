@@ -1,5 +1,5 @@
    <!-- Start clients -->
-   <div class="clients overlay">
+   <div class="clients overlay commonbg" style="background-image: url('{{ asset(config('settings.client_image') ?? '') }}')">
        <div class="container">
            <div class="row">
                <div class="col-lg-12 col-md-12 col-12">
