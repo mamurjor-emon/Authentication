@@ -12,6 +12,7 @@ use App\Models\Feautes;
 use App\Models\FunFacts;
 use App\Models\PortfolioSection;
 use App\Models\PricingTable;
+use App\Models\Review;
 use App\Models\Schedule;
 use App\Models\Service;
 use App\Models\SilderSection;
@@ -46,6 +47,7 @@ class FrontendController extends Controller
         $data['teamSection']        = TitleDiscrption::where('section_name','TeamSection')->where('status','1')->first();
         $data['teamMembers']        = DepartmentModel::with(['doctors'])->where('status','1')->get();
         $data['testimonialSection'] = TitleDiscrption::where('section_name','TestimonialSection')->where('status','1')->first();
+        $data['testimonials']       = Review::with('user')->where('status','1')->where('status','1')->orderBy('order_by','asc')->get();
         return view('frontend.pages.home',$data);
     }
 }

@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\Backend\Admin;
 
 use App\Models\User;
+use App\Models\Review;
+use App\Models\Subscriber;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\Subscriber;
+use App\Http\Requests\ReviewRequest;
 use Illuminate\Support\Facades\Gate;
 use Yajra\DataTables\Facades\DataTables;
 
@@ -451,4 +453,139 @@ class UserManageMentController extends Controller
             abort(401);
         }
     }
+
+    public function allReview()
+    {
+        if (Gate::allows('isAdmin')) {
+            $this->setPageTitle('All Review');
+            $data['parentUserManage']        = 'expanded';
+            $data['parentUserManageSubMenu'] = 'style="display:block;"';
+            $data['allReview']          = 'active';
+            $data['breadcrumb']              = ['All Review' => '',];
+            return view('backend.pages.users.reviews.index', $data);
+        } else {
+            abort(401);
+        }
+    }
+
+     /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\Response
+     */
+    public function reviewGetData(Request $request)
+    {
+        if (Gate::allows('isAdmin')) {
+            if ($request->ajax()) {
+                $getData = Review::latest('id');
+                return DataTables::eloquent($getData)
+                    ->addIndexColumn()
+                    ->filter(function ($query) use ($request) {
+                        if (!empty($request->search)) {
+                            $query->when($request->search, function ($query, $value) {
+                                $query->where('status', 'like', "%{$value}%")
+                                    ->orWhere('order_by', 'like', "%{$value}%");
+                            });
+                        }
+                    })
+                    ->addColumn('review', function ($data) {
+                        return $data->review;
+                    })
+                    ->addColumn('status', function ($data) {
+                        return status($data->status);
+                    })
+                    ->addColumn('action', function ($data) {
+                        return '<div class="text-right" ><a href="' . route('admin.user.management.reviews.edit', ['id' => $data->id]) . '" class="rounded mdc-button mdc-button--raised icon-button filled-button--success">
+                        <i class="material-icons mdc-button__icon">colorize</i>
+                      </a> <button class="mdc-button mdc-button--raised icon-button filled-button--secondary" onclick="delete_data(' . $data->id . ')">
+                      <i class="material-icons mdc-button__icon">delete</i>
+                    </button><form action="' . route('admin.user.management.reviews.delete', ['id' => $data->id]) . '"
+                    id="delete-form-' . $data->id . '" method="DELETE" class="d-none">
+                    @csrf
+                    @method("DELETE") </form></div>';
+                    })
+                    ->rawColumns(['status', 'action'])
+                    ->make(true);
+            }
+        } else {
+            abort(401);
+        }
+    }
+
+    public function reviewCreate()
+    {
+        if (Gate::allows('isAdmin')) {
+            $this->setPageTitle('Review Create');
+            $data['parentUserManage']        = 'expanded';
+            $data['parentUserManageSubMenu'] = 'style="display:block;"';
+            $data['allReview']               = 'active';
+            $data['clients']                 = User::with('role')->where('role_id', 3)->latest('id')->get();
+            $data['totalReview']             = Review::get();
+            $data['breadcrumb']              = ['All Review' => route('admin.user.management.reviews'), 'Review Create' => ''];
+            return view('backend.pages.users.reviews.create', $data);
+        } else {
+            abort(401);
+        }
+    }
+
+    public function reviewStore(ReviewRequest $request)
+    {
+        if (Gate::allows('isAdmin')) {
+            Review::create([
+                'user_id' => $request->user_id,
+                'review'  => $request->review,
+                'order_by'=> $request->order_by,
+                'status'  => $request->status,
+            ]);
+            return redirect()->route('admin.user.management.reviews')->with('success','Review Create Successfuly !');
+        } else {
+            abort(401);
+        }
+    }
+
+    public function reviewEdit($id)
+    {
+        if (Gate::allows('isAdmin')) {
+            $this->setPageTitle('Review Edit');
+            $data['parentUserManage']        = 'expanded';
+            $data['parentUserManageSubMenu'] = 'style="display:block;"';
+            $data['allReview']               = 'active';
+            $data['clients']                 = User::with('role')->where('role_id', 3)->latest('id')->get();
+            $data['totalReview']             = Review::get();
+            $data['editReview']              = Review::where('id',$id)->first();
+            $data['breadcrumb']              = ['All Review' => route('admin.user.management.reviews'), 'Review Edit' => ''];
+            return view('backend.pages.users.reviews.edit', $data);
+        } else {
+            abort(401);
+        }
+    }
+
+    public function reviewUpdate(ReviewRequest $request)
+    {
+        if (Gate::allows('isAdmin')) {
+            $editReview = Review::where('id',$request->update_id)->first();
+            $editReview->update([
+                'user_id' => $request->user_id,
+                'review'  => $request->review,
+                'order_by'=> $request->order_by,
+                'status'  => $request->status,
+            ]);
+            return redirect()->route('admin.user.management.reviews')->with('success','Review Update Successfuly !');
+        } else {
+            abort(401);
+        }
+    }
+
+    public function reviewDelete($id)
+    {
+        if (Gate::allows('isAdmin')) {
+            $editReview = Review::where('id',$id)->first();
+            $editReview->delete();
+            return back()->with('success','Review Delete Successfuly !');
+        } else {
+            abort(401);
+        }
+    }
+
 }

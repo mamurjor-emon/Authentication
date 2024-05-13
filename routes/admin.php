@@ -293,11 +293,21 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth', 'i
         Route::get('/clients', [UserManageMentController::class, 'clients'])->name('clients');
         Route::post('clients/getdata', [UserManageMentController::class, 'clientsGetData'])->name('clients.get.data');
 
+        Route::post('doctors/status', [UserManageMentController::class, 'doctorStatusChange'])->name('doctor.status.change');
+        Route::post('role/change', [UserManageMentController::class, 'roleChange'])->name('role.change');
+
         Route::get('/subscribers', [UserManageMentController::class, 'subscribers'])->name('subscribers');
         Route::post('subscribers/getdata', [UserManageMentController::class, 'subscribersGetData'])->name('subscribers.get.data');
 
-        Route::post('doctors/status', [UserManageMentController::class, 'doctorStatusChange'])->name('doctor.status.change');
-        Route::post('role/change', [UserManageMentController::class, 'roleChange'])->name('role.change');
+        Route::get('/reviews', [UserManageMentController::class, 'allReview'])->name('reviews');
+        Route::post('/reviews/get-data', [UserManageMentController::class, 'reviewGetData'])->name('reviews.get-data');
+        Route::get('/reviews/create', [UserManageMentController::class, 'reviewCreate'])->name('reviews.create');
+        Route::post('/reviews/store', [UserManageMentController::class, 'reviewStore'])->name('reviews.store');
+        Route::get('/reviews/edit/{id}', [UserManageMentController::class, 'reviewEdit'])->name('reviews.edit');
+        Route::post('/reviews/update', [UserManageMentController::class, 'reviewUpdate'])->name('reviews.update');
+        Route::get('/reviews/delete/{id}', [UserManageMentController::class, 'reviewDelete'])->name('reviews.delete');
+
+
     });
     //------------------------ Email Templates -----------------------//
     Route::prefix('email/templates')->name('email.templates.')->group(function () {

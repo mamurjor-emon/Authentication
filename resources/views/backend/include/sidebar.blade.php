@@ -286,6 +286,12 @@
                                    All Subscribers
                                 </a>
                             </div>
+
+                            <div class="mdc-list-item mdc-drawer-item">
+                                <a class="mdc-drawer-link {{ $allReview ?? '' }}" href="{{ route('admin.user.management.reviews') }}">
+                                   All Review
+                                </a>
+                            </div>
                         </nav>
                     </div>
                 </div>
