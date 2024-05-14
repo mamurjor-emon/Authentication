@@ -11,32 +11,19 @@
         </div>
         <div class="row">
             <div class="col-lg-12 col-12">
-                @dd($testimonials)
                 <div class="owl-carousel testimonial-slider">
+                    @forelse ($testimonials as $data)
                     <div class="single-testimonial">
-                        <img src="img/testi3.png" alt="#">
-                        <p>Lorem ipsum dolor sit amet consectetur eliet adipiscing. Aliquam nec suscipit
-                            turpis, vel pretium eros. </p>
-                        <h4 class="name">Naimur Rahman</h4>
+                        @if ($data->user->avatar != null)
+                            <img src="{{ asset($data->user->avatar) }}" alt="image">
+                        @else
+                         <img src="{{ asset('common/5907-removebg-preview.png') }}"alt="Avatar" />
+                        @endif
+                        {!! $data->review !!}
+                        <h4 class="name">{{ $data->user->fname . ' ' . $data->user->lname}}</h4>
                     </div>
-                    <div class="single-testimonial">
-                        <img src="img/testi3.png" alt="#">
-                        <p>Lorem ipsum dolor sit amet consectetur eliet adipiscing. Aliquam nec suscipit
-                            turpis, vel pretium eros. </p>
-                        <h4 class="name">Naimur Rahman</h4>
-                    </div>
-                    <div class="single-testimonial">
-                        <img src="img/testi3.png" alt="#">
-                        <p>Lorem ipsum dolor sit amet consectetur eliet adipiscing. Aliquam nec suscipit
-                            turpis, vel pretium eros. </p>
-                        <h4 class="name">Naimur Rahman</h4>
-                    </div>
-                    <div class="single-testimonial">
-                        <img src="img/testi3.png" alt="#">
-                        <p>Lorem ipsum dolor sit amet consectetur eliet adipiscing. Aliquam nec suscipit
-                            turpis, vel pretium eros. </p>
-                        <h4 class="name">Naimur Rahman</h4>
-                    </div>
+                    @empty
+                    @endforelse
                 </div>
             </div>
         </div>

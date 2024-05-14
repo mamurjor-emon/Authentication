@@ -27,6 +27,7 @@
                     <tr>
                         <th>Sl</th>
                         <th>Name</th>
+                        <th>Image</th>
                         <th>Status</th>
                         <th class="text-right">Action</th>
                     </tr>
@@ -66,6 +67,7 @@
         columns: [
             {data: 'DT_RowIndex',orderable: false, searchable: false},
             {data: 'name'},
+            {data: 'image'},
             {data: 'status'},
             {data: 'action'},
         ],
@@ -100,7 +102,7 @@
                     orientation: "landscape",
                     pageSize: "A4",
                     exportOptions: {
-                        columns: '0,1,2'
+                        columns: '0,1,2,3'
                     },
                     customize: function(doc) {
                         doc.defaultStyle.alignment = 'center';
@@ -113,7 +115,7 @@
                     text: '<i class="fa fa-file-excel-o" aria-hidden="true"></i> Excel',
                     className: 'excelButton mdc-button mdc-button--raised filled-button--info mdc-ripple-upgraded mb-3',
                     exportOptions: {
-                        columns: '0,1,2'
+                        columns: '0,1,2,3'
                     },
                 },
                 {
@@ -123,7 +125,7 @@
                     orientation: "landscape",
                     pageSize: "A4",
                     exportOptions: {
-                        columns: '0,1,2'
+                        columns: '0,1,2,3'
                     }
                 }
             ]

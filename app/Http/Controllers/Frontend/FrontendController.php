@@ -47,7 +47,9 @@ class FrontendController extends Controller
         $data['teamSection']        = TitleDiscrption::where('section_name','TeamSection')->where('status','1')->first();
         $data['teamMembers']        = DepartmentModel::with(['doctors'])->where('status','1')->get();
         $data['testimonialSection'] = TitleDiscrption::where('section_name','TestimonialSection')->where('status','1')->first();
-        $data['testimonials']       = Review::with('user')->where('status','1')->where('status','1')->orderBy('order_by','asc')->get();
+        $data['testimonials']       = Review::with('user')->where('status','1')->orderBy('order_by','asc')->get();
+        $data['departmentSection']  = TitleDiscrption::where('section_name','DepartmentSection')->where('status','1')->first();
+        $data['departments']        = DepartmentModel::where('status','1')->orderBy('order_by','asc')->get();
         return view('frontend.pages.home',$data);
     }
 }

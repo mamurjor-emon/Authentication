@@ -21,9 +21,21 @@ class DepartmentRequest extends FormRequest
      */
     public function rules(): array
     {
-        return [
-            'name'   => ['required'],
-            'status' => ['required']
+        $roles = [
+            'icon'        => ['required'],
+            'name'        => ['required'],
+            'sub_name'    => ['required'],
+            'description' => ['required'],
+            'order_by'    => ['required'],
+            'status'      => ['required'],
         ];
+
+        if (request()->update_id) {
+            $roles['image'] = ['image', 'mimes:jpeg,png,jpg,gif', 'max:2048', 'dimensions:min_width=570,min_height=370,max_width=570,max_height=370'];
+        } else {
+            $roles['image'] = ['required', 'image', 'mimes:jpeg,png,jpg,gif', 'max:2048', 'dimensions:min_width=570,min_height=370,max_width=570,max_height=370'];
+        }
+
+        return $roles;
     }
 }

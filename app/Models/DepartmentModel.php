@@ -15,8 +15,13 @@ class DepartmentModel extends Model
      * @var array
      */
     protected $fillable = [
+        'icon',
         'name',
-        'status'
+        'sub_name',
+        'description',
+        'image',
+        'order_by',
+        'status',
     ];
     public function doctors()
     {

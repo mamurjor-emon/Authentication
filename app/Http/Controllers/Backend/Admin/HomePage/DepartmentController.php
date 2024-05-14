@@ -48,6 +48,9 @@ class DepartmentController extends Controller
                     ->addColumn('name', function ($data) {
                         return $data->name;
                     })
+                    ->addColumn('image', function ($data) {
+                        return '<img class="bg-dark" id="getDataImage" src="' . asset($data->image) . '" alt="image">';
+                    })
                     ->addColumn('status', function ($data) {
                         return status($data->status);
                     })
@@ -61,7 +64,7 @@ class DepartmentController extends Controller
                     @csrf
                     @method("DELETE") </form></div>';
                     })
-                    ->rawColumns(['status', 'action'])
+                    ->rawColumns(['image','status', 'action'])
                     ->make(true);
             }
         } else {
@@ -77,6 +80,7 @@ class DepartmentController extends Controller
             $data['parentDoctorsSubMenu']   = 'style="display: block;"';
             $data['doctorDepartment']       = 'active';
             $data['breadcrumb']             = ['Department' => route('admin.doctor.department.index'), 'Create Department' => '',];
+            $data['totalDepartment']        = DepartmentModel::get();
             return view('backend.pages.doctors.department.create', $data);
         } else {
             abort(401);
@@ -87,9 +91,20 @@ class DepartmentController extends Controller
     public function store(DepartmentRequest $request)
     {
         if (Gate::allows('isAdmin')) {
+            $image = '';
+            if ($request->file('image')) {
+                $image = $this->imageUpload($request->file('image'), 'images/department/', null, null);
+            } else {
+                $image = null;
+            }
              DepartmentModel::create([
-                'name'       => $request->name,
-                'status'     => $request->status,
+                'icon'        => $request->icon,
+                'name'        => $request->name,
+                'sub_name'    => $request->sub_name,
+                'description' => $request->description,
+                'image'       => $image,
+                'order_by'    => $request->order_by,
+                'status'      => $request->status,
             ]);
             return redirect()->route('admin.doctor.department.index')->with('success', 'Department Create Successfuly Done..!');
         } else {
@@ -116,9 +131,20 @@ class DepartmentController extends Controller
     {
         if (Gate::allows('isAdmin')) {
             $editDepartment = DepartmentModel::where('id', $request->update_id)->first();
+            $image = '';
+            if ($request->file('image')) {
+                $image = $this->imageUpdate($request->file('image'), 'images/department/', null, null, $editDepartment->image);
+            } else {
+                $image = $editDepartment->image;
+            }
             $editDepartment->update([
-                'name'     => $request->name,
-                'status'   => $request->status,
+                'icon'        => $request->icon,
+                'name'        => $request->name,
+                'sub_name'    => $request->sub_name,
+                'description' => $request->description,
+                'image'       => $image,
+                'order_by'    => $request->order_by,
+                'status'      => $request->status,
             ]);
             return redirect()->route('admin.doctor.department.index')->with('success', 'Department Update Successfuly Done..!');
         } else {
@@ -130,6 +156,7 @@ class DepartmentController extends Controller
     {
         if (Gate::allows('isAdmin')) {
             $editDepartment = DepartmentModel::where('id', $id)->first();
+            $this->imageDelete($editDepartment->image);
             $editDepartment->delete();
             return back()->with('success', 'Department Delete Successfuly Done.. !');
         } else {
