@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Backend\DashboardController;
 use App\Http\Controllers\Frontend\BlogController;
+use App\Http\Controllers\Frontend\DoctorController;
 use App\Http\Controllers\Frontend\FrontendController;
 use App\Http\Controllers\Frontend\PortfolioController;
 use App\Http\Controllers\Frontend\SubscriberController;
@@ -58,9 +59,16 @@ Route::prefix('frontend')->name('frontend.')->group(function () {
     Route::get('categorie/{id}',[BlogController::class, 'categorieBlog'])->name('categorie.blog');
     Route::post('blog/search',[BlogController::class, 'blogSearch'])->name('blog.search');
 });
+
 //------------ 	Portfolio Details  ------------//
 Route::prefix('frontend')->name('frontend.')->group(function () {
     Route::get('portfolio/{id}', [PortfolioController::class, 'portfolio'])->name('portfolio');
+});
+
+//------------ 	Portfolio Details  ------------//
+Route::prefix('frontend')->name('frontend.')->group(function () {
+    Route::get('doctors', [DoctorController::class, 'doctors'])->name('doctors');
+    Route::get('doctors/{id}', [DoctorController::class, 'singleDoctors'])->name('single.doctors');
 });
 
 

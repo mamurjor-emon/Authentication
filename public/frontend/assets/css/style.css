@@ -4867,6 +4867,13 @@ body {
     background-repeat: no-repeat;
     background-size: cover;
 }
+#team .view-doctor{
+	background: #fff;
+	margin-right: 20px;
+	font-weight: 500;
+	border: 1px solid #fff;
+	color: var(--primary-color);
+}
 /*=========================
 	End Footer CSS
 ===========================*/

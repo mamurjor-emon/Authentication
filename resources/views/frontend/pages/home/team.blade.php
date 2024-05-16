@@ -23,7 +23,7 @@
                         </div>
                         <div class="t-bottom">
                             <p>{{ $teams->name }}</p>
-                            <h2><a href="">{{  $doctor->user->fname ?? '--' .' '.  $doctor->user->fname != null ? $doctor->user->lname : '--' }}</a></h2>
+                            <h2><a href="{{ route('frontend.single.doctors',['id' => $doctor->id]) }}">{{  $doctor->user->fname ?? '--' .' '.  $doctor->user->fname != null ? $doctor->user->lname : '--' }}</a></h2>
                         </div>
                     </div>
                     <!-- End Single Team -->
@@ -32,8 +32,10 @@
 
                 @endforelse
             @empty
-
             @endforelse
+        </div>
+        <div class="mt-5 d-flex justify-content-center align-items-center">
+            <a href="{{ route('frontend.doctors') }}"  class="btn view-doctor mt-5">View All Doctors</a>
         </div>
     </div>
 </section>
