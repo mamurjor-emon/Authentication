@@ -51,8 +51,8 @@ class MenusController extends Controller
                     ->addColumn('name', function ($data) {
                         return $data->name;
                     })
-                    ->addColumn('slug', function ($data) {
-                        return $data->slug;
+                    ->addColumn('url', function ($data) {
+                        return $data->url;
                     })
                     ->addColumn('parent_menu', function ($data) {
                         $menu_id = Menu::pluck('id')->toArray();

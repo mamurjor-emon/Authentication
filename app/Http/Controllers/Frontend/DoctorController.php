@@ -23,7 +23,7 @@ class DoctorController extends Controller
     {
         $this->setPageTitle('Doctor Details');
         $data['breadcrumb']     = ['Home' => url('/'), 'Doctor Details' => ''];
-        $data['singleDoctor']   = DoctorModel::with(['user','department'])->where('id',$id)->where('status','1')->get();
+        $data['singleDoctor']   = DoctorModel::with(['user','department'])->where('id',$id)->where('status','1')->first();
         return view('frontend.pages.doctors.single-doctor', $data);
     }
 }

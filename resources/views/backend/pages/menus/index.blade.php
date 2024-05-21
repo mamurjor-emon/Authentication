@@ -27,7 +27,7 @@
                     <tr>
                         <th>Sl</th>
                         <th>Name</th>
-                        <th>Slug</th>
+                        <th>Url</th>
                         <th>Parent Menu</th>
                         <th>Target</th>
                         <th>Status</th>
@@ -69,7 +69,7 @@
         columns: [
             {data: 'DT_RowIndex',orderable: false, searchable: false},
             {data: 'name'},
-            {data: 'slug'},
+            {data: 'url'},
             {data: 'parent_menu'},
             {data: 'target'},
             {data: 'status'},

@@ -9,6 +9,7 @@ use App\Http\Controllers\Frontend\BlogController;
 use App\Http\Controllers\Frontend\DoctorController;
 use App\Http\Controllers\Frontend\FrontendController;
 use App\Http\Controllers\Frontend\PortfolioController;
+use App\Http\Controllers\Frontend\ServiceController;
 use App\Http\Controllers\Frontend\SubscriberController;
 use App\Http\Controllers\VerifyUserController;
 
@@ -23,10 +24,6 @@ use App\Http\Controllers\VerifyUserController;
 |
 */
 
-
-//------------ Home Page Route ------------//
-Route::get('/',[FrontendController::class,'index']);
-
 //------------ Disable Route ------------//
 Auth::routes([
     'register'         => false,
@@ -37,12 +34,15 @@ Auth::routes([
     'password.request' => false
 ]);
 
+//------------ Home Page Route ------------//
+Route::get('/', [FrontendController::class, 'index']);
+
 //------------ Register Route ------------//
 Route::get('register', [AuthController::class, 'index'])->name('user.register');
 Route::post('register/store', [AuthController::class, 'store'])->name('user.register.store');
 
 //------------ Varify User ------------//
-Route::get('verify-code/{token}',[VerifyUserController::class,'verifiedCode'])->name('verify.code');
+Route::get('verify-code/{token}', [VerifyUserController::class, 'verifiedCode'])->name('verify.code');
 
 // Forgot password
 Route::get('forgot-passowrd', [AuthController::class, 'forgotPassword'])->name('forgot.password');
@@ -50,30 +50,30 @@ Route::post('forgot-passowrd/sent', [AuthController::class, 'forgotPasswordSent'
 Route::get('forgot-passowrd-token/{token}', [AuthController::class, 'forgotPasswordToken'])->name('forgot.password.token');
 Route::post('password-update', [AuthController::class, 'passwordUpdate'])->name('user.password.update');
 
-//------------ Blog  ------------//
 Route::prefix('frontend')->name('frontend.')->group(function () {
+    //------------ 	Portfolio Details  ------------//
+    Route::get('portfolio/{id}', [PortfolioController::class, 'portfolio'])->name('portfolio');
+
+    //------------ 	Doctors Details  ------------//
+    Route::get('doctors', [DoctorController::class, 'doctors'])->name('doctors');
+    Route::get('doctors/{id}', [DoctorController::class, 'singleDoctors'])->name('single.doctors');
+
+    //------------ Services  ------------//
+    Route::get('services', [ServiceController::class, 'services'])->name('services');
+    Route::get('service/{id}', [ServiceController::class, 'serviceDetailse'])->name('service.details');
+    //------------ Blog  ------------//
     Route::get('blog/{id}', [BlogController::class, 'blog'])->name('blog');
     Route::post('view/count', [BlogController::class, 'viewCount'])->name('view.count');
     Route::post('blog/comment', [BlogController::class, 'blogComment'])->name('blog.comment');
     Route::post('blog/comment/replay', [BlogController::class, 'blogCommentRepay'])->name('blog.comment.repay')->middleware('auth');
-    Route::get('categorie/{id}',[BlogController::class, 'categorieBlog'])->name('categorie.blog');
-    Route::post('blog/search',[BlogController::class, 'blogSearch'])->name('blog.search');
+    Route::get('categorie/{id}', [BlogController::class, 'categorieBlog'])->name('categorie.blog');
+    Route::post('blog/search', [BlogController::class, 'blogSearch'])->name('blog.search');
 });
 
-//------------ 	Portfolio Details  ------------//
-Route::prefix('frontend')->name('frontend.')->group(function () {
-    Route::get('portfolio/{id}', [PortfolioController::class, 'portfolio'])->name('portfolio');
-});
 
-//------------ 	Portfolio Details  ------------//
-Route::prefix('frontend')->name('frontend.')->group(function () {
-    Route::get('doctors', [DoctorController::class, 'doctors'])->name('doctors');
-    Route::get('doctors/{id}', [DoctorController::class, 'singleDoctors'])->name('single.doctors');
-});
 
 
 //------------ Subscribe  ------------//
 Route::prefix('subscribe')->name('subscribe.')->group(function () {
-    Route::post('store',[SubscriberController::class,'store'])->name('store');
+    Route::post('store', [SubscriberController::class, 'store'])->name('store');
 });
-
