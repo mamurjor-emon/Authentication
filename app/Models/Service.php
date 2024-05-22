@@ -15,10 +15,16 @@ class Service extends Model
      */
     protected $fillable = [
         'icon',
+        'name',
         'title',
-        'title_url',
-        'title_target',
-        'discrption',
+        'short_description',
+        'fimage',
+        'special_text',
+        'fdescription',
+        'simage',
+        'heading',
+        'sdescription',
+        'tdescription',
         'order_by',
         'status'
     ];

@@ -17,10 +17,8 @@
                           <!-- Start Single Service -->
                           <div class="single-service">
                               {!! $servicesData->icon !!}
-                              <h4><a href="{{ $servicesData->title_url }}"
-                                      target="{{ $servicesData->title_target == 1 ? '_blank' : '' }}">{{ $servicesData->title ?? '' }}</a>
-                              </h4>
-                              {!! $servicesData->discrption !!}
+                              <h4><a href="">{{ $servicesData->name ?? '' }}</a> </h4>
+                              {!! Str::limit($servicesData->short_description, 100, '...')  ?? '' !!}
                           </div>
                           <!-- End Single Service -->
                       </div>

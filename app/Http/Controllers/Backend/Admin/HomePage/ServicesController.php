@@ -46,14 +46,17 @@ class ServicesController extends Controller
                             });
                         }
                     })
-                    ->addColumn('icon', function ($data) {
+                    ->addColumn('name', function ($data) {
                         return $data->icon;
+                    })
+                    ->addColumn('fimage', function ($data) {
+                        return '<img id="getDataImage" src="' . asset($data->fimage) . '" alt="image">';
+                    })
+                    ->addColumn('simage', function ($data) {
+                        return '<img id="getDataImage" src="' . asset($data->simage) . '" alt="image">';
                     })
                     ->addColumn('title', function ($data) {
                         return $data->title;
-                    })
-                    ->addColumn('url', function ($data) {
-                        return $data->title_url;
                     })
                     ->addColumn('status', function ($data) {
                         return status($data->status);
@@ -68,7 +71,7 @@ class ServicesController extends Controller
                     @csrf
                     @method("DELETE") </form></div>';
                     })
-                    ->rawColumns(['image', 'status', 'action'])
+                    ->rawColumns(['name', 'fimage','simage','status', 'action'])
                     ->make(true);
             }
         } else {
@@ -95,14 +98,34 @@ class ServicesController extends Controller
     public function store(ServicesRequest $request)
     {
         if (Gate::allows('isAdmin')) {
+            $fimage = '';
+            if ($request->file('fimage')) {
+                $fimage = $this->imageUpload($request->file('fimage'), 'images/service/', null, null);
+            } else {
+                $fimage = null;
+            }
+
+            $simage = '';
+            if ($request->file('simage')) {
+                $simage = $this->imageUpload($request->file('simage'), 'images/service/', null, null);
+            } else {
+                $simage = null;
+            }
+
             Service::create([
-                'icon'         => $request->icon,
-                'title'        => $request->title,
-                'title_url'    => $request->title_url,
-                'title_target' => $request->title_target,
-                'discrption'   => $request->discrption,
-                'order_by'     => $request->order_by,
-                'status'       => $request->status,
+                'icon'              => $request->icon,
+                'name'              => $request->name,
+                'title'             => $request->title,
+                'short_description' => $request->short_description,
+                'fimage'            => $fimage,
+                'special_text'      => $request->special_text,
+                'fdescription'      => $request->fdescription,
+                'simage'            => $simage,
+                'heading'           => $request->heading,
+                'sdescription'      => $request->sdescription,
+                'tdescription'      => $request->tdescription,
+                'order_by'          => $request->order_by,
+                'status'            => $request->status,
             ]);
             return redirect()->route('admin.services.index')->with('success', 'Service Successfuly Done..!');
         } else {

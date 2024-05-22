@@ -21,14 +21,28 @@ class ServicesRequest extends FormRequest
      */
     public function rules(): array
     {
-        return [
-            'icon'         => ['required'],
-            'title'        => ['required'],
-            'title_url'    => ['required'],
-            'title_target' => ['required'],
-            'discrption'   => ['required'],
-            'order_by'     => ['required'],
-            'status'       => ['required']
+        $roles = [
+            'icon'              => ['required'],
+            'name'              => ['required'],
+            'title'             => ['required'],
+            'short_description' => ['required'],
+            'special_text'      => ['required'],
+            'fdescription'      => ['required'],
+            'heading'           => ['required'],
+            'sdescription'      => ['required'],
+            'tdescription'      => ['required'],
+            'order_by'          => ['required'],
+            'status'            => ['required'],
         ];
+
+        if (request()->update_id) {
+            $roles['fimage'] = ['image', 'mimes:jpeg,png,jpg,gif', 'max:2048', 'dimensions:min_width=1920,min_height=1000,max_width=1920,max_height=1000'];
+            $roles['simage'] = ['image', 'mimes:jpeg,png,jpg,gif', 'max:2048', 'dimensions:min_width=1920,min_height=1200,max_width=1920,max_height=1200'];
+        } else {
+            $roles['fimage'] = ['image', 'mimes:jpeg,png,jpg,gif', 'max:2048', 'dimensions:min_width=1920,min_height=1000,max_width=1920,max_height=1000'];
+            $roles['simage'] = ['image', 'mimes:jpeg,png,jpg,gif', 'max:2048', 'dimensions:min_width=1920,min_height=1200,max_width=1920,max_height=1200'];
+        }
+
+        return $roles;
     }
 }

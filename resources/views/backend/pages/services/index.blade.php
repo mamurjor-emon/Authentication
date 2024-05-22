@@ -26,9 +26,10 @@
                 <thead>
                     <tr>
                         <th>Sl</th>
-                        <th>Icon</th>
+                        <th>Name</th>
                         <th>Title</th>
-                        <th>Url</th>
+                        <th>First Image</th>
+                        <th>Second Image</th>
                         <th>Status</th>
                         <th class="text-right">Action</th>
                     </tr>
@@ -67,9 +68,10 @@
         },
         columns: [
             {data: 'DT_RowIndex',orderable: false, searchable: false},
-            {data: 'icon'},
+            {data: 'name'},
             {data: 'title'},
-            {data: 'url'},
+            {data: 'fimage'},
+            {data: 'simage'},
             {data: 'status'},
             {data: 'action'},
         ],
