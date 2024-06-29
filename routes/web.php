@@ -61,6 +61,13 @@ Route::prefix('frontend')->name('frontend.')->group(function () {
     //------------ Services  ------------//
     Route::get('services', [ServiceController::class, 'services'])->name('services');
     Route::get('service/{id}', [ServiceController::class, 'serviceDetailse'])->name('service.details');
+
+    //------------ Testimonials  ------------//
+    Route::get('testimonials', [FrontendController::class, 'testimonials'])->name('testimonials');
+
+    //------------ Pricing  ------------//
+    Route::get('pricing', [FrontendController::class, 'pricing'])->name('pricing');
+
     //------------ Blog  ------------//
     Route::get('blog/{id}', [BlogController::class, 'blog'])->name('blog');
     Route::post('view/count', [BlogController::class, 'viewCount'])->name('view.count');

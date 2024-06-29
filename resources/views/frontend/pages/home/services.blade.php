@@ -5,7 +5,7 @@
               <div class="col-lg-12">
                   <div class="section-title">
                       <h2>{{ $servicesSection->title ?? '' }}</h2>
-                      <img src="{{ config('settings.common_image') ?? '' }}" alt="image">
+                      <img src="{{ asset(config('settings.common_image')) ?? '' }}" alt="image">
                       {!! $servicesSection->discrption !!}
                   </div>
               </div>
@@ -17,7 +17,7 @@
                           <!-- Start Single Service -->
                           <div class="single-service">
                               {!! $servicesData->icon !!}
-                              <h4><a href="">{{ $servicesData->name ?? '' }}</a> </h4>
+                              <h4><a href="{{ route('frontend.service.details',['id' => $servicesData->id]) }}">{{ $servicesData->name ?? '' }}</a> </h4>
                               {!! Str::limit($servicesData->short_description, 100, '...')  ?? '' !!}
                           </div>
                           <!-- End Single Service -->

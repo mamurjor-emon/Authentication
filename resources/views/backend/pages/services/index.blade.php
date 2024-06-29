@@ -26,6 +26,7 @@
                 <thead>
                     <tr>
                         <th>Sl</th>
+                        <th>Icon</th>
                         <th>Name</th>
                         <th>Title</th>
                         <th>First Image</th>
@@ -68,6 +69,7 @@
         },
         columns: [
             {data: 'DT_RowIndex',orderable: false, searchable: false},
+            {data: 'icon'},
             {data: 'name'},
             {data: 'title'},
             {data: 'fimage'},
@@ -106,7 +108,7 @@
                     orientation: "landscape",
                     pageSize: "A4",
                     exportOptions: {
-                        columns: '0,1,2,3,4'
+                        columns: '0,1,2,3,4,5,6,7'
                     },
                     customize: function(doc) {
                         doc.defaultStyle.alignment = 'center';
@@ -119,7 +121,7 @@
                     text: '<i class="fa fa-file-excel-o" aria-hidden="true"></i> Excel',
                     className: 'excelButton mdc-button mdc-button--raised filled-button--info mdc-ripple-upgraded mb-3',
                     exportOptions: {
-                        columns: '0,1,2,3,4'
+                        columns: '0,1,2,3,4,5,6,7'
                     },
                 },
                 {
@@ -129,7 +131,7 @@
                     orientation: "landscape",
                     pageSize: "A4",
                     exportOptions: {
-                        columns: '0,1,2,3,4'
+                        columns: '0,1,2,3,4,5,6,7'
                     }
                 }
             ]

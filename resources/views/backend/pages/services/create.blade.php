@@ -32,6 +32,7 @@
                             required="required" placeholder="Enter Heading..!" errorName="heading" class="py-2"
                             value="{{ old('heading') }}"></x-form.textbox>
                         </div>
+
                         <div class="row g-5 mt-2">
                             <div class="col-md-6">
                                 <label class="text-dark font-weight-medium">First Image<span class="required"></span></label>
@@ -98,6 +99,7 @@
                                 </x-form.selectbox>
                             </div>
                         </div>
+                        
                         <div class="d-flex justify-content-end align-items-center mt-3">
                             <button type="submit"
                                 class="mdc-button mdc-button--unelevated filled-button--success mdc-ripple-upgraded">Create</button>

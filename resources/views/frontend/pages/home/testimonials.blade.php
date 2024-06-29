@@ -5,7 +5,7 @@
             <div class="col-lg-12">
                 <div class="section-title">
                     <h2>{{ $testimonialSection->title }}</h2>
-                    <img src="{{ config('settings.common_white_image') ?? '' }}" alt="image">
+                    <img src="{{ asset(config('settings.common_white_image')) ?? '' }}" alt="image">
                 </div>
             </div>
         </div>

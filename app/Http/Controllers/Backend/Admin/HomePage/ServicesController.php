@@ -46,8 +46,11 @@ class ServicesController extends Controller
                             });
                         }
                     })
-                    ->addColumn('name', function ($data) {
+                    ->addColumn('icon', function ($data) {
                         return $data->icon;
+                    })
+                    ->addColumn('name', function ($data) {
+                        return $data->name;
                     })
                     ->addColumn('fimage', function ($data) {
                         return '<img id="getDataImage" src="' . asset($data->fimage) . '" alt="image">';
@@ -152,14 +155,33 @@ class ServicesController extends Controller
     {
         if (Gate::allows('isAdmin')) {
             $editService = Service::where('id', $request->update_id)->first();
+            $fimage = '';
+            if ($request->file('fimage')) {
+                $fimage = $this->imageUpdate($request->file('fimage'), 'images/service/', null, null,$editService->fimage);
+            } else {
+                $fimage = $editService->fimage;
+            }
+
+            $simage = '';
+            if ($request->file('simage')) {
+                $simage = $this->imageUpdate($request->file('simage'), 'images/service/', null, null, $editService->simage);
+            } else {
+                $simage = $editService->simage;
+            }
             $editService->update([
-                'icon'         => $request->icon,
-                'title'        => $request->title,
-                'title_url'    => $request->title_url,
-                'title_target' => $request->title_target,
-                'discrption'   => $request->discrption,
-                'order_by'     => $request->order_by,
-                'status'       => $request->status,
+                'icon'              => $request->icon,
+                'name'              => $request->name,
+                'title'             => $request->title,
+                'short_description' => $request->short_description,
+                'fimage'            => $fimage,
+                'special_text'      => $request->special_text,
+                'fdescription'      => $request->fdescription,
+                'simage'            => $simage,
+                'heading'           => $request->heading,
+                'sdescription'      => $request->sdescription,
+                'tdescription'      => $request->tdescription,
+                'order_by'          => $request->order_by,
+                'status'            => $request->status,
             ]);
             return redirect()->route('admin.services.index')->with('success', 'Service Update Successfuly Done..!');
         } else {
@@ -170,6 +192,8 @@ class ServicesController extends Controller
     {
         if (Gate::allows('isAdmin')) {
             $editService = Service::where('id', $id)->first();
+            $this->imageDelete($editService->fimage);
+            $this->imageDelete($editService->simage);
             $editService->delete();
             return back()->with('success', 'Service Delete Successfuly Done.. !');
         } else {

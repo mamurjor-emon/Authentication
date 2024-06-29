@@ -23,9 +23,10 @@ class ServiceController extends Controller
         return view('frontend.pages.services.index', $data);
    }
 
-   public function serviceDetailse(){
-        $this->setPageTitle('Service Detailse');
+   public function serviceDetailse($id){
+        $this->setPageTitle('Service Details');
         $data['breadcrumb']         = ['Home' => url('/'), 'Service Detailse' => ''];
+        $data['servicesData']      = Service::where('id', $id)->first();
         return view('frontend.pages.services.details', $data);
    }
 }

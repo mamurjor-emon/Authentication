@@ -52,4 +52,28 @@ class FrontendController extends Controller
         $data['departments']        = DepartmentModel::where('status','1')->orderBy('order_by','asc')->get();
         return view('frontend.pages.home',$data);
     }
+
+    public function testimonials(){
+        $this->setPageTitle('Testimonials');
+        $data['breadcrumb']         = ['Home' => url('/'), 'Testimonials' => ''];
+        $data['feautesTitle']       = TitleDiscrption::where('section_name','Feautes_section')->where('status','1')->first();
+        $data['feautes']            = Feautes::where('status','1')->orderBy('order_by','asc')->get();
+        $data['clientDatas']        = Client::where('status', '1')->orderBy('order_by','asc')->get();
+        $data['servicesSection']    = TitleDiscrption::where('section_name','Services_section')->where('status','1')->first();
+        $data['servicesDatas']      = Service::where('status', '1')->orderBy('order_by','asc')->get();
+        $data['testimonialSection'] = TitleDiscrption::where('section_name','TestimonialSection')->where('status','1')->first();
+        $data['testimonials']       = Review::with('user')->where('status','1')->orderBy('order_by','asc')->get();
+        $data['newsletterSection']  = TitleDiscrption::where('section_name','Newsletter_section')->where('status','1')->first();
+        return view('frontend.pages.testimonials.testimonials',$data);
+    }
+
+    public function pricing(){
+        $this->setPageTitle('Pricing');
+        $data['breadcrumb']         = ['Home' => url('/'), 'Pricing' => ''];
+        $data['pricingSection']     = TitleDiscrption::where('section_name','Pricing_table_section')->where('status','1')->first();
+        $data['pricingDatas']       = PricingTable::where('status', '1')->orderBy('order_by','asc')->get();
+        $data['clientDatas']        = Client::where('status', '1')->orderBy('order_by','asc')->get();
+        $data['newsletterSection']  = TitleDiscrption::where('section_name','Newsletter_section')->where('status','1')->first();
+        return view('frontend.pages.pricing.pricing',$data);
+    }
 }

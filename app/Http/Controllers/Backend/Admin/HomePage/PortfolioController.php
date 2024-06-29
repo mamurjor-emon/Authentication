@@ -128,6 +128,7 @@ class PortfolioController extends Controller
                 'status'      => $request->status,
                 'image'       => $image,
             ]);
+
             if($request->portfolio_gallery != null){
                 foreach($request->portfolio_gallery as $gallery){
                     $image = $this->imageUpload($gallery, 'images/potfolio/gallery/', null, null);
@@ -203,8 +204,13 @@ class PortfolioController extends Controller
     public function delete($id)
     {
         if (Gate::allows('isAdmin')) {
-            $editPortfolio = PortfolioSection::where('id', $id)->first();
+            $editPortfolio = PortfolioSection::with('galleryImages')->where('id', $id)->first();
             $this->imageDelete($editPortfolio->image);
+            if($editPortfolio->galleryImages != null){
+                foreach ($editPortfolio->galleryImages as $key => $value) {
+                    $this->imageDelete($value->image);
+                }
+            }
             $editPortfolio->delete();
             return back()->with('success', 'Portfolio Delete Successfuly Done.. !');
         } else {
