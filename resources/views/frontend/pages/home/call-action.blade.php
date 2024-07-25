@@ -7,8 +7,8 @@
                     <h2>{{ $callToAction->title ?? '' }}</h2>
                     {!! $callToAction->sub_title ?? '' !!}
                     <div class="button">
-                        <a href="{{ $callToAction->f_btn_url ?? '' }}" target="{{ $callToAction->f_btn_target ?? '' }}" class="btn">{{ $callToAction->f_btn_title ?? '' }}</a>
-                        <a href="{{ $callToAction->l_btn_url ?? '' }}" target="{{ $callToAction->l_btn_target ?? '' }}" class="btn second">{{ $callToAction->l_btn_title ?? '' }}<i class="fa fa-long-arrow-right"></i></a>
+                        <a href="{{ $callToAction->f_btn_url ?? '' }}" target="{{ $callToAction->f_btn_target == 0 ? '_self' : '_blank' }}" class="btn">{{ $callToAction->f_btn_title ?? '' }}</a>
+                        <a href="{{ $callToAction->l_btn_url ?? '' }}" target="{{ $callToAction->l_btn_target == 0 ? '_self' : '_blank' }}" class="btn second">{{ $callToAction->l_btn_title ?? '' }}<i class="fa fa-long-arrow-right"></i></a>
                     </div>
                 </div>
             </div>

@@ -25,6 +25,7 @@ use App\Http\Controllers\Backend\Admin\HomePage\SilderController;
 use App\Http\Controllers\Backend\Admin\HomePage\SocalMediaController;
 use App\Http\Controllers\Backend\Admin\HomePage\TitleDiscriptionController;
 use App\Http\Controllers\Backend\Admin\HomePage\WhyChooseController;
+use App\Http\Controllers\Backend\Admin\Pages\ContactPageController;
 use App\Http\Controllers\Backend\Admin\UserManageMentController;
 use App\Models\TitleDiscrption;
 
@@ -215,6 +216,12 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth', 'i
         Route::get('edit/{id}', [BlogsController::class, 'edit'])->name('edit');
         Route::post('update', [BlogsController::class, 'update'])->name('update');
         Route::get('delete/{id}', [BlogsController::class, 'delete'])->name('delete');
+    });
+
+    //------------------------ Page  Section -----------------------//
+    Route::prefix('contact')->name('contact.')->group(function () {
+        Route::get('/', [ContactPageController::class, 'contactPage'])->name('contact.index');
+        Route::post('/store', [ContactPageController::class, 'contactPageStore'])->name('contact.store');
     });
 
     //------------------------ Footer Section -----------------------//

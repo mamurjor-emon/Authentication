@@ -53,6 +53,7 @@ class AuthController extends Controller
             'password'           => Hash::make($request->password),
             'verify_code'        => $verify_code,
         ]);
+
         $request['roleName'] = $role->name;
         $request['full_name'] = $request->fname . ' ' . $request->lname;
         $request['button_url'] = URL::temporarySignedRoute('verify.code', now()->addHours(1), ['token' => $verify_code]);
@@ -62,7 +63,9 @@ class AuthController extends Controller
         $subject = emailSubjectTemplate('NEW_USER_MAIL', $request);
         $body    = emailBodyTemplate('NEW_USER_MAIL', $request);
         $heading = emailHeadingTemplate('NEW_USER_MAIL', $request);
+        
         $userMail = ['subject' => $subject, 'body' => $body, 'heading' => $heading];
+
         Mail::to($request->email)->send(new VerifyUserMail($userMail));
         Auth::login($user, true);
         DB::commit();

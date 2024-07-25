@@ -36,7 +36,6 @@ class AuthServiceProvider extends ServiceProvider
             if($user->role->slug == 'doctor'){
                 return true;
             }
-
             return false;
         });
 
@@ -45,7 +44,6 @@ class AuthServiceProvider extends ServiceProvider
             if ($user->role->slug == 'client') {
                 return true;
             }
-
             return false;
         });
 

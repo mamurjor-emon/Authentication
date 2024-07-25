@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Backend\DashboardController;
 use App\Http\Controllers\Frontend\BlogController;
+use App\Http\Controllers\Frontend\ContactController;
 use App\Http\Controllers\Frontend\DoctorController;
 use App\Http\Controllers\Frontend\FrontendController;
 use App\Http\Controllers\Frontend\PortfolioController;
@@ -75,6 +76,8 @@ Route::prefix('frontend')->name('frontend.')->group(function () {
     Route::post('blog/comment/replay', [BlogController::class, 'blogCommentRepay'])->name('blog.comment.repay')->middleware('auth');
     Route::get('categorie/{id}', [BlogController::class, 'categorieBlog'])->name('categorie.blog');
     Route::post('blog/search', [BlogController::class, 'blogSearch'])->name('blog.search');
+    Route::get('contact',[ContactController::class,'contact'])->name('frontend.contact');
+    Route::post('contact/store',[ContactController::class,'store'])->name('frontend.contact.store');
 });
 
 
