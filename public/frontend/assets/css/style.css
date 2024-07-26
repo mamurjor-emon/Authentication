@@ -4901,6 +4901,15 @@ body {
 	width: 93%;
 	padding-bottom: 18px;
 }
+
+#blogs_pagination .text-muted {
+	display: none !important;
+}
+
+#blogs_pagination .page-item .page-link {
+	padding: 12px 17px;
+	font-size: 20px;
+}
 /*=========================
 	Custome  CSS End
 ===========================*/

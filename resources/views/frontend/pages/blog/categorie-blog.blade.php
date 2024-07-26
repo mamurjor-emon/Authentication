@@ -66,11 +66,14 @@
                 <div class="col-lg-4 col-12">
                     <div class="main-sidebar">
                         <!-- Single Widget -->
-                        <div class="single-widget search">
+                        <div class="single-widget search position-relative">
                             <div class="form">
-                                <input type="email" placeholder="Search Here...">
-                                <a class="button" href="#"><i class="fa fa-search"></i></a>
+                                <input type="text" placeholder="Search Here..." id="blog_search">
+                                <a class="button" href="javascrpt:"><i class="fa fa-search"></i></a>
                             </div>
+                        </div>
+                        <div id="search-result">
+
                         </div>
                         <!--/ End Single Widget -->
                         <!-- Single Widget -->
@@ -135,3 +138,27 @@
     <!--/ End Single News -->
     <!--Include Comment Replay Modal-->
 @endsection
+@push('scripts')
+    <script>
+        $(document).on('keyup', '#blog_search', function() {
+            var data = $(this).val();
+            $.ajax({
+                type: "POST",
+                url: "{{ route('frontend.blog.search') }}",
+                data: {
+                    _token: _token,
+                    data: data
+                },
+                success: function(res) {
+                    var getId = $('#search-result').html('');
+                    if (res.status == 'success') {
+                        getId.html('');
+                        getId.html(res.data);
+                    } else {
+                        getId.html('');
+                    }
+                }
+            });
+        })
+    </script>
+@endpush

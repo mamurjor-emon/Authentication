@@ -13,6 +13,17 @@ use Illuminate\Support\Facades\Auth;
 
 class BlogController extends Controller
 {
+    public function blogs()
+    {
+        $this->setPageTitle('Blogs');
+        $data['blogs']        = Blog::with(['user', 'categorie'])->paginate(6);
+        $data['tags']         = BlogTag::where('status', '1')->get();
+        $data['categories']   = BlogCategories::where('status', '1')->get();
+        $data['breadcrumb']   = ['Home' => url('/'), 'Blogs' => ''];
+        $data['resentPosts']  = Blog::where('status', '1')->orderBy('id', 'desc')->get();
+        return view('frontend.pages.blog.blog', $data);
+    }
+
     public function blog($id)
     {
         $this->setPageTitle('Blog Details');

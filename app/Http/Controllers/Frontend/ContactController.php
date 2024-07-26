@@ -30,4 +30,12 @@ class ContactController extends Controller
        ]);
        return back()->with('success','Contact Store Successfully !!');
     }
+
+    public function timeTable()
+    {
+        $this->setPageTitle('Time Table');
+        $data['breadcrumb']   = ['Home' => url('/'), 'Time Table' => ''];
+        $data['timeTableSection']  = TitleDiscrption::where('section_name','Time_Table')->where('status','1')->first();
+        return view('frontend.pages.time-table.time-table', $data);
+    }
 }
