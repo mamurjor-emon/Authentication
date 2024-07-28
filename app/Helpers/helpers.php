@@ -125,6 +125,20 @@ if (!function_exists('status')) {
     }
 }
 
+if (!function_exists('dayStatus')) {
+    function dayStatus($status)
+    {
+        if ($status == 1) {
+            $badgeClass = 'badge-success';
+            $badgeTitle = 'Open';
+        } else {
+            $badgeClass = 'badge-danger';
+            $badgeTitle = 'Close';
+        }
+        return '<span class="badge badge-sm ' . $badgeClass . ' py-1 px-2">' . $badgeTitle . '</span>';
+    }
+}
+
 /**
  * side
  *

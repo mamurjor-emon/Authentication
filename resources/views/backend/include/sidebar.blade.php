@@ -98,6 +98,16 @@
                     <div class="mdc-expansion-panel" id="ui-sub-menu-doctors" {!! $parentDoctorsSubMenu ?? '' !!}>
                         <nav class="mdc-list mdc-drawer-submenu">
                             <div class="mdc-list-item mdc-drawer-item">
+                                <a class="mdc-drawer-link {{ $addSlot ?? '' }}" href="{{ route('admin.doctor.slot.index') }}">
+                                    Add Slot
+                                </a>
+                            </div>
+                            <div class="mdc-list-item mdc-drawer-item">
+                                <a class="mdc-drawer-link {{ $addDay ?? '' }}" href="{{ route('admin.doctor.day.index') }}">
+                                    Add Day
+                                </a>
+                            </div>
+                            <div class="mdc-list-item mdc-drawer-item">
                                 <a class="mdc-drawer-link {{ $doctorDepartment ?? '' }}" href="{{ route('admin.doctor.department.index') }}">
                                     Add Department
                                 </a>

@@ -1,33 +1,35 @@
 <?php
 
+use App\Models\TitleDiscrption;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Backend\Admin\DayController;
+use App\Http\Controllers\Backend\Admin\SlotController;
 use App\Http\Controllers\Backend\Admin\DashboardController;
 use App\Http\Controllers\Backend\Admin\EmailTemplatesController;
-use App\Http\Controllers\Backend\Admin\HomePage\AppointmentsController;
-use App\Http\Controllers\Backend\Admin\HomePage\BlogCategorieController;
 use App\Http\Controllers\Backend\Admin\HomePage\BlogsController;
-use App\Http\Controllers\Backend\Admin\HomePage\BlogTagController;
-use App\Http\Controllers\Backend\Admin\HomePage\CallActionController;
-use App\Http\Controllers\Backend\Admin\HomePage\ClientsController;
-use App\Http\Controllers\Backend\Admin\HomePage\DepartmentController;
-use App\Http\Controllers\Backend\Admin\HomePage\DoctorController;
-use App\Http\Controllers\Backend\Admin\HomePage\FeautesController;
-use App\Http\Controllers\Backend\Admin\HomePage\FooterBottomController;
-use App\Http\Controllers\Backend\Admin\HomePage\FooterController;
-use App\Http\Controllers\Backend\Admin\HomePage\FunFactsController;
 use App\Http\Controllers\Backend\Admin\HomePage\MenusController;
-use App\Http\Controllers\Backend\Admin\HomePage\PortfolioCategorieController;
-use App\Http\Controllers\Backend\Admin\HomePage\PortfolioController;
+use App\Http\Controllers\Backend\Admin\UserManageMentController;
+use App\Http\Controllers\Backend\Admin\HomePage\DoctorController;
+use App\Http\Controllers\Backend\Admin\HomePage\FooterController;
+use App\Http\Controllers\Backend\Admin\HomePage\SilderController;
+use App\Http\Controllers\Backend\Admin\HomePage\BlogTagController;
+use App\Http\Controllers\Backend\Admin\HomePage\ClientsController;
+use App\Http\Controllers\Backend\Admin\HomePage\FeautesController;
 use App\Http\Controllers\Backend\Admin\HomePage\PricingController;
+use App\Http\Controllers\Backend\Admin\HomePage\FunFactsController;
 use App\Http\Controllers\Backend\Admin\HomePage\ScheduleController;
 use App\Http\Controllers\Backend\Admin\HomePage\ServicesController;
-use App\Http\Controllers\Backend\Admin\HomePage\SilderController;
-use App\Http\Controllers\Backend\Admin\HomePage\SocalMediaController;
-use App\Http\Controllers\Backend\Admin\HomePage\TitleDiscriptionController;
-use App\Http\Controllers\Backend\Admin\HomePage\WhyChooseController;
 use App\Http\Controllers\Backend\Admin\Pages\ContactPageController;
-use App\Http\Controllers\Backend\Admin\UserManageMentController;
-use App\Models\TitleDiscrption;
+use App\Http\Controllers\Backend\Admin\HomePage\PortfolioController;
+use App\Http\Controllers\Backend\Admin\HomePage\WhyChooseController;
+use App\Http\Controllers\Backend\Admin\HomePage\CallActionController;
+use App\Http\Controllers\Backend\Admin\HomePage\DepartmentController;
+use App\Http\Controllers\Backend\Admin\HomePage\SocalMediaController;
+use App\Http\Controllers\Backend\Admin\HomePage\AppointmentsController;
+use App\Http\Controllers\Backend\Admin\HomePage\FooterBottomController;
+use App\Http\Controllers\Backend\Admin\HomePage\BlogCategorieController;
+use App\Http\Controllers\Backend\Admin\HomePage\TitleDiscriptionController;
+use App\Http\Controllers\Backend\Admin\HomePage\PortfolioCategorieController;
 
 // Group Route
 Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth', 'is_verify', 'is_admin']], function () {
@@ -156,6 +158,22 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth', 'i
 
     //------------------------ Doctors Section -----------------------//
     Route::prefix('doctor')->name('doctor.')->group(function () {
+        Route::get('/slot', [SlotController::class, 'index'])->name('slot.index');
+        Route::post('slot/getdata', [SlotController::class, 'getData'])->name('slot.get.data');
+        Route::get('slot/create', [SlotController::class, 'create'])->name('slot.create');
+        Route::post('slot/store', [SlotController::class, 'store'])->name('slot.store');
+        Route::get('slot/edit/{id}', [SlotController::class, 'edit'])->name('slot.edit');
+        Route::post('slot/update', [SlotController::class, 'update'])->name('slot.update');
+        Route::get('slot/delete/{id}', [SlotController::class, 'delete'])->name('slot.delete');
+
+        Route::get('/day', [DayController::class, 'index'])->name('day.index');
+        Route::post('day/getdata', [DayController::class, 'getData'])->name('day.get.data');
+        Route::get('day/create', [DayController::class, 'create'])->name('day.create');
+        Route::post('day/store', [DayController::class, 'store'])->name('day.store');
+        Route::get('day/edit/{id}', [DayController::class, 'edit'])->name('day.edit');
+        Route::post('day/update', [DayController::class, 'update'])->name('day.update');
+        Route::get('day/delete/{id}', [DayController::class, 'delete'])->name('day.delete');
+
         Route::get('/department', [DepartmentController::class, 'index'])->name('department.index');
         Route::post('department/getdata', [DepartmentController::class, 'getData'])->name('department.get.data');
         Route::get('department/create', [DepartmentController::class, 'create'])->name('department.create');
