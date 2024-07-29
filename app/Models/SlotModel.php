@@ -15,7 +15,9 @@ class SlotModel extends Model
      */
     protected $fillable = [
         'start_time',
+        'start_zone',
         'end_time',
+        'end_zone',
         'order_by',
         'status',
     ];

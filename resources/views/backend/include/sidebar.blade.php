@@ -194,35 +194,6 @@
                 </div>
 
                  <div class="mdc-list-item mdc-drawer-item">
-                    <a class="mdc-expansion-panel-link {{ $parentBlogs ?? '' }}" href="#" data-toggle="expansionPanel"
-                        data-target="ui-sub-menu-blog">
-                        <i class="material-icons mdc-list-item__start-detail mdc-drawer-item-icon"
-                            aria-hidden="true">book</i>
-                            Blog Section
-                        <i class="mdc-drawer-arrow material-icons">chevron_right</i>
-                    </a>
-                    <div class="mdc-expansion-panel" id="ui-sub-menu-blog" {!! $parentBlogsSubMenu ?? '' !!}>
-                        <nav class="mdc-list mdc-drawer-submenu">
-                            <div class="mdc-list-item mdc-drawer-item">
-                                <a class="mdc-drawer-link {{ $blogCategorie ?? '' }}" href="{{ route('admin.blog.categories.index') }}">
-                                    Blog Categories
-                                </a>
-                            </div>
-                            <div class="mdc-list-item mdc-drawer-item">
-                                <a class="mdc-drawer-link {{ $blogTag ?? '' }}" href="{{ route('admin.blog.tags.index') }}">
-                                    Blog Tags
-                                </a>
-                            </div>
-                            <div class="mdc-list-item mdc-drawer-item">
-                                <a class="mdc-drawer-link {{ $singleBlog ?? '' }}" href="{{ route('admin.blog.index') }}">
-                                    Single Blog
-                                </a>
-                            </div>
-                        </nav>
-                    </div>
-                </div>
-
-                 <div class="mdc-list-item mdc-drawer-item">
                     <a class="mdc-expansion-panel-link {{ $parentFooter ?? '' }}" href="#" data-toggle="expansionPanel"
                         data-target="ui-sub-menu-footer">
                         <i class="material-icons mdc-list-item__start-detail mdc-drawer-item-icon"
@@ -359,14 +330,14 @@
                          data-target="ui-sub-menu-company">
                          <i class="material-icons mdc-list-item__start-detail mdc-drawer-item-icon"
                              aria-hidden="true">settings</i>
-                         Company Settings
+                             Appearance
                          <i class="mdc-drawer-arrow material-icons">chevron_right</i>
                      </a>
                      <div class="mdc-expansion-panel" id="ui-sub-menu-company" {!! $parentEmailSubMenu ?? '' !!}>
                          <nav class="mdc-list mdc-drawer-submenu">
                              <div class="mdc-list-item mdc-drawer-item">
                                  <a class="mdc-drawer-link" href="">
-                                    Company Settings
+                                    Theme Settings
                                  </a>
                              </div>
                              <div class="mdc-list-item mdc-drawer-item">

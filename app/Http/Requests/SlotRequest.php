@@ -21,11 +21,22 @@ class SlotRequest extends FormRequest
      */
     public function rules(): array
     {
-        return [
-            'start_time' => ['required','unique:slot_models,start_time'],
-            'end_time'   => ['required','unique:slot_models,end_time'],
+
+        $roles = [
+            'start_zone' => ['required'],
+            'end_zone'   => ['required'],
             'order_by'   => ['required'],
             'status'     => ['required'],
         ];
+
+        if (request()->update_id) {
+            $roles['start_time'] = ['required'];
+            $roles['end_time']   = ['required'];
+        } else {
+            $roles['start_time'] = ['required','unique:slot_models,start_time'];
+            $roles['end_time']   = ['required','unique:slot_models,end_time'];
+        }
+
+        return $roles;
     }
 }

@@ -11,24 +11,39 @@
                     <h2 class="backend-title">{{ $title }}</h2>
                 </div>
                 <div class="menu-create-form">
-                    <form method="POST" action="{{ route('admin.doctor.day.update') }}" enctype="multipart/form-data">
+                    <form method="POST" action="{{ route('admin.doctor.slot.update') }}" enctype="multipart/form-data">
                         @csrf
                         <div class="row g-5 mt-2">
-                            <input type="hidden" name="update_id" value="{{ $editDay->id }}">
-                            <x-form.textbox labelName="Name" parantClass="col-12 col-md-6" name="name"
-                                required="required" placeholder="Enter Name..!" errorName="name" class="py-2"
-                                value="{{ $editDay->name ?? old('name') }}"></x-form.textbox>
+                            <input type="hidden" name="update_id" value="{{ $editSlot->id }}">
+                            <x-form.textbox labelName="Start Time" parantClass="col-12 col-md-5" name="start_time" optionalText="(Break 30 Minutes)"
+                                type="time" required="required" placeholder="Enter Start Time..!" errorName="start_time"
+                                class="py-2" value="{{ $editSlot->start_time ?? old('start_time') }}"></x-form.textbox>
 
+                            <x-form.selectbox parantClass="col-12 col-md-1" labelName="Start Zone" class="form-control" name="start_zone"
+                                required="required" errorName="start_zone">
+                                <option value="AM" {{ $editSlot->start_zone == 'AM' ? 'selected' : '' }}>AM</option>
+                                <option value="PM" {{ $editSlot->start_zone == 'PM' ? 'selected' : '' }}>PM</option>
+                            </x-form.selectbox>
+
+                            <x-form.textbox labelName="End Time" parantClass="col-12 col-md-5" name="end_time" optionalText="(Break 30 Minutes)"
+                                type="time" required="required" placeholder="Enter End Time..!" errorName="end_time"
+                                class="py-2" value="{{ $editSlot->end_time ?? old('end_time') }}"></x-form.textbox>
+
+                            <x-form.selectbox parantClass="col-12 col-md-1" labelName="End Zone" class="form-control" name="end_zone"
+                                required="required" errorName="end_zone">
+                                <option value="AM" {{ $editSlot->end_zone == 'AM' ? 'selected' : '' }}>AM</option>
+                                <option value="PM" {{ $editSlot->end_zone == 'PM' ? 'selected' : '' }}>PM</option>
+                            </x-form.selectbox>
+                        </div>
+                        <div class="row g-5 mt-2">
                             <x-form.textbox labelName="Order By" parantClass="col-12 col-md-6" name="order_by"
                                 required="required" placeholder="Enter Order By..!" errorName="order_by" class="py-2"
-                                value="{{ $editDay->order_by ?? old('order_by') }}"></x-form.textbox>
-                        </div>
+                                value="{{ $editSlot->order_by ?? old('order_by') }}"></x-form.textbox>
 
-                        <div class="row g-5 mt-2">
                             <x-form.selectbox parantClass="col-12 col-md-6" class="form-control" name="status"
-                                required="required" labelName="Open Status" errorName="status">
-                                <option value="0" {{ $editDay->status == '0' ? 'selected' : '' }}>Close</option>
-                                <option value="1" {{ $editDay->status == '1' ? 'selected' : '' }}>Open</option>
+                                required="required" labelName="Status" errorName="status">
+                                <option value="0" {{ $editSlot->status == '0' ? 'selected' : '' }}>Pending</option>
+                                <option value="1" {{ $editSlot->status == '1' ? 'selected' : '' }}>Publish</option>
                             </x-form.selectbox>
                         </div>
 

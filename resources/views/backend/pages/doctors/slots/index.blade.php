@@ -27,7 +27,9 @@
                     <tr>
                         <th>Sl</th>
                         <th>Start Time</th>
+                        <th>Start Zone</th>
                         <th>End Time</th>
+                        <th>End Zone</th>
                         <th>Status</th>
                         <th class="text-right">Action</th>
                     </tr>
@@ -67,7 +69,9 @@
         columns: [
             {data: 'DT_RowIndex',orderable: false, searchable: false},
             {data: 'start_time'},
+            {data: 'start_zone'},
             {data: 'end_time'},
+            {data: 'end_zone'},
             {data: 'status'},
             {data: 'action'},
         ],

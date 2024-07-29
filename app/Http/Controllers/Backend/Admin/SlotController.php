@@ -50,8 +50,14 @@ class SlotController extends Controller
                     ->addColumn('start_time', function ($data) {
                         return $data->start_time;
                     })
+                    ->addColumn('start_zone', function ($data) {
+                        return $data->start_zone;
+                    })
                     ->addColumn('end_time', function ($data) {
                         return $data->end_time;
+                    })
+                    ->addColumn('end_zone', function ($data) {
+                        return $data->end_zone;
                     })
                     ->addColumn('status', function ($data) {
                         return status($data->status);
@@ -93,10 +99,11 @@ class SlotController extends Controller
     public function store(SlotRequest $request)
     {
         if (Gate::allows('isAdmin')) {
-            dd($request->all());
             SlotModel::create([
                 'start_time' => $request->start_time,
+                'start_zone' => $request->start_zone,
                 'end_time'   => $request->end_time,
+                'end_zone'   => $request->end_zone,
                 'order_by'   => $request->order_by,
                 'status'     => $request->status,
             ]);
@@ -109,28 +116,31 @@ class SlotController extends Controller
     public function edit($id)
     {
         if (Gate::allows('isAdmin')) {
-            $this->setPageTitle('Edit Day');
+            $this->setPageTitle('Edit Slot');
             $data['parentDoctors']        = 'expanded';
             $data['parentDoctorsSubMenu'] = 'style="display: block;"';
-            $data['addDay']               = 'active';
-            $data['editDay']              =  DayModel::find($id);
-            $data['breadcrumb']           = ['Days' => route('admin.doctor.day.index'), 'Edit Day' => '',];
-            return view('backend.pages.doctors.days.edit', $data);
+            $data['addSlot']              = 'active';
+            $data['editSlot']             =  SlotModel::find($id);
+            $data['breadcrumb']           = ['Slots' => route('admin.doctor.slot.index'), 'Edit Slot' => '',];
+            return view('backend.pages.doctors.slots.edit', $data);
         } else {
             abort(401);
         }
     }
 
-    public function update(DayRequest $request)
+    public function update(SlotRequest $request)
     {
         if (Gate::allows('isAdmin')) {
-            $editDay = DayModel::where('id', $request->update_id)->first();
-            $editDay->update([
-                'name'     => $request->name,
-                'order_by' => $request->order_by,
-                'status'   => $request->status,
+            $editSlot = SlotModel::find($request->update_id);
+            $editSlot->update([
+                'start_time' => $request->start_time,
+                'start_zone' => $request->start_zone,
+                'end_time'   => $request->end_time,
+                'end_zone'   => $request->end_zone,
+                'order_by'   => $request->order_by,
+                'status'     => $request->status,
             ]);
-            return redirect()->route('admin.doctor.day.index')->with('success', 'Day Update Successfuly Done..!');
+            return redirect()->route('admin.doctor.slot.index')->with('success', 'Slot Update Successfuly Done..!');
         } else {
             abort(401);
         }
@@ -138,9 +148,9 @@ class SlotController extends Controller
     public function delete($id)
     {
         if (Gate::allows('isAdmin')) {
-            $editDay = DayModel::where('id', $id)->first();
-            $editDay->delete();
-            return back()->with('success', 'Day Delete Successfuly Done.. !');
+            $editSlot = SlotModel::find($id);
+            $editSlot->delete();
+            return back()->with('success', 'Slot Delete Successfuly Done.. !');
         } else {
             abort(401);
         }

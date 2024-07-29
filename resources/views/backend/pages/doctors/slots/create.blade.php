@@ -14,15 +14,25 @@
                     <form method="POST" action="{{ route('admin.doctor.slot.store') }}" enctype="multipart/form-data">
                         @csrf
                         <div class="row g-5 mt-2">
-                            <x-form.textbox labelName="Start Time" parantClass="col-12 col-md-6" name="start_time" type="time"
-                                required="required" placeholder="Enter Start Time..!" errorName="start_time" class="py-2"
-                                value="{{ old('start_time') }}"></x-form.textbox>
+                            <x-form.textbox labelName="Start Time" parantClass="col-12 col-md-5" name="start_time" optionalText="(Break 30 Minutes)"
+                                type="time" required="required" placeholder="Enter Start Time..!" errorName="start_time"
+                                class="py-2" value="{{ old('start_time') }}"></x-form.textbox>
 
-                            <x-form.textbox labelName="End Time" parantClass="col-12 col-md-6" name="end_time"  type="time"
-                                required="required" placeholder="Enter End Time..!" errorName="end_time" class="py-2"
-                                value="{{ old('end_time') }}"></x-form.textbox>
+                            <x-form.selectbox parantClass="col-12 col-md-1" labelName="Start Zone" class="form-control" name="start_zone"
+                                required="required" errorName="start_zone">
+                                <option value="AM">AM</option>
+                                <option value="PM">PM</option>
+                            </x-form.selectbox>
+
+                            <x-form.textbox labelName="End Time" parantClass="col-12 col-md-5" name="end_time" optionalText="(Break 30 Minutes)"
+                                type="time" required="required" placeholder="Enter End Time..!" errorName="end_time"
+                                class="py-2" value="{{ old('end_time') }}"></x-form.textbox>
+                            <x-form.selectbox parantClass="col-12 col-md-1" labelName="End Zone" class="form-control" name="end_zone"
+                                required="required" errorName="end_zone">
+                                <option value="AM">AM</option>
+                                <option value="PM">PM</option>
+                            </x-form.selectbox>
                         </div>
-
                         <div class="row g-5 mt-2">
                             <x-form.textbox labelName="Order By" parantClass="col-12 col-md-6" name="order_by"
                                 required="required" placeholder="Enter Order By..!" errorName="order_by" class="py-2"
