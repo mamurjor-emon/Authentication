@@ -5,9 +5,9 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="section-title">
-                        <h2>{{ $whyChooseTitle->title }}</h2>
+                        <h2>{{ config('settings.why_choose_section_title') ?? '' }}</h2>
                         <img src="{{ asset(config('settings.common_image')) ?? '' }}" alt="image">
-                       {!! $whyChooseTitle->discrption !!}
+                       <p>{{ config('settings.why_choose_section_description') ?? '' }}</p>
                     </div>
                 </div>
             </div>
@@ -15,18 +15,18 @@
                 <div class="col-lg-6 col-12">
                     <!-- Start Choose Left -->
                     <div class="choose-left">
-                        <h3>{{ $whyChooseData->title ?? '' }}</h3>
-                        {!! $whyChooseData->f_title ?? '' !!}
-                        {!! $whyChooseData->s_title ?? '' !!}
+                        <h3>{{ config('settings.why_choose_title')  ?? '' }}</h3>
+                        {!! config('settings.why_choose_f_title')  ?? '' !!}
+                        {!! config('settings.why_choose_s_title')  ?? '' !!}
                         <div class="row">
-                            {!! $whyChooseData->t_title ?? '' !!}
+                            {!! config('settings.why_choose_t_title')  ?? '' !!}
                         </div>
                     </div>
                     <!-- End Choose Left -->
                 </div>
                 <div class="col-lg-6 col-12">
                     <!-- Start Choose Rights -->
-                    <div class="choose-right" style="background-image: url({{ asset($whyChooseData->image ?? '') }});">
+                    <div class="choose-right" style="background-image: url({{ asset(config('settings.why_choose_image'))  ?? '' }});">
                         <div class="video-image">
                             <!-- Video Animation -->
                             <div class="promo-video">
@@ -37,7 +37,7 @@
                                 </div>
                             </div>
                             <!--/ End Video Animation -->
-                            <a href="{{ $whyChooseData->youtube_url  ?? '' }}"
+                            <a href="{{ config('why_choose_youtube_url')  ?? '' }}"
                                 class="video video-popup mfp-iframe"><i class="fa fa-play"></i></a>
                         </div>
                     </div>

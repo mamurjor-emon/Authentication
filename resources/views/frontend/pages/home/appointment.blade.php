@@ -4,9 +4,9 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="section-title">
-                        <h2>{{ $appointmentSection->title ?? '' }}</h2>
+                        <h2>{{ config('settings.appointment_section_title') ?? '' }}</h2>
                         <img src="{{ asset(config('settings.common_image')) }}" alt="#">
-                        {!! $appointmentSection->discrption ?? '' !!}
+                       <p>{{ config('settings.appointment_section_description') ?? ''}}</p>
                     </div>
                 </div>
             </div>
@@ -71,19 +71,19 @@
                             <div class="col-lg-5 col-md-4 col-12">
                                 <div class="form-group">
                                     <div class="button">
-                                        <button type="submit" class="btn">{{ $appointmentData->btn_title ?? '' }}</button>
+                                        <button type="submit" class="btn">{{ config('settings.appointment_btn_title') ?? '' }}</button>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-lg-7 col-md-8 col-12">
-                                <p>{{ $appointmentData->title ?? '' }}</p>
+                                <p>{{ config('settings.appointment_title') ?? '' }}</p>
                             </div>
                         </div>
                     </form>
                 </div>
                 <div class="col-lg-6 col-md-12 ">
                     <div class="appointment-image">
-                        <img src="{{ asset($appointmentData->image ?? '') }}" alt="appointment image">
+                        <img src="{{ asset(config('settings.appointment_image') ?? '') }}" alt="appointment image">
                     </div>
                 </div>
             </div>

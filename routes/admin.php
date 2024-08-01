@@ -30,11 +30,33 @@ use App\Http\Controllers\Backend\Admin\HomePage\FooterBottomController;
 use App\Http\Controllers\Backend\Admin\HomePage\BlogCategorieController;
 use App\Http\Controllers\Backend\Admin\HomePage\TitleDiscriptionController;
 use App\Http\Controllers\Backend\Admin\HomePage\PortfolioCategorieController;
+use App\Http\Controllers\Backend\Admin\ThemeSettingController;
 
 // Group Route
 Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth', 'is_verify', 'is_admin']], function () {
     //------------------------ Dashboard -----------------------//
     Route::get('dashboard/', [DashboardController::class, 'dashboard'])->name('dashboard');
+
+    //------------------------ Theme Setting -----------------------//
+    Route::prefix('theme')->name('theme.')->group(function () {
+        Route::get('/', [ThemeSettingController::class, 'index'])->name('index');
+        Route::post('store', [ThemeSettingController::class, 'store'])->name('store');
+        Route::post('/feautes/store', [ThemeSettingController::class, 'feautesStore'])->name('feautes.store');
+        Route::post('/fun-fact/store', [ThemeSettingController::class, 'funFactStore'])->name('fun.fact.store');
+        Route::post('/why-choose/store', [ThemeSettingController::class, 'whyChooseStore'])->name('why.choose.store');
+        Route::post('/call-to/store', [ThemeSettingController::class, 'callToStore'])->name('call.to.store');
+        Route::post('/portfolio/store', [ThemeSettingController::class, 'portfolioStore'])->name('portfolio.store');
+        Route::post('/services/store', [ThemeSettingController::class, 'servicesStore'])->name('services.store');
+        Route::post('/testimonials/store', [ThemeSettingController::class, 'testimonialsStore'])->name('testimonials.store');
+        Route::post('/departments/store', [ThemeSettingController::class, 'departmentsStore'])->name('departments.store');
+        Route::post('/pricing/store', [ThemeSettingController::class, 'pricingStore'])->name('pricing.store');
+        Route::post('/team/store', [ThemeSettingController::class, 'teamStore'])->name('team.store');
+        Route::post('/blog/store', [ThemeSettingController::class, 'blogStore'])->name('blog.store');
+        Route::post('/client/store', [ThemeSettingController::class, 'clientStore'])->name('client.store');
+        Route::post('/appointment/store', [ThemeSettingController::class, 'appointmentStore'])->name('appointment.store');
+        Route::post('/newsletter/store', [ThemeSettingController::class, 'newsletterStore'])->name('newsletter.store');
+        Route::post('/sosal-media/store', [ThemeSettingController::class, 'sosalMediaStore'])->name('sosal.media.store');
+    });
 
     //------------------------ Dynamic Menu -----------------------//
     Route::prefix('menu')->name('menu.')->group(function () {
@@ -94,18 +116,6 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth', 'i
         Route::get('delete/{id}', [FunFactsController::class, 'delete'])->name('delete');
     });
 
-    //------------------------WhyChoose Section -----------------------//
-    Route::prefix('why-choose')->name('why.choose.')->group(function () {
-        Route::get('/', [WhyChooseController::class, 'index'])->name('index');
-        Route::post('create', [WhyChooseController::class, 'createOrUpdate'])->name('create.or.update');
-    });
-
-    //------------------------ Call To Action Section -----------------------//
-    Route::prefix('call-action')->name('call.action.')->group(function () {
-        Route::get('/', [CallActionController::class, 'index'])->name('index');
-        Route::post('create', [CallActionController::class, 'createOrUpdate'])->name('create.or.update');
-    });
-
     //------------------------ Services Section -----------------------//
     Route::prefix('services')->name('services.')->group(function () {
         Route::get('/', [ServicesController::class, 'index'])->name('index');
@@ -137,12 +147,6 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth', 'i
         Route::get('edit/{id}', [ClientsController::class, 'edit'])->name('edit');
         Route::post('update', [ClientsController::class, 'update'])->name('update');
         Route::get('delete/{id}', [ClientsController::class, 'delete'])->name('delete');
-    });
-
-    //------------------------ Appointment Section -----------------------//
-    Route::prefix('appointment')->name('appointment.')->group(function () {
-        Route::get('/', [AppointmentsController::class, 'index'])->name('index');
-        Route::post('create', [AppointmentsController::class, 'createOrUpdate'])->name('create.or.update');
     });
 
     //------------------------ Portfolio Categories Section -----------------------//
@@ -269,26 +273,6 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth', 'i
         Route::post('create', [FooterBottomController::class, 'createOrUpdate'])->name('create.or.update');
     });
 
-    //------------------------ Title & Discription All Section -----------------------//
-    Route::prefix('title-discription')->name('title.discription.')->group(function () {
-        Route::get('/', [TitleDiscriptionController::class, 'index'])->name('index');
-        Route::post('getdata', [TitleDiscriptionController::class, 'getData'])->name('get.data');
-        Route::get('create', [TitleDiscriptionController::class, 'create'])->name('create');
-        Route::post('store', [TitleDiscriptionController::class, 'store'])->name('store');
-        Route::get('edit/{id}', [TitleDiscriptionController::class, 'edit'])->name('edit');
-        Route::post('update', [TitleDiscriptionController::class, 'update'])->name('update');
-        Route::get('delete/{id}', [TitleDiscriptionController::class, 'delete'])->name('delete');
-
-        Route::get('section/image',[TitleDiscriptionController::class,'sectionImage'])->name('section.image');
-        Route::post('funfact/image',[TitleDiscriptionController::class,'funfactImage'])->name('funfact.image');
-        Route::post('call-action/image',[TitleDiscriptionController::class,'callActionImage'])->name('call.action.image');
-        Route::post('testimonials/image',[TitleDiscriptionController::class,'testimonialImage'])->name('testimonials.image');
-        Route::post('team/image',[TitleDiscriptionController::class,'teamImage'])->name('team.image');
-        Route::post('client/image',[TitleDiscriptionController::class,'clientImage'])->name('client.image');
-        Route::post('breadcrumb/image',[TitleDiscriptionController::class,'breadcrumbImage'])->name('breadcrumb.image');
-        Route::post('common/image',[TitleDiscriptionController::class,'commonImage'])->name('common.image');
-        Route::post('common-white/image',[TitleDiscriptionController::class,'commonWhiteImage'])->name('common.white.image');
-    });
 
     //------------------------ Socal Media Section -----------------------//
     Route::prefix('socal-media')->name('socal.media.')->group(function () {

@@ -4,9 +4,9 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="section-title">
-                    <h2>{{ $feautesTitle->title }}</h2>
+                    <h2>{{ config('settings.feautes_title') }}</h2>
                     <img src="{{ asset(config('settings.common_image')) ?? '' }}" alt="image">
-                    {!! $feautesTitle->discrption !!}
+                    <p>{{  config('settings.feautes_description') }}</p>
                 </div>
             </div>
         </div>

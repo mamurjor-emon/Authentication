@@ -1,8 +1,8 @@
-#picture__input, #first__image , #second__image, #third__image, #fourth__image, #fivth__image, #sixth__image, #seventh__image, #eghit__image{
+#picture__input, #first__image , #second__image, #third__image, #fourth__image, #fivth__image, #sixth__image, #seventh__image, #eghit__image , #nine__image{
     display: none;
 }
 
-.picture , .first__picture , .second_picture, .third_picture, .fourth_picture, .fivth_picture, .sixth_picture, .seventh_picture, .eghit_picture{
+.picture , .first__picture , .second_picture, .third_picture, .fourth_picture, .fivth_picture, .sixth_picture, .seventh_picture, .eghit_picture , .nine_picture{
     width: 200px;
     height: 100px;
     aspect-ratio: 16/9;
@@ -19,18 +19,18 @@
     overflow: hidden;
 }
 
-.picture:hover , .first__picture:hover , .second_picture:hover, .third_picture:hover, .fourth_picture:hover, .fivth_picture:hover, .sixth_picture:hover, .seventh_picture:hover, .eghit_picture:hover{
+.picture:hover , .first__picture:hover , .second_picture:hover, .third_picture:hover, .fourth_picture:hover, .fivth_picture:hover, .sixth_picture:hover, .seventh_picture:hover, .eghit_picture:hover, .nine_picture:hover{
     color: #777;
     background: #ccc;
 }
 
-.picture:active , .first__picture:active , .second_picture:active, .third_picture:active, .fourth_picture:active, .fivth_picture:active, .sixth_picture:active, .seventh_picture:active, .eghit_picture:active{
+.picture:active , .first__picture:active , .second_picture:active, .third_picture:active, .fourth_picture:active, .fivth_picture:active, .sixth_picture:active, .seventh_picture:active, .eghit_picture:active, .nine_picture:active{
     border-color: turquoise;
     color: turquoise;
     background: #eee;
 }
 
-.picture:focus , .first__picture:focus , .second_picture:focus, .third_picture:focus, .fourth_picture:focus, .fivth_picture:focus, .sixth_picture:focus, .seventh_picture:focus, .eghit_picture:focus{
+.picture:focus , .first__picture:focus , .second_picture:focus, .third_picture:focus, .fourth_picture:focus, .fivth_picture:focus, .sixth_picture:focus, .seventh_picture:focus, .eghit_picture:focus , .nine_picture:focus{
     color: #777;
     background: #ccc;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
@@ -45,6 +45,7 @@
 .picture_sixth_image,
 .seventh_picture,
 .picture_eghit_image,
+.picture_nine_image,
 .signature__image {
     max-width: 100%;
 }

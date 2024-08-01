@@ -4,7 +4,7 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="section-title">
-                    <h2>{{ $departmentSection->title }}</h2>
+                    <h2>{{ config('settings.departments_section_title') ?? '' }}</h2>
                     <img src="{{ asset(config('settings.common_image')) ?? '' }}" alt="image">
                 </div>
             </div>

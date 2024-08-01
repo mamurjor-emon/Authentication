@@ -200,6 +200,7 @@
         ImagePriviewInsert('fourth__image', 'picture_fourth_image', 'Choose Team Image');
         ImagePriviewInsert('fivth__image', 'picture_fivth_image', 'Choose Client Image');
         ImagePriviewInsert('sixth__image', 'picture_sixth_image', 'Choose Breadcrumb Image');
+        
         ImagePriviewInsert('seventh__image', 'picture_seventh_image', 'Choose Common Section Image');
         ImagePriviewInsert('eghit__image', 'picture_eghit_image', 'Choose Common White Section Image');
     });

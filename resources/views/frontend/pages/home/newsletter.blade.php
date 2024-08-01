@@ -5,8 +5,8 @@
                <div class="col-lg-6  col-12">
                    <!-- Start Newsletter Form -->
                    <div class="subscribe-text ">
-                       <h6>{{ $newsletterSection->title }}</h6>
-                       {!! $newsletterSection->discrption !!}
+                       <h6>{{config('settings.newsletter_section_title') ?? '' }}</h6>
+                      <p>{{ config('settings.newsletter_section_description') ?? '' }}</p>
                    </div>
                    <!-- End Newsletter Form -->
                </div>

@@ -4,7 +4,7 @@
  <aside class="mdc-drawer mdc-drawer--dismissible mdc-drawer--open">
      <div class="mdc-drawer__header">
          <a href="{{ url('/') }}" class="brand-logo">
-             <img src="{{ asset('backend/assets/images/sidebar/dark-logo.png') }}" alt="logo">
+             <img src="{{ asset(config('settings.theme_secondary_logo')) }}" alt="logo">
          </a>
      </div>
      <div class="mdc-drawer__content">
@@ -54,16 +54,6 @@
                                  </a>
                              </div>
                              <div class="mdc-list-item mdc-drawer-item">
-                                 <a class="mdc-drawer-link {{ $WhyChooseSection ?? '' }}" href="{{ route('admin.why.choose.index') }}">
-                                     Why Choose
-                                 </a>
-                             </div>
-                             <div class="mdc-list-item mdc-drawer-item">
-                                 <a class="mdc-drawer-link {{ $callToActionActive ?? '' }}" href="{{ route('admin.call.action.index') }}">
-                                     Call Action Settings
-                                 </a>
-                             </div>
-                             <div class="mdc-list-item mdc-drawer-item">
                                  <a class="mdc-drawer-link {{ $servicesActive ?? '' }}" href="{{ route('admin.services.index') }}">
                                      Services Settings
                                  </a>
@@ -76,11 +66,6 @@
                              <div class="mdc-list-item mdc-drawer-item">
                                  <a class="mdc-drawer-link {{ $Clients ?? '' }}" href="{{ route('admin.clients.index') }}">
                                      Clients Settings
-                                 </a>
-                             </div>
-                             <div class="mdc-list-item mdc-drawer-item">
-                                 <a class="mdc-drawer-link {{ $appointmentActive ?? '' }}" href="{{ route('admin.appointment.index') }}">
-                                     Appointment
                                  </a>
                              </div>
                          </nav>
@@ -233,30 +218,6 @@
                 </div>
 
                  <div class="mdc-list-item mdc-drawer-item">
-                    <a class="mdc-expansion-panel-link {{ $parentTitle ?? '' }}" href="#" data-toggle="expansionPanel"
-                        data-target="ui-sub-menu-title">
-                        <i class="material-icons mdc-list-item__start-detail mdc-drawer-item-icon"
-                            aria-hidden="true">build</i>
-                            Section Title
-                        <i class="mdc-drawer-arrow material-icons">chevron_right</i>
-                    </a>
-                    <div class="mdc-expansion-panel" id="ui-sub-menu-title" {!! $parentTitleSubMenu ?? '' !!}>
-                        <nav class="mdc-list mdc-drawer-submenu">
-                            <div class="mdc-list-item mdc-drawer-item">
-                                <a class="mdc-drawer-link {{ $TitleDiscription ?? '' }}" href="{{ route('admin.title.discription.index') }}">
-                                    All Title & Discrption
-                                </a>
-                            </div>
-                            <div class="mdc-list-item mdc-drawer-item">
-                                <a class="mdc-drawer-link {{ $BgImage ?? '' }}" href="{{ route('admin.title.discription.section.image') }}">
-                                    Section BG Image
-                                </a>
-                            </div>
-                        </nav>
-                    </div>
-                </div>
-
-                 <div class="mdc-list-item mdc-drawer-item">
                     <a class="mdc-expansion-panel-link {{ $parentSocal ?? '' }}" href="#" data-toggle="expansionPanel"
                         data-target="ui-sub-menu-socal">
                         <i class="material-icons mdc-list-item__start-detail mdc-drawer-item-icon"
@@ -336,7 +297,7 @@
                      <div class="mdc-expansion-panel" id="ui-sub-menu-company" {!! $parentEmailSubMenu ?? '' !!}>
                          <nav class="mdc-list mdc-drawer-submenu">
                              <div class="mdc-list-item mdc-drawer-item">
-                                 <a class="mdc-drawer-link" href="">
+                                 <a class="mdc-drawer-link {{ $themeSettings ?? '' }}" href="{{ route('admin.theme.index') }}">
                                     Theme Settings
                                  </a>
                              </div>

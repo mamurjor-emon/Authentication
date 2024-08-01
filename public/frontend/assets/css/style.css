@@ -4157,14 +4157,12 @@ body {
     color: #2C2D3F;
 }
 
-.newsletter .subscribe-text p {}
-
 .newsletter .subscribe-form {
     position: relative;
 }
 
 .newsletter .common-input {
-    height: 60px;
+    height: 50px;
     width: 300px;
     border: none;
     color: #333;
@@ -4179,21 +4177,21 @@ body {
 }
 
 .newsletter .btn {
-    -webkit-transition: all 0.4s ease;
-    -moz-transition: all 0.4s ease;
-    transition: all 0.4s ease;
-    display: inline-block;
-    height: 60px;
-    line-height: 60px;
-    padding: 0;
-    width: 180px;
-    position: relative;
-    top: -2px;
-    border-radius: 5px;
-    margin-left: 10px;
-    font-size: 13px;
-    font-weight: 500;
-    box-shadow: 0px 5px 15px rgba(188, 199, 255, 0.75);
+	-webkit-transition: all 0.4s ease;
+	-moz-transition: all 0.4s ease;
+	transition: all 0.4s ease;
+	display: inline-block;
+	height: 50px;
+	line-height: 50px;
+	padding: 0;
+	width: 180px;
+	position: relative;
+	top: -2px;
+	border-radius: 5px;
+	margin-left: 10px;
+	font-size: 13px;
+	font-weight: 500;
+	box-shadow: 0px 5px 15px rgba(188, 199, 255, 0.75);
 }
 
 .newsletter .btn:before {

@@ -7,8 +7,8 @@
                 <div class="col-lg-6 col-md-7 col-12">
                     <!-- Top Contact -->
                     <ul class="top-contact">
-                        <li><i class="fa fa-phone"></i>+880 1234 56789</li>
-                        <li><i class="fa fa-envelope"></i><a href="mailto:support@yourmail.com">support@yourmail.com</a>
+                        <li><i class="fa fa-phone"></i>{{ config('settings.theme_phone') ?? ''  }}</li>
+                        <li><i class="fa fa-envelope"></i><a href="mailto:{{ config('settings.theme_email') ?? '' }}">{{ config('settings.theme_email') ?? '' }}</a>
                         </li>
                     </ul>
                     <!-- End Top Contact -->
@@ -72,7 +72,7 @@
                     <div class="col-lg-3 col-md-3 col-12">
                         <!-- Start Logo -->
                         <div class="logo">
-                            <a href="{{ url('/') }}"><img src="{{ asset('frontend/assets/img/logo.png') }}"
+                            <a href="{{ url('/') }}"><img src="{{ config('settings.theme_primary_logo') ?? '' }}"
                                     alt="#"></a>
                         </div>
                         <!-- End Logo -->
@@ -111,7 +111,6 @@
                                             @endif
                                         </li>
                                     @empty
-                                        <p class="text-center text-danger">Create Menu</p>
                                     @endforelse
                                 </ul>
                             </nav>
@@ -120,7 +119,7 @@
                     </div>
                     <div class="col-lg-2 col-12">
                         <div class="get-quote">
-                            <a href="" class="btn">Book Appointment</a>
+                            <a href="{{ config('settings.theme_btn_url') ?? '' }}" class="btn">{{ config('settings.theme_btn_text') ?? '' }}</a>
                         </div>
                     </div>
                 </div>
