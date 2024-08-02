@@ -179,45 +179,6 @@
                 </div>
 
                  <div class="mdc-list-item mdc-drawer-item">
-                    <a class="mdc-expansion-panel-link {{ $parentFooter ?? '' }}" href="#" data-toggle="expansionPanel"
-                        data-target="ui-sub-menu-footer">
-                        <i class="material-icons mdc-list-item__start-detail mdc-drawer-item-icon"
-                            aria-hidden="true">label_outline</i>
-                            Footer Section
-                        <i class="mdc-drawer-arrow material-icons">chevron_right</i>
-                    </a>
-                    <div class="mdc-expansion-panel" id="ui-sub-menu-footer" {!! $parentFooterSubMenu ?? '' !!}>
-                        <nav class="mdc-list mdc-drawer-submenu">
-                            <div class="mdc-list-item mdc-drawer-item">
-                                <a class="mdc-drawer-link {{ $footerCardOne ?? '' }}" href="{{ route('admin.footer.index') }}">
-                                    Footer Card One
-                                </a>
-                            </div>
-                            <div class="mdc-list-item mdc-drawer-item">
-                                <a class="mdc-drawer-link {{ $footerCardTwo ?? '' }}" href="{{ route('admin.footer.two.index') }}">
-                                    Footer Card Two
-                                </a>
-                            </div>
-                            <div class="mdc-list-item mdc-drawer-item">
-                                <a class="mdc-drawer-link {{ $footerCardThree ?? '' }}" href="{{ route('admin.footer.three.index') }}">
-                                    Footer Card Three
-                                </a>
-                            </div>
-                            <div class="mdc-list-item mdc-drawer-item">
-                                <a class="mdc-drawer-link {{ $footerCardFour ?? '' }}" href="{{ route('admin.footer.four.index') }}">
-                                    Footer Card Four
-                                </a>
-                            </div>
-                            <div class="mdc-list-item mdc-drawer-item">
-                                <a class="mdc-drawer-link {{ $footerBottomActive ?? '' }}" href="{{ route('admin.footer.bottom.index') }}">
-                                    Footer Bottom
-                                </a>
-                            </div>
-                        </nav>
-                    </div>
-                </div>
-
-                 <div class="mdc-list-item mdc-drawer-item">
                     <a class="mdc-expansion-panel-link {{ $parentSocal ?? '' }}" href="#" data-toggle="expansionPanel"
                         data-target="ui-sub-menu-socal">
                         <i class="material-icons mdc-list-item__start-detail mdc-drawer-item-icon"

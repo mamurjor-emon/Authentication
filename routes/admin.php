@@ -56,6 +56,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth', 'i
         Route::post('/appointment/store', [ThemeSettingController::class, 'appointmentStore'])->name('appointment.store');
         Route::post('/newsletter/store', [ThemeSettingController::class, 'newsletterStore'])->name('newsletter.store');
         Route::post('/sosal-media/store', [ThemeSettingController::class, 'sosalMediaStore'])->name('sosal.media.store');
+        Route::post('/footer/store', [ThemeSettingController::class, 'footerStore'])->name('footer.store');
     });
 
     //------------------------ Dynamic Menu -----------------------//
@@ -245,34 +246,6 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth', 'i
         Route::get('/', [ContactPageController::class, 'contactPage'])->name('contact.index');
         Route::post('/store', [ContactPageController::class, 'contactPageStore'])->name('contact.store');
     });
-
-    //------------------------ Footer Section -----------------------//
-    Route::prefix('footer')->name('footer.')->group(function () {
-        Route::get('/', [FooterController::class, 'index'])->name('index');
-        Route::post('create', [FooterController::class, 'createOrUpdate'])->name('create.or.update');
-
-        Route::get('two/index', [FooterController::class, 'twoIndex'])->name('two.index');
-        Route::post('two/title/store', [FooterController::class, 'twoTitleStore'])->name('two.title.store');
-        Route::post('two/get-data', [FooterController::class, 'getData'])->name('two.get.data');
-        Route::post('two/store', [FooterController::class, 'twoStore'])->name('two.store');
-        Route::get('two/create', [FooterController::class, 'twoCreate'])->name('two.create');
-        Route::get('two/edit/{id}', [FooterController::class, 'edit'])->name('two.edit');
-        Route::post('two/update', [FooterController::class, 'update'])->name('two.update');
-        Route::get('two/delete/{id}', [FooterController::class, 'delete'])->name('two.delete');
-
-        Route::get('three', [FooterController::class, 'footerThree'])->name('three.index');
-        Route::post('three/create', [FooterController::class, 'threeCreateOrUpdate'])->name('three.create.or.update');
-
-        Route::get('four', [FooterController::class, 'footerfour'])->name('four.index');
-        Route::post('four/create', [FooterController::class, 'fourCreateOrUpdate'])->name('four.create.or.update');
-    });
-
-    //------------------------ Footer Bottom Section -----------------------//
-    Route::prefix('footer-bottom')->name('footer.bottom.')->group(function () {
-        Route::get('/', [FooterBottomController::class, 'index'])->name('index');
-        Route::post('create', [FooterBottomController::class, 'createOrUpdate'])->name('create.or.update');
-    });
-
 
     //------------------------ Socal Media Section -----------------------//
     Route::prefix('socal-media')->name('socal.media.')->group(function () {

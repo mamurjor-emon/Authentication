@@ -280,4 +280,20 @@ class ThemeSettingController extends Controller
         }
     }
 
+    public function footerStore(Request $request)
+    {
+        if (Gate::allows('isAdmin')) {
+            Setting::updateOrCreate(['option_key' => 'footer_title'], ['option_value' => $request->footer_title]);
+            Setting::updateOrCreate(['option_key' => 'quik_links_left'], ['option_value' => $request->quik_links_left]);
+            Setting::updateOrCreate(['option_key' => 'quik_links_right'], ['option_value' => $request->quik_links_right]);
+            Setting::updateOrCreate(['option_key' => 'open_hours_title'], ['option_value' => $request->open_hours_title]);
+            Setting::updateOrCreate(['option_key' => 'open_hours_time'], ['option_value' => $request->open_hours_time]);
+            Setting::updateOrCreate(['option_key' => 'newslettter_title'], ['option_value' => $request->newslettter_title]);
+            Setting::updateOrCreate(['option_key' => 'copy_rignts'], ['option_value' => $request->copy_rignts]);
+            return back()->with('success', 'Sosal Media Settings Store Successfully!');
+        } else {
+            abort(401);
+        }
+    }
+
 }

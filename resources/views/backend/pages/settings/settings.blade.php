@@ -576,7 +576,8 @@
                     <h2 class="backend-title">Appointment Section</h2>
                 </div>
                 <div class="menu-create-form">
-                    <form method="POST" action="{{ route('admin.theme.appointment.store') }}" enctype="multipart/form-data">
+                    <form method="POST" action="{{ route('admin.theme.appointment.store') }}"
+                        enctype="multipart/form-data">
                         @csrf
                         <div class="row g-5">
                             <x-form.textbox labelName="Appointment Section Title" parantClass="col-12 col-md-6"
@@ -585,14 +586,15 @@
                                 value="{{ config('settings.appointment_section_title') ?? old('appointment_section_title') }}"></x-form.textbox>
 
                             <x-form.textbox labelName="Appointment Section Description" parantClass="col-12 col-md-6"
-                                name="appointment_section_description" placeholder="Enter Appointment Section Description..!"
+                                name="appointment_section_description"
+                                placeholder="Enter Appointment Section Description..!"
                                 errorName="appointment_section_description" class="py-2"
                                 value="{{ config('settings.appointment_section_description') ?? old('appointment_section_description') }}"></x-form.textbox>
                         </div>
                         <div class="row g-5">
                             <x-form.textbox labelName="Appointment Title" parantClass="col-12 col-md-6"
-                                name="appointment_title" placeholder="Enter Title..!"
-                                errorName="appointment_title" class="py-2"
+                                name="appointment_title" placeholder="Enter Title..!" errorName="appointment_title"
+                                class="py-2"
                                 value="{{ config('settings.appointment_title') ?? old('appointment_title') }}"></x-form.textbox>
 
                             <x-form.textbox labelName="Appointment Button Title" parantClass="col-12 col-md-6"
@@ -631,7 +633,8 @@
                     <h2 class="backend-title">Newsletter Section</h2>
                 </div>
                 <div class="menu-create-form">
-                    <form method="POST" action="{{ route('admin.theme.newsletter.store') }}" enctype="multipart/form-data">
+                    <form method="POST" action="{{ route('admin.theme.newsletter.store') }}"
+                        enctype="multipart/form-data">
                         @csrf
                         <div class="row g-5">
                             <x-form.textbox labelName="Newsletter Section Title" parantClass="col-12 col-md-6"
@@ -640,7 +643,8 @@
                                 value="{{ config('settings.newsletter_section_title') ?? old('newsletter_section_title') }}"></x-form.textbox>
 
                             <x-form.textbox labelName="Newsletter Section Description" parantClass="col-12 col-md-6"
-                                name="newsletter_section_description" placeholder="Enter Newsletter Section Description..!"
+                                name="newsletter_section_description"
+                                placeholder="Enter Newsletter Section Description..!"
                                 errorName="newsletter_section_description" class="py-2"
                                 value="{{ config('settings.newsletter_section_description') ?? old('newsletter_section_description') }}"></x-form.textbox>
                         </div>
@@ -661,73 +665,118 @@
                     <h2 class="backend-title">Sosal Media</h2>
                 </div>
                 <div class="menu-create-form">
-                    <form method="POST" action="{{ route('admin.theme.sosal.media.store') }}" enctype="multipart/form-data">
+                    <form method="POST" action="{{ route('admin.theme.sosal.media.store') }}"
+                        enctype="multipart/form-data">
                         @csrf
                         <div class="row g-5">
-                            <x-form.textbox labelName="Facebook" parantClass="col-12 col-md-6"
-                                name="facebook" placeholder="Enter Facebook ..!"
-                                errorName="facebook" class="py-2"
+                            <x-form.textbox labelName="Facebook" parantClass="col-12 col-md-6" name="facebook"
+                                placeholder="Enter Facebook ..!" errorName="facebook" class="py-2"
                                 value="{{ config('settings.facebook') ?? old('facebook') }}"></x-form.textbox>
 
-                            <x-form.textbox labelName="Twitter" parantClass="col-12 col-md-6"
-                                name="twitter" placeholder="Enter Twitter ..!"
-                                errorName="twitter" class="py-2"
+                            <x-form.textbox labelName="Twitter" parantClass="col-12 col-md-6" name="twitter"
+                                placeholder="Enter Twitter ..!" errorName="twitter" class="py-2"
                                 value="{{ config('settings.twitter') ?? old('twitter') }}"></x-form.textbox>
                         </div>
 
                         <div class="row g-5">
-                            <x-form.textbox labelName="Linkedin" parantClass="col-12 col-md-6"
-                                name="linkedin" placeholder="Enter Linkedin ..!"
-                                errorName="linkedin" class="py-2"
+                            <x-form.textbox labelName="Linkedin" parantClass="col-12 col-md-6" name="linkedin"
+                                placeholder="Enter Linkedin ..!" errorName="linkedin" class="py-2"
                                 value="{{ config('settings.linkedin') ?? old('linkedin') }}"></x-form.textbox>
 
-                            <x-form.textbox labelName="Instagram" parantClass="col-12 col-md-6"
-                                name="instagram" placeholder="Enter Instagram ..!"
-                                errorName="instagram" class="py-2"
+                            <x-form.textbox labelName="Instagram" parantClass="col-12 col-md-6" name="instagram"
+                                placeholder="Enter Instagram ..!" errorName="instagram" class="py-2"
                                 value="{{ config('settings.instagram') ?? old('instagram') }}"></x-form.textbox>
                         </div>
 
                         <div class="row g-5">
-                            <x-form.textbox labelName="Youtube" parantClass="col-12 col-md-6"
-                                name="youtube" placeholder="Enter Youtube ..!"
-                                errorName="youtube" class="py-2"
+                            <x-form.textbox labelName="Youtube" parantClass="col-12 col-md-6" name="youtube"
+                                placeholder="Enter Youtube ..!" errorName="youtube" class="py-2"
                                 value="{{ config('settings.youtube') ?? old('youtube') }}"></x-form.textbox>
 
-                            <x-form.textbox labelName="Whatsapp" parantClass="col-12 col-md-6"
-                                name="whatsapp" placeholder="Enter Whatsapp ..!"
-                                errorName="whatsapp" class="py-2"
+                            <x-form.textbox labelName="Whatsapp" parantClass="col-12 col-md-6" name="whatsapp"
+                                placeholder="Enter Whatsapp ..!" errorName="whatsapp" class="py-2"
                                 value="{{ config('settings.whatsapp') ?? old('whatsapp') }}"></x-form.textbox>
                         </div>
 
                         <div class="row g-5">
-                            <x-form.textbox labelName="Tiktok" parantClass="col-12 col-md-6"
-                                name="tiktok" placeholder="Enter Tiktok ..!"
-                                errorName="tiktok" class="py-2"
+                            <x-form.textbox labelName="Tiktok" parantClass="col-12 col-md-6" name="tiktok"
+                                placeholder="Enter Tiktok ..!" errorName="tiktok" class="py-2"
                                 value="{{ config('settings.tiktok') ?? old('tiktok') }}"></x-form.textbox>
 
-                            <x-form.textbox labelName="Telegram" parantClass="col-12 col-md-6"
-                                name="telegram" placeholder="Enter Telegram ..!"
-                                errorName="telegram" class="py-2"
+                            <x-form.textbox labelName="Telegram" parantClass="col-12 col-md-6" name="telegram"
+                                placeholder="Enter Telegram ..!" errorName="telegram" class="py-2"
                                 value="{{ config('settings.telegram') ?? old('telegram') }}"></x-form.textbox>
                         </div>
 
                         <div class="row g-5">
-                            <x-form.textbox labelName="Pinterest" parantClass="col-12 col-md-6"
-                                name="pinterest" placeholder="Enter Pinterest ..!"
-                                errorName="pinterest" class="py-2"
+                            <x-form.textbox labelName="Pinterest" parantClass="col-12 col-md-6" name="pinterest"
+                                placeholder="Enter Pinterest ..!" errorName="pinterest" class="py-2"
                                 value="{{ config('settings.pinterest') ?? old('pinterest') }}"></x-form.textbox>
 
-                            <x-form.textbox labelName="Reddit" parantClass="col-12 col-md-6"
-                                name="reddit" placeholder="Enter Reddit ..!"
-                                errorName="reddit" class="py-2"
+                            <x-form.textbox labelName="Reddit" parantClass="col-12 col-md-6" name="reddit"
+                                placeholder="Enter Reddit ..!" errorName="reddit" class="py-2"
                                 value="{{ config('settings.reddit') ?? old('reddit') }}"></x-form.textbox>
                         </div>
 
                         <div class="row g-5">
-                            <x-form.textbox labelName="Quora" parantClass="col-12 col-md-6"
-                                name="quora" placeholder="Enter Quora ..!"
-                                errorName="quora" class="py-2"
+                            <x-form.textbox labelName="Quora" parantClass="col-12 col-md-6" name="quora"
+                                placeholder="Enter Quora ..!" errorName="quora" class="py-2"
                                 value="{{ config('settings.quora') ?? old('quora') }}"></x-form.textbox>
+                        </div>
+
+                        <div class="d-flex justify-content-end align-items-center mt-3">
+                            <button type="submit"
+                                class="mdc-button mdc-button--unelevated filled-button--success mdc-ripple-upgraded">Save</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-3">
+        <div class="col-md-12">
+            <div class="card px-3 py-3">
+                <div class="bg-white border-bottom-0 pb-4 d-flex justify-content-between align-items-center flex-row">
+                    <h2 class="backend-title">Footer Section</h2>
+                </div>
+                <div class="menu-create-form">
+                    <form method="POST" action="{{ route('admin.theme.footer.store') }}"
+                        enctype="multipart/form-data">
+                        @csrf
+                        <div class="row g-5 mt-2">
+                            <x-form.textarea labelName="Footer Title" parantClass="col-md-6" name="footer_title"
+                                errorName="footer_title"
+                                value="{{ config('settings.footer_title') ?? old('footer_title') }}"></x-form.textarea>
+
+                            <x-form.textarea labelName="Quik Links Left" parantClass="col-md-6" name="quik_links_left"
+                                errorName="quik_links_left"
+                                value="{{ config('settings.quik_links_left') ?? old('quik_links_left') }}"></x-form.textarea>
+                        </div>
+                        <div class="row g-5">
+                            <x-form.textarea labelName="Quik Links Right" parantClass="col-md-6" name="quik_links_right"
+                                errorName="quik_links_right"
+                                value="{{ config('settings.quik_links_right') ?? old('quik_links_right') }}"></x-form.textarea>
+
+                            <x-form.textarea labelName="Open Hours Title" parantClass="col-md-6" name="open_hours_title"
+                                errorName="open_hours_title"
+                                value="{{ config('settings.open_hours_title') ?? old('open_hours_title') }}"></x-form.textarea>
+                        </div>
+
+                        <div class="row g-5">
+                            <x-form.textarea labelName="Open Hours Time" parantClass="col-md-6" name="open_hours_time"
+                                errorName="open_hours_time"
+                                value="{{ config('settings.open_hours_time') ?? old('open_hours_time') }}"></x-form.textarea>
+
+                            <x-form.textarea labelName="Newsletter Title" parantClass="col-md-6" name="newslettter_title"
+                                errorName="newslettter_title"
+                                value="{{ config('settings.newslettter_title') ?? old('newslettter_title') }}"></x-form.textarea>
+                        </div>
+
+                        <div class="row g-5">
+                            <x-form.textarea labelName="Copy Rights" parantClass="col-md-6" name="copy_rignts"
+                                errorName="copy_rignts"
+                                value="{{ config('settings.copy_rignts') ?? old('copy_rignts') }}"></x-form.textarea>
                         </div>
 
                         <div class="d-flex justify-content-end align-items-center mt-3">
@@ -753,6 +802,13 @@
         summerNote('#why_choose_s_title', 'Enter Your Second Discription');
         summerNote('#why_choose_t_title', 'Enter Your Third Discription');
         summerNote('#call_to_sub_title', 'Enter Your Call To Action Sub Title');
+        summerNote('#footer_title', 'Enter Your Footer Title');
+        summerNote('#quik_links_left', 'Enter Your Quik Links Left');
+        summerNote('#quik_links_right', 'Enter Your Quik Links Right');
+        summerNote('#open_hours_title', 'Enter Your Open Hours Title');
+        summerNote('#open_hours_time', 'Enter Your Open Hours Time');
+        summerNote('#newslettter_title', 'Enter Your Newslettter Title');
+        summerNote('#copy_rignts', 'Enter Your Copy Rignts');
 
         $(function() {
             ImagePriviewInsert('picture__input', 'picture__image', 'Choose Primary Logo');
@@ -804,7 +860,7 @@
             var my_why_choose_image = "{{ asset(config('settings.why_choose_image') ?? '') }}";
             $(function() {
                 ImagePriviewUpdate('fourth__image', 'picture_fourth_image', 'Who Choose Image',
-                my_why_choose_image);
+                    my_why_choose_image);
             });
         }
 
@@ -844,3 +900,5 @@
         }
     </script>
 @endpush
+
+
