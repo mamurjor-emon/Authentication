@@ -13,7 +13,7 @@
     <title>@yield('title') - {{ env('APP_NAME') }}</title>
 
     <!-- Favicon -->
-    <link rel="icon" href="{{ asset('frontend/assets/img/favicon.png') }}">
+    <link rel="icon" href="{{ asset(config('settings.favicon')) ?? '' }}">
 
     <!-- Google Fonts -->
     <link

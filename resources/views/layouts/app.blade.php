@@ -18,7 +18,7 @@
     <link rel="stylesheet" href="../assets/css/demo/style.css">
     <link rel="stylesheet" href="{{ asset('backend/assets/css/demo/style.css') }}">
     <!-- End layout styles -->
-    <link rel="icon" href="{{ asset('frontend/assets/img/favicon.png') }}">
+    <link rel="icon" href="{{ asset(config('settings.favicon')) ?? '' }}">
 
     <!-- Datatables CSS -->
     <link href="https://cdn.datatables.net/1.11.3/css/dataTables.bootstrap4.min.css" rel="stylesheet">

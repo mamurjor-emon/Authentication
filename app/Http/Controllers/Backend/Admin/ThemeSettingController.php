@@ -296,4 +296,41 @@ class ThemeSettingController extends Controller
         }
     }
 
+    public function commonImageStore(Request $request)
+    {
+        if (Gate::allows('isAdmin')) {
+            if ($request->hasFile('breadcrumb_image')) {
+                $this->imageDelete(config('settings.breadcrumb_image'));
+                $breadcrumb_image = $this->imageUpload($request->file('breadcrumb_image'), 'images/theme-image/', null, null);
+            } else {
+                $breadcrumb_image = config('settings.breadcrumb_image');
+            }
+            if ($request->hasFile('common_image')) {
+                $this->imageDelete(config('settings.common_image'));
+                $common_image = $this->imageUpload($request->file('common_image'), 'images/theme-image/', null, null);
+            } else {
+                $common_image = config('settings.common_image');
+            }
+            if ($request->hasFile('common_white_image')) {
+                $this->imageDelete(config('settings.common_white_image'));
+                $common_white_image = $this->imageUpload($request->file('common_white_image'), 'images/theme-image/', null, null);
+            } else {
+                $common_white_image = config('settings.common_white_image');
+            }
+            if ($request->hasFile('favicon')) {
+                $this->imageDelete(config('settings.favicon'));
+                $favicon = $this->imageUpload($request->file('favicon'), 'images/theme-image/', null, null);
+            } else {
+                $favicon = config('settings.favicon');
+            }
+            Setting::updateOrCreate(['option_key' => 'breadcrumb_image'], ['option_value' => $breadcrumb_image]);
+            Setting::updateOrCreate(['option_key' => 'common_image'], ['option_value' => $common_image]);
+            Setting::updateOrCreate(['option_key' => 'common_white_image'], ['option_value' => $common_white_image]);
+            Setting::updateOrCreate(['option_key' => 'favicon'], ['option_value' => $favicon]);
+            return back()->with('success', 'Common Image Settings Store Successfully!');
+        } else {
+            abort(401);
+        }
+    }
+
 }

@@ -57,6 +57,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth', 'i
         Route::post('/newsletter/store', [ThemeSettingController::class, 'newsletterStore'])->name('newsletter.store');
         Route::post('/sosal-media/store', [ThemeSettingController::class, 'sosalMediaStore'])->name('sosal.media.store');
         Route::post('/footer/store', [ThemeSettingController::class, 'footerStore'])->name('footer.store');
+        Route::post('/common-image/store', [ThemeSettingController::class, 'commonImageStore'])->name('common.image.store');
     });
 
     //------------------------ Dynamic Menu -----------------------//

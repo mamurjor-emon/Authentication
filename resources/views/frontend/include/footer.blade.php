@@ -11,11 +11,21 @@
                          {!! config('settings.footer_title') ?? '' !!}
                         <!-- Social -->
                         <ul class="social">
-                            <li><a href="#"><i class="icofont-facebook"></i></a></li>
-                            <li><a href="#"><i class="icofont-google-plus"></i></a></li>
-                            <li><a href="#"><i class="icofont-twitter"></i></a></li>
-                            <li><a href="#"><i class="icofont-vimeo"></i></a></li>
-                            <li><a href="#"><i class="icofont-pinterest"></i></a></li>
+                            @if (config('settings.facebook'))
+                                <li><a href="{{ config('settings.facebook') }}"><i class="icofont-facebook"></i></a></li>
+                            @endif
+                            @if (config('settings.theme_email'))
+                                <li><a href="mailto:{{ config('settings.theme_email') ?? '' }}"><i class="icofont-google-plus"></i></a></li>
+                            @endif
+                            @if (config('settings.twitter'))
+                                <li><a href="{{ config('settings.twitter') }}"><i class="icofont-twitter"></i></a></li>
+                            @endif
+                            @if (config('settings.linkedin'))
+                                <li><a href="{{ config('settings.linkedin') }}"><i class="icofont-linkedin"></i></a></li>
+                            @endif
+                            @if (config('settings.pinterest'))
+                                <li><a href="{{ config('settings.pinterest') }}"><i class="icofont-pinterest"></i></a></li>
+                            @endif
                         </ul>
                         <!-- End Social -->
                     </div>

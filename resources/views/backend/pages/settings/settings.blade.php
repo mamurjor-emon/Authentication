@@ -788,6 +788,81 @@
             </div>
         </div>
     </div>
+
+    <div class="row mt-3">
+        <div class="col-md-12">
+            <div class="card px-3 py-3">
+                <div class="bg-white border-bottom-0 pb-4 d-flex justify-content-between align-items-center flex-row">
+                    <h2 class="backend-title">Common Image</h2>
+                </div>
+                <div class="menu-create-form">
+                    <form method="POST" action="{{ route('admin.theme.common.image.store') }}"
+                        enctype="multipart/form-data">
+                        @csrf
+                        <div class="row g-5 mt-2">
+                            <div class="col-md-6">
+                                <label class="text-dark font-weight-medium">Breadcrumb Image</label>
+                                <div>
+                                    <label class="ten_picture" for="ten__image" tabIndex="0">
+                                        <span class="picture_ten_image"></span>
+                                    </label>
+                                    <input type="file" name="breadcrumb_image" id="ten__image">
+                                    @error('breadcrumb_image')
+                                        <span class="text-danger error-text">{{ $message }}</span>
+                                    @enderror
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <label class="text-dark font-weight-medium">Common Image</label>
+                                <div>
+                                    <label class="eleven_picture" for="eleven__image" tabIndex="0">
+                                        <span class="picture_eleven_image"></span>
+                                    </label>
+                                    <input type="file" name="common_image" id="eleven__image">
+                                    @error('common_image')
+                                        <span class="text-danger error-text">{{ $message }}</span>
+                                    @enderror
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row g-5">
+                            <div class="col-md-6">
+                                <label class="text-dark font-weight-medium">Common White Image</label>
+                                <div>
+                                    <label class="twelve_picture" for="twelve__image" tabIndex="0">
+                                        <span class="picture_twelve_image"></span>
+                                    </label>
+                                    <input type="file" name="common_white_image" id="twelve__image">
+                                    @error('common_white_image')
+                                        <span class="text-danger error-text">{{ $message }}</span>
+                                    @enderror
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <label class="text-dark font-weight-medium">Favicon</label>
+                                <div>
+                                    <label class="thirteen_picture" for="thirteen__image" tabIndex="0">
+                                        <span class="picture_thirteen_image"></span>
+                                    </label>
+                                    <input type="file" name="favicon" id="thirteen__image">
+                                    @error('favicon')
+                                        <span class="text-danger error-text">{{ $message }}</span>
+                                    @enderror
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="d-flex justify-content-end align-items-center mt-3">
+                            <button type="submit"
+                                class="mdc-button mdc-button--unelevated filled-button--success mdc-ripple-upgraded">Save</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection
 @push('scripts')
     <script>
@@ -820,6 +895,10 @@
             ImagePriviewInsert('seventh__image', 'picture_seventh_image', 'Choose Team Bg');
             ImagePriviewInsert('eghit__image', 'picture_eghit_image', 'Choose Client Bg');
             ImagePriviewInsert('nine__image', 'picture_nine_image', 'Appointment Image');
+            ImagePriviewInsert('ten__image', 'picture_ten_image', 'Breadcrumb Image');
+            ImagePriviewInsert('eleven__image', 'picture_eleven_image', 'Common Image');
+            ImagePriviewInsert('twelve__image', 'picture_twelve_image', 'Common White Image');
+            ImagePriviewInsert('thirteen__image', 'picture_thirteen_image', 'Favicon');
         });
     </script>
     <script>
@@ -832,6 +911,10 @@
         var team_image = "{{ config('settings.team_image') ?? '' }}";
         var client_image = "{{ config('settings.client_image') ?? '' }}";
         var appointment_image = "{{ config('settings.appointment_image') ?? '' }}";
+        var breadcrumb_image = "{{ config('settings.breadcrumb_image') ?? '' }}";
+        var common_image = "{{ config('settings.common_image') ?? '' }}";
+        var common_white_image = "{{ config('settings.common_white_image') ?? '' }}";
+        var favicon_image = "{{ config('settings.favicon') ?? '' }}";
 
 
         if (theme_primary_logo != '') {
@@ -892,10 +975,39 @@
                 ImagePriviewUpdate('eghit__image', 'picture_eghit_image', 'Choose Client Bg', myClientData);
             });
         }
+
         if (appointment_image != '') {
             var my_appointment_image = "{{ asset(config('settings.appointment_image') ?? '') }}";
             $(function() {
                 ImagePriviewUpdate('nine__image', 'picture_nine_image', 'Appointment Image', my_appointment_image);
+            });
+        }
+
+        if (breadcrumb_image != '') {
+            var my_breadcrumb_image = "{{ asset(config('settings.breadcrumb_image') ?? '') }}";
+            $(function() {
+                ImagePriviewUpdate('ten__image', 'picture_ten_image', 'Breadcrumb Image', my_breadcrumb_image);
+            });
+        }
+
+        if (common_image != '') {
+            var my_common_image = "{{ asset(config('settings.common_image') ?? '') }}";
+            $(function() {
+                ImagePriviewUpdate('eleven__image', 'picture_eleven_image', 'Common Image', my_common_image);
+            });
+        }
+
+        if (common_white_image != '') {
+            var my_common_white_image = "{{ asset(config('settings.common_white_image') ?? '') }}";
+            $(function() {
+                ImagePriviewUpdate('twelve__image', 'picture_twelve_image', 'Common White Image', my_common_white_image);
+            });
+        }
+
+        if (favicon_image != '') {
+            var my_favicon_image = "{{ asset(config('settings.favicon') ?? '') }}";
+            $(function() {
+                ImagePriviewUpdate('thirteen__image', 'picture_thirteen_image', 'Favicon', my_favicon_image);
             });
         }
     </script>
