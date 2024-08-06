@@ -11,14 +11,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- Title -->
     <title>@yield('title') - {{ env('APP_NAME') }}</title>
-
+    
     <!-- Favicon -->
     <link rel="icon" href="{{ asset(config('settings.favicon')) ?? '' }}">
 
     <!-- Google Fonts -->
-    <link
-        href="https://fonts.googleapis.com/css?family=Poppins:200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&display=swap" rel="stylesheet">
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="{{ asset('frontend/assets/css/bootstrap.min.css') }}">
@@ -49,15 +47,12 @@
         .toast-success {
             background-color: #51A351;
         }
-
         .toast-error {
             background-color: #BD362F;
         }
-
         .toast-info {
             background-color: #2F96B4;
         }
-
         .toast-warning {
             background-color: #F89406;
         }
@@ -101,8 +96,7 @@
     <!--/ End Footer Area -->
 
     <!-- Toastr JS-->
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
-        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
     <script>
         function flashMessage(status, message) {
@@ -141,7 +135,6 @@
                     break;
             }
         }
-
         // session flash message
         @if (Session::get('success'))
             flashMessage('success', "{{ Session::get('success') }}")

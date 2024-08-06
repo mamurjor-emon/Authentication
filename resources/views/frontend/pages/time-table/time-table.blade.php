@@ -20,9 +20,9 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="section-title">
-                        <h2>{{ $timeTableSection->title ?? '' }}</h2>
+                        <h2>{{ config('settings.time_table_title') ??  '' }}</h2>
                         <img   width="48" height="24" src="{{ asset(config('settings.common_image')) ?? '' }}" alt="image">
-                       {!! $timeTableSection->discrption  !!}
+                       {!! config('settings.time_table_description') ?? ''  !!}
                     </div>
                 </div>
             </div>

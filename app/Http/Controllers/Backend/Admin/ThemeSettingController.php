@@ -296,6 +296,16 @@ class ThemeSettingController extends Controller
         }
     }
 
+    public function timeTableStore(Request $request)
+    {
+        if (Gate::allows('isAdmin')) {
+            Setting::updateOrCreate(['option_key' => 'time_table_title'], ['option_value' => $request->time_table_title]);
+            Setting::updateOrCreate(['option_key' => 'time_table_description'], ['option_value' => $request->time_table_description]);
+            return back()->with('success', 'Time Table Settings Store Successfully!');
+        } else {
+            abort(401);
+        }
+    }
     public function commonImageStore(Request $request)
     {
         if (Gate::allows('isAdmin')) {

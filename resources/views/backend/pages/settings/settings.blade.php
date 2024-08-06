@@ -788,6 +788,35 @@
             </div>
         </div>
     </div>
+    <div class="row mt-3">
+        <div class="col-md-12">
+            <div class="card px-3 py-3">
+                <div class="bg-white border-bottom-0 pb-4 d-flex justify-content-between align-items-center flex-row">
+                    <h2 class="backend-title">Time Table Section</h2>
+                </div>
+                <div class="menu-create-form">
+                    <form method="POST" action="{{ route('admin.theme.time.table.store') }}"
+                        enctype="multipart/form-data">
+                        @csrf
+                        <div class="row g-5 mt-2">
+                            <x-form.textbox labelName="Time Table Title" parantClass="col-md-6" name="time_table_title"
+                                errorName="time_table_title"
+                                value="{{ config('settings.time_table_title') ?? old('time_table_title') }}"></x-form.textbox>
+
+                            <x-form.textarea labelName="Time Table Description" parantClass="col-md-6" name="time_table_description"
+                                errorName="time_table_description"
+                                value="{{ config('settings.time_table_description') ?? old('time_table_description') }}"></x-form.textarea>
+                        </div>
+
+                        <div class="d-flex justify-content-end align-items-center mt-3">
+                            <button type="submit"
+                                class="mdc-button mdc-button--unelevated filled-button--success mdc-ripple-upgraded">Save</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <div class="row mt-3">
         <div class="col-md-12">
@@ -883,6 +912,7 @@
         summerNote('#open_hours_title', 'Enter Your Open Hours Title');
         summerNote('#open_hours_time', 'Enter Your Open Hours Time');
         summerNote('#newslettter_title', 'Enter Your Newslettter Title');
+        summerNote('#time_table_description', 'Enter Your Time Table Description Title');
         summerNote('#copy_rignts', 'Enter Your Copy Rignts');
 
         $(function() {

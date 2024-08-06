@@ -14,7 +14,6 @@ class ContactController extends Controller
     {
         $this->setPageTitle('Contact Details');
         $data['breadcrumb']   = ['Home' => url('/'), 'Contact Details' => ''];
-        $data['newsletterSection']  = TitleDiscrption::where('section_name','Newsletter_section')->where('status','1')->first();
         return view('frontend.pages.contact-page.contact', $data);
     }
 
@@ -35,7 +34,6 @@ class ContactController extends Controller
     {
         $this->setPageTitle('Time Table');
         $data['breadcrumb']   = ['Home' => url('/'), 'Time Table' => ''];
-        $data['timeTableSection']  = TitleDiscrption::where('section_name','Time_Table')->where('status','1')->first();
         return view('frontend.pages.time-table.time-table', $data);
     }
 }

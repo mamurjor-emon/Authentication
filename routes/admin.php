@@ -10,7 +10,6 @@ use App\Http\Controllers\Backend\Admin\HomePage\BlogsController;
 use App\Http\Controllers\Backend\Admin\HomePage\MenusController;
 use App\Http\Controllers\Backend\Admin\UserManageMentController;
 use App\Http\Controllers\Backend\Admin\HomePage\DoctorController;
-use App\Http\Controllers\Backend\Admin\HomePage\FooterController;
 use App\Http\Controllers\Backend\Admin\HomePage\SilderController;
 use App\Http\Controllers\Backend\Admin\HomePage\BlogTagController;
 use App\Http\Controllers\Backend\Admin\HomePage\ClientsController;
@@ -21,14 +20,9 @@ use App\Http\Controllers\Backend\Admin\HomePage\ScheduleController;
 use App\Http\Controllers\Backend\Admin\HomePage\ServicesController;
 use App\Http\Controllers\Backend\Admin\Pages\ContactPageController;
 use App\Http\Controllers\Backend\Admin\HomePage\PortfolioController;
-use App\Http\Controllers\Backend\Admin\HomePage\WhyChooseController;
-use App\Http\Controllers\Backend\Admin\HomePage\CallActionController;
 use App\Http\Controllers\Backend\Admin\HomePage\DepartmentController;
 use App\Http\Controllers\Backend\Admin\HomePage\SocalMediaController;
-use App\Http\Controllers\Backend\Admin\HomePage\AppointmentsController;
-use App\Http\Controllers\Backend\Admin\HomePage\FooterBottomController;
 use App\Http\Controllers\Backend\Admin\HomePage\BlogCategorieController;
-use App\Http\Controllers\Backend\Admin\HomePage\TitleDiscriptionController;
 use App\Http\Controllers\Backend\Admin\HomePage\PortfolioCategorieController;
 use App\Http\Controllers\Backend\Admin\ThemeSettingController;
 
@@ -57,6 +51,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth', 'i
         Route::post('/newsletter/store', [ThemeSettingController::class, 'newsletterStore'])->name('newsletter.store');
         Route::post('/sosal-media/store', [ThemeSettingController::class, 'sosalMediaStore'])->name('sosal.media.store');
         Route::post('/footer/store', [ThemeSettingController::class, 'footerStore'])->name('footer.store');
+        Route::post('/time-table/store', [ThemeSettingController::class, 'timeTableStore'])->name('time.table.store');
         Route::post('/common-image/store', [ThemeSettingController::class, 'commonImageStore'])->name('common.image.store');
     });
 

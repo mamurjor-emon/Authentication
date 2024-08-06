@@ -11,10 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('footer_fours', function (Blueprint $table) {
+        Schema::create('time_tables', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
-            $table->longText('discription');
+            $table->string('time')->unique();
+            $table->string('order_by');
             $table->enum('status',[0,1])->comment('0 = Pending , 1 = Publish');
             $table->timestamps();
         });
@@ -25,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('footer_fours');
+        Schema::dropIfExists('time_tables');
     }
 };
