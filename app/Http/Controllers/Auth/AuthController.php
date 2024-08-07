@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Models\Roles;
 use Illuminate\Support\Str;
 use App\Mail\VerifyUserMail;
+use App\Models\UserLocation;
 use Illuminate\Http\Request;
 use App\Mail\PasswordResetMail;
 use Illuminate\Support\Facades\DB;
@@ -15,6 +16,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use App\Http\Requests\RegisterRequest;
+use Stevebauman\Location\Facades\Location;
 
 class AuthController extends Controller
 {
@@ -53,6 +55,19 @@ class AuthController extends Controller
             'password'           => Hash::make($request->password),
             'verify_code'        => $verify_code,
         ]);
+        // $location = Location::get($request->ip());
+        $location = Location::get('8.8.8.8');
+        UserLocation::create([
+            'user_id'      => $user->id,
+            'ip_address'   => $location->ip,
+            'country'      => $location->countryName,
+            'country_code' => $location->countryCode,
+            'region_code'  => $location->regionCode,
+            'city_name'    => $location->cityName,
+            'zip_code'     => $location->zipCode,
+            'postal_code'  => $location->postalCode,
+            'area_code'    => $location->areaCode
+        ]);
 
         $request['roleName'] = $role->name;
         $request['full_name'] = $request->fname . ' ' . $request->lname;
@@ -63,7 +78,7 @@ class AuthController extends Controller
         $subject = emailSubjectTemplate('NEW_USER_MAIL', $request);
         $body    = emailBodyTemplate('NEW_USER_MAIL', $request);
         $heading = emailHeadingTemplate('NEW_USER_MAIL', $request);
-        
+
         $userMail = ['subject' => $subject, 'body' => $body, 'heading' => $heading];
 
         Mail::to($request->email)->send(new VerifyUserMail($userMail));

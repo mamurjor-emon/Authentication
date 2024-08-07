@@ -25,6 +25,8 @@ use App\Http\Controllers\Backend\Admin\HomePage\SocalMediaController;
 use App\Http\Controllers\Backend\Admin\HomePage\BlogCategorieController;
 use App\Http\Controllers\Backend\Admin\HomePage\PortfolioCategorieController;
 use App\Http\Controllers\Backend\Admin\ThemeSettingController;
+use App\Http\Controllers\Backend\Admin\TimePageController;
+use App\Http\Controllers\Backend\Admin\TimeTableController;
 
 // Group Route
 Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth', 'is_verify', 'is_admin']], function () {
@@ -175,6 +177,22 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth', 'i
         Route::post('day/update', [DayController::class, 'update'])->name('day.update');
         Route::get('day/delete/{id}', [DayController::class, 'delete'])->name('day.delete');
 
+        Route::get('/time-table', [TimeTableController::class, 'index'])->name('time-table.index');
+        Route::post('time-table/getdata', [TimeTableController::class, 'getData'])->name('time-table.get.data');
+        Route::get('time-table/create', [TimeTableController::class, 'create'])->name('time-table.create');
+        Route::post('time-table/store', [TimeTableController::class, 'store'])->name('time-table.store');
+        Route::get('time-table/edit/{id}', [TimeTableController::class, 'edit'])->name('time-table.edit');
+        Route::post('time-table/update', [TimeTableController::class, 'update'])->name('time-table.update');
+        Route::get('time-table/delete/{id}', [TimeTableController::class, 'delete'])->name('time-table.delete');
+
+        Route::get('/time-page', [TimePageController::class, 'index'])->name('time-page.index');
+        Route::post('time-page/getdata', [TimePageController::class, 'getData'])->name('time-page.get.data');
+        Route::get('time-page/create', [TimePageController::class, 'create'])->name('time-page.create');
+        Route::post('time-page/store', [TimePageController::class, 'store'])->name('time-page.store');
+        Route::get('time-page/edit/{id}', [TimePageController::class, 'edit'])->name('time-page.edit');
+        Route::post('time-page/update', [TimePageController::class, 'update'])->name('time-page.update');
+        Route::get('time-page/delete/{id}', [TimePageController::class, 'delete'])->name('time-page.delete');
+
         Route::get('/department', [DepartmentController::class, 'index'])->name('department.index');
         Route::post('department/getdata', [DepartmentController::class, 'getData'])->name('department.get.data');
         Route::get('department/create', [DepartmentController::class, 'create'])->name('department.create');
@@ -238,6 +256,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth', 'i
     });
 
     //------------------------ Page  Section -----------------------//
+
     Route::prefix('contact')->name('contact.')->group(function () {
         Route::get('/', [ContactPageController::class, 'contactPage'])->name('contact.index');
         Route::post('/store', [ContactPageController::class, 'contactPageStore'])->name('contact.store');
@@ -284,9 +303,8 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth', 'i
         Route::get('/reviews/edit/{id}', [UserManageMentController::class, 'reviewEdit'])->name('reviews.edit');
         Route::post('/reviews/update', [UserManageMentController::class, 'reviewUpdate'])->name('reviews.update');
         Route::get('/reviews/delete/{id}', [UserManageMentController::class, 'reviewDelete'])->name('reviews.delete');
-
-
     });
+
     //------------------------ Email Templates -----------------------//
     Route::prefix('email/templates')->name('email.templates.')->group(function () {
         Route::get('/', [EmailTemplatesController::class, 'index'])->name('index');

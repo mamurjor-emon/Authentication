@@ -83,16 +83,6 @@
                     <div class="mdc-expansion-panel" id="ui-sub-menu-doctors" {!! $parentDoctorsSubMenu ?? '' !!}>
                         <nav class="mdc-list mdc-drawer-submenu">
                             <div class="mdc-list-item mdc-drawer-item">
-                                <a class="mdc-drawer-link {{ $addSlot ?? '' }}" href="{{ route('admin.doctor.slot.index') }}">
-                                    Add Slot
-                                </a>
-                            </div>
-                            <div class="mdc-list-item mdc-drawer-item">
-                                <a class="mdc-drawer-link {{ $addDay ?? '' }}" href="{{ route('admin.doctor.day.index') }}">
-                                    Add Day
-                                </a>
-                            </div>
-                            <div class="mdc-list-item mdc-drawer-item">
                                 <a class="mdc-drawer-link {{ $doctorDepartment ?? '' }}" href="{{ route('admin.doctor.department.index') }}">
                                     Add Department
                                 </a>
@@ -105,16 +95,16 @@
                         </nav>
                     </div>
                 </div>
-                
+
                  <div class="mdc-list-item mdc-drawer-item">
-                    <a class="mdc-expansion-panel-link {{ $parentDoctors ?? '' }}" href="#" data-toggle="expansionPanel"
-                        data-target="ui-sub-menu-doctors">
+                    <a class="mdc-expansion-panel-link {{ $parentTimeTable ?? '' }}" href="#" data-toggle="expansionPanel"
+                        data-target="ui-sub-menu-time-table">
                         <i class="material-icons mdc-list-item__start-detail mdc-drawer-item-icon"
-                            aria-hidden="true">group_add</i>
-                            Doctors Section
+                            aria-hidden="true">access_time</i>
+                           Time Table
                         <i class="mdc-drawer-arrow material-icons">chevron_right</i>
                     </a>
-                    <div class="mdc-expansion-panel" id="ui-sub-menu-doctors" {!! $parentDoctorsSubMenu ?? '' !!}>
+                    <div class="mdc-expansion-panel" id="ui-sub-menu-time-table" {!! $parentTimeTableSubMenu ?? '' !!}>
                         <nav class="mdc-list mdc-drawer-submenu">
                             <div class="mdc-list-item mdc-drawer-item">
                                 <a class="mdc-drawer-link {{ $addSlot ?? '' }}" href="{{ route('admin.doctor.slot.index') }}">
@@ -127,13 +117,13 @@
                                 </a>
                             </div>
                             <div class="mdc-list-item mdc-drawer-item">
-                                <a class="mdc-drawer-link {{ $doctorDepartment ?? '' }}" href="{{ route('admin.doctor.department.index') }}">
-                                    Add Department
+                                <a class="mdc-drawer-link {{ $timeTable ?? '' }}" href="{{ route('admin.doctor.time-table.index') }}">
+                                    Time Table
                                 </a>
                             </div>
                             <div class="mdc-list-item mdc-drawer-item">
-                                <a class="mdc-drawer-link {{ $addDoctor ?? '' }}" href="{{ route('admin.doctor.index') }}">
-                                    Add Doctor
+                                <a class="mdc-drawer-link {{ $timeTablePage ?? '' }}" href="{{ route('admin.doctor.time-page.index') }}">
+                                    Time Table Page
                                 </a>
                             </div>
                         </nav>
@@ -248,7 +238,7 @@
                             </div>
                             <div class="mdc-list-item mdc-drawer-item">
                                 <a class="mdc-drawer-link {{ $allDoctors ?? '' }}" href="{{ route('admin.user.management.doctors') }}">
-                                   All Doctors
+                                   Active Doctors
                                 </a>
                             </div>
                             <div class="mdc-list-item mdc-drawer-item">

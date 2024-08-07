@@ -15,10 +15,10 @@ class DayController extends Controller
     {
         if (Gate::allows('isAdmin')) {
             $this->setPageTitle('Days');
-            $data['parentDoctors']        = 'expanded';
-            $data['parentDoctorsSubMenu'] = 'style="display: block;"';
-            $data['addDay']               = 'active';
-            $data['breadcrumb']           = ['Days' => '',];
+            $data['parentTimeTable']        = 'expanded';
+            $data['parentTimeTableSubMenu'] = 'style="display: block;"';
+            $data['addDay']                 = 'active';
+            $data['breadcrumb']             = ['Days' => '',];
             return view('backend.pages.doctors.days.index', $data);
         } else {
             abort(401);
@@ -74,11 +74,11 @@ class DayController extends Controller
     {
         if (Gate::allows('isAdmin')) {
             $this->setPageTitle('Create Day');
-            $data['parentDoctors']        = 'expanded';
-            $data['parentDoctorsSubMenu'] = 'style="display: block;"';
-            $data['addDay']               = 'active';
-            $data['totalDays']            = DayModel::get();
-            $data['breadcrumb']           = ['Days' => route('admin.doctor.day.index'), 'Create Day' => '',];
+            $data['parentTimeTable']        = 'expanded';
+            $data['parentTimeTableSubMenu'] = 'style="display: block;"';
+            $data['addDay']                 = 'active';
+            $data['totalDays']              = DayModel::get();
+            $data['breadcrumb']             = ['Days' => route('admin.doctor.day.index'), 'Create Day' => '',];
             return view('backend.pages.doctors.days.create', $data);
         } else {
             abort(401);
@@ -104,11 +104,11 @@ class DayController extends Controller
     {
         if (Gate::allows('isAdmin')) {
             $this->setPageTitle('Edit Day');
-            $data['parentDoctors']        = 'expanded';
-            $data['parentDoctorsSubMenu'] = 'style="display: block;"';
-            $data['addDay']               = 'active';
-            $data['editDay']              =  DayModel::find($id);
-            $data['breadcrumb']           = ['Days' => route('admin.doctor.day.index'), 'Edit Day' => '',];
+            $data['parentTimeTable']        = 'expanded';
+            $data['parentTimeTableSubMenu'] = 'style="display: block;"';
+            $data['addDay']                 = 'active';
+            $data['editDay']                = DayModel::find($id);
+            $data['breadcrumb']             = ['Days' => route('admin.doctor.day.index'), 'Edit Day' => '',];
             return view('backend.pages.doctors.days.edit', $data);
         } else {
             abort(401);

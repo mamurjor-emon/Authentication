@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Jul 28, 2024 at 06:48 PM
+-- Generation Time: Aug 07, 2024 at 06:00 PM
 -- Server version: 8.0.30
 -- PHP Version: 8.1.17
 
@@ -20,29 +20,6 @@ SET time_zone = "+00:00";
 --
 -- Database: `mediplus`
 --
-
--- --------------------------------------------------------
-
---
--- Table structure for table `appointments`
---
-
-CREATE TABLE `appointments` (
-  `id` bigint UNSIGNED NOT NULL,
-  `image` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `btn_title` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `title` mediumtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `status` enum('0','1') CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '0 = Pending , 1 = Publish',
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `appointments`
---
-
-INSERT INTO `appointments` (`id`, `image`, `btn_title`, `title`, `status`, `created_at`, `updated_at`) VALUES
-(1, 'uploads/images/appointment/contact-img_627.png', 'Book An Appointment', '( We will be confirm by an Text Message )', '1', '2024-01-18 11:17:01', '2024-01-18 11:17:01');
 
 -- --------------------------------------------------------
 
@@ -81,7 +58,7 @@ CREATE TABLE `blogs` (
 --
 
 INSERT INTO `blogs` (`id`, `categorie_id`, `user_id`, `tag_ids`, `image`, `title`, `sub_title`, `f_discrption`, `f_image`, `l_image`, `s_discrption`, `t_discrption`, `l_discrption`, `socal_media`, `tag`, `total_view`, `meta_title`, `meta_keyword`, `meta_discrption`, `order_by`, `status`, `created_at`, `updated_at`) VALUES
-(3, 1, 1, '[\"1\",\"3\",\"4\",\"5\"]', 'uploads/images/blog/blog1_134.jpg', 'More than 80 clinical trials launch to test of the coronavirus .', '<p>Lorem ipsum dolor a sit ameti, consectetur adipisicing elit, sed do\r\n                                eiusmod tempor incididunt sed do incididunt sed.</p>', '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse \r\nfacilisis ultricies tortor, nec sollicitudin lorem sagittis vitae. \r\nCurabitur rhoncus commodo rutrum. Pellentesque habitant morbi tristique \r\nsenectus et netus et malesuada fames ac turpis egestas. Aliquam nec \r\nlacus pulvinar, laoreet dolor quis, pellentesque ante. Cras nulla orci, \r\npharetra at dictum consequat, pretium pretium nulla. Suspendisse \r\nporttitor nunc a sodales tempor. Mauris sed felis maximus, interdum \r\nmetus vel, tincidunt diam.</p>\r\n										<p>Pellentesque habitant morbi tristique senectus et netus et \r\nmalesuada fames ac turpis egestas. Aliquam nec lacus pulvinar, laoreet \r\ndolor quis, pellentesque ante. Cras nulla orci, pharetra at dictum \r\nconsequat, pretium pretium nulla. Suspendisse porttitor nunc a sodales \r\ntempor. Mauris sed felis maximus, interdum metus vel, tincidunt diam. \r\nNam ac risus vitae sem vehicula egestas. Sed velit nulla, viverra non \r\ncommod</p><p></p>', 'uploads/images/blog/blog1_134.jpg', 'uploads/images/blog/blog1_134.jpg', '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse \r\nfacilisis ultricies tortor, nec sollicitudin lorem sagittis vitae. \r\nCurabitur rhoncus commodo rutrum. Pellentesque habitant morbi tristique \r\nsenectus et netus et malesuada fames ac turpis egestas. Aliquam nec \r\nlacus pulvinar, laoreet dolor quis, pellentesque ante. Cras nulla orci, \r\npharetra at dictum consequat, pretium pretium nulla. Suspendisse \r\nporttitor nunc a sodales tempor. Mauris sed felis maximus, interdum \r\nmetus vel, tincidunt diam.</p>', '<p>Aliquam nec lacus pulvinar, laoreet dolor quis, pellentesque ante. Cras \r\nnulla orci, pharetra at dictum consequat, pretium pretium nulla. \r\nSuspendisse porttitor nunc a sodales tempor. Mauris sed felis maximus, \r\ninterdum metus vel, tincidunt diam. Nam ac risus vitae sem vehicula \r\negestas. Sed velit nulla, viverra non commodo et, sodales</p>', '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse \r\nfacilisis ultricies tortor, nec sollicitudin lorem sagittis vitae. \r\nCurabitur rhoncus commodo rutrum. Pellentesque habitant morbi tristique \r\nsenectus et netus et malesuada fames ac turpis egestas. Aliquam nec \r\nlacus pulvinar, laoreet dolor quis, pellentesque ante. Cras nulla orci, \r\npharetra at dictum consequat, pretium pretium nulla. Suspendisse \r\nporttitor nunc a sodales tempor. Mauris sed felis maximus, interdum \r\nmetus vel, tincidunt diam. Nam ac risus vitae sem vehicula egestas. Sed \r\nvelit nulla, viverra non commodo et, sodales id dui.</p>\r\n										<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. \r\nSuspendisse facilisis ultricies tortor, nec sollicitudin lorem sagittis \r\nvitae. Curabitur rhoncus commodo rutrum. Pellentesque habitant morbi \r\ntristique senectus et netus et malesuada fames ac turpis egestas. \r\nAliquam nec lacus pulvinar, laoreet dolor quis, pellentesque ante. Cras \r\nnulla orci, pharetra at dictum consequat, pretium pretium nulla. \r\nSuspendisse</p><p></p>', '[\"2\",\"3\",\"4\",\"5\"]', '1', 16, '<h1 class=\"news-title\"><a>More than 80 clinical trials launch to test of the coronavirus .</a></h1>', '<h1 class=\"news-title\"><a>More than 80 clinical trials launch to test of the coronavirus .</a></h1><p></p>', '<h1 class=\"news-title\"><a>More than 80 clinical trials launch to test of the coronavirus .</a></h1><p></p>', '1', '1', '2024-01-26 06:32:15', '2024-07-26 12:20:16'),
+(3, 1, 1, '[\"1\",\"3\",\"4\",\"5\"]', 'uploads/images/blog/blog1_134.jpg', 'More than 80 clinical trials launch to test of the coronavirus .', '<p>Lorem ipsum dolor a sit ameti, consectetur adipisicing elit, sed do\r\n                                eiusmod tempor incididunt sed do incididunt sed.</p>', '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse \r\nfacilisis ultricies tortor, nec sollicitudin lorem sagittis vitae. \r\nCurabitur rhoncus commodo rutrum. Pellentesque habitant morbi tristique \r\nsenectus et netus et malesuada fames ac turpis egestas. Aliquam nec \r\nlacus pulvinar, laoreet dolor quis, pellentesque ante. Cras nulla orci, \r\npharetra at dictum consequat, pretium pretium nulla. Suspendisse \r\nporttitor nunc a sodales tempor. Mauris sed felis maximus, interdum \r\nmetus vel, tincidunt diam.</p>\r\n										<p>Pellentesque habitant morbi tristique senectus et netus et \r\nmalesuada fames ac turpis egestas. Aliquam nec lacus pulvinar, laoreet \r\ndolor quis, pellentesque ante. Cras nulla orci, pharetra at dictum \r\nconsequat, pretium pretium nulla. Suspendisse porttitor nunc a sodales \r\ntempor. Mauris sed felis maximus, interdum metus vel, tincidunt diam. \r\nNam ac risus vitae sem vehicula egestas. Sed velit nulla, viverra non \r\ncommod</p><p></p>', 'uploads/images/blog/blog1_134.jpg', 'uploads/images/blog/blog1_134.jpg', '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse \r\nfacilisis ultricies tortor, nec sollicitudin lorem sagittis vitae. \r\nCurabitur rhoncus commodo rutrum. Pellentesque habitant morbi tristique \r\nsenectus et netus et malesuada fames ac turpis egestas. Aliquam nec \r\nlacus pulvinar, laoreet dolor quis, pellentesque ante. Cras nulla orci, \r\npharetra at dictum consequat, pretium pretium nulla. Suspendisse \r\nporttitor nunc a sodales tempor. Mauris sed felis maximus, interdum \r\nmetus vel, tincidunt diam.</p>', '<p>Aliquam nec lacus pulvinar, laoreet dolor quis, pellentesque ante. Cras \r\nnulla orci, pharetra at dictum consequat, pretium pretium nulla. \r\nSuspendisse porttitor nunc a sodales tempor. Mauris sed felis maximus, \r\ninterdum metus vel, tincidunt diam. Nam ac risus vitae sem vehicula \r\negestas. Sed velit nulla, viverra non commodo et, sodales</p>', '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse \r\nfacilisis ultricies tortor, nec sollicitudin lorem sagittis vitae. \r\nCurabitur rhoncus commodo rutrum. Pellentesque habitant morbi tristique \r\nsenectus et netus et malesuada fames ac turpis egestas. Aliquam nec \r\nlacus pulvinar, laoreet dolor quis, pellentesque ante. Cras nulla orci, \r\npharetra at dictum consequat, pretium pretium nulla. Suspendisse \r\nporttitor nunc a sodales tempor. Mauris sed felis maximus, interdum \r\nmetus vel, tincidunt diam. Nam ac risus vitae sem vehicula egestas. Sed \r\nvelit nulla, viverra non commodo et, sodales id dui.</p>\r\n										<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. \r\nSuspendisse facilisis ultricies tortor, nec sollicitudin lorem sagittis \r\nvitae. Curabitur rhoncus commodo rutrum. Pellentesque habitant morbi \r\ntristique senectus et netus et malesuada fames ac turpis egestas. \r\nAliquam nec lacus pulvinar, laoreet dolor quis, pellentesque ante. Cras \r\nnulla orci, pharetra at dictum consequat, pretium pretium nulla. \r\nSuspendisse</p><p></p>', '[\"2\",\"3\",\"4\",\"5\"]', '1', 17, '<h1 class=\"news-title\"><a>More than 80 clinical trials launch to test of the coronavirus .</a></h1>', '<h1 class=\"news-title\"><a>More than 80 clinical trials launch to test of the coronavirus .</a></h1><p></p>', '<h1 class=\"news-title\"><a>More than 80 clinical trials launch to test of the coronavirus .</a></h1><p></p>', '1', '1', '2024-01-26 06:32:15', '2024-08-03 02:36:06'),
 (5, 1, 1, '[\"1\",\"3\",\"4\",\"5\",\"6\"]', 'uploads/images/blog/blog3_948.jpg', 'We provide highly business soliutions.', '<p>Lorem ipsum dolor a sit ameti, consectetur adipisicing elit, sed do\r\n                                eiusmod tempor incididunt sed do incididunt sed.</p>', '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse \r\nfacilisis ultricies tortor, nec sollicitudin lorem sagittis vitae. \r\nCurabitur rhoncus commodo rutrum. Pellentesque habitant morbi tristique \r\nsenectus et netus et malesuada fames ac turpis egestas. Aliquam nec \r\nlacus pulvinar, laoreet dolor quis, pellentesque ante. Cras nulla orci, \r\npharetra at dictum consequat, pretium pretium nulla. Suspendisse \r\nporttitor nunc a sodales tempor. Mauris sed felis maximus, interdum \r\nmetus vel, tincidunt diam.</p>\r\n										<p>Pellentesque habitant morbi tristique senectus et netus et \r\nmalesuada fames ac turpis egestas. Aliquam nec lacus pulvinar, laoreet \r\ndolor quis, pellentesque ante. Cras nulla orci, pharetra at dictum \r\nconsequat, pretium pretium nulla. Suspendisse porttitor nunc a sodales \r\ntempor. Mauris sed felis maximus, interdum metus vel, tincidunt diam. \r\nNam ac risus vitae sem vehicula egestas. Sed velit nulla, viverra non \r\ncommod</p><p></p>', 'uploads/images/blog/blog1_181.jpg', 'uploads/images/blog/blog2_633.jpg', '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse \r\nfacilisis ultricies tortor, nec sollicitudin lorem sagittis vitae. \r\nCurabitur rhoncus commodo rutrum. Pellentesque habitant morbi tristique \r\nsenectus et netus et malesuada fames ac turpis egestas. Aliquam nec \r\nlacus pulvinar, laoreet dolor quis, pellentesque ante. Cras nulla orci, \r\npharetra at dictum consequat, pretium pretium nulla. Suspendisse \r\nporttitor nunc a sodales tempor. Mauris sed felis maximus, interdum \r\nmetus vel, tincidunt diam.</p>', '<p>Aliquam nec lacus pulvinar, laoreet dolor quis, pellentesque ante. Cras \r\nnulla orci, pharetra at dictum consequat, pretium pretium nulla. \r\nSuspendisse porttitor nunc a sodales tempor. Mauris sed felis maximus, \r\ninterdum metus vel, tincidunt diam. Nam ac risus vitae sem vehicula \r\negestas. Sed velit nulla, viverra non commodo et, sodales</p>', '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse \r\nfacilisis ultricies tortor, nec sollicitudin lorem sagittis vitae. \r\nCurabitur rhoncus commodo rutrum. Pellentesque habitant morbi tristique \r\nsenectus et netus et malesuada fames ac turpis egestas. Aliquam nec \r\nlacus pulvinar, laoreet dolor quis, pellentesque ante. Cras nulla orci, \r\npharetra at dictum consequat, pretium pretium nulla. Suspendisse \r\nporttitor nunc a sodales tempor. Mauris sed felis maximus, interdum \r\nmetus vel, tincidunt diam. Nam ac risus vitae sem vehicula egestas. Sed \r\nvelit nulla, viverra non commodo et, sodales id dui.</p>\r\n										<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. \r\nSuspendisse facilisis ultricies tortor, nec sollicitudin lorem sagittis \r\nvitae. Curabitur rhoncus commodo rutrum. Pellentesque habitant morbi \r\ntristique senectus et netus et malesuada fames ac turpis egestas. \r\nAliquam nec lacus pulvinar, laoreet dolor quis, pellentesque ante. Cras \r\nnulla orci, pharetra at dictum consequat, pretium pretium nulla. \r\nSuspendisse</p><p></p>', '[\"2\",\"3\",\"4\",\"5\"]', '1', 12, '<p>We provide highly business soliutions.<br></p>', '<p>We provide highly business soliutions.<br></p>', '<p>We provide highly business soliutions.<br></p>', '2', '1', '2024-01-26 07:23:06', '2024-07-26 12:01:54'),
 (6, 1, 1, '[\"1\",\"3\",\"4\",\"5\",\"6\"]', 'uploads/images/blog/blog2_994.jpg', 'Top five way for solving teeth problems.', '<p>Lorem ipsum dolor a sit ameti, consectetur adipisicing elit, sed do\r\n                                eiusmod tempor incididunt sed do incididunt sed.</p>', '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse \r\nfacilisis ultricies tortor, nec sollicitudin lorem sagittis vitae. \r\nCurabitur rhoncus commodo rutrum. Pellentesque habitant morbi tristique \r\nsenectus et netus et malesuada fames ac turpis egestas. Aliquam nec \r\nlacus pulvinar, laoreet dolor quis, pellentesque ante. Cras nulla orci, \r\npharetra at dictum consequat, pretium pretium nulla. Suspendisse \r\nporttitor nunc a sodales tempor. Mauris sed felis maximus, interdum \r\nmetus vel, tincidunt diam.</p>\r\n										<p>Pellentesque habitant morbi tristique senectus et netus et \r\nmalesuada fames ac turpis egestas. Aliquam nec lacus pulvinar, laoreet \r\ndolor quis, pellentesque ante. Cras nulla orci, pharetra at dictum \r\nconsequat, pretium pretium nulla. Suspendisse porttitor nunc a sodales \r\ntempor. Mauris sed felis maximus, interdum metus vel, tincidunt diam. \r\nNam ac risus vitae sem vehicula egestas. Sed velit nulla, viverra non \r\ncommod</p><p></p>', 'uploads/images/blog/blog1_217.jpg', 'uploads/images/blog/blog3_919.jpg', '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse \r\nfacilisis ultricies tortor, nec sollicitudin lorem sagittis vitae. \r\nCurabitur rhoncus commodo rutrum. Pellentesque habitant morbi tristique \r\nsenectus et netus et malesuada fames ac turpis egestas. Aliquam nec \r\nlacus pulvinar, laoreet dolor quis, pellentesque ante. Cras nulla orci, \r\npharetra at dictum consequat, pretium pretium nulla. Suspendisse \r\nporttitor nunc a sodales tempor. Mauris sed felis maximus, interdum \r\nmetus vel, tincidunt diam.</p>', '<p>Aliquam nec lacus pulvinar, laoreet dolor quis, pellentesque ante. Cras \r\nnulla orci, pharetra at dictum consequat, pretium pretium nulla. \r\nSuspendisse porttitor nunc a sodales tempor. Mauris sed felis maximus, \r\ninterdum metus vel, tincidunt diam. Nam ac risus vitae sem vehicula \r\negestas. Sed velit nulla, viverra non commodo et, sodales</p>', '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse \r\nfacilisis ultricies tortor, nec sollicitudin lorem sagittis vitae. \r\nCurabitur rhoncus commodo rutrum. Pellentesque habitant morbi tristique \r\nsenectus et netus et malesuada fames ac turpis egestas. Aliquam nec \r\nlacus pulvinar, laoreet dolor quis, pellentesque ante. Cras nulla orci, \r\npharetra at dictum consequat, pretium pretium nulla. Suspendisse \r\nporttitor nunc a sodales tempor. Mauris sed felis maximus, interdum \r\nmetus vel, tincidunt diam. Nam ac risus vitae sem vehicula egestas. Sed \r\nvelit nulla, viverra non commodo et, sodales id dui.</p>\r\n										<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. \r\nSuspendisse facilisis ultricies tortor, nec sollicitudin lorem sagittis \r\nvitae. Curabitur rhoncus commodo rutrum. Pellentesque habitant morbi \r\ntristique senectus et netus et malesuada fames ac turpis egestas. \r\nAliquam nec lacus pulvinar, laoreet dolor quis, pellentesque ante. Cras \r\nnulla orci, pharetra at dictum consequat, pretium pretium nulla. \r\nSuspendisse</p><p></p>', '[\"2\",\"3\",\"4\",\"5\"]', '1', 8, '<h2><a href=\"http://127.0.0.1:8000/blog-single.html\">Top five way for solving teeth problems.</a></h2><p></p>', '<h2><a href=\"http://127.0.0.1:8000/blog-single.html\">Top five way for solving teeth problems.</a></h2><p></p>', '<h2><a href=\"http://127.0.0.1:8000/blog-single.html\">Top five way for solving teeth problems.</a></h2><p></p>', '2', '1', '2024-01-26 07:23:14', '2024-07-26 12:24:52');
 
@@ -168,34 +145,6 @@ INSERT INTO `blog_tags` (`id`, `tag_name`, `order_by`, `status`, `created_at`, `
 (6, 'Education', '5', '1', '2024-01-19 10:27:18', '2024-01-26 06:11:56'),
 (7, 'Template', '6', '1', '2024-01-19 10:27:39', '2024-01-26 06:11:47'),
 (8, 'Ecommerce', '7', '1', '2024-01-19 10:28:12', '2024-01-19 10:28:12');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `call_to_actions`
---
-
-CREATE TABLE `call_to_actions` (
-  `id` bigint UNSIGNED NOT NULL,
-  `title` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `sub_title` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `f_btn_title` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `f_btn_url` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `f_btn_target` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `l_btn_title` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `l_btn_url` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `l_btn_target` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `status` enum('0','1') CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '0 = Pending , 1 = Publish',
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `call_to_actions`
---
-
-INSERT INTO `call_to_actions` (`id`, `title`, `sub_title`, `f_btn_title`, `f_btn_url`, `f_btn_target`, `l_btn_title`, `l_btn_url`, `l_btn_target`, `status`, `created_at`, `updated_at`) VALUES
-(1, 'Do you need Emergency Medical Care? Call @ 1234 56789', '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque porttitor dictum turpis nec\r\n                        gravida.</p>', 'Contact Now', '#', '0', 'Learn More', '#', '0', '1', '2024-01-14 10:17:36', '2024-01-14 10:17:46');
 
 -- --------------------------------------------------------
 
@@ -422,132 +371,6 @@ INSERT INTO `feautes` (`id`, `icon`, `title`, `discrption`, `order_by`, `status`
 -- --------------------------------------------------------
 
 --
--- Table structure for table `footer_bottoms`
---
-
-CREATE TABLE `footer_bottoms` (
-  `id` bigint UNSIGNED NOT NULL,
-  `title` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `url` mediumtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `target` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `status` enum('0','1') CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '0 = Pending, 1 = Publish',
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `footer_bottoms`
---
-
-INSERT INTO `footer_bottoms` (`id`, `title`, `name`, `url`, `target`, `status`, `created_at`, `updated_at`) VALUES
-(1, '© Copyright 2024 | All Rights Reserved by', 'MEDIPLUS', '#', '0', '1', '2024-01-30 11:07:41', '2024-01-30 11:07:41');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `footer_fours`
---
-
-CREATE TABLE `footer_fours` (
-  `id` bigint UNSIGNED NOT NULL,
-  `title` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `discription` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `status` enum('0','1') CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '0 = Pending , 1 = Publish',
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `footer_fours`
---
-
-INSERT INTO `footer_fours` (`id`, `title`, `discription`, `status`, `created_at`, `updated_at`) VALUES
-(1, 'Newsletter', '<p>Subscribe to our newsletter to get allour news in your inbox.. Lorem ipsum dolor sit amet,\r\n                            consectetur adipisicing elit,</p>', '1', '2024-02-02 10:13:47', '2024-02-02 10:13:47');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `footer_ones`
---
-
-CREATE TABLE `footer_ones` (
-  `id` bigint UNSIGNED NOT NULL,
-  `title` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `discrption` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `socal_media` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `status` enum('0','1') CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '0 = Pending, 1 = Publish',
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `footer_ones`
---
-
-INSERT INTO `footer_ones` (`id`, `title`, `discrption`, `socal_media`, `status`, `created_at`, `updated_at`) VALUES
-(1, 'About Us', '<p>Lorem ipsum dolor sit am consectetur adipisicing elit do eiusmod tempor incididunt ut labore\r\n                            dolore magna.</p>', '[\"2\",\"3\",\"4\",\"5\",\"6\"]', '1', '2024-02-02 01:06:34', '2024-02-02 01:06:34');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `footer_threes`
---
-
-CREATE TABLE `footer_threes` (
-  `id` bigint UNSIGNED NOT NULL,
-  `title` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `sub_title` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `discription` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `status` enum('0','1') CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '0 = Pending , 1 = Publish',
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `footer_threes`
---
-
-INSERT INTO `footer_threes` (`id`, `title`, `sub_title`, `discription`, `status`, `created_at`, `updated_at`) VALUES
-(1, 'Open Hours', '<p>Lorem ipsum dolor sit ame consectetur adipisicing elit do eiusmod tempor incididunt.</p>', '<li class=\"day\">Monday - Fridayp <span>8.00-20.00</span></li>\r\n                            <li class=\"day\">Saturday <span>9.00-18.30</span></li>\r\n                            <li class=\"day\">Monday - Thusday <span>9.00-15.00</span></li>', '1', '2024-02-02 09:08:36', '2024-02-02 09:08:36');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `footer_twos`
---
-
-CREATE TABLE `footer_twos` (
-  `id` bigint UNSIGNED NOT NULL,
-  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `url` mediumtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `target` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `side` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `order_by` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `status` enum('0','1') CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '0 = Pending , 1 = Publish',
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `footer_twos`
---
-
-INSERT INTO `footer_twos` (`id`, `name`, `url`, `target`, `side`, `order_by`, `status`, `created_at`, `updated_at`) VALUES
-(1, 'Home', '/', '0', '0', '1', '1', '2024-02-02 08:01:06', '2024-06-29 11:33:03'),
-(3, 'About Us', '#', '0', '0', '2', '1', '2024-02-02 08:02:17', '2024-02-02 08:02:17'),
-(4, 'Services', '/frontend/services', '0', '0', '3', '1', '2024-02-02 08:02:37', '2024-06-29 11:22:23'),
-(5, 'Our Cases', '#', '0', '0', '4', '1', '2024-02-02 08:03:01', '2024-02-02 08:03:01'),
-(6, 'Pricing', '/frontend/pricing', '0', '0', '5', '1', '2024-02-02 08:03:35', '2024-06-29 11:34:32'),
-(7, 'Consuling', '#', '0', '1', '6', '1', '2024-02-02 08:04:00', '2024-02-02 08:04:00'),
-(8, 'Finance', '#', '0', '1', '7', '1', '2024-02-02 08:04:20', '2024-02-02 08:04:20'),
-(9, 'Testimonials', '/frontend/testimonials', '0', '1', '8', '1', '2024-02-02 08:04:38', '2024-06-29 11:20:50'),
-(10, 'FAQ', '#', '0', '1', '9', '1', '2024-02-02 08:04:54', '2024-02-02 08:04:54'),
-(11, 'Contact  Us', '#', '0', '1', '10', '1', '2024-02-02 08:05:16', '2024-02-02 08:05:16');
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `fun_facts`
 --
 
@@ -633,24 +456,15 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (9, '2023_12_26_170620_create_email_templates_table', 4),
 (10, '2024_01_08_140155_create_silder_sections_table', 5),
 (11, '2024_01_12_115623_create_schedules_table', 6),
-(12, '2024_01_12_150959_create_title_discrptions_table', 7),
 (13, '2024_01_12_164609_create_feautes_table', 8),
 (14, '2024_01_13_150109_create_fun_facts_table', 9),
-(15, '2024_01_13_162211_create_why_chooses_table', 10),
-(16, '2024_01_14_154820_create_call_to_actions_table', 11),
 (20, '2024_01_18_132054_create_pricing_tables_table', 14),
 (21, '2024_01_18_151655_create_clients_table', 15),
-(23, '2024_01_18_163348_create_appointments_table', 16),
 (24, '2024_01_19_140343_create_blog_categories_table', 17),
 (25, '2024_01_19_152847_create_blog_tags_table', 18),
 (27, '2024_01_24_153829_create_socal_media_table', 20),
 (29, '2024_01_19_163204_create_blogs_table', 21),
 (31, '2024_01_27_164730_create_blog_comments_table', 22),
-(32, '2024_01_30_165519_create_footer_bottoms_table', 23),
-(33, '2024_02_02_063625_create_footer_ones_table', 24),
-(34, '2024_02_02_100958_create_footer_twos_table', 25),
-(36, '2024_02_02_143924_create_footer_threes_table', 26),
-(37, '2024_02_02_155650_create_footer_fours_table', 27),
 (38, '2024_02_02_162024_create_subscribers_table', 28),
 (39, '2024_02_02_174739_create_porfolio_categories_table', 29),
 (41, '2024_01_14_162740_create_portfolio_sections_table', 30),
@@ -661,7 +475,10 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (53, '2024_01_16_163339_create_services_table', 36),
 (54, '2024_07_25_182925_create_contact_form_models_table', 37),
 (55, '2024_07_28_163728_create_day_models_table', 38),
-(58, '2024_07_28_175057_create_slot_models_table', 39);
+(59, '2024_07_28_175057_create_slot_models_table', 39),
+(61, '2024_08_06_170949_create_time_tables_table', 40),
+(62, '2024_08_07_165449_create_time_page_models_table', 41),
+(63, '2024_08_07_172426_create_user_locations_table', 42);
 
 -- --------------------------------------------------------
 
@@ -959,7 +776,7 @@ INSERT INTO `services` (`id`, `icon`, `name`, `title`, `short_description`, `fim
 CREATE TABLE `settings` (
   `id` bigint UNSIGNED NOT NULL,
   `option_key` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `option_value` mediumtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `option_value` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -969,9 +786,8 @@ CREATE TABLE `settings` (
 --
 
 INSERT INTO `settings` (`id`, `option_key`, `option_value`, `created_at`, `updated_at`) VALUES
-(4, 'footertwotitle', 'Quick Links', '2024-02-02 06:21:52', '2024-02-02 06:21:52'),
 (5, 'funfact_image', 'uploads/images/section-bg/fun-bg_565.jpg', '2024-05-11 10:49:12', '2024-05-12 10:10:19'),
-(6, 'call_action_image', 'uploads/images/section-bg/call-bg_134.jpg', '2024-05-11 11:29:53', '2024-05-12 10:12:34'),
+(6, 'call_action_image', 'uploads/images/theme-image/call-bg_134_455.jpg', '2024-05-11 11:29:53', '2024-08-01 11:44:53'),
 (7, 'testimonials_image', 'uploads/images/section-bg/testi-bg_591.jpg', '2024-05-11 11:51:51', '2024-05-12 10:12:40'),
 (8, 'team_image', 'uploads/images/section-bg/testi-bg_648.jpg', '2024-05-12 09:38:29', '2024-05-12 10:12:46'),
 (9, 'client_image', 'uploads/images/section-bg/client-bg_740.jpg', '2024-05-12 09:45:40', '2024-05-12 10:12:54'),
@@ -987,7 +803,72 @@ INSERT INTO `settings` (`id`, `option_key`, `option_value`, `created_at`, `updat
 (19, 'con_address_two', 'Chittagonj, Lakshmipur', '2024-07-25 11:16:42', '2024-07-25 11:18:35'),
 (20, 'con_open_day', 'Mon - Sat: 8am - 5pm', '2024-07-25 11:16:42', '2024-07-25 11:18:35'),
 (21, 'con_weekend_day', 'Sunday Closed', '2024-07-25 11:16:42', '2024-07-25 11:18:35'),
-(22, 'con_terms_and_condition', 'Do you want to subscribe our Newsletter ?', '2024-07-25 11:52:53', '2024-07-25 11:52:53');
+(22, 'con_terms_and_condition', 'Do you want to subscribe our Newsletter ?', '2024-07-25 11:52:53', '2024-07-25 11:52:53'),
+(23, 'theme_phone', '+880 1234 56789', '2024-07-30 11:27:17', '2024-07-30 11:27:17'),
+(24, 'theme_email', 'support@yourmail.com', '2024-07-30 11:27:17', '2024-07-30 11:27:17'),
+(25, 'theme_primary_logo', 'uploads/images/theme-image/logso_908.png', '2024-07-30 11:27:17', '2024-07-30 11:27:17'),
+(26, 'theme_secondary_logo', 'uploads/images/theme-image/dark-logo_216.png', '2024-07-30 11:27:17', '2024-07-30 11:27:17'),
+(27, 'theme_btn_text', 'Book Appointment', '2024-07-30 11:27:17', '2024-07-30 11:27:17'),
+(28, 'theme_btn_url', '#', '2024-07-30 11:27:17', '2024-07-30 11:27:17'),
+(29, 'feautes_title', 'We Are Always Ready to Help You & Your Family', '2024-07-30 11:43:38', '2024-07-30 11:43:38'),
+(30, 'feautes_description', 'Lorem ipsum dolor sit amet consectetur adipiscing elit praesent aliquet. pretiumts', '2024-07-30 11:43:38', '2024-07-30 11:43:38'),
+(31, 'why_choose_section_title', 'We Offer Different Services To Improve Your Health', '2024-08-01 11:02:16', '2024-08-01 11:02:16'),
+(32, 'why_choose_section_description', 'Lorem ipsum dolor sit amet consectetur adipiscing elit praesent aliquet. pretiumts', '2024-08-01 11:02:16', '2024-08-01 11:02:16'),
+(33, 'why_choose_title', 'Who We Are', '2024-08-01 11:02:16', '2024-08-01 11:02:16'),
+(34, 'why_choose_youtube_url', 'https://www.youtube.com/watch?v=FUCIFwYXh8g', '2024-08-01 11:02:16', '2024-08-01 11:02:16'),
+(35, 'why_choose_f_title', '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas pharetra antege vel est\r\n                            lobortis, a commodo magna rhoncus. In quis nisi non emet quam pharetra commodo. </p>', '2024-08-01 11:02:16', '2024-08-01 11:02:16'),
+(36, 'why_choose_s_title', '<p>Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.\r\n                        </p>', '2024-08-01 11:02:16', '2024-08-01 11:02:16'),
+(37, 'why_choose_t_title', '<div class=\"col-lg-6\">\r\n                                <ul class=\"list\"><li><i class=\"fa fa-caret-right\"></i>Maecenas vitae luctus nibh. </li><li><i class=\"fa fa-caret-right\"></i>Duis massa massa.</li><li><i class=\"fa fa-caret-right\"></i>Aliquam feugiat interdum.</li></ul>\r\n                            </div>\r\n                            <div class=\"col-lg-6\">\r\n                                <ul class=\"list\"><li><i class=\"fa fa-caret-right\"></i>Maecenas vitae luctus nibh. </li><li><i class=\"fa fa-caret-right\"></i>Duis massa massa.</li><li><i class=\"fa fa-caret-right\"></i>Aliquam feugiat interdum.</li></ul>\r\n                            </div><p></p>', '2024-08-01 11:02:16', '2024-08-01 11:02:16'),
+(38, 'why_choose_image', 'uploads/images/theme-image/video-bg_1721_546.jpg', '2024-08-01 11:02:16', '2024-08-01 11:02:16'),
+(39, 'call_to_title', 'Do you need Emergency Medical Care? Call @ 1234 56789', '2024-08-01 11:44:53', '2024-08-01 11:54:19'),
+(40, 'call_to_f_btn_title', 'Contact Now', '2024-08-01 11:44:53', '2024-08-01 11:44:53'),
+(41, 'call_to_f_btn_url', '#', '2024-08-01 11:44:53', '2024-08-01 11:44:53'),
+(42, 'call_to_f_btn_target', '0', '2024-08-01 11:44:53', '2024-08-01 11:44:53'),
+(43, 'call_to_l_btn_title', 'Learn More', '2024-08-01 11:44:53', '2024-08-01 11:44:53'),
+(44, 'call_to_l_btn_url', '#', '2024-08-01 11:44:53', '2024-08-01 11:44:53'),
+(45, 'call_to_l_btn_target', '0', '2024-08-01 11:44:53', '2024-08-01 11:44:53'),
+(46, 'call_to_sub_title', '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque porttitor dictum turpis nec gravida.<br></p>', '2024-08-01 11:44:53', '2024-08-01 11:44:53'),
+(47, 'portfolio_section_title', 'We Maintain Cleanliness Rules Inside Our Hospital', '2024-08-01 12:00:04', '2024-08-01 12:00:04'),
+(48, 'portfolio_section_description', 'Lorem ipsum dolor sit amet consectetur adipiscing elit praesent aliquet. pretiumts', '2024-08-01 12:00:04', '2024-08-01 12:00:04'),
+(49, 'services_section_title', 'We Offer Different Services To Improve Your Health', '2024-08-01 12:05:40', '2024-08-01 12:05:40'),
+(50, 'services_section_description', 'Lorem ipsum dolor sit amet consectetur adipiscing elit praesent aliquet. pretiumts', '2024-08-01 12:05:40', '2024-08-01 12:05:40'),
+(51, 'testimonials_section_title', 'What Our Patients Say About Our Medical Treatments', '2024-08-01 12:16:54', '2024-08-01 12:16:54'),
+(52, 'departments_section_title', 'We Offer Different Departments To Diagnose Your Diseases', '2024-08-01 12:24:44', '2024-08-01 12:24:44'),
+(53, 'pricing_section_title', 'We Provide You The Best Treatment In Resonable Price', '2024-08-01 12:40:32', '2024-08-01 12:40:32'),
+(54, 'pricing_section_description', 'Lorem ipsum dolor sit amet consectetur adipiscing elit praesent aliquet. pretiumts', '2024-08-01 12:40:32', '2024-08-01 12:40:32'),
+(55, 'team_section_title', 'We Have Specialist Doctors To Solve Your Problems', '2024-08-01 12:47:54', '2024-08-01 12:47:54'),
+(56, 'team_section_description', 'Lorem ipsum dolor sit amet consectetur adipiscing elit praesent aliquet. pretiumts', '2024-08-01 12:47:54', '2024-08-01 12:47:54'),
+(57, 'blog_section_title', 'Keep up with Our Most Recent Medical News.', '2024-08-01 12:58:05', '2024-08-01 12:58:05'),
+(58, 'blog_section_description', 'Lorem ipsum dolor sit amet consectetur adipiscing elit praesent aliquet. pretiumts', '2024-08-01 12:58:05', '2024-08-01 12:58:05'),
+(59, 'appointment_section_title', 'We Are Always Ready to Help You. Book An Appointment', '2024-08-01 13:33:08', '2024-08-01 13:33:08'),
+(60, 'appointment_section_description', 'Lorem ipsum dolor sit amet consectetur adipiscing elit praesent aliquet. pretiumts', '2024-08-01 13:33:08', '2024-08-01 13:33:08'),
+(61, 'appointment_title', '( We will be confirm by an Text Message )', '2024-08-01 13:33:08', '2024-08-01 13:33:08'),
+(62, 'appointment_btn_title', 'Book An Appointment', '2024-08-01 13:33:08', '2024-08-01 13:33:08'),
+(63, 'appointment_btn_url', '#', '2024-08-01 13:33:08', '2024-08-01 13:33:08'),
+(64, 'appointment_image', 'uploads/images/theme-image/contact-img_627_278.png', '2024-08-01 13:33:08', '2024-08-01 13:33:08'),
+(65, 'newsletter_section_title', 'Sign up for Newsletter', '2024-08-01 13:47:27', '2024-08-01 13:47:27'),
+(66, 'newsletter_section_description', 'Cu qui soleat partiendo urbanitas. Eum aperiri indoctum eu, homero alterum.', '2024-08-01 13:47:27', '2024-08-01 13:47:27'),
+(67, 'facebook', 'facebook', '2024-08-01 14:21:18', '2024-08-01 14:21:18'),
+(68, 'twitter', 'twitter', '2024-08-01 14:21:18', '2024-08-01 14:21:18'),
+(69, 'linkedin', 'linkedin', '2024-08-01 14:21:18', '2024-08-01 14:21:18'),
+(70, 'instagram', 'instagram', '2024-08-01 14:21:18', '2024-08-01 14:21:18'),
+(71, 'youtube', 'youtube', '2024-08-01 14:21:18', '2024-08-01 14:21:18'),
+(72, 'whatsapp', 'whatsapp', '2024-08-01 14:21:18', '2024-08-01 14:21:18'),
+(73, 'tiktok', 'tiktok', '2024-08-01 14:21:18', '2024-08-01 14:21:18'),
+(74, 'telegram', 'telegram', '2024-08-01 14:21:18', '2024-08-01 14:21:18'),
+(75, 'pinterest', 'pinterest', '2024-08-01 14:21:18', '2024-08-01 14:21:18'),
+(76, 'reddit', 'reddit', '2024-08-01 14:21:18', '2024-08-01 14:21:18'),
+(77, 'quora', 'quora', '2024-08-01 14:21:18', '2024-08-01 14:21:18'),
+(78, 'footer_title', '<p>Lorem ipsum dolor sit ame consectetur adipisicing elit do eiusmod tempor incididunt.</p>', '2024-08-02 05:21:13', '2024-08-02 05:21:13'),
+(79, 'quik_links_left', '<li><a href=\"\"><i class=\"fa fa-caret-right\" aria-hidden=\"true\"></i>Home</a></li>\r\n                                        <li><a href=\"\"><i class=\"fa fa-caret-right\" aria-hidden=\"true\"></i>About Us</a></li>\r\n                                        <li><a href=\"\"><i class=\"fa fa-caret-right\" aria-hidden=\"true\"></i>Services</a></li>\r\n                                        <li><a href=\"\"><i class=\"fa fa-caret-right\" aria-hidden=\"true\"></i>Our Cases</a></li>\r\n                                        <li><a href=\"\"><i class=\"fa fa-caret-right\" aria-hidden=\"true\"></i>Pricing</a></li>', '2024-08-02 05:21:13', '2024-08-02 05:31:42'),
+(80, 'quik_links_right', '<li><a href=\"\"><i class=\"fa fa-caret-right\" aria-hidden=\"true\"></i>Consuling</a></li>\r\n                                        <li><a href=\"\"><i class=\"fa fa-caret-right\" aria-hidden=\"true\"></i>Finance</a></li>\r\n                                        <li><a href=\"\"><i class=\"fa fa-caret-right\" aria-hidden=\"true\"></i>Testimonials</a></li>\r\n                                        <li><a href=\"\"><i class=\"fa fa-caret-right\" aria-hidden=\"true\"></i>FAQ</a></li>\r\n                                        <li><a href=\"\"><i class=\"fa fa-caret-right\" aria-hidden=\"true\"></i>Contact Us</a></li>', '2024-08-02 05:21:13', '2024-08-02 05:31:42'),
+(81, 'open_hours_title', '<p>Lorem ipsum dolor sit ame consectetur adipisicing elit do eiusmod tempor incididunt.</p>', '2024-08-02 05:21:13', '2024-08-02 05:21:13'),
+(82, 'open_hours_time', '<ul class=\"time-sidual\"><li class=\"day\">Monday - Fridayp <span>8.00-20.00</span></li><li class=\"day\">Saturday <span>9.00-18.30</span></li><li class=\"day\">Monday - Thusday <span>9.00-15.00</span></li></ul><p></p>', '2024-08-02 05:21:13', '2024-08-02 05:21:13'),
+(83, 'newslettter_title', '<p>Subscribe to our newsletter to get allour news in your inbox.. Lorem ipsum dolor sit amet,\r\n                            consectetur adipisicing elit,</p>', '2024-08-02 05:21:13', '2024-08-02 05:21:13'),
+(84, 'copy_rignts', '<p>© Copyright 2024 | All Rights Reserved by <a href=\"http://127.0.0.1:8000/#\" target=\"\">MEDIPLUS</a></p>', '2024-08-02 05:21:13', '2024-08-02 05:21:13'),
+(85, 'favicon', 'uploads/images/theme-image/Untitled_734.png', '2024-08-02 09:39:56', '2024-08-02 09:39:56'),
+(86, 'time_table_title', 'Determine Your Date to Come', '2024-08-06 10:54:00', '2024-08-06 10:55:19'),
+(87, 'time_table_description', '<p>Lorem ipsum dolor sit amet consectetur adipiscing elit praesent aliquet. pretiumts</p>', '2024-08-06 10:54:00', '2024-08-06 10:54:00');
 
 -- --------------------------------------------------------
 
@@ -1033,7 +914,9 @@ INSERT INTO `silder_sections` (`id`, `f_title`, `f_spcial_title`, `l_title`, `l_
 CREATE TABLE `slot_models` (
   `id` bigint UNSIGNED NOT NULL,
   `start_time` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `start_zone` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `end_time` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `end_zone` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `order_by` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `status` enum('0','1') COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '0 = Pending, 1 = Publish',
   `created_at` timestamp NULL DEFAULT NULL,
@@ -1044,9 +927,21 @@ CREATE TABLE `slot_models` (
 -- Dumping data for table `slot_models`
 --
 
-INSERT INTO `slot_models` (`id`, `start_time`, `end_time`, `order_by`, `status`, `created_at`, `updated_at`) VALUES
-(1, '21:00', '09:30', '1', '1', '2024-07-28 12:18:40', '2024-07-28 12:18:40'),
-(2, '09:00', '09:40', '2', '0', '2024-07-28 12:21:17', '2024-07-28 12:21:17');
+INSERT INTO `slot_models` (`id`, `start_time`, `start_zone`, `end_time`, `end_zone`, `order_by`, `status`, `created_at`, `updated_at`) VALUES
+(1, '09:00', 'AM', '09:30', 'AM', '1', '1', '2024-07-29 10:50:22', '2024-07-29 10:50:22'),
+(2, '09:30', 'AM', '10:00', 'AM', '2', '1', '2024-07-29 10:59:15', '2024-07-29 10:59:15'),
+(3, '10:00', 'AM', '10:30', 'AM', '3', '1', '2024-07-29 10:59:52', '2024-07-29 10:59:52'),
+(4, '10:30', 'AM', '11:00', 'AM', '4', '1', '2024-07-29 11:01:54', '2024-07-29 11:01:54'),
+(5, '11:00', 'AM', '11:30', 'AM', '5', '1', '2024-07-29 11:02:28', '2024-07-29 11:02:28'),
+(6, '11:30', 'AM', '12:00', 'PM', '6', '1', '2024-07-29 11:04:01', '2024-07-29 11:04:01'),
+(7, '12:00', 'PM', '12:30', 'PM', '7', '1', '2024-07-29 11:05:25', '2024-07-29 11:05:25'),
+(8, '12:30', 'PM', '01:00', 'PM', '8', '1', '2024-07-29 11:05:59', '2024-07-29 11:05:59'),
+(9, '02:00', 'PM', '02:30', 'PM', '9', '1', '2024-07-29 11:06:44', '2024-07-29 11:06:44'),
+(10, '02:30', 'PM', '03:00', 'PM', '10', '1', '2024-07-29 11:07:21', '2024-07-29 11:07:21'),
+(11, '03:00', 'PM', '03:30', 'PM', '11', '1', '2024-07-29 11:08:13', '2024-07-29 11:08:13'),
+(12, '03:30', 'PM', '04:00', 'PM', '12', '1', '2024-07-29 11:08:50', '2024-07-29 11:08:50'),
+(13, '04:00', 'PM', '04:30', 'PM', '13', '1', '2024-07-29 11:09:25', '2024-07-29 11:09:25'),
+(14, '04:30', 'PM', '05:00', 'PM', '14', '1', '2024-07-29 11:09:51', '2024-07-29 11:30:09');
 
 -- --------------------------------------------------------
 
@@ -1105,38 +1000,43 @@ INSERT INTO `subscribers` (`id`, `email`, `status`, `created_at`, `updated_at`) 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `title_discrptions`
+-- Table structure for table `time_page_models`
 --
 
-CREATE TABLE `title_discrptions` (
+CREATE TABLE `time_page_models` (
   `id` bigint UNSIGNED NOT NULL,
-  `section_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `title` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `discrption` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `status` enum('0','1') CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '0 = Pending, 1 = Publish',
+  `user_id` bigint UNSIGNED NOT NULL,
+  `day_id` bigint UNSIGNED NOT NULL,
+  `time_id` bigint UNSIGNED NOT NULL,
+  `status` enum('0','1') COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '0 = Pending, 1 = Publish',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `time_tables`
+--
+
+CREATE TABLE `time_tables` (
+  `id` bigint UNSIGNED NOT NULL,
+  `time` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `order_by` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `status` enum('0','1') COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '0 = Pending , 1 = Publish',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data for table `title_discrptions`
+-- Dumping data for table `time_tables`
 --
 
-INSERT INTO `title_discrptions` (`id`, `section_name`, `title`, `discrption`, `status`, `created_at`, `updated_at`) VALUES
-(1, 'Feautes_section', 'We Are Always Ready to Help You & Your Family', '<p>Lorem ipsum dolor sit amet consectetur adipiscing elit praesent aliquet. pretiumts</p>', '1', '2024-01-12 10:26:30', '2024-01-12 10:26:30'),
-(3, 'Why_choose_section', 'We Offer Different Services To Improve Your Health', '<p>Lorem ipsum dolor sit amet consectetur adipiscing elit praesent aliquet. pretiumts</p>', '1', '2024-01-13 09:52:23', '2024-01-13 09:52:23'),
-(4, 'Portfolio_section', 'We Maintain Cleanliness Rules Inside Our Hospital', '<p>Lorem ipsum dolor sit amet consectetur adipiscing elit praesent aliquet. pretiumts</p>', '1', '2024-01-14 10:22:33', '2024-01-14 10:22:33'),
-(5, 'Services_section', 'We Offer Different Services To Improve Your Health', '<p>Lorem ipsum dolor sit amet consectetur adipiscing elit praesent aliquet. pretiumts</p>', '1', '2024-01-16 10:24:27', '2024-01-16 10:24:27'),
-(6, 'Pricing_table_section', 'We Provide You The Best Treatment In Resonable Price', '<p>Lorem ipsum dolor sit amet consectetur adipiscing elit praesent aliquet. pretiumts</p>', '1', '2024-01-18 07:16:54', '2024-01-18 07:16:54'),
-(7, 'Blog_section', 'Keep up with Our Most Recent Medical News.', '<p>Lorem ipsum dolor sit amet consectetur adipiscing elit praesent aliquet. pretiumts</p>', '1', '2024-01-18 08:28:11', '2024-01-18 08:28:11'),
-(8, 'Pricing_table_section', 'We Provide You The Best Treatment In Resonable Price', '<p>Lorem ipsum dolor sit amet consectetur adipiscing elit praesent aliquet. pretiumts</p>', '1', '2024-01-18 08:31:44', '2024-01-18 08:31:44'),
-(9, 'Appointment', 'We Are Always Ready to Help You. Book An Appointment', '<p>Lorem ipsum dolor sit amet consectetur adipiscing elit praesent aliquet. pretiumts</p>', '1', '2024-01-18 10:27:31', '2024-01-18 10:27:31'),
-(10, 'Newsletter_section', 'Sign up for newsletter', '<p class=\"\">Cu qui soleat partiendo urbanitas. Eum aperiri indoctum eu,<br> homero\r\n                        alterum.</p>', '1', '2024-01-18 11:23:35', '2024-01-18 11:23:35'),
-(11, 'teamSection', 'We Have Specialist Doctors To Solve Your Problems', '<p>Lorem ipsum dolor sit amet consectetur adipiscing elit praesent aliquet. pretiumts</p>', '1', '2024-04-26 07:19:07', '2024-04-26 07:19:07'),
-(12, 'TeamSection', 'We Have Specialist Doctors To Solve Your Problems', '<p>Lorem ipsum dolor sit amet consectetur adipiscing elit praesent aliquet. pretiumts</p>', '1', '2024-05-12 12:07:55', '2024-05-12 12:07:55'),
-(13, 'TestimonialSection', 'What Our Patients Say About Our Medical Treatments', '<p>....<br></p>', '1', '2024-05-12 12:09:03', '2024-05-12 12:09:03'),
-(14, 'DepartmentSection', 'We Offer Different Departments To Diagnose Your Diseases', '<p>success<br></p>', '1', '2024-05-14 10:12:02', '2024-05-14 10:12:02'),
-(15, 'Time_Table', 'Determine Your Date to Come', '<p>Lorem ipsum dolor sit amet consectetur adipiscing elit praesent aliquet. pretiumts</p>', '1', '2024-07-26 11:02:01', '2024-07-26 11:02:01');
+INSERT INTO `time_tables` (`id`, `time`, `order_by`, `status`, `created_at`, `updated_at`) VALUES
+(1, '09:00', '1', '1', '2024-08-07 10:14:53', '2024-08-07 10:26:14'),
+(2, '12:00', '2', '1', '2024-08-07 10:15:10', '2024-08-07 10:15:10'),
+(3, '15:00', '3', '1', '2024-08-07 10:16:15', '2024-08-07 10:26:06'),
+(4, '18:00', '4', '1', '2024-08-07 10:16:27', '2024-08-07 10:25:56');
 
 -- --------------------------------------------------------
 
@@ -1196,38 +1096,27 @@ INSERT INTO `users` (`id`, `role_id`, `fname`, `lname`, `email`, `email_verified
 -- --------------------------------------------------------
 
 --
--- Table structure for table `why_chooses`
+-- Table structure for table `user_locations`
 --
 
-CREATE TABLE `why_chooses` (
+CREATE TABLE `user_locations` (
   `id` bigint UNSIGNED NOT NULL,
-  `title` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `f_title` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `s_title` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `t_title` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `image` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `youtube_url` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `status` enum('0','1') CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '0 = Pending, 1 = Publish',
+  `user_id` bigint UNSIGNED NOT NULL,
+  `ip_address` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `country` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `country_code` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `region_code` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `city_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `zip_code` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `postal_code` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `area_code` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data for table `why_chooses`
---
-
-INSERT INTO `why_chooses` (`id`, `title`, `f_title`, `s_title`, `t_title`, `image`, `youtube_url`, `status`, `created_at`, `updated_at`) VALUES
-(2, 'Who We Are', '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas pharetra antege vel est\r\n                            lobortis, a commodo magna rhoncus. In quis nisi non emet quam pharetra commodo. </p>', '<p>Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.\r\n                        </p>', '<div class=\"col-lg-6\">\r\n                                <ul class=\"list\">\r\n                                    <li><i class=\"fa fa-caret-right\"></i>Maecenas vitae luctus nibh. </li>\r\n                                    <li><i class=\"fa fa-caret-right\"></i>Duis massa massa.</li>\r\n                                    <li><i class=\"fa fa-caret-right\"></i>Aliquam feugiat interdum.</li>\r\n                                </ul>\r\n                            </div>\r\n                            <div class=\"col-lg-6\">\r\n                                <ul class=\"list\">\r\n                                    <li><i class=\"fa fa-caret-right\"></i>Maecenas vitae luctus nibh. </li>\r\n                                    <li><i class=\"fa fa-caret-right\"></i>Duis massa massa.</li>\r\n                                    <li><i class=\"fa fa-caret-right\"></i>Aliquam feugiat interdum.</li>\r\n                                </ul>\r\n                            </div>', 'uploads/images/choose/video-bg_171.jpg', 'https://www.youtube.com/watch?v=FUCIFwYXh8g', '1', '2024-01-14 09:19:16', '2024-01-14 09:32:06');
-
---
 -- Indexes for dumped tables
 --
-
---
--- Indexes for table `appointments`
---
-ALTER TABLE `appointments`
-  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `blogs`
@@ -1255,12 +1144,6 @@ ALTER TABLE `blog_comments`
 -- Indexes for table `blog_tags`
 --
 ALTER TABLE `blog_tags`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `call_to_actions`
---
-ALTER TABLE `call_to_actions`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -1314,36 +1197,6 @@ ALTER TABLE `failed_jobs`
 -- Indexes for table `feautes`
 --
 ALTER TABLE `feautes`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `footer_bottoms`
---
-ALTER TABLE `footer_bottoms`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `footer_fours`
---
-ALTER TABLE `footer_fours`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `footer_ones`
---
-ALTER TABLE `footer_ones`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `footer_threes`
---
-ALTER TABLE `footer_threes`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `footer_twos`
---
-ALTER TABLE `footer_twos`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -1469,10 +1322,20 @@ ALTER TABLE `subscribers`
   ADD UNIQUE KEY `subscribers_email_unique` (`email`);
 
 --
--- Indexes for table `title_discrptions`
+-- Indexes for table `time_page_models`
 --
-ALTER TABLE `title_discrptions`
-  ADD PRIMARY KEY (`id`);
+ALTER TABLE `time_page_models`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `time_page_models_user_id_foreign` (`user_id`),
+  ADD KEY `time_page_models_day_id_foreign` (`day_id`),
+  ADD KEY `time_page_models_time_id_foreign` (`time_id`);
+
+--
+-- Indexes for table `time_tables`
+--
+ALTER TABLE `time_tables`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `time_tables_time_unique` (`time`);
 
 --
 -- Indexes for table `users`
@@ -1483,20 +1346,15 @@ ALTER TABLE `users`
   ADD KEY `users_role_id_foreign` (`role_id`);
 
 --
--- Indexes for table `why_chooses`
+-- Indexes for table `user_locations`
 --
-ALTER TABLE `why_chooses`
-  ADD PRIMARY KEY (`id`);
+ALTER TABLE `user_locations`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `user_locations_user_id_foreign` (`user_id`);
 
 --
 -- AUTO_INCREMENT for dumped tables
 --
-
---
--- AUTO_INCREMENT for table `appointments`
---
-ALTER TABLE `appointments`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `blogs`
@@ -1521,12 +1379,6 @@ ALTER TABLE `blog_comments`
 --
 ALTER TABLE `blog_tags`
   MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
-
---
--- AUTO_INCREMENT for table `call_to_actions`
---
-ALTER TABLE `call_to_actions`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `clients`
@@ -1577,36 +1429,6 @@ ALTER TABLE `feautes`
   MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
--- AUTO_INCREMENT for table `footer_bottoms`
---
-ALTER TABLE `footer_bottoms`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- AUTO_INCREMENT for table `footer_fours`
---
-ALTER TABLE `footer_fours`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- AUTO_INCREMENT for table `footer_ones`
---
-ALTER TABLE `footer_ones`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- AUTO_INCREMENT for table `footer_threes`
---
-ALTER TABLE `footer_threes`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- AUTO_INCREMENT for table `footer_twos`
---
-ALTER TABLE `footer_twos`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
-
---
 -- AUTO_INCREMENT for table `fun_facts`
 --
 ALTER TABLE `fun_facts`
@@ -1622,7 +1444,7 @@ ALTER TABLE `menus`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=59;
+  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=64;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`
@@ -1682,7 +1504,7 @@ ALTER TABLE `services`
 -- AUTO_INCREMENT for table `settings`
 --
 ALTER TABLE `settings`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=88;
 
 --
 -- AUTO_INCREMENT for table `silder_sections`
@@ -1694,7 +1516,7 @@ ALTER TABLE `silder_sections`
 -- AUTO_INCREMENT for table `slot_models`
 --
 ALTER TABLE `slot_models`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `socal_media`
@@ -1709,10 +1531,16 @@ ALTER TABLE `subscribers`
   MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT for table `title_discrptions`
+-- AUTO_INCREMENT for table `time_page_models`
 --
-ALTER TABLE `title_discrptions`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+ALTER TABLE `time_page_models`
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `time_tables`
+--
+ALTER TABLE `time_tables`
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `users`
@@ -1721,10 +1549,10 @@ ALTER TABLE `users`
   MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
--- AUTO_INCREMENT for table `why_chooses`
+-- AUTO_INCREMENT for table `user_locations`
 --
-ALTER TABLE `why_chooses`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+ALTER TABLE `user_locations`
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- Constraints for dumped tables
@@ -1770,10 +1598,24 @@ ALTER TABLE `reviews`
   ADD CONSTRAINT `reviews_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
 
 --
+-- Constraints for table `time_page_models`
+--
+ALTER TABLE `time_page_models`
+  ADD CONSTRAINT `time_page_models_day_id_foreign` FOREIGN KEY (`day_id`) REFERENCES `day_models` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `time_page_models_time_id_foreign` FOREIGN KEY (`time_id`) REFERENCES `time_tables` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `time_page_models_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
+
+--
 -- Constraints for table `users`
 --
 ALTER TABLE `users`
   ADD CONSTRAINT `users_role_id_foreign` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `user_locations`
+--
+ALTER TABLE `user_locations`
+  ADD CONSTRAINT `user_locations_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

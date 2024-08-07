@@ -15,10 +15,10 @@ class SlotController extends Controller
     {
         if (Gate::allows('isAdmin')) {
             $this->setPageTitle('Slots');
-            $data['parentDoctors']        = 'expanded';
-            $data['parentDoctorsSubMenu'] = 'style="display: block;"';
-            $data['addSlot']              = 'active';
-            $data['breadcrumb']           = ['Slots' => '',];
+            $data['parentTimeTable']        = 'expanded';
+            $data['parentTimeTableSubMenu'] = 'style="display: block;"';
+            $data['addSlot']                = 'active';
+            $data['breadcrumb']             = ['Slots' => '',];
             return view('backend.pages.doctors.slots.index', $data);
         } else {
             abort(401);
@@ -84,11 +84,11 @@ class SlotController extends Controller
     {
         if (Gate::allows('isAdmin')) {
             $this->setPageTitle('Create Slot');
-            $data['parentDoctors']        = 'expanded';
-            $data['parentDoctorsSubMenu'] = 'style="display: block;"';
-            $data['addSlot']              = 'active';
-            $data['totalSlots']           = SlotModel::get();
-            $data['breadcrumb']           = ['Days' => route('admin.doctor.slot.index'), 'Create Slot' => '',];
+            $data['parentTimeTable']        = 'expanded';
+            $data['parentTimeTableSubMenu'] = 'style="display: block;"';
+            $data['addSlot']                = 'active';
+            $data['totalSlots']             = SlotModel::get();
+            $data['breadcrumb']             = ['Days' => route('admin.doctor.slot.index'), 'Create Slot' => '',];
             return view('backend.pages.doctors.slots.create', $data);
         } else {
             abort(401);
@@ -117,11 +117,11 @@ class SlotController extends Controller
     {
         if (Gate::allows('isAdmin')) {
             $this->setPageTitle('Edit Slot');
-            $data['parentDoctors']        = 'expanded';
-            $data['parentDoctorsSubMenu'] = 'style="display: block;"';
-            $data['addSlot']              = 'active';
-            $data['editSlot']             =  SlotModel::find($id);
-            $data['breadcrumb']           = ['Slots' => route('admin.doctor.slot.index'), 'Edit Slot' => '',];
+            $data['parentTimeTable']        = 'expanded';
+            $data['parentTimeTableSubMenu'] = 'style="display: block;"';
+            $data['addSlot']                = 'active';
+            $data['editSlot']               = SlotModel::find($id);
+            $data['breadcrumb']             = ['Slots' => route('admin.doctor.slot.index'), 'Edit Slot' => '',];
             return view('backend.pages.doctors.slots.edit', $data);
         } else {
             abort(401);

@@ -1,0 +1,27 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+
+class UserLocation extends Model
+{
+    use HasFactory;
+     /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'user_id',
+        'ip_address',
+        'country',
+        'country_code',
+        'region_code',
+        'city_name',
+        'zip_code',
+        'postal_code',
+        'area_code',
+    ];
+}

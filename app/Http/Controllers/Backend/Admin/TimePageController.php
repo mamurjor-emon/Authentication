@@ -3,23 +3,25 @@
 namespace App\Http\Controllers\Backend\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\TimeTableRequest;
+use App\Models\DayModel;
+use App\Models\TimePageModel;
 use App\Models\TimeTable;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 use Yajra\DataTables\Facades\DataTables;
 
-class TimeTableController extends Controller
+class TimePageController extends Controller
 {
     public function index()
     {
         if (Gate::allows('isAdmin')) {
-            $this->setPageTitle('Time Table');
+            $this->setPageTitle('Time Table Page Setting');
             $data['parentTimeTable']        = 'expanded';
             $data['parentTimeTableSubMenu'] = 'style="display: block;"';
-            $data['timeTable']              = 'active';
-            $data['breadcrumb']             = ['Time Table' => '',];
-            return view('backend.pages.doctors.time-table.index', $data);
+            $data['timeTablePage']          = 'active';
+            $data['breadcrumb']             = ['Time Table Page Setting' => '',];
+            return view('backend.pages.doctors.time-table-page.index', $data);
         } else {
             abort(401);
         }
@@ -35,29 +37,29 @@ class TimeTableController extends Controller
     {
         if (Gate::allows('isAdmin')) {
             if ($request->ajax()) {
-                $getData = TimeTable::latest('id');
+                $getData = TimePageModel::latest('id');
                 return DataTables::eloquent($getData)
                     ->addIndexColumn()
-                    ->filter(function ($query) use ($request) {
-                        if (!empty($request->search)) {
-                            $query->when($request->search, function ($query, $value) {
-                                $query->where('name', 'like', "%{$value}%")
-                                    ->orWhere('order_by', 'like', "%{$value}%");
-                            });
-                        }
-                    })
-                    ->addColumn('name', function ($data) {
-                        return $data->name;
-                    })
+                    // ->filter(function ($query) use ($request) {
+                    //     if (!empty($request->search)) {
+                    //         $query->when($request->search, function ($query, $value) {
+                    //             $query->where('name', 'like', "%{$value}%")
+                    //                 ->orWhere('order_by', 'like', "%{$value}%");
+                    //         });
+                    //     }
+                    // })
+                    // ->addColumn('name', function ($data) {
+                    //     return $data->name;
+                    // })
                     ->addColumn('status', function ($data) {
                         return status($data->status);
                     })
                     ->addColumn('action', function ($data) {
-                        return '<div class="text-right" ><a href="' . route('admin.doctor.time-table.edit', ['id' => $data->id]) . '" class="rounded mdc-button mdc-button--raised icon-button filled-button--success">
+                        return '<div class="text-right" ><a href="' . route('admin.doctor.time-page.edit', ['id' => $data->id]) . '" class="rounded mdc-button mdc-button--raised icon-button filled-button--success">
                         <i class="material-icons mdc-button__icon">colorize</i>
                       </a> <button class="mdc-button mdc-button--raised icon-button filled-button--secondary" onclick="delete_data(' . $data->id . ')">
                       <i class="material-icons mdc-button__icon">delete</i>
-                    </button><form action="' . route('admin.doctor.time-table.delete', ['id' => $data->id]) . '"
+                    </button><form action="' . route('admin.doctor.time-page.delete', ['id' => $data->id]) . '"
                     id="delete-form-' . $data->id . '" method="DELETE" class="d-none">
                     @csrf
                     @method("DELETE") </form></div>';
@@ -73,13 +75,14 @@ class TimeTableController extends Controller
     public function create()
     {
         if (Gate::allows('isAdmin')) {
-            $this->setPageTitle('Create Time');
+            $this->setPageTitle('Create Time Table Page');
             $data['parentTimeTable']        = 'expanded';
             $data['parentTimeTableSubMenu'] = 'style="display: block;"';
-            $data['timeTable']              = 'active';
-            $data['totalTimes']             = TimeTable::get();
-            $data['breadcrumb']             = ['Times' => route('admin.doctor.time-table.index'), 'Create Time' => '',];
-            return view('backend.pages.doctors.time-table.create', $data);
+            $data['timeTablePage']          = 'active';
+            $data['doctors']                = User::where('role_id',2)->where('status',1)->get();
+            $data['days']                   = DayModel::where('status','1')->get();
+            $data['breadcrumb']             = ['Time Table Pages' => route('admin.doctor.time-table.index'), 'Create Time Table Page' => '',];
+            return view('backend.pages.doctors.time-table-page.create', $data);
         } else {
             abort(401);
         }
@@ -140,3 +143,4 @@ class TimeTableController extends Controller
         }
     }
 }
+
