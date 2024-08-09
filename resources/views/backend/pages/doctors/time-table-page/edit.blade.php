@@ -11,25 +11,42 @@
                     <h2 class="backend-title">{{ $title }}</h2>
                 </div>
                 <div class="menu-create-form">
-                    <form method="POST" action="{{ route('admin.doctor.time-table.update') }}" enctype="multipart/form-data">
+                    <form method="POST" action="{{ route('admin.doctor.time-page.update') }}" enctype="multipart/form-data">
                         @csrf
                         <div class="row g-5 mt-2">
-                            <input type="hidden" name="update_id" value="{{ $editTimeTable->id }}">
+                            <input type="hidden" name="update_id" value="{{ $editTimePage->id }}">
+                            <x-form.selectbox parantClass="col-12 col-md-6" class="form-control" name="user_id"
+                                required="required" labelName="User" id="user_id" errorName="user_id">
+                                <option value="">Select User</option>
+                                @forelse ($doctors as $doctor)
+                                    <option value="{{ $doctor->user->id }}" {{ $doctor->user->id == $editTimePage->user_id ? 'selected' : '' }}>
+                                        {{ $doctor->user->fname . '-' . $doctor->user->lname . '-' . $doctor->user->email }}</option>
+                                @empty
+                                @endforelse
+                            </x-form.selectbox>
 
-                            <x-form.textbox labelName="Time" parantClass="col-12 col-md-6" name="time"
-                                type="time" required="required"
-                                placeholder="Enter Time..!" errorName="time" class="py-2"
-                                value="{{ $editTimeTable->time ?? old('time') }}"></x-form.textbox>
-
-                            <x-form.textbox labelName="Order By" parantClass="col-12 col-md-6" name="order_by"
-                                required="required" placeholder="Enter Order By..!" errorName="order_by" class="py-2"
-                                value="{{ $editTimeTable->order_by ?? old('order_by') }}"></x-form.textbox>
+                            <x-form.selectbox parantClass="col-12 col-md-6" class="form-control" id="day_id"
+                                name="day_id" required="required" labelName="Day" errorName="day_id">
+                                <option value="">Select Day</option>
+                                @forelse ($days as $day)
+                                    <option value="{{ $day->id }}" {{ $day->id == $editTimePage->day_id ? 'selected' : '' }}>{{ $day->name }}</option>
+                                @empty
+                                @endforelse
+                            </x-form.selectbox>
                         </div>
                         <div class="row g-5 mt-2">
+                            <x-form.selectbox parantClass="col-12 col-md-6" class="form-control" name="time"
+                                required="required" labelName="Time" errorName="time" id="time">
+                                <option value="">Select Time</option>
+                                @forelse ($activeTimes as $times)
+                                <option value="{{ $times->id }}" {{ $times->id == $editTimePage->time_id ? 'selected' : '' }}>{{ $times->time }}</option>
+                                @empty
+                                @endforelse
+                            </x-form.selectbox>
                             <x-form.selectbox parantClass="col-12 col-md-6" class="form-control" name="status"
                                 required="required" labelName="Status" errorName="status">
-                                <option value="0" {{ $editTimeTable->status == '0' ? 'selected' : '' }}>Pending</option>
-                                <option value="1" {{ $editTimeTable->status == '1' ? 'selected' : '' }}>Publish</option>
+                                <option value="0" {{ $editTimePage->status ? 'selected' : '' }}>Pending</option>
+                                <option value="1" {{ $editTimePage->status ? 'selected' : '' }}>Publish</option>
                             </x-form.selectbox>
                         </div>
                         <div class="d-flex justify-content-end align-items-center mt-3">
@@ -42,3 +59,29 @@
         </div>
     </div>
 @endsection
+@push('scripts')
+    <script>
+        $(document).on('change', '#day_id', function() {
+            var user_id = $('#user_id').val();
+            var day_id = $(this).val();
+            $.ajax({
+                url: "{{ route('admin.doctor.time-page.get-time') }}",
+                method: 'POST',
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                data: {
+                    user_id: user_id,
+                    day_id: day_id,
+                },
+                success: function(res) {
+                   var times = $('#time');
+                   if(res.status == 'success'){
+                        times.empty();
+                        times.append(res.data);
+                   };
+                }
+            });
+        })
+    </script>
+@endpush

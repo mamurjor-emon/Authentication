@@ -19,4 +19,14 @@ class TimePageModel extends Model
         'time_id',
         'status',
     ];
+
+    public function user(){
+        return $this->belongsTo(User::class);
+    }
+    public function time(){
+        return $this->belongsTo(TimeTable::class);
+    }
+    public function day(){
+        return $this->belongsTo(DayModel::class);
+    }
 }

@@ -32,6 +32,7 @@ use App\Http\Controllers\Backend\Admin\TimeTableController;
 Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth', 'is_verify', 'is_admin']], function () {
     //------------------------ Dashboard -----------------------//
     Route::get('dashboard/', [DashboardController::class, 'dashboard'])->name('dashboard');
+    Route::get('profile/', [DashboardController::class, 'profile'])->name('profile');
 
     //------------------------ Theme Setting -----------------------//
     Route::prefix('theme')->name('theme.')->group(function () {
@@ -188,6 +189,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth', 'i
         Route::get('/time-page', [TimePageController::class, 'index'])->name('time-page.index');
         Route::post('time-page/getdata', [TimePageController::class, 'getData'])->name('time-page.get.data');
         Route::get('time-page/create', [TimePageController::class, 'create'])->name('time-page.create');
+        Route::post('time-page/get-time', [TimePageController::class, 'getTime'])->name('time-page.get-time');
         Route::post('time-page/store', [TimePageController::class, 'store'])->name('time-page.store');
         Route::get('time-page/edit/{id}', [TimePageController::class, 'edit'])->name('time-page.edit');
         Route::post('time-page/update', [TimePageController::class, 'update'])->name('time-page.update');

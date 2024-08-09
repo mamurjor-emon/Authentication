@@ -3,7 +3,8 @@
     <div class="mdc-top-app-bar__row">
         <div class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start">
             <button class="material-icons mdc-top-app-bar__navigation-icon mdc-icon-button sidebar-toggler">menu</button>
-            <span class="mdc-top-app-bar__title">Greetings Clyde!</span>
+            <span class="mdc-top-app-bar__title">Greetings
+                {{ Auth::user()->fname ?? '' }}-{{ Auth::user()->lname ?? '' }}</span>
             <div
                 class="mdc-text-field mdc-text-field--outlined mdc-text-field--with-leading-icon search-text-field d-none d-md-flex">
                 <i class="material-icons mdc-text-field__icon">search</i>
@@ -20,32 +21,15 @@
         <div class="mdc-top-app-bar__section mdc-top-app-bar__section--align-end mdc-top-app-bar__section-right">
             <div class="menu-button-container d-none d-md-block">
                 <button class="mdc-button mdc-menu-button">
-                    <i class="mdi mdi-settings"></i>
+                    <a title="Website" href="{{ route('index') }}"><i class="mdi mdi-earth"></i></a>
                 </button>
-                <div class="mdc-menu mdc-menu-surface" tabindex="-1">
-                    <ul class="mdc-list" role="menu" aria-hidden="true" aria-orientation="vertical">
-                        <li class="mdc-list-item" role="menuitem">
-                            <div class="item-thumbnail item-thumbnail-icon-only">
-                                <i class="mdi mdi-alert-circle-outline text-primary"></i>
-                            </div>
-                            <div class="item-content d-flex align-items-start flex-column justify-content-center">
-                                <h6 class="item-subject font-weight-normal">Settings</h6>
-                            </div>
-                        </li>
-                        <li class="mdc-list-item" role="menuitem">
-                            <div class="item-thumbnail item-thumbnail-icon-only">
-                                <i class="mdi mdi-progress-download text-primary"></i>
-                            </div>
-                            <div class="item-content d-flex align-items-start flex-column justify-content-center">
-                                <h6 class="item-subject font-weight-normal">Update</h6>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
             </div>
             <div class="menu-button-container">
                 <button class="mdc-button mdc-menu-button">
                     <i class="mdi mdi-bell"></i>
+                    <span class="count-indicator">
+                        <span class="count">3</span>
+                    </span>
                 </button>
                 <div class="mdc-menu mdc-menu-surface" tabindex="-1">
                     <h6 class="title"> <i class="mdi mdi-bell-outline mr-2 tx-16"></i> Notifications</h6>
@@ -89,71 +73,6 @@
                     </ul>
                 </div>
             </div>
-            <div class="menu-button-container">
-                <button class="mdc-button mdc-menu-button">
-                    <i class="mdi mdi-email"></i>
-                    <span class="count-indicator">
-                        <span class="count">3</span>
-                    </span>
-                </button>
-                <div class="mdc-menu mdc-menu-surface" tabindex="-1">
-                    <h6 class="title"><i class="mdi mdi-email-outline mr-2 tx-16"></i> Messages</h6>
-                    <ul class="mdc-list" role="menu" aria-hidden="true" aria-orientation="vertical">
-                        <li class="mdc-list-item" role="menuitem">
-                            <div class="item-thumbnail">
-                                <img src="../assets/images/faces/face4.jpg" alt="user">
-                            </div>
-                            <div class="item-content d-flex align-items-start flex-column justify-content-center">
-                                <h6 class="item-subject font-weight-normal">Mark send you a message</h6>
-                                <small class="text-muted"> 1 Minutes ago </small>
-                            </div>
-                        </li>
-                        <li class="mdc-list-item" role="menuitem">
-                            <div class="item-thumbnail">
-                                <img src="../assets/images/faces/face2.jpg" alt="user">
-                            </div>
-                            <div class="item-content d-flex align-items-start flex-column justify-content-center">
-                                <h6 class="item-subject font-weight-normal">Cregh send you a message</h6>
-                                <small class="text-muted"> 15 Minutes ago </small>
-                            </div>
-                        </li>
-                        <li class="mdc-list-item" role="menuitem">
-                            <div class="item-thumbnail">
-                                <img src="../assets/images/faces/face3.jpg" alt="user">
-                            </div>
-                            <div class="item-content d-flex align-items-start flex-column justify-content-center">
-                                <h6 class="item-subject font-weight-normal">Profile picture updated</h6>
-                                <small class="text-muted"> 18 Minutes ago </small>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <div class="menu-button-container d-none d-md-block">
-                <button class="mdc-button mdc-menu-button">
-                    <i class="mdi mdi-arrow-down-bold-box"></i>
-                </button>
-                <div class="mdc-menu mdc-menu-surface" tabindex="-1">
-                    <ul class="mdc-list" role="menu" aria-hidden="true" aria-orientation="vertical">
-                        <li class="mdc-list-item" role="menuitem">
-                            <div class="item-thumbnail item-thumbnail-icon-only">
-                                <i class="mdi mdi-lock-outline text-primary"></i>
-                            </div>
-                            <div class="item-content d-flex align-items-start flex-column justify-content-center">
-                                <h6 class="item-subject font-weight-normal">Lock screen</h6>
-                            </div>
-                        </li>
-                        <li class="mdc-list-item" role="menuitem">
-                            <div class="item-thumbnail item-thumbnail-icon-only">
-                                <i class="mdi mdi-logout-variant text-primary"></i>
-                            </div>
-                            <div class="item-content d-flex align-items-start flex-column justify-content-center">
-                                <h6 class="item-subject font-weight-normal">Logout</h6>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-            </div>
             <div class="divider d-none d-md-block"></div>
             <div class="menu-button-container menu-profile d-none d-md-block">
                 <button class="mdc-button mdc-menu-button">
@@ -171,22 +90,26 @@
                 </button>
                 <div class="mdc-menu mdc-menu-surface" tabindex="-1">
                     <ul class="mdc-list" role="menu" aria-hidden="true" aria-orientation="vertical">
-                        <li class="mdc-list-item" role="menuitem">
-                            <div class="item-thumbnail item-thumbnail-icon-only">
-                                <i class="mdi mdi-account-edit-outline text-primary"></i>
-                            </div>
-                            <div class="item-content d-flex align-items-start flex-column justify-content-center">
-                                <h6 class="item-subject font-weight-normal">Edit profile</h6>
-                            </div>
+                        <li>
+                            <a href="{{ route('admin.profile') }}" class="mdc-list-item" role="menuitem">
+                                <div class="item-thumbnail item-thumbnail-icon-only">
+                                    <i class="mdi mdi-account-edit-outline text-primary"></i>
+                                </div>
+                                <div class="item-content d-flex align-items-start flex-column justify-content-center">
+                                    <h6 class="item-subject font-weight-normal">Edit profile</h6>
+                                </div>
+                            </a>
                         </li>
                         <li class="mdc-list-item" role="menuitem">
-                            <div class="item-thumbnail item-thumbnail-icon-only">
-                                <i class="mdi mdi-settings-outline text-primary"></i>
-                            </div>
                             <div class="item-content d-flex align-items-start flex-column justify-content-center">
                                 <form action="{{ route('logout') }}" method="POST">
                                     @csrf
-                                    <button type="submit" class="item-subject font-weight-normal border-0 bg-transparent">Logout</button>
+                                    <button type="submit" class="item-subject font-weight-normal border-0 bg-transparent">
+                                        <div class="item-thumbnail item-thumbnail-icon-only">
+                                            <i class="mdi mdi-logout text-primary"></i>
+                                        </div>
+                                        Logout
+                                    </button>
                                 </form>
                             </div>
                         </li>

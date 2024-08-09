@@ -22,7 +22,10 @@ class TimePageRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'user_id' => ['required'],
+            'day_id'  => ['required'],
+            'time'    => ['required'],
+            'status'  => ['required'],
         ];
     }
 }

@@ -2,13 +2,15 @@
 
 namespace App\Http\Controllers\Backend\Admin;
 
-use App\Http\Controllers\Controller;
-use App\Models\DayModel;
-use App\Models\TimePageModel;
-use App\Models\TimeTable;
 use App\Models\User;
+use App\Models\DayModel;
+use App\Models\TimeTable;
+use App\Models\DoctorModel;
 use Illuminate\Http\Request;
+use App\Models\TimePageModel;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Gate;
+use App\Http\Requests\TimePageRequest;
 use Yajra\DataTables\Facades\DataTables;
 
 class TimePageController extends Controller
@@ -37,20 +39,50 @@ class TimePageController extends Controller
     {
         if (Gate::allows('isAdmin')) {
             if ($request->ajax()) {
-                $getData = TimePageModel::latest('id');
+                $getData = TimePageModel::with(['user', 'time', 'day'])->latest('id');
                 return DataTables::eloquent($getData)
                     ->addIndexColumn()
-                    // ->filter(function ($query) use ($request) {
-                    //     if (!empty($request->search)) {
-                    //         $query->when($request->search, function ($query, $value) {
-                    //             $query->where('name', 'like', "%{$value}%")
-                    //                 ->orWhere('order_by', 'like', "%{$value}%");
-                    //         });
-                    //     }
-                    // })
-                    // ->addColumn('name', function ($data) {
-                    //     return $data->name;
-                    // })
+                    ->filter(function ($query) use ($request) {
+                        if (!empty($request->search)) {
+                            $query->when($request->search, function ($query, $value) {
+                                $query->where('status', 'like', "%{$value}%");
+
+                                $query->orWhereHas('user', function ($q) use ($value) {
+                                    $q->where('fname', 'like', "%{$value}%")
+                                        ->orWhere('lname', 'like', "%{$value}%")
+                                        ->orWhere('email', 'like', "%{$value}%");
+                                });
+                                $query->orWhereHas('time', function ($q) use ($value) {
+                                    $q->where('time', 'time', "%{$value}%");
+                                });
+                                $query->orWhereHas('day', function ($q) use ($value) {
+                                    $q->where('name', 'like', "%{$value}%");
+                                });
+                            });
+                        }
+                    })
+                    ->addColumn('name', function ($data) {
+                        return $data->name;
+                    })
+                    ->addColumn('user_name', function ($data) {
+                        return $data->user->fname . '-' . $data->user->fname;
+                    })
+                    ->addColumn('email', function ($data) {
+                        return $data->user->email ?? '';
+                    })
+                    ->addColumn('avatar', function ($data) {
+                        if ($data->user->avatar) {
+                            return '<img id="getDataImage" src="' . asset($data->user->avatar ?? '') . '" alt="image">';
+                        } else {
+                            return '<img id="getDataImage" src="' . asset('common/5907-removebg-preview.png') . '" alt="image">';
+                        }
+                    })
+                    ->addColumn('day', function ($data) {
+                        return $data->day->name;
+                    })
+                    ->addColumn('time', function ($data) {
+                        return $data->time->time;
+                    })
                     ->addColumn('status', function ($data) {
                         return status($data->status);
                     })
@@ -64,7 +96,7 @@ class TimePageController extends Controller
                     @csrf
                     @method("DELETE") </form></div>';
                     })
-                    ->rawColumns(['status', 'action'])
+                    ->rawColumns(['avatar', 'status', 'action'])
                     ->make(true);
             }
         } else {
@@ -79,25 +111,70 @@ class TimePageController extends Controller
             $data['parentTimeTable']        = 'expanded';
             $data['parentTimeTableSubMenu'] = 'style="display: block;"';
             $data['timeTablePage']          = 'active';
-            $data['doctors']                = User::where('role_id',2)->where('status',1)->get();
-            $data['days']                   = DayModel::where('status','1')->get();
-            $data['breadcrumb']             = ['Time Table Pages' => route('admin.doctor.time-table.index'), 'Create Time Table Page' => '',];
+            $data['doctors']                = DoctorModel::with('user')->where('status', '1')->get();
+            $data['days']                   = DayModel::where('status', '1')->get();
+            $data['breadcrumb']             = ['Time Table Pages' => route('admin.doctor.time-page.index'), 'Create Time Table Page' => '',];
             return view('backend.pages.doctors.time-table-page.create', $data);
         } else {
             abort(401);
         }
     }
 
-
-    public function store(TimeTableRequest $request)
+    public function getTime(Request $request)
     {
         if (Gate::allows('isAdmin')) {
-            TimeTable::create([
-                'time'     => $request->time,
-                'order_by' => $request->order_by,
-                'status'   => $request->status,
+            if ($request->ajax()) {
+                if ($request->user_id && $request->day_id) {
+                    $checkDayIds = TimePageModel::where('day_id', $request->day_id)->pluck('time_id')->toArray();
+                    if (count($checkDayIds) == 0) {
+                        $activeTimes = TimeTable::where('status', '1')->get();
+                        $options = '<option value="">Select Time</option>';
+                        if ($activeTimes) {
+                            foreach ($activeTimes as $time) {
+                                $options .= '<option value="' . $time->id . '">' . $time->time . '</option>';
+                            }
+                        }
+                        return response()->json([
+                            'status' => 'success',
+                            'data' => $options,
+                        ], 200);
+                    } else {
+                        $activeTimes = TimeTable::whereNotIn('id', $checkDayIds)->where('status', '1')->get();
+                        $options = '<option value="">Select Time</option>';
+                        if ($activeTimes) {
+                            foreach ($activeTimes as $time) {
+                                $options .= '<option value="' . $time->id . '">' . $time->time . '</option>';
+                            }
+                        }
+                        return response()->json([
+                            'status' => 'success',
+                            'data' => $options,
+                        ], 200);
+                    }
+                } else {
+                    return response()->json([
+                        'status' => 'error',
+                        'message' => 'Select User Or Day !',
+                    ], 200);
+                }
+            }
+        } else {
+            abort(401);
+        }
+    }
+
+
+
+    public function store(TimePageRequest $request)
+    {
+        if (Gate::allows('isAdmin')) {
+            TimePageModel::create([
+                'user_id' => $request->user_id,
+                'day_id'  => $request->day_id,
+                'time_id' => $request->time,
+                'status'  => $request->status,
             ]);
-            return redirect()->route('admin.doctor.time-table.index')->with('success', 'Time Create Successfuly Done..!');
+            return redirect()->route('admin.doctor.time-page.index')->with('success', 'Time Page Create Successfuly Done..!');
         } else {
             abort(401);
         }
@@ -106,41 +183,49 @@ class TimePageController extends Controller
     public function edit($id)
     {
         if (Gate::allows('isAdmin')) {
-            $this->setPageTitle('Edit Time');
+            $this->setPageTitle('Edit Time Table Page');
             $data['parentTimeTable']        = 'expanded';
             $data['parentTimeTableSubMenu'] = 'style="display: block;"';
-            $data['timeTable']              = 'active';
-            $data['editTimeTable']          = TimeTable::find($id);
-            $data['breadcrumb']             = ['Times' => route('admin.doctor.time-table.index'), 'Edit Time' => '',];
-            return view('backend.pages.doctors.time-table.edit', $data);
+            $data['timeTablePage']          = 'active';
+            $data['doctors']                = DoctorModel::with('user')->where('status', '1')->get();
+            $data['days']                   = DayModel::where('status', '1')->get();
+            $data['editTimePage']           = TimePageModel::find($id);
+            $data['checkDayIds']            = TimePageModel::where('day_id', $data['editTimePage']->day_id)->pluck('time_id')->toArray();
+            $data['checkDayIds']            = array_filter($data['checkDayIds'], function ($value) use ($data) {
+                return $value != $data['editTimePage']->time_id;
+            });
+            $data['activeTimes'] = TimeTable::whereNotIn('id', $data['checkDayIds'])->where('status', '1')->get();
+            $data['breadcrumb']  = ['Time Table Pages' => route('admin.doctor.time-page.index'),'Edit Time Table Page' => '',];
+            return view('backend.pages.doctors.time-table-page.edit', $data);
         } else {
             abort(401);
         }
     }
 
-    public function update(TimeTableRequest $request)
+    public function update(TimePageRequest $request)
     {
         if (Gate::allows('isAdmin')) {
-            $editDay = TimeTable::where('id', $request->update_id)->first();
-            $editDay->update([
-                'time'     => $request->time,
-                'order_by' => $request->order_by,
-                'status'   => $request->status,
+            $editTimePage = TimePageModel::where('id', $request->update_id)->first();
+            $editTimePage->update([
+                'user_id' => $request->user_id,
+                'day_id'  => $request->day_id,
+                'time_id' => $request->time,
+                'status'  => $request->status,
             ]);
-            return redirect()->route('admin.doctor.time-table.index')->with('success', 'Time Update Successfuly Done..!');
+            return redirect()->route('admin.doctor.time-page.index')->with('success', 'Time Table Page Update Successfuly Done..!');
         } else {
             abort(401);
         }
     }
+
     public function delete($id)
     {
         if (Gate::allows('isAdmin')) {
-            $editTime = TimeTable::where('id', $id)->first();
+            $editTime = TimePageModel::where('id', $id)->first();
             $editTime->delete();
-            return back()->with('success', 'Time Delete Successfuly Done.. !');
+            return back()->with('success', 'Time Table Page Delete Successfuly Done.. !');
         } else {
             abort(401);
         }
     }
 }
-

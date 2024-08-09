@@ -14,7 +14,18 @@ class DashboardController extends Controller
         if (Gate::allows('isAdmin')) {
             $this->setPageTitle('Dashboard');
             $data['dashboard'] = 'active';
-            return view('backend.pages.back',$data);
+            return view('backend.pages.dashboard.back',$data);
+        } else {
+            abort(401);
+        }
+    }
+
+    public function profile()
+    {
+        if (Gate::allows('isAdmin')) {
+            $this->setPageTitle('Profile Update');
+            $data['breadcrumb']  = ['Dashboard' => route('admin.dashboard'),'Profile Update' => '',];
+            return view('backend.pages.dashboard.profile');
         } else {
             abort(401);
         }

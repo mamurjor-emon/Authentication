@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 class DashboardController extends Controller
 {
     public function dashboard(){
-        return 'Welcomde To Doctor Dashborad';
+        $this->setPageTitle('Doctor Dashboard');
+        return view('backend.doctor.dashboard.index');
     }
 }

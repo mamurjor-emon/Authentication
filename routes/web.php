@@ -34,7 +34,7 @@ Auth::routes([
 ]);
 
 //------------ Home Page Route ------------//
-Route::get('/', [FrontendController::class, 'index']);
+Route::get('/', [FrontendController::class, 'index'])->name('index');
 
 //------------ Register Route ------------//
 Route::get('register', [AuthController::class, 'index'])->name('user.register');

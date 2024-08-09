@@ -7,6 +7,8 @@ use App\Models\TitleDiscrption;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ContactFormRequest;
 use App\Models\ContactFormModel;
+use App\Models\DayModel;
+use App\Models\TimeTable;
 
 class ContactController extends Controller
 {
@@ -33,7 +35,9 @@ class ContactController extends Controller
     public function timeTable()
     {
         $this->setPageTitle('Time Table');
-        $data['breadcrumb']   = ['Home' => url('/'), 'Time Table' => ''];
+        $data['breadcrumb'] = ['Home' => url('/'), 'Time Table' => ''];
+        $data['days']       = DayModel::where('status','1')->orderBy('order_by','asc')->get();
+        $data['times']      = TimeTable::where('status','1')->orderBy('order_by','asc')->get();
         return view('frontend.pages.time-table.time-table', $data);
     }
 }
