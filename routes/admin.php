@@ -33,6 +33,8 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth', 'i
     //------------------------ Dashboard -----------------------//
     Route::get('dashboard/', [DashboardController::class, 'dashboard'])->name('dashboard');
     Route::get('profile/', [DashboardController::class, 'profile'])->name('profile');
+    Route::post('profile-update', [DashboardController::class, 'profileUpdate'])->name('profile.update');
+    Route::post('profile-password-update', [DashboardController::class, 'profilePasswordUpdate'])->name('profile.password.update');
 
     //------------------------ Theme Setting -----------------------//
     Route::prefix('theme')->name('theme.')->group(function () {
