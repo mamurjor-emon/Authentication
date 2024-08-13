@@ -32,6 +32,9 @@ use App\Http\Controllers\Backend\Admin\TimeTableController;
 Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth', 'is_verify', 'is_admin']], function () {
     //------------------------ Dashboard -----------------------//
     Route::get('dashboard/', [DashboardController::class, 'dashboard'])->name('dashboard');
+    Route::post('dashboard-users-count', [DashboardController::class, 'dashboardUserChatCount'])->name('dashboard.users.count');
+    Route::post('dashboard-active-count', [DashboardController::class, 'dashboardActiveDoctorCount'])->name('dashboard.active.doctor.count');
+    
     Route::get('profile/', [DashboardController::class, 'profile'])->name('profile');
     Route::post('profile-update', [DashboardController::class, 'profileUpdate'])->name('profile.update');
     Route::post('profile-password-update', [DashboardController::class, 'profilePasswordUpdate'])->name('profile.password.update');

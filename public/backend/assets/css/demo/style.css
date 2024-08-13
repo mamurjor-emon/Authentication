@@ -23479,7 +23479,7 @@ address p {
 
 .mdc-card.info-card.info-card--primary .card-inner .card-icon-wrapper {
     background-color: var(--mdc-theme-primary);
-    box-shadow: 0 0 10px 5px rgba(122, 0, 255, 0.35);
+    box-shadow: 0 0 10px 5px rgba(87, 97, 223, 0.35);
 }
 
 .mdc-card.info-card.info-card--secondary .card-inner .card-icon-wrapper {

@@ -167,6 +167,9 @@
 
     <!--=================== Image Preview Script ==================-->
     <script src="{{ asset('backend/assets/js/image-preview.js') }}"></script>
+     <!--=================== Apexcharts Script ==================-->
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+
     <script>
         var _token = "{{ csrf_token() }}";
     </script>

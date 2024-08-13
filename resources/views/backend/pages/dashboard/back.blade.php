@@ -1,305 +1,384 @@
 @extends('layouts.app')
-@section('title',$title)
+@section('title', $title)
+@push('styles')
+    <style>
+        .fw-bolder {
+            font-weight: 600;
+        }
+
+        #arrow {
+            position: relative;
+            display: block;
+            width: 10px;
+            -webkit-animation: moveit 2.5s infinite;
+            animation: moveit 2.5s infinite;
+        }
+
+        @-webkit-keyframes moveit {
+            from {
+                left: 0%;
+                opacity: 0;
+            }
+            25% {
+                left: 25%;
+                opacity: 1;
+            }
+            50% {
+                left: 50%;
+                opacity: 1;
+            }
+            75% {
+                left: 75%;
+                opacity: 1;
+            }
+            100% {
+                left: 100%;
+                opacity: 1;
+            }
+            to {
+                left: 0%;
+                opacity: 0;
+            }
+        }
+
+        @keyframes moveit {
+            from {
+                left: 0%;
+                opacity: 0;
+            }
+            25% {
+                left: 25%;
+                opacity: 1;
+            }
+            50% {
+                left: 50%;
+                opacity: 1;
+            }
+            75% {
+                left: 75%;
+                opacity: 1;
+            }
+            100% {
+                left: 100%;
+                opacity: 1;
+            }
+            to {
+                left: 0%;
+                opacity: 0;
+            }
+        }
+    </style>
+@endpush
 @section('content')
-<main class="content-wrapper">
-    <div class="mdc-layout-grid">
-        <div class="mdc-layout-grid__inner">
-            <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-3-desktop mdc-layout-grid__cell--span-4-tablet">
-                <div class="mdc-card info-card info-card--success">
-                    <div class="card-inner">
-                        <h5 class="card-title">Borrowed</h5>
-                        <h5 class="font-weight-light pb-2 mb-1 border-bottom">$62,0076.00</h5>
-                        <p class="tx-12 text-muted">48% target reached</p>
-                        <div class="card-icon-wrapper">
-                            <i class="material-icons">dvr</i>
+    <main class="content-wrapper">
+        <div class="mdc-layout-grid">
+            <div class="mdc-layout-grid__inner">
+                <div
+                    class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-3-desktop mdc-layout-grid__cell--span-4-tablet">
+                    <div class="mdc-card info-card info-card--primary">
+                        <div class="card-inner">
+                            <h5 class="card-title">Total Users</h5>
+                            <h5 class="pb-2 mb-1 border-bottom fw-bolder">
+                                {{ $totalUsers->count() > 0 ? $totalUsers->count() . ' +' : '' }}</h5>
+                                <i id="arrow" class="fa fa-long-arrow-down fa-2x">hh</i>
+                            <div class="card-icon-wrapper">
+                                <i class="material-icons">group_add</i>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div
-                class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-3-desktop mdc-layout-grid__cell--span-4-tablet">
-                <div class="mdc-card info-card info-card--danger">
-                    <div class="card-inner">
-                        <h5 class="card-title">Annual Profit</h5>
-                        <h5 class="font-weight-light pb-2 mb-1 border-bottom">$1,958,104.00</h5>
-                        <p class="tx-12 text-muted">55% target reached</p>
-                        <div class="card-icon-wrapper">
-                            <i class="material-icons">attach_money</i>
+                <div
+                    class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-3-desktop mdc-layout-grid__cell--span-4-tablet">
+                    <div class="mdc-card info-card info-card--success">
+                        <div class="card-inner">
+                            <h5 class="card-title">Verified User</h5>
+                            <h5 class="pb-2 mb-1 border-bottom fw-bolder">
+                                {{ $verify_users->count() > 0 ? $verify_users->count() . ' +' : '' }}</h5>
+                            <p class="tx-12 text-muted">55% target reached</p>
+                            <div class="card-icon-wrapper">
+                                <i class="material-icons">verified_user</i>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div
-                class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-3-desktop mdc-layout-grid__cell--span-4-tablet">
-                <div class="mdc-card info-card info-card--primary">
-                    <div class="card-inner">
-                        <h5 class="card-title">Lead Conversion</h5>
-                        <h5 class="font-weight-light pb-2 mb-1 border-bottom">$234,769.00</h5>
-                        <p class="tx-12 text-muted">87% target reached</p>
-                        <div class="card-icon-wrapper">
-                            <i class="material-icons">trending_up</i>
+                <div
+                    class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-3-desktop mdc-layout-grid__cell--span-4-tablet">
+                    <div class="mdc-card info-card info-card--primary">
+                        <div class="card-inner">
+                            <h5 class="card-title">Total Doctors</h5>
+                            <h5 class="pb-2 mb-1 border-bottom fw-bolder">
+                                {{ $allDoctors->count() > 0 ? $allDoctors->count() . ' +' : '' }}</h5>
+                            <p class="tx-12 text-muted">87% target reached</p>
+                            <div class="card-icon-wrapper">
+                                <i class="material-icons">group_add</i>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div
-                class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-3-desktop mdc-layout-grid__cell--span-4-tablet">
-                <div class="mdc-card info-card info-card--info">
-                    <div class="card-inner">
-                        <h5 class="card-title">Average Income</h5>
-                        <h5 class="font-weight-light pb-2 mb-1 border-bottom">$1,200.00</h5>
-                        <p class="tx-12 text-muted">87% target reached</p>
-                        <div class="card-icon-wrapper">
-                            <i class="material-icons">credit_card</i>
+                <div
+                    class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-3-desktop mdc-layout-grid__cell--span-4-tablet">
+                    <div class="mdc-card info-card info-card--danger">
+                        <div class="card-inner">
+                            <h5 class="card-title">Cancel Doctors</h5>
+                            <h5 class="pb-2 mb-1 border-bottom fw-bolder">
+                                {{ $cancelDoctors->count() > 0 ? $cancelDoctors->count() . ' +' : '' }}</h5>
+                            <p class="tx-12 text-muted">87% target reached</p>
+                            <div class="card-icon-wrapper">
+                                <i class="material-icons">group_add</i>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-12">
-                <div class="mdc-card">
-                    <div class="d-flex justify-content-between">
-                        <h4 class="card-title mb-0">Revenue by location</h4>
+
+
+                <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-8">
+                    <div class="mdc-card">
                         <div>
-                            <i class="material-icons refresh-icon">refresh</i>
-                            <i class="material-icons options-icon ml-2">more_vert</i>
+                            <h4 class="card-title mb-2 mb-sm-0">Last 12 Months Overview</h4>
+                            <p>User Create Overview</p>
                         </div>
-                    </div>
-                    <div class="d-block d-sm-flex justify-content-between align-items-center">
-                        <h5 class="card-sub-title mb-2 mb-sm-0">Sales performance revenue based by
-                            country</h5>
-                        <div class="menu-button-container">
-                            <button
-                                class="mdc-button mdc-menu-button mdc-button--raised button-box-shadow tx-12 text-dark bg-white font-weight-light">
-                                Last 7 days
-                                <i class="material-icons">arrow_drop_down</i>
-                            </button>
-                            <div class="mdc-menu mdc-menu-surface" tabindex="-1">
-                                <ul class="mdc-list" role="menu" aria-hidden="true"
-                                    aria-orientation="vertical">
-                                    <li class="mdc-list-item" role="menuitem">
-                                        <h6 class="item-subject font-weight-normal">Back</h6>
-                                    </li>
-                                    <li class="mdc-list-item" role="menuitem">
-                                        <h6 class="item-subject font-weight-normal">Forward</h6>
-                                    </li>
-                                    <li class="mdc-list-item" role="menuitem">
-                                        <h6 class="item-subject font-weight-normal">Reload</h6>
-                                    </li>
-                                    <li class="mdc-list-divider"></li>
-                                    <li class="mdc-list-item" role="menuitem">
-                                        <h6 class="item-subject font-weight-normal">Save As..</h6>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="mdc-layout-grid__inner mt-2">
-                        <div
-                            class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6 mdc-layout-grid__cell--span-8-tablet">
-                            <div class="table-responsive">
-                                <table class="table dashboard-table">
-                                    <tbody>
-                                        <tr>
-                                            <td>
-                                                <span class="flag-icon-container"><i
-                                                        class="flag-icon flag-icon-us mr-2"></i></span>United
-                                                States
-                                            </td>
-                                            <td>$1,671.10</td>
-                                            <td class=" font-weight-medium"> 39% </td>
-                                        </tr>
-                                        <tr>
-                                            <td> <span class="flag-icon-container"><i
-                                                        class="flag-icon flag-icon-ph mr-2"></i></span>Philippines
-                                            </td>
-                                            <td>$1,064.75</td>
-                                            <td class=" font-weight-medium"> 30% </td>
-                                        </tr>
-                                        <tr>
-                                            <td> <span class="flag-icon-container"><i
-                                                        class="flag-icon flag-icon-gb mr-2"></i></span>United
-                                                Kingdom</td>
-                                            <td>$1,055.98</td>
-                                            <td class=" font-weight-medium"> 45% </td>
-                                        </tr>
-                                        <tr>
-                                            <td> <span class="flag-icon-container"><i
-                                                        class="flag-icon flag-icon-ca mr-2"></i></span>Canada
-                                            </td>
-                                            <td>$1,045.49</td>
-                                            <td class=" font-weight-medium"> 80% </td>
-                                        </tr>
-                                        <tr>
-                                            <td> <span class="flag-icon-container"><i
-                                                        class="flag-icon flag-icon-fr mr-2"></i></span>France
-                                            </td>
-                                            <td>$2,050.93</td>
-                                            <td class=" font-weight-medium"> 10% </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                        <div
-                            class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6 mdc-layout-grid__cell--span-8-tablet">
-                            <div id="revenue-map" class="revenue-world-map"></div>
+                        <div class="chart-container mt-4">
+                            <div id="MonthlyUserCreateReport" class="mt-3"></div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div
-                class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-6-desktop mdc-layout-grid__cell--span-4-tablet">
-                <div class="mdc-card bg-success text-white">
-                    <div class="d-flex justify-content-between">
-                        <h3 class="font-weight-normal">Impressions</h3>
-                        <i class="material-icons options-icon text-white">more_vert</i>
-                    </div>
-                    <div class="mdc-layout-grid__inner align-items-center">
-                        <div
-                            class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-4-desktop mdc-layout-grid__cell--span-3-tablet mdc-layout-grid__cell--span-2-phone">
+                <div
+                    class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-4 mdc-layout-grid__cell--span-8-tablet">
+                    <div class="mdc-card">
+                        <div class="d-flex d-lg-block d-xl-flex justify-content-between">
                             <div>
-                                <h5 class="font-weight-normal mt-2">Customers 58.39k</h5>
-                                <h2 class="font-weight-normal mt-3 mb-0">636,757K</h2>
+                                <h4 class="card-title">Order Statistics</h4>
+                                <h6 class="card-sub-title">Customers 58.39k</h6>
                             </div>
                         </div>
-                        <div
-                            class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-8-desktop mdc-layout-grid__cell--span-5-tablet mdc-layout-grid__cell--span-2-phone">
-                            <canvas id="impressions-chart" height="80"></canvas>
+                        <div class="chart-container mt-4">
+                            <div id="activeDocotorsChats"></div>
                         </div>
-                    </div>
-                </div>
-            </div>
-            <div
-                class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-6-desktop mdc-layout-grid__cell--span-4-tablet">
-                <div class="mdc-card bg-info text-white">
-                    <div class="d-flex justify-content-between">
-                        <h3 class="font-weight-normal">Traffic</h3>
-                        <i class="material-icons options-icon text-white">more_vert</i>
-                    </div>
-                    <div class="mdc-layout-grid__inner align-items-center">
-                        <div
-                            class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-4-desktop mdc-layout-grid__cell--span-3-tablet mdc-layout-grid__cell--span-2-phone">
-                            <div>
-                                <h5 class="font-weight-normal mt-2">Customers 58.39k</h5>
-                                <h2 class="font-weight-normal mt-3 mb-0">636,757K</h2>
-                            </div>
-                        </div>
-                        <div
-                            class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-8-desktop mdc-layout-grid__cell--span-5-tablet mdc-layout-grid__cell--span-2-phone">
-                            <canvas id="traffic-chart" height="80"></canvas>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-8">
-                <div class="mdc-card">
-                    <div class="d-flex justify-content-between align-items-center">
-                        <h4 class="card-title mb-2 mb-sm-0">Revenue by location</h4>
-                        <div class="d-flex justtify-content-between align-items-center">
-                            <p class="d-none d-sm-block text-muted tx-12 mb-0 mr-2">Goal reached</p>
-                            <i class="material-icons options-icon">more_vert</i>
-                        </div>
-                    </div>
-                    <div class="d-block d-sm-flex justify-content-between align-items-center">
-                        <h6 class="card-sub-title mb-0">Sales performance revenue based by country</h6>
-                        <div class="mdc-tab-wrapper revenue-tab mdc-tab--secondary">
-                            <div class="mdc-tab-bar" role="tablist">
-                                <div class="mdc-tab-scroller">
-                                    <div class="mdc-tab-scroller__scroll-area">
-                                        <div class="mdc-tab-scroller__scroll-content">
-                                            <button class="mdc-tab mdc-tab--active" role="tab"
-                                                aria-selected="true" tabindex="0">
-                                                <span class="mdc-tab__content">
-                                                    <span class="mdc-tab__text-label">1W</span>
-                                                </span>
-                                                <span
-                                                    class="mdc-tab-indicator mdc-tab-indicator--active">
-                                                    <span
-                                                        class="mdc-tab-indicator__content mdc-tab-indicator__content--underline"></span>
-                                                </span>
-                                                <span class="mdc-tab__ripple"></span>
-                                            </button>
-                                            <button class="mdc-tab mdc-tab" role="tab"
-                                                aria-selected="true" tabindex="0">
-                                                <span class="mdc-tab__content">
-                                                    <span class="mdc-tab__text-label">1M</span>
-                                                </span>
-                                                <span class="mdc-tab-indicator mdc-tab-indicator">
-                                                    <span
-                                                        class="mdc-tab-indicator__content mdc-tab-indicator__content--underline"></span>
-                                                </span>
-                                                <span class="mdc-tab__ripple"></span>
-                                            </button>
-                                            <button class="mdc-tab mdc-tab" role="tab"
-                                                aria-selected="true" tabindex="0">
-                                                <span class="mdc-tab__content">
-                                                    <span class="mdc-tab__text-label">3M</span>
-                                                </span>
-                                                <span class="mdc-tab-indicator mdc-tab-indicator">
-                                                    <span
-                                                        class="mdc-tab-indicator__content mdc-tab-indicator__content--underline"></span>
-                                                </span>
-                                                <span class="mdc-tab__ripple"></span>
-                                            </button>
-                                            <button class="mdc-tab mdc-tab" role="tab"
-                                                aria-selected="true" tabindex="0">
-                                                <span class="mdc-tab__content">
-                                                    <span class="mdc-tab__text-label">1Y</span>
-                                                </span>
-                                                <span class="mdc-tab-indicator mdc-tab-indicator">
-                                                    <span
-                                                        class="mdc-tab-indicator__content mdc-tab-indicator__content--underline"></span>
-                                                </span>
-                                                <span class="mdc-tab__ripple"></span>
-                                            </button>
-                                            <button class="mdc-tab mdc-tab" role="tab"
-                                                aria-selected="true" tabindex="0">
-                                                <span class="mdc-tab__content">
-                                                    <span class="mdc-tab__text-label">ALL</span>
-                                                </span>
-                                                <span class="mdc-tab-indicator mdc-tab-indicator">
-                                                    <span
-                                                        class="mdc-tab-indicator__content mdc-tab-indicator__content--underline"></span>
-                                                </span>
-                                                <span class="mdc-tab__ripple"></span>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="content content--active">
-                            </div>
-                            <div class="content">
-                            </div>
-                            <div class="content">
-                            </div>
-                            <div class="content">
-                            </div>
-                            <div class="content">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="chart-container mt-4">
-                        <canvas id="revenue-chart" height="260"></canvas>
-                    </div>
-                </div>
-            </div>
-            <div
-                class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-4 mdc-layout-grid__cell--span-8-tablet">
-                <div class="mdc-card">
-                    <div class="d-flex d-lg-block d-xl-flex justify-content-between">
-                        <div>
-                            <h4 class="card-title">Order Statistics</h4>
-                            <h6 class="card-sub-title">Customers 58.39k</h6>
-                        </div>
-                        <div id="sales-legend" class="d-flex flex-wrap"></div>
-                    </div>
-                    <div class="chart-container mt-4">
-                        <canvas id="chart-sales" height="260"></canvas>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-</main>
+    </main>
 @endsection
+@push('scripts')
+    <script>
+        var MonthlyUserCreateOptions = {
+            chart: {
+                height: 320,
+                parentHeightOffset: 0,
+                type: "bar",
+                toolbar: {
+                    show: false,
+                },
+            },
+            plotOptions: {
+                bar: {
+                    barHeight: "60%",
+                    columnWidth: "38%",
+                    startingShape: "rounded",
+                    endingShape: "rounded",
+                    borderRadius: 4,
+                    distributed: true,
+                },
+            },
+            grid: {
+                show: false,
+                padding: {
+                    top: -30,
+                    bottom: 0,
+                    left: -10,
+                    right: -10,
+                },
+            },
+            colors: ["#7367f0"],
+            dataLabels: {
+                enabled: false,
+            },
+            series: [{
+                data: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+            }, ],
+            legend: {
+                show: false,
+            },
+            xaxis: {
+                categories: [
+                    "Jan",
+                    "Feb",
+                    "Mar",
+                    "Apr",
+                    "May",
+                    "Jun",
+                    "Jul",
+                    "Aug",
+                    "Sep",
+                    "Oct",
+                    "Nov",
+                    "Dec",
+                ],
+                axisBorder: {
+                    show: false,
+                },
+                axisTicks: {
+                    show: false,
+                },
+                labels: {
+                    className: "font-class",
+                    style: {
+                        colors: "#7367f0",
+                        fontSize: "13px",
+                        // fontFamily: 'nunito'
+                    },
+                },
+            },
+            yaxis: {
+                labels: {
+                    show: false,
+                },
+            },
+            tooltip: {
+                enabled: true,
+                y: {
+                    formatter: function(value) {
+                        return value;
+                    },
+                },
+            },
+            responsive: [{
+                breakpoint: 1025,
+                options: {
+                    chart: {
+                        height: 199,
+                    },
+                },
+            }, ],
+        };
+        var MonthlyUserCreateCharts = new ApexCharts(document.querySelector("#MonthlyUserCreateReport"),
+            MonthlyUserCreateOptions);
+        MonthlyUserCreateCharts.render();
+        // User Create Chart Bar Request
+        $.ajax({
+            url: "{{ route('admin.dashboard.users.count') }}",
+            type: 'POST',
+            dataType: 'json',
+            async: true,
+            cache: false,
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            success: function(data) {
+                MonthlyUserCreateCharts.updateSeries([{
+                    name: 'usersData',
+                    data: data.usersData
+                }]);
+            }
+        });
+
+
+        // Active Doctors Chart
+        function activeDoctors() {
+            $.ajax({
+                url: "{{ route('admin.dashboard.active.doctor.count') }}",
+                type: 'POST',
+                dataType: 'json',
+                async: true,
+                cache: false,
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                success: function(data) {
+                    var activeDoctorsOptions = {
+                        series: [data && data.totalPersentage],
+                        labels: ["Active Doctors"],
+                        chart: {
+                            height: 360,
+                            type: "radialBar",
+                        },
+                        plotOptions: {
+                            radialBar: {
+                                offsetY: 10,
+                                startAngle: -140,
+                                endAngle: 130,
+                                hollow: {
+                                    size: "65%",
+                                },
+                                track: {
+                                    background: "tranparent",
+                                    strokeWidth: "100%",
+                                },
+                                dataLabels: {
+                                    name: {
+                                        offsetY: -20,
+                                        color: "#7367f0",
+                                        fontSize: "13px",
+                                        fontWeight: "400",
+                                    },
+                                    value: {
+                                        offsetY: 10,
+                                        color: "#7367f0",
+                                        fontSize: "38px",
+                                        fontWeight: "500",
+                                    },
+                                },
+                            },
+                        },
+                        colors: ["#7367f0"],
+                        fill: {
+                            type: "gradient",
+                            gradient: {
+                                shade: "dark",
+                                shadeIntensity: 0.5,
+                                gradientToColors: ["#7367f0"],
+                                inverseColors: true,
+                                opacityFrom: 1,
+                                opacityTo: 0.6,
+                                stops: [30, 70, 100],
+                            },
+                        },
+                        stroke: {
+                            dashArray: 10,
+                        },
+                        grid: {
+                            padding: {
+                                top: -20,
+                                bottom: 5,
+                            },
+                        },
+                        states: {
+                            hover: {
+                                filter: {
+                                    type: "none",
+                                },
+                            },
+                            active: {
+                                filter: {
+                                    type: "none",
+                                },
+                            },
+                        },
+                        responsive: [{
+                                breakpoint: 1025,
+                                options: {
+                                    chart: {
+                                        height: 330,
+                                    },
+                                },
+                            },
+                            {
+                                breakpoint: 769,
+                                options: {
+                                    chart: {
+                                        height: 280,
+                                    },
+                                },
+                            },
+                        ],
+                    };
+                    const activeDocotorsChats = new ApexCharts(document.querySelector("#activeDocotorsChats"),
+                        activeDoctorsOptions);
+                    activeDocotorsChats.render();
+                }
+            });
+        }
+        activeDoctors()
+    </script>
+@endpush
