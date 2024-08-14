@@ -126,6 +126,7 @@
 @endsection
 @push('scripts')
     <script>
+        //Last 30 Days Visitors
         var monthlyVisitorsOptions = {
             series: [{
                 name: 'Visitors',
@@ -157,10 +158,8 @@
                 },
             },
         };
-
         var monthlyVisitors = new ApexCharts(document.querySelector("#visitorUsers"), monthlyVisitorsOptions);
         monthlyVisitors.render();
-        //Last 30 Days Visitors
         $.ajax({
             url: "{{ route('admin.dashboard.visitors.count') }}",
             type: 'POST',
@@ -178,6 +177,7 @@
             }
         });
 
+        //Last 12 Months Doctors
         var createdDoctorsOptions = {
             series: [{
                 name: 'Doctors',
@@ -237,10 +237,8 @@
                 },
             },
         };
-
         var doctorsChart = new ApexCharts(document.querySelector("#createdDoctors"), createdDoctorsOptions);
         doctorsChart.render();
-        //Last 12 Months Doctors
         $.ajax({
             url: "{{ route('admin.dashboard.doctor.count') }}",
             type: 'POST',
@@ -258,6 +256,7 @@
             }
         });
 
+        // User Create Chart Bar Request
         var MonthlyUserCreateOptions = {
             chart: {
                 height: 320,
@@ -348,7 +347,6 @@
         var MonthlyUserCreateCharts = new ApexCharts(document.querySelector("#MonthlyUserCreateReport"),
             MonthlyUserCreateOptions);
         MonthlyUserCreateCharts.render();
-        // User Create Chart Bar Request
         $.ajax({
             url: "{{ route('admin.dashboard.users.count') }}",
             type: 'POST',
@@ -365,7 +363,6 @@
                 }]);
             }
         });
-
 
         // Active Doctors Chart
         function activeDoctors() {
