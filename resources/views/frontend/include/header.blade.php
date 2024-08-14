@@ -18,14 +18,10 @@
                     <ul class="top-link">
                         @auth
                             <div class="btn-group">
-                                <button type="button" class="primary-color py-2 px-3" data-toggle="dropdown"
+                                <button type="button"  class="primary-color py-2 px-3" data-toggle="dropdown"
                                     aria-haspopup="true" aria-expanded="false">
                                     <a data-bs-toggle="dropdown" aria-expanded="false" href="#">
-                                        @if (Auth::check() && Auth::user()->avatar != null)
-                                            <img src="{{ asset(Auth::user()->avatar) }}" alt="user image">
-                                        @else
-                                            <i class="fa fa-user-circle" aria-hidden="true"></i>
-                                        @endif
+                                        <i class="fa fa-user-circle" aria-hidden="true"></i>
                                         @if (Auth::check() && Auth::user()->fname != null)
                                             {{ Auth::user()->fname }}
                                         @endif
@@ -33,28 +29,21 @@
                                 </button>
                                 <div class="dropdown-menu">
                                     @if (Auth::check() && Auth::user()->role->slug == 'admin')
-                                        <li><a class="dropdown-item" style="line-height: 32px;"
-                                                href="{{ route('admin.dashboard') }}">Dashboard</a></li>
+                                        <li><a class="dropdown-item" style="line-height: 32px;" href="{{ route('admin.dashboard') }}">Dashboard</a></li>
                                     @elseif(Auth::check() && Auth::user()->role->slug == 'doctor')
-                                        <li><a class="dropdown-item" style="line-height: 32px;"
-                                                href="{{ route('doctor.dashboard') }}">Dashboard</a></li>
+                                        <li><a class="dropdown-item" style="line-height: 32px;" href="{{ route('doctor.dashboard') }}">Dashboard</a></li>
                                     @else
-                                        <li><a class="dropdown-item" style="line-height: 32px;"
-                                                href="{{ route('client.dashboard') }}">Dashboard</a></li>
+                                        <li><a class="dropdown-item" style="line-height: 32px;" href="{{ route('client.dashboard') }}">Dashboard</a></li>
                                     @endif
-                                    <li><a class="dropdown-item" style="line-height: 32px; cursor: pointer;"
-                                            onclick="document.getElementById('logout-form').submit()">Logout</a>
-                                    </li>
+                                    <li><a class="dropdown-item" style="line-height: 32px; cursor: pointer;" onclick="document.getElementById('logout-form').submit()">Logout</a></li>
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                         @csrf
                                     </form>
                                 </div>
                             </div>
                         @else
-                            <li><a href="{{ route('login') }}"><i class="fa fa-solid fa-user me-1"></i> Login</a></li> <span
-                                class="mr-2">|</span>
-                            <li><a href="{{ route('user.register') }}"><i class="fa fa-user-plus mr-2"
-                                        aria-hidden="true"></i>Register</a></li>
+                            <li><a href="{{ route('login') }}"><i class="fa fa-solid fa-user me-1"></i> Login</a></li> <span class="mr-2">|</span>
+                            <li><a href="{{ route('user.register') }}"><i class="fa fa-user-plus mr-2" aria-hidden="true"></i>Register</a></li>
                         @endauth
                     </ul>
 

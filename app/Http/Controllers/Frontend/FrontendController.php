@@ -17,12 +17,13 @@ use App\Models\Schedule;
 use App\Models\Service;
 use App\Models\SilderSection;
 use App\Models\TitleDiscrption;
+use App\Models\Visitor;
 use App\Models\WhyChoose;
 use Illuminate\Http\Request;
 
 class FrontendController extends Controller
 {
-    public function index(){
+    public function index(Request $request){
         $this->setPageTitle('Home');
         $data['silders']            = SilderSection::where('status','1')->orderBy('order_by','asc')->get();
         $data['schedules']          = Schedule::where('status','1')->orderBy('order_by','asc')->get();
@@ -36,6 +37,9 @@ class FrontendController extends Controller
         $data['teamMembers']        = DepartmentModel::with(['doctors'])->where('status','1')->get();
         $data['blogsDatas']         = Blog::where('status','1')->orderBy('order_by','asc')->get();
         $data['clientDatas']        = Client::where('status', '1')->orderBy('order_by','asc')->get();
+        Visitor::firstOrCreate(['ip_address' => $request->ip()], [
+            'ip_address' => $request->ip(),
+        ]);
         return view('frontend.pages.home',$data);
     }
 

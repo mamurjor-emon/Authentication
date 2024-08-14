@@ -6,66 +6,12 @@
             font-weight: 600;
         }
 
-        #arrow {
-            position: relative;
-            display: block;
-            width: 10px;
-            -webkit-animation: moveit 2.5s infinite;
-            animation: moveit 2.5s infinite;
+        #visitorUsers .apexcharts-toolbar {
+            display: none !important;
         }
 
-        @-webkit-keyframes moveit {
-            from {
-                left: 0%;
-                opacity: 0;
-            }
-            25% {
-                left: 25%;
-                opacity: 1;
-            }
-            50% {
-                left: 50%;
-                opacity: 1;
-            }
-            75% {
-                left: 75%;
-                opacity: 1;
-            }
-            100% {
-                left: 100%;
-                opacity: 1;
-            }
-            to {
-                left: 0%;
-                opacity: 0;
-            }
-        }
-
-        @keyframes moveit {
-            from {
-                left: 0%;
-                opacity: 0;
-            }
-            25% {
-                left: 25%;
-                opacity: 1;
-            }
-            50% {
-                left: 50%;
-                opacity: 1;
-            }
-            75% {
-                left: 75%;
-                opacity: 1;
-            }
-            100% {
-                left: 100%;
-                opacity: 1;
-            }
-            to {
-                left: 0%;
-                opacity: 0;
-            }
+        #createdDoctors .apexcharts-menu-icon {
+            display: none !important;
         }
     </style>
 @endpush
@@ -80,7 +26,6 @@
                             <h5 class="card-title">Total Users</h5>
                             <h5 class="pb-2 mb-1 border-bottom fw-bolder">
                                 {{ $totalUsers->count() > 0 ? $totalUsers->count() . ' +' : '' }}</h5>
-                                <i id="arrow" class="fa fa-long-arrow-down fa-2x">hh</i>
                             <div class="card-icon-wrapper">
                                 <i class="material-icons">group_add</i>
                             </div>
@@ -94,7 +39,6 @@
                             <h5 class="card-title">Verified User</h5>
                             <h5 class="pb-2 mb-1 border-bottom fw-bolder">
                                 {{ $verify_users->count() > 0 ? $verify_users->count() . ' +' : '' }}</h5>
-                            <p class="tx-12 text-muted">55% target reached</p>
                             <div class="card-icon-wrapper">
                                 <i class="material-icons">verified_user</i>
                             </div>
@@ -108,7 +52,6 @@
                             <h5 class="card-title">Total Doctors</h5>
                             <h5 class="pb-2 mb-1 border-bottom fw-bolder">
                                 {{ $allDoctors->count() > 0 ? $allDoctors->count() . ' +' : '' }}</h5>
-                            <p class="tx-12 text-muted">87% target reached</p>
                             <div class="card-icon-wrapper">
                                 <i class="material-icons">group_add</i>
                             </div>
@@ -122,7 +65,6 @@
                             <h5 class="card-title">Cancel Doctors</h5>
                             <h5 class="pb-2 mb-1 border-bottom fw-bolder">
                                 {{ $cancelDoctors->count() > 0 ? $cancelDoctors->count() . ' +' : '' }}</h5>
-                            <p class="tx-12 text-muted">87% target reached</p>
                             <div class="card-icon-wrapper">
                                 <i class="material-icons">group_add</i>
                             </div>
@@ -130,6 +72,28 @@
                     </div>
                 </div>
 
+                <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-6">
+                    <div class="mdc-card">
+                        <div>
+                            <h4 class="card-title mb-2 mb-sm-0">Last 30 Days Visitors</h4>
+                            <p>Visitors Overview</p>
+                        </div>
+                        <div class="chart-container">
+                            <div id="visitorUsers"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-6">
+                    <div class="mdc-card">
+                        <div>
+                            <h4 class="card-title mb-2 mb-sm-0">Last 12 Months Doctors</h4>
+                            <p>Doctors Overview</p>
+                        </div>
+                        <div class="chart-container">
+                            <div id="createdDoctors"></div>
+                        </div>
+                    </div>
+                </div>
 
                 <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-8">
                     <div class="mdc-card">
@@ -147,8 +111,8 @@
                     <div class="mdc-card">
                         <div class="d-flex d-lg-block d-xl-flex justify-content-between">
                             <div>
-                                <h4 class="card-title">Order Statistics</h4>
-                                <h6 class="card-sub-title">Customers 58.39k</h6>
+                                <h4 class="card-title">Active Docotors</h4>
+                                <h6 class="card-sub-title"> Total Active Doctors : {{ $allDoctors->count() }}</h6>
                             </div>
                         </div>
                         <div class="chart-container mt-4">
@@ -162,6 +126,138 @@
 @endsection
 @push('scripts')
     <script>
+        var monthlyVisitorsOptions = {
+            series: [{
+                name: 'Visitors',
+                data: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16",
+                    "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30"
+                ]
+            }],
+            chart: {
+                height: 350,
+                type: 'area'
+            },
+            dataLabels: {
+                enabled: false
+            },
+            stroke: {
+                curve: 'smooth'
+            },
+            xaxis: {
+                categories: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16",
+                    "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30"
+                ]
+            },
+            tooltip: {
+                enabled: true,
+                y: {
+                    formatter: function(value) {
+                        return value;
+                    },
+                },
+            },
+        };
+
+        var monthlyVisitors = new ApexCharts(document.querySelector("#visitorUsers"), monthlyVisitorsOptions);
+        monthlyVisitors.render();
+        //Last 30 Days Visitors
+        $.ajax({
+            url: "{{ route('admin.dashboard.visitors.count') }}",
+            type: 'POST',
+            dataType: 'json',
+            async: true,
+            cache: false,
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            success: function(data) {
+                monthlyVisitors.updateSeries([{
+                    name: 'usersData',
+                    data: data.visitors
+                }]);
+            }
+        });
+
+        var createdDoctorsOptions = {
+            series: [{
+                name: 'Doctors',
+                data: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+            }],
+            chart: {
+                height: 350,
+                type: 'bar',
+            },
+            dataLabels: {
+                enabled: false,
+                formatter: function(val) {
+                    return val;
+                },
+                offsetY: -20,
+                style: {
+                    fontSize: '12px',
+                    colors: ["#1a76d1"]
+                }
+            },
+            xaxis: {
+                categories: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+                position: 'bottom',
+                axisBorder: {
+                    show: false
+                },
+                axisTicks: {
+                    show: false
+                },
+                crosshairs: {
+                    fill: {
+                        type: 'gradient',
+                        gradient: {
+                            colorFrom: '#1a76d1',
+                            colorTo: '#1a76d1',
+                            stops: [0, 100],
+                            opacityFrom: 0.4,
+                            opacityTo: 0.5,
+                        }
+                    }
+                },
+                tooltip: {
+                    enabled: true,
+                    y: {
+                        formatter: function(value) {
+                            return value;
+                        },
+                    },
+                },
+            },
+            yaxis: {
+                axisBorder: {
+                    show: false
+                },
+                axisTicks: {
+                    show: false,
+                },
+            },
+        };
+
+        var doctorsChart = new ApexCharts(document.querySelector("#createdDoctors"), createdDoctorsOptions);
+        doctorsChart.render();
+        //Last 12 Months Doctors
+        $.ajax({
+            url: "{{ route('admin.dashboard.doctor.count') }}",
+            type: 'POST',
+            dataType: 'json',
+            async: true,
+            cache: false,
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            success: function(data) {
+                doctorsChart.updateSeries([{
+                    name: 'Doctors',
+                    data: data.doctorsData
+                }]);
+            }
+        });
+
         var MonthlyUserCreateOptions = {
             chart: {
                 height: 320,
@@ -174,10 +270,10 @@
             plotOptions: {
                 bar: {
                     barHeight: "60%",
-                    columnWidth: "38%",
+                    columnWidth: "40%",
                     startingShape: "rounded",
                     endingShape: "rounded",
-                    borderRadius: 4,
+                    borderRadius: 2,
                     distributed: true,
                 },
             },
@@ -190,7 +286,7 @@
                     right: -10,
                 },
             },
-            colors: ["#7367f0"],
+            colors: ["#1a76d1"],
             dataLabels: {
                 enabled: false,
             },
@@ -222,11 +318,8 @@
                     show: false,
                 },
                 labels: {
-                    className: "font-class",
                     style: {
-                        colors: "#7367f0",
                         fontSize: "13px",
-                        // fontFamily: 'nunito'
                     },
                 },
             },
@@ -308,26 +401,26 @@
                                 dataLabels: {
                                     name: {
                                         offsetY: -20,
-                                        color: "#7367f0",
+                                        color: "#1a76d1",
                                         fontSize: "13px",
                                         fontWeight: "400",
                                     },
                                     value: {
                                         offsetY: 10,
-                                        color: "#7367f0",
+                                        color: "#1a76d1",
                                         fontSize: "38px",
                                         fontWeight: "500",
                                     },
                                 },
                             },
                         },
-                        colors: ["#7367f0"],
+                        colors: ["#1a76d1"],
                         fill: {
                             type: "gradient",
                             gradient: {
                                 shade: "dark",
                                 shadeIntensity: 0.5,
-                                gradientToColors: ["#7367f0"],
+                                gradientToColors: ["#1a76d1"],
                                 inverseColors: true,
                                 opacityFrom: 1,
                                 opacityTo: 0.6,

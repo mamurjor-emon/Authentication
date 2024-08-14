@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers\Backend\Admin;
 
+use Carbon\Carbon;
 use App\Models\User;
+use App\Models\Visitor;
+use App\Models\DoctorModel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
@@ -10,7 +13,6 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\PasswordUpdateRequest;
-use App\Models\DoctorModel;
 
 class DashboardController extends Controller
 {
@@ -22,8 +24,8 @@ class DashboardController extends Controller
             $data['dashboard']     = 'active';
             $data['totalUsers']    = User::all();
             $data['verify_users']  = User::whereNotNull('email_verified_at')->get();
-            $data['allDoctors']    = User::where('role_id',2)->get();
-            $data['cancelDoctors'] = User::where('role_id',2)->where('status', '3')->get();
+            $data['allDoctors']    = User::where('role_id', 2)->get();
+            $data['cancelDoctors'] = User::where('role_id', 2)->where('status', '3')->get();
             return view('backend.pages.dashboard.back', $data);
         } else {
             abort(401);
@@ -84,9 +86,10 @@ class DashboardController extends Controller
         }
     }
 
-    public function dashboardUserChatCount(Request $request){
+    public function dashboardUserChatCount(Request $request)
+    {
         if ($request->ajax()) {
-            $month = ['1','2','3','4','5','6','7','8','9','10','11','12'];
+            $month = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'];
             $usersData = [];
             foreach ($month as $value) {
                 $usersData[] = DB::table('users')->whereMonth('updated_at', '=', $value)->count();
@@ -97,11 +100,44 @@ class DashboardController extends Controller
         }
     }
 
-    public function dashboardActiveDoctorCount(){
-        $data['totalDoctors']   =  User::where('role_id',2)->count();
-        $data['activeDoctors']  =  User::where('role_id',2)->where('status',1)->count();
-        $total = ($data['activeDoctors'] * 100 ) / $data['totalDoctors'] ;
+    public function dashboardActiveDoctorCount()
+    {
+        $data['totalDoctors']   =  User::where('role_id', 2)->count();
+        $data['activeDoctors']  =  User::where('role_id', 2)->where('status', 1)->count();
+        $total = ($data['activeDoctors'] * 100) / $data['totalDoctors'];
         $data['totalPersentage'] = floor($total);
         return response()->json($data, 200);
-       }
+    }
+    public function dashboardVisitorsCount(Request $request)
+    {
+        if ($request->ajax()) {
+
+            $dates = [];
+            for ($i = 0; $i < 30; $i++) {
+                $dates[] = Carbon::now()->subDays($i)->toDateString();
+            }
+            $dates = array_reverse($dates);
+            $visitors = [];
+            foreach ($dates as $date) {
+                $visitors[] = Visitor::whereDate('created_at', '=', $date)->count();
+            }
+            return response()->json([
+                'visitors' => $visitors,
+            ]);
+        }
+    }
+
+    public function dashboardDoctorsChatCount(Request $request)
+    {
+        if ($request->ajax()) {
+            $month = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'];
+            $doctorsData = [];
+            foreach ($month as $value) {
+                $doctorsData[] = User::where('role_id',2)->whereMonth('updated_at', '=', $value)->count();
+            }
+            return response()->json([
+                'doctorsData'  => $doctorsData,
+            ]);
+        }
+    }
 }
