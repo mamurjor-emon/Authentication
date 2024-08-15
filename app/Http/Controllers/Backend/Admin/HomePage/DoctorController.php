@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use App\Models\DepartmentModel;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\DoctorRequest;
+use App\Models\Roles;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Mail;
 use Yajra\DataTables\Facades\DataTables;
@@ -39,17 +40,24 @@ class DoctorController extends Controller
     {
         if (Gate::allows('isAdmin')) {
             if ($request->ajax()) {
-                $getData = DoctorModel::with(['user','department'])->latest('id');
+                $getData = DoctorModel::with(['user', 'department'])->latest('id');
                 return DataTables::eloquent($getData)
                     ->addIndexColumn()
                     ->filter(function ($query) use ($request) {
                         if (!empty($request->search)) {
-                            $query->when($request->search, function ($query, $value) {
-                                // $query->where('name', 'like', "%{$value}%");
+                            $search = $request->search;
+                            $query->where(function ($query) use ($search) {
+                                $query->whereHas('user', function ($query) use ($search) {
+                                    $query->where('fname', 'like', "%{$search}%")
+                                        ->orWhere('lname', 'like', "%{$search}%")
+                                        ->orWhere('email', 'like', "%{$search}%");
+                                })
+                                ->orWhereHas('department', function ($query) use ($search) {
+                                    $query->where('name', 'like', "%{$search}%");
+                                });
                             });
                         }
                     })
-
                     ->addColumn('name', function ($data) {
                         return $data->user ? $data->user->fname : '--';
                     })
@@ -72,18 +80,31 @@ class DoctorController extends Controller
                         return status($data->status);
                     })
                     ->addColumn('action', function ($data) {
-                        return '<div class="text-right" ><a href="' . route('admin.doctor.edit', ['id' => $data->id]) . '" class="rounded mdc-button mdc-button--raised icon-button filled-button--success">
-                        <i class="material-icons mdc-button__icon">colorize</i>
-                      </a> <a href="' . route('admin.doctor.department.edit', ['id' => $data->id]) . '" class="mdc-button mdc-button--raised icon-button mdc-ripple-upgraded">
-                      <i class="material-icons mdc-button__icon">visibility</i>
-                    </a> <button class="mdc-button mdc-button--raised icon-button filled-button--secondary" onclick="delete_data(' . $data->id . ')">
-                      <i class="material-icons mdc-button__icon">delete</i>
-                    </button><form action="' . route('admin.doctor.delete', ['id' => $data->id]) . '"
-                    id="delete-form-' . $data->id . '" method="DELETE" class="d-none">
-                    @csrf
-                    @method("DELETE") </form></div>';
+                        if($data->status == 1){
+                            return '<div class="text-right" ><a href="' . route('admin.doctor.edit', ['id' => $data->id]) . '" class="rounded mdc-button mdc-button--raised icon-button filled-button--success">
+                            <i class="material-icons mdc-button__icon">colorize</i>
+                            </a> <a href="' . route('frontend.single.doctors', ['id' => $data->id]) . '" class="mdc-button mdc-button--raised icon-button mdc-ripple-upgraded">
+                            <i class="material-icons mdc-button__icon">visibility</i>
+                            </a> <button class="mdc-button mdc-button--raised icon-button filled-button--secondary" onclick="delete_data(' . $data->id . ')">
+                            <i class="material-icons mdc-button__icon">delete</i>
+                            </button><form action="' . route('admin.doctor.delete', ['id' => $data->id]) . '"
+                            id="delete-form-' . $data->id . '" method="DELETE" class="d-none">
+                            @csrf
+                            @method("DELETE") </form></div>';
+                        }else{
+                            return '<div class="text-right">
+                            </a> <a href="' . route('admin.doctor.edit', ['id' => $data->id]) . '" class="mdc-button mdc-button--raised icon-button mdc-ripple-upgraded filled-button--success">
+                            <i class="material-icons mdc-button__icon">colorize</i>
+                            </a> <button class="mdc-button mdc-button--raised icon-button filled-button--secondary" onclick="delete_data(' . $data->id . ')">
+                            <i class="material-icons mdc-button__icon">delete</i>
+                            </button><form action="' . route('admin.doctor.delete', ['id' => $data->id]) . '"
+                            id="delete-form-' . $data->id . '" method="DELETE" class="d-none">
+                            @csrf
+                            @method("DELETE") </form></div>';
+                        }
+
                     })
-                    ->rawColumns(['image','status', 'action'])
+                    ->rawColumns(['image', 'status', 'action'])
                     ->make(true);
             }
         } else {
@@ -99,8 +120,8 @@ class DoctorController extends Controller
             $data['parentDoctorsSubMenu']   = 'style="display: block;"';
             $data['addDoctor']              = 'active';
             $data['breadcrumb']             = ['Doctors' => route('admin.doctor.index'), 'Create Doctor' => '',];
-            $data['allActiveClients']       = User::where('role_id', 3)->where('status','1')->get();
-            $data['allDepartments']         = DepartmentModel::where('status','1')->get();
+            $data['allActiveClients']       = User::where('role_id', 3)->where('status', '1')->get();
+            $data['allDepartments']         = DepartmentModel::where('status', '1')->get();
             return view('backend.pages.doctors.doctor.create', $data);
         } else {
             abort(401);
@@ -117,7 +138,7 @@ class DoctorController extends Controller
             } else {
                 $image = null;
             }
-             DoctorModel::create([
+            DoctorModel::create([
                 'user_id'       => $request->user_id,
                 'department_id' => $request->department_id,
                 'image'         => $image,
@@ -138,10 +159,11 @@ class DoctorController extends Controller
                 'lbiography'    => $request->lbiography,
                 'status'        => $request->status,
             ]);
-            $user = User::where('id',$request->user_id)->first();
+            $user = User::where('id', $request->user_id)->first();
+            $role = Roles::where('slug', 'doctor')->first();
             $user->update([
                 'email_verified_at' => now(),
-                'role_id'           => '2',
+                'role_id'           => $role->id,
             ]);
             $request['full_name']    = $user->fname . ' ' . $user->lname;
             $request['button_title'] = 'Click To Dashboard';
@@ -168,8 +190,8 @@ class DoctorController extends Controller
             $data['addDoctor']              = 'active';
             $data['breadcrumb']             = ['Doctors' => route('admin.doctor.index'), 'Edit Doctor' => '',];
             $data['editDoctor']             = DoctorModel::where('id', $id)->first();
-            $data['allActiveClients']       = User::where('role_id', 3)->where('status','1')->get();
-            $data['allDepartments']         = DepartmentModel::where('status','1')->get();
+            $data['allActiveClients']       = User::where('role_id', 3)->where('status', '1')->get();
+            $data['allDepartments']         = DepartmentModel::where('status', '1')->get();
             return view('backend.pages.doctors.doctor.edit', $data);
         } else {
             abort(401);
@@ -182,7 +204,7 @@ class DoctorController extends Controller
             $editDoctor = DoctorModel::where('id', $request->update_id)->first();
             $image = '';
             if ($request->file('image')) {
-                $image = $this->imageUpdate($request->file('image'), 'images/doctors/', null, null,$editDoctor->image);
+                $image = $this->imageUpdate($request->file('image'), 'images/doctors/', null, null, $editDoctor->image);
             } else {
                 $image = $editDoctor->image;
             }
@@ -224,4 +246,3 @@ class DoctorController extends Controller
         }
     }
 }
-

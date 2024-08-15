@@ -24,8 +24,8 @@ class DashboardController extends Controller
             $data['dashboard']     = 'active';
             $data['totalUsers']    = User::all();
             $data['verify_users']  = User::whereNotNull('email_verified_at')->get();
-            $data['allDoctors']    = User::where('role_id', 2)->get();
-            $data['cancelDoctors'] = User::where('role_id', 2)->where('status', '3')->get();
+            $data['allDoctors']    = DoctorModel::where('status', '1')->get();
+            $data['cancelDoctors'] = DoctorModel::where('status', '0')->get();;
             return view('backend.pages.dashboard.back', $data);
         } else {
             abort(401);
@@ -102,8 +102,8 @@ class DashboardController extends Controller
 
     public function dashboardActiveDoctorCount()
     {
-        $data['totalDoctors']   =  User::where('role_id', 2)->count();
-        $data['activeDoctors']  =  User::where('role_id', 2)->where('status', 1)->count();
+        $data['totalDoctors']   =  DoctorModel::count();
+        $data['activeDoctors']  =  DoctorModel::where('status','1')->count();
         $total = ($data['activeDoctors'] * 100) / $data['totalDoctors'];
         $data['totalPersentage'] = floor($total);
         return response()->json($data, 200);
@@ -133,7 +133,7 @@ class DashboardController extends Controller
             $month = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'];
             $doctorsData = [];
             foreach ($month as $value) {
-                $doctorsData[] = User::where('role_id',2)->whereMonth('updated_at', '=', $value)->count();
+                $doctorsData[] = DoctorModel::whereMonth('updated_at', '=', $value)->count();
             }
             return response()->json([
                 'doctorsData'  => $doctorsData,

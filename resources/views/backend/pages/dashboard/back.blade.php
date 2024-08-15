@@ -25,7 +25,7 @@
                         <div class="card-inner">
                             <h5 class="card-title">Total Users</h5>
                             <h5 class="pb-2 mb-1 border-bottom fw-bolder">
-                                {{ $totalUsers->count() > 0 ? $totalUsers->count() . ' +' : '' }}</h5>
+                                {{ $totalUsers->count() > 0 ? $totalUsers->count() . ' +' : '0' }}</h5>
                             <div class="card-icon-wrapper">
                                 <i class="material-icons">group_add</i>
                             </div>
@@ -38,7 +38,7 @@
                         <div class="card-inner">
                             <h5 class="card-title">Verified User</h5>
                             <h5 class="pb-2 mb-1 border-bottom fw-bolder">
-                                {{ $verify_users->count() > 0 ? $verify_users->count() . ' +' : '' }}</h5>
+                                {{ $verify_users->count() > 0 ? $verify_users->count() . ' +' : '0' }}</h5>
                             <div class="card-icon-wrapper">
                                 <i class="material-icons">verified_user</i>
                             </div>
@@ -51,7 +51,7 @@
                         <div class="card-inner">
                             <h5 class="card-title">Total Doctors</h5>
                             <h5 class="pb-2 mb-1 border-bottom fw-bolder">
-                                {{ $allDoctors->count() > 0 ? $allDoctors->count() . ' +' : '' }}</h5>
+                                {{ $allDoctors->count() > 0 ? $allDoctors->count() . ' +' : '0' }}</h5>
                             <div class="card-icon-wrapper">
                                 <i class="material-icons">group_add</i>
                             </div>
@@ -64,7 +64,7 @@
                         <div class="card-inner">
                             <h5 class="card-title">Cancel Doctors</h5>
                             <h5 class="pb-2 mb-1 border-bottom fw-bolder">
-                                {{ $cancelDoctors->count() > 0 ? $cancelDoctors->count() . ' +' : '' }}</h5>
+                                {{ $cancelDoctors->count() > 0 ? $cancelDoctors->count() . ' +' : '0' }}</h5>
                             <div class="card-icon-wrapper">
                                 <i class="material-icons">group_add</i>
                             </div>
@@ -106,8 +106,7 @@
                         </div>
                     </div>
                 </div>
-                <div
-                    class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-4 mdc-layout-grid__cell--span-8-tablet">
+                <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-4 mdc-layout-grid__cell--span-8-tablet">
                     <div class="mdc-card">
                         <div class="d-flex d-lg-block d-xl-flex justify-content-between">
                             <div>
@@ -117,6 +116,29 @@
                         </div>
                         <div class="chart-container mt-4">
                             <div id="activeDocotorsChats"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-6">
+                    <div class="mdc-card">
+                        <div>
+                            <h4 class="card-title mb-2 mb-sm-0">Last 12 Months Subscribers</h4>
+                            <p>Subscribers Overview</p>
+                        </div>
+                        <div class="chart-container">
+                            <div id="monthlySubscribers"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-6">
+                    <div class="mdc-card">
+                        <div>
+                            <h4 class="card-title mb-2 mb-sm-0">Last 12 Months Blogs</h4>
+                            <p>Blogs Overview</p>
+                        </div>
+                        <div class="chart-container">
+                            <div id="monthlyBlogs"></div>
                         </div>
                     </div>
                 </div>
@@ -469,6 +491,7 @@
                 }
             });
         }
-        activeDoctors()
+        activeDoctors();
+
     </script>
 @endpush

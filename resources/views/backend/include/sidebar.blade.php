@@ -238,21 +238,6 @@
                                </a>
                            </div>
                            <div class="mdc-list-item mdc-drawer-item">
-                               <a class="mdc-drawer-link {{ $allDoctors ?? '' }}" href="{{ route('admin.user.management.doctors') }}">
-                                  Active Doctors
-                               </a>
-                           </div>
-                           <div class="mdc-list-item mdc-drawer-item">
-                               <a class="mdc-drawer-link {{ $allPendingDoctors ?? '' }}" href="{{ route('admin.user.management.pending.doctors') }}">
-                                   Pending Doctors
-                               </a>
-                           </div>
-                           <div class="mdc-list-item mdc-drawer-item">
-                               <a class="mdc-drawer-link {{ $cancelDoctors ?? '' }}" href="{{ route('admin.user.management.cancel.doctors') }}">
-                                   Cancel Doctors
-                               </a>
-                           </div>
-                           <div class="mdc-list-item mdc-drawer-item">
                                <a class="mdc-drawer-link {{ $allClients ?? '' }}" href="{{ route('admin.user.management.clients') }}">
                                   All Clients
                                </a>

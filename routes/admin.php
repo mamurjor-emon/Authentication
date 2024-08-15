@@ -287,19 +287,9 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth', 'i
         Route::get('/', [UserManageMentController::class, 'admins'])->name('admins');
         Route::post('getdata', [UserManageMentController::class, 'getData'])->name('get.data');
 
-        Route::get('/doctors', [UserManageMentController::class, 'doctors'])->name('doctors');
-        Route::post('doctors/getdata', [UserManageMentController::class, 'doctorsGetData'])->name('doctors.get.data');
-
-        Route::get('/pending-doctors', [UserManageMentController::class, 'pendingDoctors'])->name('pending.doctors');
-        Route::post('pending/doctors/getdata', [UserManageMentController::class, 'pendingDoctorsGetData'])->name('pending.doctors.get.data');
-
-        Route::get('/cancel-doctors', [UserManageMentController::class, 'cancelDoctors'])->name('cancel.doctors');
-        Route::post('cancel/doctors/getdata', [UserManageMentController::class, 'cancelDoctorsGetData'])->name('cancel.doctors.get.data');
-
         Route::get('/clients', [UserManageMentController::class, 'clients'])->name('clients');
         Route::post('clients/getdata', [UserManageMentController::class, 'clientsGetData'])->name('clients.get.data');
 
-        Route::post('doctors/status', [UserManageMentController::class, 'doctorStatusChange'])->name('doctor.status.change');
         Route::post('role/change', [UserManageMentController::class, 'roleChange'])->name('role.change');
 
         Route::get('/subscribers', [UserManageMentController::class, 'subscribers'])->name('subscribers');
