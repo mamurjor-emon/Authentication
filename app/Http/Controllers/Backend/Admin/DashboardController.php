@@ -13,6 +13,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\PasswordUpdateRequest;
+use App\Models\Blog;
+use App\Models\Subscriber;
 
 class DashboardController extends Controller
 {
@@ -137,6 +139,34 @@ class DashboardController extends Controller
             }
             return response()->json([
                 'doctorsData'  => $doctorsData,
+            ]);
+        }
+    }
+
+    public function dashboardSubscribersChatCount(Request $request)
+    {
+        if ($request->ajax()) {
+            $month = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'];
+            $subscriberData = [];
+            foreach ($month as $value) {
+                $subscriberData[] = Subscriber::whereMonth('updated_at', '=', $value)->count();
+            }
+            return response()->json([
+                'subscriberData'  => $subscriberData,
+            ]);
+        }
+    }
+
+    public function dashboardBlogsChatCount(Request $request)
+    {
+        if ($request->ajax()) {
+            $month = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'];
+            $blogsData = [];
+            foreach ($month as $value) {
+                $blogsData[] = Blog::whereMonth('updated_at', '=', $value)->count();
+            }
+            return response()->json([
+                'blogsData'  => $blogsData,
             ]);
         }
     }

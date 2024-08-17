@@ -147,8 +147,7 @@
                     </div>
                 </div>
             </div>
-            <div
-                class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-6-desktop mdc-layout-grid__cell--span-4-tablet">
+            <div  class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-6-desktop mdc-layout-grid__cell--span-4-tablet">
                 <div class="mdc-card bg-success text-white">
                     <div class="d-flex justify-content-between">
                         <h3 class="font-weight-normal">Impressions</h3>
@@ -169,8 +168,7 @@
                     </div>
                 </div>
             </div>
-            <div
-                class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-6-desktop mdc-layout-grid__cell--span-4-tablet">
+            <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-6-desktop mdc-layout-grid__cell--span-4-tablet">
                 <div class="mdc-card bg-info text-white">
                     <div class="d-flex justify-content-between">
                         <h3 class="font-weight-normal">Traffic</h3>

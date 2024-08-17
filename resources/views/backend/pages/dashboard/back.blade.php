@@ -13,6 +13,14 @@
         #createdDoctors .apexcharts-menu-icon {
             display: none !important;
         }
+
+        #monthlySubscribers .apexcharts-toolbar {
+            display: none !important;
+        }
+
+        #monthlyBlogsChart .apexcharts-menu-icon {
+            display: none;
+        }
     </style>
 @endpush
 @section('content')
@@ -95,6 +103,49 @@
                     </div>
                 </div>
 
+                <div
+                    class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-6-desktop mdc-layout-grid__cell--span-4-tablet">
+                    <div class="mdc-card bg-success text-white">
+                        <div class="d-flex justify-content-between">
+                            <h3 class="font-weight-normal">Impressions</h3>
+                        </div>
+                        <div class="mdc-layout-grid__inner align-items-center">
+                            <div
+                                class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-4-desktop mdc-layout-grid__cell--span-3-tablet mdc-layout-grid__cell--span-2-phone">
+                                <div>
+                                    <h5 class="font-weight-normal mt-2">Customers 58.39k</h5>
+                                    <h2 class="font-weight-normal mt-3 mb-0">636,757K</h2>
+                                </div>
+                            </div>
+                            <div
+                                class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-8-desktop mdc-layout-grid__cell--span-5-tablet mdc-layout-grid__cell--span-2-phone">
+                                <canvas id="impressions-chart" height="80"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div
+                    class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-6-desktop mdc-layout-grid__cell--span-4-tablet">
+                    <div class="mdc-card bg-info text-white">
+                        <div class="d-flex justify-content-between">
+                            <h3 class="font-weight-normal">Traffic</h3>
+                        </div>
+                        <div class="mdc-layout-grid__inner align-items-center">
+                            <div
+                                class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-4-desktop mdc-layout-grid__cell--span-3-tablet mdc-layout-grid__cell--span-2-phone">
+                                <div>
+                                    <h5 class="font-weight-normal mt-2">Customers 58.39k</h5>
+                                    <h2 class="font-weight-normal mt-3 mb-0">636,757K</h2>
+                                </div>
+                            </div>
+                            <div
+                                class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-8-desktop mdc-layout-grid__cell--span-5-tablet mdc-layout-grid__cell--span-2-phone">
+                                <canvas id="traffic-chart" height="80"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-8">
                     <div class="mdc-card">
                         <div>
@@ -106,7 +157,8 @@
                         </div>
                     </div>
                 </div>
-                <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-4 mdc-layout-grid__cell--span-8-tablet">
+                <div
+                    class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-4 mdc-layout-grid__cell--span-8-tablet">
                     <div class="mdc-card">
                         <div class="d-flex d-lg-block d-xl-flex justify-content-between">
                             <div>
@@ -119,7 +171,6 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-6">
                     <div class="mdc-card">
                         <div>
@@ -138,7 +189,7 @@
                             <p>Blogs Overview</p>
                         </div>
                         <div class="chart-container">
-                            <div id="monthlyBlogs"></div>
+                            <div id="monthlyBlogsChart"></div>
                         </div>
                     </div>
                 </div>
@@ -386,6 +437,140 @@
             }
         });
 
+        //Last 12 Months Subscribers
+        var monthlySubscribersOptions = {
+            series: [{
+                name: 'Sales',
+                data: [5, 10, 15, 20, 25, 30, 25, 20, 15, 10, 5, 0]
+            }],
+            chart: {
+                height: 350,
+                type: 'line',
+            },
+            forecastDataPoints: {
+                count: 7
+            },
+            stroke: {
+                width: 5,
+                curve: 'smooth'
+            },
+            xaxis: {
+                categories: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+            },
+            title: {
+                align: 'left',
+                style: {
+                    fontSize: "16px",
+                    color: '#1a76d1'
+                }
+            },
+            fill: {
+                type: 'gradient',
+                gradient: {
+                    shade: 'dark',
+                    gradientToColors: ['#1a76d1'],
+                    shadeIntensity: 1,
+                    type: 'horizontal',
+                    opacityFrom: 1,
+                    opacityTo: 1,
+                    stops: [0, 100, 100, 100]
+                },
+            }
+        };
+        var monthlySubscribersChart = new ApexCharts(document.querySelector("#monthlySubscribers"),
+            monthlySubscribersOptions);
+        monthlySubscribersChart.render();
+        $.ajax({
+            url: "{{ route('admin.dashboard.subscriber.count') }}",
+            type: 'POST',
+            dataType: 'json',
+            async: true,
+            cache: false,
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            success: function(data) {
+                monthlySubscribersChart.updateSeries([{
+                    name: 'Subscriber',
+                    data: data.subscriberData
+                }]);
+            }
+        });
+
+        //Last 12 Months Blogs
+        var monthlyBlogsOptions = {
+            series: [{
+                data: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+            }],
+            chart: {
+                type: 'bar',
+                height: 350
+            },
+            annotations: {
+                xaxis: [{
+                    x: 500,
+                    borderColor: '#1a76d1',
+                    label: {
+                        borderColor: '#1a76d1',
+                        style: {
+                            color: '#fff',
+                            background: '#1a76d1',
+                        },
+                        text: 'X annotation',
+                    }
+                }],
+                yaxis: [{
+                    y: 'July',
+                    y2: 'September',
+                    label: {
+                        text: 'Y annotation'
+                    }
+                }]
+            },
+            plotOptions: {
+                bar: {
+                    horizontal: true,
+                }
+            },
+            dataLabels: {
+                enabled: true
+            },
+            xaxis: {
+                categories: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+            },
+            grid: {
+                xaxis: {
+                    lines: {
+                        show: true
+                    }
+                }
+            },
+            yaxis: {
+                reversed: true,
+                axisTicks: {
+                    show: true
+                }
+            }
+        };
+        var monthlyBlogsChart = new ApexCharts(document.querySelector("#monthlyBlogsChart"), monthlyBlogsOptions);
+        monthlyBlogsChart.render();
+        $.ajax({
+            url: "{{ route('admin.dashboard.blog.count') }}",
+            type: 'POST',
+            dataType: 'json',
+            async: true,
+            cache: false,
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            success: function(data) {
+                monthlyBlogsChart.updateSeries([{
+                    name: 'Blogs',
+                    data: data.blogsData
+                }]);
+            }
+        });
+
         // Active Doctors Chart
         function activeDoctors() {
             $.ajax({
@@ -492,6 +677,5 @@
             });
         }
         activeDoctors();
-
     </script>
 @endpush
