@@ -37,12 +37,15 @@
         .toast-success {
             background-color: #51A351;
         }
+
         .toast-error {
             background-color: #BD362F;
         }
+
         .toast-info {
             background-color: #2F96B4;
         }
+
         .toast-warning {
             background-color: #F89406;
         }
@@ -161,17 +164,28 @@
     <script src="{{ asset('backend/assets/js/alert.js') }}"></script>
 
     <!--=================== Summernote Script ==================-->
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"> </script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script>
 
     <!--=================== Image Preview Script ==================-->
     <script src="{{ asset('backend/assets/js/image-preview.js') }}"></script>
-     <!--=================== Apexcharts Script ==================-->
+    <!--=================== Apexcharts Script ==================-->
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
-
+    <script src="https://js.pusher.com/7.2/pusher.min.js"></script>
     <script>
         var _token = "{{ csrf_token() }}";
+        Pusher.logToConsole = true;
+        @if (auth()->user()->role_id == 1)
+        alert('called')
+            subscribechannel = 'App.Models.User.' + '1';
+            const pusher = new Pusher('{{ config('broadcasting.connections.pusher.key') }}', { cluster: 'ap2'});
+            const channel = pusher.subscribe(subscribechannel);
+            channel.bind('notifications', function(data) {
+                console.error('notification broadcusted');
+                // toastr.success(data.message.message);
+            });
+        @endif
     </script>
     @stack('scripts')
 </body>

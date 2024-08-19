@@ -28,7 +28,7 @@
                 <button class="mdc-button mdc-menu-button">
                     <i class="mdi mdi-bell"></i>
                     <span class="count-indicator">
-                        <span class="count">3</span>
+                        <span class="count">{{ Auth::user()->unreadNotifications->count() }}</span>
                     </span>
                 </button>
                 <div class="mdc-menu mdc-menu-surface" tabindex="-1">

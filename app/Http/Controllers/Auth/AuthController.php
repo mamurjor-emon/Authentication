@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Events\NotificationBroadcast;
 use App\Models\User;
 use App\Models\Roles;
 use Illuminate\Support\Str;
@@ -16,6 +17,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use App\Http\Requests\RegisterRequest;
+use App\Notifications\UserRegisteredNotification;
 use Stevebauman\Location\Facades\Location;
 
 class AuthController extends Controller
@@ -45,7 +47,8 @@ class AuthController extends Controller
     public function store(RegisterRequest $request)
     {
 
-        $role = Roles::where('slug','client')->first();
+        $role = Roles::where('slug', 'client')->first();
+        $admin = User::where('role_id', 1)->first();
         $verify_code = Str::random(64);
         $user = User::create([
             'role_id'            => $role->id,
@@ -80,8 +83,14 @@ class AuthController extends Controller
         $heading = emailHeadingTemplate('NEW_USER_MAIL', $request);
 
         $userMail = ['subject' => $subject, 'body' => $body, 'heading' => $heading];
-
         Mail::to($request->email)->send(new VerifyUserMail($userMail));
+        $message = [
+            'sender' => $user->id,
+            'to' => $admin->id,
+            'message' => 'A new user has Registered: ' . $request->fname . ' ' . $request->lname,
+        ];
+        event(new NotificationBroadcast($message));
+        $admin->notify(new UserRegisteredNotification($user));
         Auth::login($user, true);
         DB::commit();
         return redirect()->route('login')->with('success', 'Registration Successfull!');
@@ -92,18 +101,20 @@ class AuthController extends Controller
      * @param \App\Models\User $token
      * @return \Illuminate\Http\Response
      */
-    public function forgotPassword(){
+    public function forgotPassword()
+    {
         $this->setPageTitle('Forgot Password');
         return view('auth.reset-password');
     }
-     /**
+    /**
      * Client password reset email sent
      *
      * @method POST
      * @param Illuminate\Http\Request $request
      * @return Illuminate\Http\Request Response
      */
-    public function forgotPasswordSent(Request $request){
+    public function forgotPasswordSent(Request $request)
+    {
 
         $request->validate([
             'email' => 'required|email',
@@ -120,28 +131,29 @@ class AuthController extends Controller
         $user['verify_code'] = $verify_code;
         $user->save();
 
-        $request['full_name'] = $user->fname.' '.$user->lname;
+        $request['full_name'] = $user->fname . ' ' . $user->lname;
         $request['button_reset_url'] = URL::temporarySignedRoute('forgot.password.token', now()->addHours(1), ['token' => $verify_code]);
         $request['button_url'] = URL::temporarySignedRoute('forgot.password.token', now()->addHours(1), ['token' => $verify_code]);
         $request['button_reset_title'] = 'Click Here To Reset Password';
 
         // User mail
-        $subject = emailSubjectTemplate('PASSWORD_RESET_MAIL',$request);
-        $body    = emailBodyTemplate('PASSWORD_RESET_MAIL',$request);
-        $heading = emailHeadingTemplate('PASSWORD_RESET_MAIL',$request);
+        $subject = emailSubjectTemplate('PASSWORD_RESET_MAIL', $request);
+        $body    = emailBodyTemplate('PASSWORD_RESET_MAIL', $request);
+        $heading = emailHeadingTemplate('PASSWORD_RESET_MAIL', $request);
 
         $userMail = ['subject' => $subject, 'body' => $body, 'heading' => $heading];
         Mail::to($user->email)->send(new PasswordResetMail($userMail));
         return redirect()->back()->with('success', 'Password reset link has been sent to your email');
     }
 
-   /**
+    /**
      * Forgot password verify
      *
      * @param \App\Models\User $token
      * @return \Illuminate\Http\Response
      */
-    public function forgotPasswordToken(Request $request, $verify_token){
+    public function forgotPasswordToken(Request $request, $verify_token)
+    {
         if (! $request->hasValidSignature()) {
             abort(401);
         }
@@ -152,12 +164,13 @@ class AuthController extends Controller
         }
         return redirect()->route('forgot.password')->with('warning', 'Password reset link is expired');
     }
-     /**
+    /**
      * Change password
      * @param request
      * @return response
      */
-    public function passwordUpdate(Request $request) {
+    public function passwordUpdate(Request $request)
+    {
         $this->validate($request, [
             'email'            => 'required',
             'password'         => 'required|min:8|max:20|confirmed',
@@ -172,12 +185,10 @@ class AuthController extends Controller
                 $user->save();
                 Auth::logout();
                 return redirect()->route('login')->with('success', 'Your password has been changed.');
-            }
-            else{
+            } else {
                 session()->flash('error', 'Please! verify your email.');
             }
-        }
-        else{
+        } else {
             session()->flash('error', 'Something went wrong.');
         }
         return back();
