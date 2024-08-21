@@ -89,7 +89,7 @@ class AuthController extends Controller
             'to' => $admin->id,
             'message' => 'A new user has Registered: ' . $request->fname . ' ' . $request->lname,
         ];
-        event(new NotificationBroadcast($message));
+        Broadcast(new NotificationBroadcast($message))->toOthers();
         $admin->notify(new UserRegisteredNotification($user));
         Auth::login($user, true);
         DB::commit();

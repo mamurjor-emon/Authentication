@@ -1,16 +1,16 @@
 <?php
 
-use App\Http\Controllers\Auth\AuthController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Auth\AuthController;
+use App\Http\Controllers\VerifyUserController;
 use App\Http\Controllers\Frontend\BlogController;
-use App\Http\Controllers\Frontend\ContactController;
 use App\Http\Controllers\Frontend\DoctorController;
+use App\Http\Controllers\Frontend\ContactController;
+use App\Http\Controllers\Frontend\ServiceController;
 use App\Http\Controllers\Frontend\FrontendController;
 use App\Http\Controllers\Frontend\PortfolioController;
-use App\Http\Controllers\Frontend\ServiceController;
 use App\Http\Controllers\Frontend\SubscriberController;
-use App\Http\Controllers\VerifyUserController;
 
 /*
 |--------------------------------------------------------------------------

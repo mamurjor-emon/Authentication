@@ -172,22 +172,34 @@
     <script src="{{ asset('backend/assets/js/image-preview.js') }}"></script>
     <!--=================== Apexcharts Script ==================-->
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+
     <script src="https://js.pusher.com/7.2/pusher.min.js"></script>
     <script>
         var _token = "{{ csrf_token() }}";
         Pusher.logToConsole = true;
         @if (auth()->user()->role_id == 1)
-        alert('called')
-            subscribechannel = 'App.Models.User.' + '1';
-            const pusher = new Pusher('{{ config('broadcasting.connections.pusher.key') }}', { cluster: 'ap2'});
-            const channel = pusher.subscribe(subscribechannel);
-            channel.bind('notifications', function(data) {
-                console.error('notification broadcusted');
-                // toastr.success(data.message.message);
-            });
+        // var subscribechannel = 'private-adminNotification.' + {{ auth()->user()->id }};
+        //     const pusher = new Pusher('{{ config('broadcasting.connections.pusher.key') }}', { cluster: 'mt1'});
+        //     const channel = pusher.subscribe(subscribechannel);
+        //     console.error(channel);
+        //     channel.bind('notifications', function(data) {
+        //         console.error('notification broadcusted');
+        //         // toastr.success(data.message.message);
+        //     });
+        // window.Echo = new Echo({
+        //     broadcaster: 'pusher',
+        //     key: '{{ config("broadcasting.connections.pusher.key") }}',
+        //     cluster: '{{ config("broadcasting.connections.pusher.options.cluster") }}',
+        //     forceTLS: true,
+        //     authEndpoint: '/broadcasting/auth',  // Ensure this endpoint is correct
+        //     auth: {
+        //         headers: {
+        //             'X-CSRF-TOKEN': '{{ csrf_token() }}',
+        //         }
+        //     }
+        // });
         @endif
     </script>
     @stack('scripts')
 </body>
-
 </html>

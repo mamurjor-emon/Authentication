@@ -92,7 +92,7 @@
                     <ul class="mdc-list" role="menu" aria-hidden="true" aria-orientation="vertical">
                         <li>
                             <a href="{{ route('admin.profile') }}" class="mdc-list-item" role="menuitem">
-                                <div class="item-thumbnail item-thumbnail-icon-only">
+                                <div class="item-thumbnail item-thumbnail-icon-only mr-2">
                                     <i class="mdi mdi-account-edit-outline text-primary"></i>
                                 </div>
                                 <div class="item-content d-flex align-items-start flex-column justify-content-center">
@@ -105,7 +105,7 @@
                                 <form action="{{ route('logout') }}" method="POST">
                                     @csrf
                                     <button type="submit" class="item-subject font-weight-normal border-0 bg-transparent">
-                                        <div class="item-thumbnail item-thumbnail-icon-only">
+                                        <div class="item-thumbnail item-thumbnail-icon-only mr-2">
                                             <i class="mdi mdi-logout text-primary"></i>
                                         </div>
                                         Logout

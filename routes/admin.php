@@ -2,9 +2,13 @@
 
 use App\Models\TitleDiscrption;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Broadcast;
 use App\Http\Controllers\Backend\Admin\DayController;
 use App\Http\Controllers\Backend\Admin\SlotController;
+use App\Http\Controllers\Backend\Admin\TimePageController;
 use App\Http\Controllers\Backend\Admin\DashboardController;
+use App\Http\Controllers\Backend\Admin\TimeTableController;
+use App\Http\Controllers\Backend\Admin\ThemeSettingController;
 use App\Http\Controllers\Backend\Admin\EmailTemplatesController;
 use App\Http\Controllers\Backend\Admin\HomePage\BlogsController;
 use App\Http\Controllers\Backend\Admin\HomePage\MenusController;
@@ -24,13 +28,12 @@ use App\Http\Controllers\Backend\Admin\HomePage\DepartmentController;
 use App\Http\Controllers\Backend\Admin\HomePage\SocalMediaController;
 use App\Http\Controllers\Backend\Admin\HomePage\BlogCategorieController;
 use App\Http\Controllers\Backend\Admin\HomePage\PortfolioCategorieController;
-use App\Http\Controllers\Backend\Admin\ThemeSettingController;
-use App\Http\Controllers\Backend\Admin\TimePageController;
-use App\Http\Controllers\Backend\Admin\TimeTableController;
 
 // Group Route
 Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth', 'is_verify', 'is_admin']], function () {
     //------------------------ Dashboard -----------------------//
+    Broadcast::routes();
+
     Route::get('dashboard/', [DashboardController::class, 'dashboard'])->name('dashboard');
     Route::post('dashboard-users-count', [DashboardController::class, 'dashboardUserChatCount'])->name('dashboard.users.count');
     Route::post('dashboard-active-count', [DashboardController::class, 'dashboardActiveDoctorCount'])->name('dashboard.active.doctor.count');
