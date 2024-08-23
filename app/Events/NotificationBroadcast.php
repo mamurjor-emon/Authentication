@@ -32,7 +32,7 @@ class NotificationBroadcast implements ShouldBroadcast
      */
     public function broadcastOn()
     {
-        return new PrivateChannel('adminNotification.'. $this->message['to']);
+        return new Channel('adminotification.' . $this->message['to']);
     }
 
     /**

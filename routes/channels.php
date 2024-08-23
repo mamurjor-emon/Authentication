@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Broadcast;
+use App\Models\User;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,7 +14,6 @@ use Illuminate\Support\Facades\Broadcast;
 |
 */
 
-Broadcast::channel('adminNotification.{id}', function ($user, $id) {
-    dd($user);
-    return (int) $user->id === (int) $id;
+Broadcast::channel('adminotification.{userId}', function (User $user, $userId) {
+    return (int) $user->id === (int) $userId;
 });

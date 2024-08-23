@@ -21,7 +21,7 @@
                                                 <td style="padding-right: 0px;padding-left: 0px;"
                                                     align="center">
                                                     <img align="center" border="0"
-                                                        src="{{ asset(config('settings.theme_secondary_logo')) }}"
+                                                        src="{!! asset(config('settings.theme_secondary_logo')) !!}"
                                                         alt="Image" title="Image"
                                                         style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: inline-block !important;border: none;height: auto;float: none;width: 42%;max-width: 235.2px;"
                                                         width="235.2" />

@@ -83,7 +83,7 @@ class AuthController extends Controller
         $heading = emailHeadingTemplate('NEW_USER_MAIL', $request);
 
         $userMail = ['subject' => $subject, 'body' => $body, 'heading' => $heading];
-        Mail::to($request->email)->send(new VerifyUserMail($userMail));
+        Mail::to($request->email)->later(now()->addSeconds(10), new VerifyUserMail($userMail));
         $message = [
             'sender' => $user->id,
             'to' => $admin->id,
