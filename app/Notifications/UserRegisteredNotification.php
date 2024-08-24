@@ -3,8 +3,6 @@
 namespace App\Notifications;
 
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
 class UserRegisteredNotification extends Notification
@@ -37,7 +35,7 @@ class UserRegisteredNotification extends Notification
     {
         return [
             'user_id' => $this->user->id,
-            'message' => 'A new user has Registered: ' . $this->user->fname,
+            'message' => 'A New User Has Registered: ' . $this->user->fname,
             'status'  => 'new_user_create'
         ];
     }

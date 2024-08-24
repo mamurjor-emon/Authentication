@@ -191,7 +191,27 @@
             var userId = {{ Auth::user()->id }};
             var channel = pusher.subscribe('adminotification.' + userId);
             channel.bind('notifications', function(data) {
-                alert(JSON.stringify(data));
+                toastr.success(data.message.message)
+                $.ajax({
+                    url: "{{ route('admin.dashboard.notification.count') }}",
+                    type: 'GET',
+                    dataType: 'json',
+                    async: true,
+                    cache: false,
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    success: function(data) {
+                        var notificationCount = document.getElementById('notificationCount');
+                        var getNotifications = document.getElementById('admin_notification');
+                        if (data.status == 'success') {
+                            notificationCount.innerHTML = "";
+                            getNotifications.innerHTML = "";
+                            notificationCount.innerHTML = data.notificationCount;
+                            getNotifications.innerHTML = data.getNotification;
+                        }
+                    }
+                });
             });
         @endif
     </script>

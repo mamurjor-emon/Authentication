@@ -37,7 +37,7 @@
                     <h2 class="backend-title">{{ $title }}</h2>
                 </div>
                 <div class="menu-create-form">
-                    <form method="POST" action="{{ route('admin.profile.update') }}" enctype="multipart/form-data">
+                    <form method="POST" action="{{ route('admin.dashboard.profile.update') }}" enctype="multipart/form-data">
                         @csrf
                         <div class="row g-5">
                             <div class="col-md-6">
@@ -90,7 +90,7 @@
                     <h2 class="backend-title">Password Update</h2>
                 </div>
                 <div class="menu-create-form">
-                    <form method="POST" action="{{ route('admin.profile.password.update') }}" enctype="multipart/form-data">
+                    <form method="POST" action="{{ route('admin.dashboard.profile.password.update') }}" enctype="multipart/form-data">
                         @csrf
 
                         <div class="row g-5">

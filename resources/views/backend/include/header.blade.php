@@ -28,49 +28,34 @@
                 <button class="mdc-button mdc-menu-button">
                     <i class="mdi mdi-bell"></i>
                     <span class="count-indicator">
-                        <span class="count">{{ Auth::user()->unreadNotifications->count() }}</span>
+                        <span class="count" id="notificationCount">{{ formatNumber(Auth::user()->unreadNotifications->count()) }}</span>
                     </span>
                 </button>
-                <div class="mdc-menu mdc-menu-surface" tabindex="-1">
+                <div class="mdc-menu mdc-menu-surface" tabindex="-1" >
                     <h6 class="title"> <i class="mdi mdi-bell-outline mr-2 tx-16"></i> Notifications</h6>
-                    <ul class="mdc-list" role="menu" aria-hidden="true" aria-orientation="vertical">
-                        <li class="mdc-list-item" role="menuitem">
-                            <div class="item-thumbnail item-thumbnail-icon">
-                                <i class="mdi mdi-email-outline"></i>
-                            </div>
-                            <div class="item-content d-flex align-items-start flex-column justify-content-center">
-                                <h6 class="item-subject font-weight-normal">You received a new message</h6>
-                                <small class="text-muted"> 6 min ago </small>
-                            </div>
-                        </li>
-                        <li class="mdc-list-item" role="menuitem">
-                            <div class="item-thumbnail item-thumbnail-icon">
-                                <i class="mdi mdi-account-outline"></i>
-                            </div>
-                            <div class="item-content d-flex align-items-start flex-column justify-content-center">
-                                <h6 class="item-subject font-weight-normal">New user registered</h6>
-                                <small class="text-muted"> 15 min ago </small>
-                            </div>
-                        </li>
-                        <li class="mdc-list-item" role="menuitem">
-                            <div class="item-thumbnail item-thumbnail-icon">
-                                <i class="mdi mdi-alert-circle-outline"></i>
-                            </div>
-                            <div class="item-content d-flex align-items-start flex-column justify-content-center">
-                                <h6 class="item-subject font-weight-normal">System Alert</h6>
-                                <small class="text-muted"> 2 days ago </small>
-                            </div>
-                        </li>
-                        <li class="mdc-list-item" role="menuitem">
-                            <div class="item-thumbnail item-thumbnail-icon">
-                                <i class="mdi mdi-update"></i>
-                            </div>
-                            <div class="item-content d-flex align-items-start flex-column justify-content-center">
-                                <h6 class="item-subject font-weight-normal">You have a new update</h6>
-                                <small class="text-muted"> 3 days ago </small>
-                            </div>
-                        </li>
+                    <ul class="mdc-list" role="menu" aria-hidden="true" aria-orientation="vertical" id="admin_notification">
+                        @forelse (Auth::user()->unreadNotifications as $notification)
+                            <li class="mdc-list-item" role="menuitem">
+                                <div class="item-thumbnail item-thumbnail-icon">
+                                    @if ($notification->data['status'] == 'new_user_create')
+                                    <i class="mdi mdi-account-outline"></i>
+                                    @else
+
+                                    @endif
+                                </div>
+                                <div class="item-content d-flex align-items-start flex-column justify-content-center">
+                                    <h6 class="item-subject font-weight-normal">
+                                        {{ $notification->data['message'] ?? 'New Notification' }}</h6>
+                                    <small class="text-muted">{{ $notification->created_at->diffForHumans() }}</small>
+                                </div>
+                            </li>
+                        @empty
+                            <p class="text-center text-danger">No Notification Found !</p>
+                        @endforelse
                     </ul>
+                    <div class="d-flex justify-content-center align-items-center py-3 px-5 border-top">
+                        <button class="mdc-button mdc-button--unelevated filled-button--success mdc-ripple-upgraded text-white w-100">View All Notifications</button>
+                    </div>
                 </div>
             </div>
             <div class="divider d-none d-md-block"></div>
@@ -91,7 +76,7 @@
                 <div class="mdc-menu mdc-menu-surface" tabindex="-1">
                     <ul class="mdc-list" role="menu" aria-hidden="true" aria-orientation="vertical">
                         <li>
-                            <a href="{{ route('admin.profile') }}" class="mdc-list-item" role="menuitem">
+                            <a href="{{ route('admin.dashboard.profile') }}" class="mdc-list-item" role="menuitem">
                                 <div class="item-thumbnail item-thumbnail-icon-only mr-2">
                                     <i class="mdi mdi-account-edit-outline text-primary"></i>
                                 </div>
@@ -104,7 +89,8 @@
                             <div class="item-content d-flex align-items-start flex-column justify-content-center">
                                 <form action="{{ route('logout') }}" method="POST">
                                     @csrf
-                                    <button type="submit" class="item-subject font-weight-normal border-0 bg-transparent">
+                                    <button type="submit"
+                                        class="item-subject font-weight-normal border-0 bg-transparent">
                                         <div class="item-thumbnail item-thumbnail-icon-only mr-2">
                                             <i class="mdi mdi-logout text-primary"></i>
                                         </div>

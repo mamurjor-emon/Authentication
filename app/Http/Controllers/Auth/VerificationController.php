@@ -30,7 +30,7 @@ class VerificationController extends Controller
     protected $redirectTo = RouteServiceProvider::HOME;
     protected function redirectTo(){
         if (Auth::user()->role->slug == 'admin') {
-            return route('admin.dashboard');
+            return route('admin.dashboard.index');
         }
         else if (Auth::user()->role->slug == 'doctor') {
             return route('doctor.dashboard');

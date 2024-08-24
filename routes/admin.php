@@ -34,17 +34,24 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth', 'i
     //------------------------ Dashboard -----------------------//
     Broadcast::routes();
 
-    Route::get('dashboard/', [DashboardController::class, 'dashboard'])->name('dashboard');
-    Route::post('dashboard-users-count', [DashboardController::class, 'dashboardUserChatCount'])->name('dashboard.users.count');
-    Route::post('dashboard-active-count', [DashboardController::class, 'dashboardActiveDoctorCount'])->name('dashboard.active.doctor.count');
-    Route::post('dashboard-doctor-count', [DashboardController::class, 'dashboardDoctorsChatCount'])->name('dashboard.doctor.count');
-    Route::post('dashboard-visitors-count', [DashboardController::class, 'dashboardVisitorsCount'])->name('dashboard.visitors.count');
-    Route::post('dashboard-subscriber-count', [DashboardController::class, 'dashboardSubscribersChatCount'])->name('dashboard.subscriber.count');
-    Route::post('dashboard-blog-count', [DashboardController::class, 'dashboardBlogsChatCount'])->name('dashboard.blog.count');
+    Route::prefix('dashboard')->name('dashboard.')->group(function () {
+        Route::get('/', [DashboardController::class, 'dashboard'])->name('index');
+        Route::post('users-count', [DashboardController::class, 'dashboardUserChatCount'])->name('users.count');
+        Route::post('active-count', [DashboardController::class, 'dashboardActiveDoctorCount'])->name('active.doctor.count');
+        Route::post('doctor-count', [DashboardController::class, 'dashboardDoctorsChatCount'])->name('doctor.count');
+        Route::post('visitors-count', [DashboardController::class, 'dashboardVisitorsCount'])->name('visitors.count');
+        Route::post('subscriber-count', [DashboardController::class, 'dashboardSubscribersChatCount'])->name('subscriber.count');
+        Route::post('blog-count', [DashboardController::class, 'dashboardBlogsChatCount'])->name('blog.count');
+        Route::get('notification-count', [DashboardController::class, 'dashboardNotificationsCount'])->name('notification.count');
 
-    Route::get('profile/', [DashboardController::class, 'profile'])->name('profile');
-    Route::post('profile-update', [DashboardController::class, 'profileUpdate'])->name('profile.update');
-    Route::post('profile-password-update', [DashboardController::class, 'profilePasswordUpdate'])->name('profile.password.update');
+
+
+        Route::get('profile/', [DashboardController::class, 'profile'])->name('profile');
+        Route::post('profile-update', [DashboardController::class, 'profileUpdate'])->name('profile.update');
+        Route::post('profile-password-update', [DashboardController::class, 'profilePasswordUpdate'])->name('profile.password.update');
+    });
+
+
 
     //------------------------ Theme Setting -----------------------//
     Route::prefix('theme')->name('theme.')->group(function () {

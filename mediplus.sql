@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Aug 07, 2024 at 06:00 PM
+-- Generation Time: Aug 24, 2024 at 05:48 PM
 -- Server version: 8.0.30
 -- PHP Version: 8.1.17
 
@@ -60,7 +60,9 @@ CREATE TABLE `blogs` (
 INSERT INTO `blogs` (`id`, `categorie_id`, `user_id`, `tag_ids`, `image`, `title`, `sub_title`, `f_discrption`, `f_image`, `l_image`, `s_discrption`, `t_discrption`, `l_discrption`, `socal_media`, `tag`, `total_view`, `meta_title`, `meta_keyword`, `meta_discrption`, `order_by`, `status`, `created_at`, `updated_at`) VALUES
 (3, 1, 1, '[\"1\",\"3\",\"4\",\"5\"]', 'uploads/images/blog/blog1_134.jpg', 'More than 80 clinical trials launch to test of the coronavirus .', '<p>Lorem ipsum dolor a sit ameti, consectetur adipisicing elit, sed do\r\n                                eiusmod tempor incididunt sed do incididunt sed.</p>', '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse \r\nfacilisis ultricies tortor, nec sollicitudin lorem sagittis vitae. \r\nCurabitur rhoncus commodo rutrum. Pellentesque habitant morbi tristique \r\nsenectus et netus et malesuada fames ac turpis egestas. Aliquam nec \r\nlacus pulvinar, laoreet dolor quis, pellentesque ante. Cras nulla orci, \r\npharetra at dictum consequat, pretium pretium nulla. Suspendisse \r\nporttitor nunc a sodales tempor. Mauris sed felis maximus, interdum \r\nmetus vel, tincidunt diam.</p>\r\n										<p>Pellentesque habitant morbi tristique senectus et netus et \r\nmalesuada fames ac turpis egestas. Aliquam nec lacus pulvinar, laoreet \r\ndolor quis, pellentesque ante. Cras nulla orci, pharetra at dictum \r\nconsequat, pretium pretium nulla. Suspendisse porttitor nunc a sodales \r\ntempor. Mauris sed felis maximus, interdum metus vel, tincidunt diam. \r\nNam ac risus vitae sem vehicula egestas. Sed velit nulla, viverra non \r\ncommod</p><p></p>', 'uploads/images/blog/blog1_134.jpg', 'uploads/images/blog/blog1_134.jpg', '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse \r\nfacilisis ultricies tortor, nec sollicitudin lorem sagittis vitae. \r\nCurabitur rhoncus commodo rutrum. Pellentesque habitant morbi tristique \r\nsenectus et netus et malesuada fames ac turpis egestas. Aliquam nec \r\nlacus pulvinar, laoreet dolor quis, pellentesque ante. Cras nulla orci, \r\npharetra at dictum consequat, pretium pretium nulla. Suspendisse \r\nporttitor nunc a sodales tempor. Mauris sed felis maximus, interdum \r\nmetus vel, tincidunt diam.</p>', '<p>Aliquam nec lacus pulvinar, laoreet dolor quis, pellentesque ante. Cras \r\nnulla orci, pharetra at dictum consequat, pretium pretium nulla. \r\nSuspendisse porttitor nunc a sodales tempor. Mauris sed felis maximus, \r\ninterdum metus vel, tincidunt diam. Nam ac risus vitae sem vehicula \r\negestas. Sed velit nulla, viverra non commodo et, sodales</p>', '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse \r\nfacilisis ultricies tortor, nec sollicitudin lorem sagittis vitae. \r\nCurabitur rhoncus commodo rutrum. Pellentesque habitant morbi tristique \r\nsenectus et netus et malesuada fames ac turpis egestas. Aliquam nec \r\nlacus pulvinar, laoreet dolor quis, pellentesque ante. Cras nulla orci, \r\npharetra at dictum consequat, pretium pretium nulla. Suspendisse \r\nporttitor nunc a sodales tempor. Mauris sed felis maximus, interdum \r\nmetus vel, tincidunt diam. Nam ac risus vitae sem vehicula egestas. Sed \r\nvelit nulla, viverra non commodo et, sodales id dui.</p>\r\n										<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. \r\nSuspendisse facilisis ultricies tortor, nec sollicitudin lorem sagittis \r\nvitae. Curabitur rhoncus commodo rutrum. Pellentesque habitant morbi \r\ntristique senectus et netus et malesuada fames ac turpis egestas. \r\nAliquam nec lacus pulvinar, laoreet dolor quis, pellentesque ante. Cras \r\nnulla orci, pharetra at dictum consequat, pretium pretium nulla. \r\nSuspendisse</p><p></p>', '[\"2\",\"3\",\"4\",\"5\"]', '1', 17, '<h1 class=\"news-title\"><a>More than 80 clinical trials launch to test of the coronavirus .</a></h1>', '<h1 class=\"news-title\"><a>More than 80 clinical trials launch to test of the coronavirus .</a></h1><p></p>', '<h1 class=\"news-title\"><a>More than 80 clinical trials launch to test of the coronavirus .</a></h1><p></p>', '1', '1', '2024-01-26 06:32:15', '2024-08-03 02:36:06'),
 (5, 1, 1, '[\"1\",\"3\",\"4\",\"5\",\"6\"]', 'uploads/images/blog/blog3_948.jpg', 'We provide highly business soliutions.', '<p>Lorem ipsum dolor a sit ameti, consectetur adipisicing elit, sed do\r\n                                eiusmod tempor incididunt sed do incididunt sed.</p>', '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse \r\nfacilisis ultricies tortor, nec sollicitudin lorem sagittis vitae. \r\nCurabitur rhoncus commodo rutrum. Pellentesque habitant morbi tristique \r\nsenectus et netus et malesuada fames ac turpis egestas. Aliquam nec \r\nlacus pulvinar, laoreet dolor quis, pellentesque ante. Cras nulla orci, \r\npharetra at dictum consequat, pretium pretium nulla. Suspendisse \r\nporttitor nunc a sodales tempor. Mauris sed felis maximus, interdum \r\nmetus vel, tincidunt diam.</p>\r\n										<p>Pellentesque habitant morbi tristique senectus et netus et \r\nmalesuada fames ac turpis egestas. Aliquam nec lacus pulvinar, laoreet \r\ndolor quis, pellentesque ante. Cras nulla orci, pharetra at dictum \r\nconsequat, pretium pretium nulla. Suspendisse porttitor nunc a sodales \r\ntempor. Mauris sed felis maximus, interdum metus vel, tincidunt diam. \r\nNam ac risus vitae sem vehicula egestas. Sed velit nulla, viverra non \r\ncommod</p><p></p>', 'uploads/images/blog/blog1_181.jpg', 'uploads/images/blog/blog2_633.jpg', '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse \r\nfacilisis ultricies tortor, nec sollicitudin lorem sagittis vitae. \r\nCurabitur rhoncus commodo rutrum. Pellentesque habitant morbi tristique \r\nsenectus et netus et malesuada fames ac turpis egestas. Aliquam nec \r\nlacus pulvinar, laoreet dolor quis, pellentesque ante. Cras nulla orci, \r\npharetra at dictum consequat, pretium pretium nulla. Suspendisse \r\nporttitor nunc a sodales tempor. Mauris sed felis maximus, interdum \r\nmetus vel, tincidunt diam.</p>', '<p>Aliquam nec lacus pulvinar, laoreet dolor quis, pellentesque ante. Cras \r\nnulla orci, pharetra at dictum consequat, pretium pretium nulla. \r\nSuspendisse porttitor nunc a sodales tempor. Mauris sed felis maximus, \r\ninterdum metus vel, tincidunt diam. Nam ac risus vitae sem vehicula \r\negestas. Sed velit nulla, viverra non commodo et, sodales</p>', '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse \r\nfacilisis ultricies tortor, nec sollicitudin lorem sagittis vitae. \r\nCurabitur rhoncus commodo rutrum. Pellentesque habitant morbi tristique \r\nsenectus et netus et malesuada fames ac turpis egestas. Aliquam nec \r\nlacus pulvinar, laoreet dolor quis, pellentesque ante. Cras nulla orci, \r\npharetra at dictum consequat, pretium pretium nulla. Suspendisse \r\nporttitor nunc a sodales tempor. Mauris sed felis maximus, interdum \r\nmetus vel, tincidunt diam. Nam ac risus vitae sem vehicula egestas. Sed \r\nvelit nulla, viverra non commodo et, sodales id dui.</p>\r\n										<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. \r\nSuspendisse facilisis ultricies tortor, nec sollicitudin lorem sagittis \r\nvitae. Curabitur rhoncus commodo rutrum. Pellentesque habitant morbi \r\ntristique senectus et netus et malesuada fames ac turpis egestas. \r\nAliquam nec lacus pulvinar, laoreet dolor quis, pellentesque ante. Cras \r\nnulla orci, pharetra at dictum consequat, pretium pretium nulla. \r\nSuspendisse</p><p></p>', '[\"2\",\"3\",\"4\",\"5\"]', '1', 12, '<p>We provide highly business soliutions.<br></p>', '<p>We provide highly business soliutions.<br></p>', '<p>We provide highly business soliutions.<br></p>', '2', '1', '2024-01-26 07:23:06', '2024-07-26 12:01:54'),
-(6, 1, 1, '[\"1\",\"3\",\"4\",\"5\",\"6\"]', 'uploads/images/blog/blog2_994.jpg', 'Top five way for solving teeth problems.', '<p>Lorem ipsum dolor a sit ameti, consectetur adipisicing elit, sed do\r\n                                eiusmod tempor incididunt sed do incididunt sed.</p>', '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse \r\nfacilisis ultricies tortor, nec sollicitudin lorem sagittis vitae. \r\nCurabitur rhoncus commodo rutrum. Pellentesque habitant morbi tristique \r\nsenectus et netus et malesuada fames ac turpis egestas. Aliquam nec \r\nlacus pulvinar, laoreet dolor quis, pellentesque ante. Cras nulla orci, \r\npharetra at dictum consequat, pretium pretium nulla. Suspendisse \r\nporttitor nunc a sodales tempor. Mauris sed felis maximus, interdum \r\nmetus vel, tincidunt diam.</p>\r\n										<p>Pellentesque habitant morbi tristique senectus et netus et \r\nmalesuada fames ac turpis egestas. Aliquam nec lacus pulvinar, laoreet \r\ndolor quis, pellentesque ante. Cras nulla orci, pharetra at dictum \r\nconsequat, pretium pretium nulla. Suspendisse porttitor nunc a sodales \r\ntempor. Mauris sed felis maximus, interdum metus vel, tincidunt diam. \r\nNam ac risus vitae sem vehicula egestas. Sed velit nulla, viverra non \r\ncommod</p><p></p>', 'uploads/images/blog/blog1_217.jpg', 'uploads/images/blog/blog3_919.jpg', '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse \r\nfacilisis ultricies tortor, nec sollicitudin lorem sagittis vitae. \r\nCurabitur rhoncus commodo rutrum. Pellentesque habitant morbi tristique \r\nsenectus et netus et malesuada fames ac turpis egestas. Aliquam nec \r\nlacus pulvinar, laoreet dolor quis, pellentesque ante. Cras nulla orci, \r\npharetra at dictum consequat, pretium pretium nulla. Suspendisse \r\nporttitor nunc a sodales tempor. Mauris sed felis maximus, interdum \r\nmetus vel, tincidunt diam.</p>', '<p>Aliquam nec lacus pulvinar, laoreet dolor quis, pellentesque ante. Cras \r\nnulla orci, pharetra at dictum consequat, pretium pretium nulla. \r\nSuspendisse porttitor nunc a sodales tempor. Mauris sed felis maximus, \r\ninterdum metus vel, tincidunt diam. Nam ac risus vitae sem vehicula \r\negestas. Sed velit nulla, viverra non commodo et, sodales</p>', '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse \r\nfacilisis ultricies tortor, nec sollicitudin lorem sagittis vitae. \r\nCurabitur rhoncus commodo rutrum. Pellentesque habitant morbi tristique \r\nsenectus et netus et malesuada fames ac turpis egestas. Aliquam nec \r\nlacus pulvinar, laoreet dolor quis, pellentesque ante. Cras nulla orci, \r\npharetra at dictum consequat, pretium pretium nulla. Suspendisse \r\nporttitor nunc a sodales tempor. Mauris sed felis maximus, interdum \r\nmetus vel, tincidunt diam. Nam ac risus vitae sem vehicula egestas. Sed \r\nvelit nulla, viverra non commodo et, sodales id dui.</p>\r\n										<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. \r\nSuspendisse facilisis ultricies tortor, nec sollicitudin lorem sagittis \r\nvitae. Curabitur rhoncus commodo rutrum. Pellentesque habitant morbi \r\ntristique senectus et netus et malesuada fames ac turpis egestas. \r\nAliquam nec lacus pulvinar, laoreet dolor quis, pellentesque ante. Cras \r\nnulla orci, pharetra at dictum consequat, pretium pretium nulla. \r\nSuspendisse</p><p></p>', '[\"2\",\"3\",\"4\",\"5\"]', '1', 8, '<h2><a href=\"http://127.0.0.1:8000/blog-single.html\">Top five way for solving teeth problems.</a></h2><p></p>', '<h2><a href=\"http://127.0.0.1:8000/blog-single.html\">Top five way for solving teeth problems.</a></h2><p></p>', '<h2><a href=\"http://127.0.0.1:8000/blog-single.html\">Top five way for solving teeth problems.</a></h2><p></p>', '2', '1', '2024-01-26 07:23:14', '2024-07-26 12:24:52');
+(6, 1, 1, '[\"1\",\"3\",\"4\",\"5\",\"6\"]', 'uploads/images/blog/blog2_994.jpg', 'Top five way for solving teeth problems.', '<p>Lorem ipsum dolor a sit ameti, consectetur adipisicing elit, sed do\r\n                                eiusmod tempor incididunt sed do incididunt sed.</p>', '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse \r\nfacilisis ultricies tortor, nec sollicitudin lorem sagittis vitae. \r\nCurabitur rhoncus commodo rutrum. Pellentesque habitant morbi tristique \r\nsenectus et netus et malesuada fames ac turpis egestas. Aliquam nec \r\nlacus pulvinar, laoreet dolor quis, pellentesque ante. Cras nulla orci, \r\npharetra at dictum consequat, pretium pretium nulla. Suspendisse \r\nporttitor nunc a sodales tempor. Mauris sed felis maximus, interdum \r\nmetus vel, tincidunt diam.</p>\r\n										<p>Pellentesque habitant morbi tristique senectus et netus et \r\nmalesuada fames ac turpis egestas. Aliquam nec lacus pulvinar, laoreet \r\ndolor quis, pellentesque ante. Cras nulla orci, pharetra at dictum \r\nconsequat, pretium pretium nulla. Suspendisse porttitor nunc a sodales \r\ntempor. Mauris sed felis maximus, interdum metus vel, tincidunt diam. \r\nNam ac risus vitae sem vehicula egestas. Sed velit nulla, viverra non \r\ncommod</p><p></p>', 'uploads/images/blog/blog1_217.jpg', 'uploads/images/blog/blog3_919.jpg', '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse \r\nfacilisis ultricies tortor, nec sollicitudin lorem sagittis vitae. \r\nCurabitur rhoncus commodo rutrum. Pellentesque habitant morbi tristique \r\nsenectus et netus et malesuada fames ac turpis egestas. Aliquam nec \r\nlacus pulvinar, laoreet dolor quis, pellentesque ante. Cras nulla orci, \r\npharetra at dictum consequat, pretium pretium nulla. Suspendisse \r\nporttitor nunc a sodales tempor. Mauris sed felis maximus, interdum \r\nmetus vel, tincidunt diam.</p>', '<p>Aliquam nec lacus pulvinar, laoreet dolor quis, pellentesque ante. Cras \r\nnulla orci, pharetra at dictum consequat, pretium pretium nulla. \r\nSuspendisse porttitor nunc a sodales tempor. Mauris sed felis maximus, \r\ninterdum metus vel, tincidunt diam. Nam ac risus vitae sem vehicula \r\negestas. Sed velit nulla, viverra non commodo et, sodales</p>', '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse \r\nfacilisis ultricies tortor, nec sollicitudin lorem sagittis vitae. \r\nCurabitur rhoncus commodo rutrum. Pellentesque habitant morbi tristique \r\nsenectus et netus et malesuada fames ac turpis egestas. Aliquam nec \r\nlacus pulvinar, laoreet dolor quis, pellentesque ante. Cras nulla orci, \r\npharetra at dictum consequat, pretium pretium nulla. Suspendisse \r\nporttitor nunc a sodales tempor. Mauris sed felis maximus, interdum \r\nmetus vel, tincidunt diam. Nam ac risus vitae sem vehicula egestas. Sed \r\nvelit nulla, viverra non commodo et, sodales id dui.</p>\r\n										<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. \r\nSuspendisse facilisis ultricies tortor, nec sollicitudin lorem sagittis \r\nvitae. Curabitur rhoncus commodo rutrum. Pellentesque habitant morbi \r\ntristique senectus et netus et malesuada fames ac turpis egestas. \r\nAliquam nec lacus pulvinar, laoreet dolor quis, pellentesque ante. Cras \r\nnulla orci, pharetra at dictum consequat, pretium pretium nulla. \r\nSuspendisse</p><p></p>', '[\"2\",\"3\",\"4\",\"5\"]', '1', 8, '<h2><a href=\"http://127.0.0.1:8000/blog-single.html\">Top five way for solving teeth problems.</a></h2><p></p>', '<h2><a href=\"http://127.0.0.1:8000/blog-single.html\">Top five way for solving teeth problems.</a></h2><p></p>', '<h2><a href=\"http://127.0.0.1:8000/blog-single.html\">Top five way for solving teeth problems.</a></h2><p></p>', '2', '1', '2024-01-26 07:23:14', '2024-07-26 12:24:52'),
+(7, 4, 1, '[\"3\",\"4\",\"6\"]', 'uploads/images/blog/blog2_148.jpg', 'Our hospital always provide good services', '<p>Aliquam nec lacus pulvinar, laoreet dolor quis, pellentesque ante. Cras \r\nnulla orci, pharetra at dictum consequat, pretium pretium nulla. \r\nSuspendisse porttitor nunc a sodales tempor. Mauris sed felis maximus, \r\ninterdum metus vel, tincidunt diam. Nam ac risus vitae sem vehicula \r\negestas. Sed velit nulla, viverra non commodo et, sodales</p><p></p>', '<p>Aliquam nec lacus pulvinar, laoreet dolor quis, pellentesque ante. Cras \r\nnulla orci, pharetra at dictum consequat, pretium pretium nulla. \r\nSuspendisse porttitor nunc a sodales tempor. Mauris sed felis maximus, \r\ninterdum metus vel, tincidunt diam. Nam ac risus vitae sem vehicula \r\negestas. Sed velit nulla, viverra non commodo et, sodales</p><p></p>', 'uploads/images/blog/blog1_294.jpg', 'uploads/images/blog/blog3_796.jpg', '<p>Aliquam nec lacus pulvinar, laoreet dolor quis, pellentesque ante. Cras \r\nnulla orci, pharetra at dictum consequat, pretium pretium nulla. \r\nSuspendisse porttitor nunc a sodales tempor. Mauris sed felis maximus, \r\ninterdum metus vel, tincidunt diam. Nam ac risus vitae sem vehicula \r\negestas. Sed velit nulla, viverra non commodo et, sodales</p><p></p>', '<p>Aliquam nec lacus pulvinar, laoreet dolor quis, pellentesque ante. Cras \r\nnulla orci, pharetra at dictum consequat, pretium pretium nulla. \r\nSuspendisse porttitor nunc a sodales tempor. Mauris sed felis maximus, \r\ninterdum metus vel, tincidunt diam. Nam ac risus vitae sem vehicula \r\negestas. Sed velit nulla, viverra non commodo et, sodales</p><p></p>', '<p>Aliquam nec lacus pulvinar, laoreet dolor quis, pellentesque ante. Cras \r\nnulla orci, pharetra at dictum consequat, pretium pretium nulla. \r\nSuspendisse porttitor nunc a sodales tempor. Mauris sed felis maximus, \r\ninterdum metus vel, tincidunt diam. Nam ac risus vitae sem vehicula \r\negestas. Sed velit nulla, viverra non commodo et, sodales</p><p></p>', '[\"2\",\"3\",\"4\",\"5\",\"6\"]', '1', 0, '<p>Aliquam nec lacus pulvinar, laoreet dolor quis, pellentesque ante. Cras \r\nnulla orci, pharetra at dictum consequat, pretium pretium nulla. \r\nSuspendisse porttitor nunc a sodales tempor. Mauris sed felis maximus, \r\ninterdum metus vel, tincidunt diam. Nam ac risus vitae sem vehicula \r\negestas. Sed velit nulla, viverra non commodo et, sodales</p><p></p>', '<p>Top five way for solving teeth problems.<br></p>', '<p>Top five way for solving teeth problems.</p>', '4', '1', '2024-08-17 12:35:50', '2024-08-17 12:35:50'),
+(8, 5, 1, '[\"1\",\"3\",\"4\",\"5\",\"6\",\"7\"]', 'uploads/images/blog/blog3_672.jpg', 'What To Do After A Car Accident In Massachusetts? Get All the Details!', '<p>Top five way for solving teeth problems.</p>', '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse \r\nfacilisis ultricies tortor, nec sollicitudin lorem sagittis vitae. \r\nCurabitur rhoncus commodo rutrum. Pellentesque habitant morbi tristique \r\nsenectus et netus et malesuada fames ac turpis egestas. Aliquam nec \r\nlacus pulvinar, laoreet dolor quis, pellentesque ante. Cras nulla orci, \r\npharetra at dictum consequat, pretium pretium nulla. Suspendisse \r\nporttitor nunc a sodales tempor. Mauris sed felis maximus, interdum \r\nmetus vel, tincidunt diam.</p>\r\n										<p>Pellentesque habitant morbi tristique senectus et netus et \r\nmalesuada fames ac turpis egestas. Aliquam nec lacus pulvinar, laoreet \r\ndolor quis, pellentesque ante. Cras nulla orci, pharetra at dictum \r\nconsequat, pretium pretium nulla. Suspendisse porttitor nunc a sodales \r\ntempor. Mauris sed felis maximus, interdum metus vel, tincidunt diam. \r\nNam ac risus vitae sem vehicula egestas. Sed velit nulla, viverra non \r\ncommod</p><p><br></p><p></p>', 'uploads/images/blog/blog2_639.jpg', 'uploads/images/blog/blog1_266.jpg', '<p>Aliquam nec lacus pulvinar, laoreet dolor quis, pellentesque ante. Cras \r\nnulla orci, pharetra at dictum consequat, pretium pretium nulla. \r\nSuspendisse porttitor nunc a sodales tempor. Mauris sed felis maximus, \r\ninterdum metus vel, tincidunt diam. Nam ac risus vitae sem vehicula \r\negestas. Sed velit nulla, viverra non commodo et, sodales</p><p></p>', '<p>Aliquam nec lacus pulvinar, laoreet dolor quis, pellentesque ante. Cras \r\nnulla orci, pharetra at dictum consequat, pretium pretium nulla. \r\nSuspendisse porttitor nunc a sodales tempor. Mauris sed felis maximus, \r\ninterdum metus vel, tincidunt diam. Nam ac risus vitae sem vehicula \r\negestas. Sed velit nulla, viverra non commodo et, sodales</p><p></p>', '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse \r\nfacilisis ultricies tortor, nec sollicitudin lorem sagittis vitae. \r\nCurabitur rhoncus commodo rutrum. Pellentesque habitant morbi tristique \r\nsenectus et netus et malesuada fames ac turpis egestas. Aliquam nec \r\nlacus pulvinar, laoreet dolor quis, pellentesque ante. Cras nulla orci, \r\npharetra at dictum consequat, pretium pretium nulla. Suspendisse \r\nporttitor nunc a sodales tempor. Mauris sed felis maximus, interdum \r\nmetus vel, tincidunt diam.</p>\r\n										<p>Pellentesque habitant morbi tristique senectus et netus et \r\nmalesuada fames ac turpis egestas. Aliquam nec lacus pulvinar, laoreet \r\ndolor quis, pellentesque ante. Cras nulla orci, pharetra at dictum \r\nconsequat, pretium pretium nulla. Suspendisse porttitor nunc a sodales \r\ntempor. Mauris sed felis maximus, interdum metus vel, tincidunt diam. \r\nNam ac risus vitae sem vehicula egestas. Sed velit nulla, viverra non \r\ncommod</p><p><br></p><p></p>', '[\"2\",\"3\",\"4\"]', '1', 0, 'Top five way for solving teeth problems.', '<p>Top five way for solving teeth problems.</p>', '<p>Top five way for solving teeth problems.</p>', '5', '1', '2024-08-17 12:37:32', '2024-08-17 12:37:32');
 
 -- --------------------------------------------------------
 
@@ -299,7 +301,12 @@ INSERT INTO `doctor_models` (`id`, `user_id`, `department_id`, `image`, `phone`,
 (7, 15, 2, 'uploads/images/doctors/team1_389.png', '+1 (281) 878-7991', 'Ipsa in veritatis e', 'Adipisci esse volupt', 'Aut in duis dolorem', 'Dolor quia voluptate', 'Illum sunt necessit', 'Neurosurgeon.', 'MBBS in Neurology, PHD in Neurosurgeon.', NULL, NULL, NULL, '<ul class=\"time-sidual\"><li class=\"day\">Monday - Fridayp <span>8.00-20.00</span></li><li class=\"day\">Saturday <span>9.00-18.30</span></li><li class=\"day\">Monday - Thusday <span>9.00-15.00</span></li></ul>', '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do \r\neiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum \r\nsuspendisse ultrices gravida. Risus commodo viverra maecenas accumsan \r\nlacus vel facilisis.Lorem ipsum dolor sit amet, consectetur adipiscing \r\nelit, sed do eiusmod tempor incididunt.</p><br>\r\n<p>Risus commodo viverra maecenas accumsan lacus vel facilisis.Lorem \r\nipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor\r\n incididunt.</p><p><br></p>', '<ul><li>PHD degree in Neorology at University of Mediserv (2006)</li><li>Master of Neoro Surgery at University of Mediserv (2002)</li><li>MBBS degree in Neurosciences at University of Mediserv (2002)</li><li>Higher Secondary Certificate at Mediserv collage (1991)</li></ul><p><br></p>', '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do \r\neiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum \r\nsuspendisse ultrices gravida. Risus commodo viverra</p>\r\n<br>\r\n<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do \r\neiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum \r\nsuspendisse ultrices gravida. Risus commodo viverra</p>\r\n<br>\r\n<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do \r\neiusmod tempor incididunt consectetur adipiscing elit, sed do eiusmod \r\ntempor incididunt ut labore et dolore magna aliqua. Quis ipsum \r\nsuspendisse ultrices gravida. Risus commodo viverra eiusmod tempor \r\nincididunt ut labore et dolore magna.</p><p><br></p>', '1', '2024-05-16 11:45:16', '2024-05-16 11:45:16'),
 (8, 17, 2, 'uploads/images/doctors/team2_270.png', '+1 (517) 681-8185', 'Excepturi hic vel qu', 'Magni ratione expedi', 'Quisquam nisi magnam', 'Molestias ea laborio', 'Doloribus aspernatur', 'Dental Surgeon', 'MBBS in Neurology, PHD in Neurosurgeon.', NULL, NULL, NULL, '<ul class=\"time-sidual\"><li class=\"day\">Monday - Fridayp <span>8.00-20.00</span></li><li class=\"day\">Saturday <span>9.00-18.30</span></li><li class=\"day\">Monday - Thusday <span>9.00-15.00</span></li></ul>', '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do \r\neiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum \r\nsuspendisse ultrices gravida. Risus commodo viverra</p>\r\n<br>\r\n<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do \r\neiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum \r\nsuspendisse ultrices gravida. Risus commodo viverra</p>\r\n<br>\r\n<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do \r\neiusmod tempor incididunt consectetur adipiscing elit, sed do eiusmod \r\ntempor incididunt ut labore et dolore magna aliqua. Quis ipsum \r\nsuspendisse ultrices gravida. Risus commodo viverra eiusmod tempor \r\nincididunt ut labore et dolore magna.</p><p><br></p>', '<ul><li>PHD degree in Neorology at University of Mediserv (2006)</li><li>Master of Neoro Surgery at University of Mediserv (2002)</li><li>MBBS degree in Neurosciences at University of Mediserv (2002)</li><li>Higher Secondary Certificate at Mediserv collage (1991)</li></ul><p><br></p>', NULL, '1', '2024-05-16 11:46:42', '2024-05-16 11:46:42'),
 (9, 11, 1, 'uploads/images/doctors/team3_580.png', '+1 (902) 542-8639', 'Sed esse perferendi', 'Voluptatem architect', 'Et hic blanditiis se', 'Laboris architecto i', 'Earum Nam autem vero', 'Dental Surgeon', 'MBBS in Neurology, PHD in Neurosurgeon.', NULL, NULL, NULL, '<ul class=\"time-sidual\"><li class=\"day\">Monday - Fridayp <span>8.00-20.00</span></li><li class=\"day\">Saturday <span>9.00-18.30</span></li><li class=\"day\">Monday - Thusday <span>9.00-15.00</span></li></ul>', '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do \r\neiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum \r\nsuspendisse ultrices gravida. Risus commodo viverra</p>\r\n<br>\r\n<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do \r\neiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum \r\nsuspendisse ultrices gravida. Risus commodo viverra</p>\r\n<br>\r\n<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do \r\neiusmod tempor incididunt consectetur adipiscing elit, sed do eiusmod \r\ntempor incididunt ut labore et dolore magna aliqua. Quis ipsum \r\nsuspendisse ultrices gravida. Risus commodo viverra eiusmod tempor \r\nincididunt ut labore et dolore magna.</p><p><br></p>', '<ul><li>PHD degree in Neorology at University of Mediserv (2006)</li><li>Master of Neoro Surgery at University of Mediserv (2002)</li><li>MBBS degree in Neurosciences at University of Mediserv (2002)</li><li>Higher Secondary Certificate at Mediserv collage (1991)</li></ul><p><br></p>', '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do \r\neiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum \r\nsuspendisse ultrices gravida. Risus commodo viverra maecenas accumsan \r\nlacus vel facilisis.Lorem ipsum dolor sit amet, consectetur adipiscing \r\nelit, sed do eiusmod tempor incididunt.</p><br>\r\n<p>Risus commodo viverra maecenas accumsan lacus vel facilisis.Lorem \r\nipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor\r\n incididunt.</p><p><br></p>', '1', '2024-05-16 11:48:38', '2024-05-16 11:48:38'),
-(10, 10, 4, 'uploads/images/doctors/team4_469.png', '+1 (224) 797-9278', 'Officia eum fugiat s', 'Nesciunt a quia mag', 'Ut voluptatibus alia', 'Aperiam consectetur', 'Culpa lorem esse c', 'Neurosurgeon.', 'MBBS in Neurology, PHD in Neurosurgeon.', NULL, NULL, NULL, '<ul class=\"time-sidual\"><li class=\"day\">Monday - Fridayp <span>8.00-20.00</span></li><li class=\"day\">Saturday <span>9.00-18.30</span></li><li class=\"day\">Monday - Thusday <span>9.00-15.00</span></li></ul>', '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do \r\neiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum \r\nsuspendisse ultrices gravida. Risus commodo viverra maecenas accumsan \r\nlacus vel facilisis.Lorem ipsum dolor sit amet, consectetur adipiscing \r\nelit, sed do eiusmod tempor incididunt.</p><br>\r\n<p>Risus commodo viverra maecenas accumsan lacus vel facilisis.Lorem \r\nipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor\r\n incididunt.</p><p><br></p>', '<ul><li>PHD degree in Neorology at University of Mediserv (2006)</li><li>Master of Neoro Surgery at University of Mediserv (2002)</li><li>MBBS degree in Neurosciences at University of Mediserv (2002)</li><li>Higher Secondary Certificate at Mediserv collage (1991)</li></ul><p><br></p>', '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do \r\neiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum \r\nsuspendisse ultrices gravida. Risus commodo viverra maecenas accumsan \r\nlacus vel facilisis.Lorem ipsum dolor sit amet, consectetur adipiscing \r\nelit, sed do eiusmod tempor incididunt.</p><br>\r\n<p>Risus commodo viverra maecenas accumsan lacus vel facilisis.Lorem \r\nipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor\r\n incididunt.</p><p><br></p>', '1', '2024-05-16 11:49:49', '2024-05-16 11:49:49');
+(10, 10, 4, 'uploads/images/doctors/team4_469.png', '+1 (224) 797-9278', 'Officia eum fugiat s', 'Nesciunt a quia mag', 'Ut voluptatibus alia', 'Aperiam consectetur', 'Culpa lorem esse c', 'Neurosurgeon.', 'MBBS in Neurology, PHD in Neurosurgeon.', NULL, NULL, NULL, '<ul class=\"time-sidual\"><li class=\"day\">Monday - Fridayp <span>8.00-20.00</span></li><li class=\"day\">Saturday <span>9.00-18.30</span></li><li class=\"day\">Monday - Thusday <span>9.00-15.00</span></li></ul>', '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do \r\neiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum \r\nsuspendisse ultrices gravida. Risus commodo viverra maecenas accumsan \r\nlacus vel facilisis.Lorem ipsum dolor sit amet, consectetur adipiscing \r\nelit, sed do eiusmod tempor incididunt.</p><br>\r\n<p>Risus commodo viverra maecenas accumsan lacus vel facilisis.Lorem \r\nipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor\r\n incididunt.</p><p><br></p>', '<ul><li>PHD degree in Neorology at University of Mediserv (2006)</li><li>Master of Neoro Surgery at University of Mediserv (2002)</li><li>MBBS degree in Neurosciences at University of Mediserv (2002)</li><li>Higher Secondary Certificate at Mediserv collage (1991)</li></ul><p><br></p>', '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do \r\neiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum \r\nsuspendisse ultrices gravida. Risus commodo viverra maecenas accumsan \r\nlacus vel facilisis.Lorem ipsum dolor sit amet, consectetur adipiscing \r\nelit, sed do eiusmod tempor incididunt.</p><br>\r\n<p>Risus commodo viverra maecenas accumsan lacus vel facilisis.Lorem \r\nipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor\r\n incididunt.</p><p><br></p>', '1', '2024-05-16 11:49:49', '2024-05-16 11:49:49'),
+(11, 2, 1, 'uploads/images/doctors/istockphoto-1387312234-612x612_420.png', '+1 (888) 820-3074', '4th Floor, 408 No Chamber', '#', '#', '#', '#', 'Dental Surgeon', 'MBBS in Neurology, PHD in Neurosurgeon.', NULL, NULL, NULL, '<ul class=\"time-sidual\"><li class=\"day\">Monday - Fridayp <span>8.00-20.00</span></li><li class=\"day\">Saturday <span>9.00-18.30</span></li><li class=\"day\">Monday - Thusday <span>9.00-15.00</span></li></ul><p></p>', '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do \r\neiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum \r\nsuspendisse ultrices gravida. Risus commodo viverra maecenas accumsan \r\nlacus vel facilisis.Lorem ipsum dolor sit amet, consectetur adipiscing \r\nelit, sed do eiusmod tempor incididunt.</p><br>\r\n<p>Risus commodo viverra maecenas accumsan lacus vel facilisis.Lorem \r\nipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor\r\n incididunt.</p><p><br><br></p><p></p>', '<ul><li>PHD degree in Neorology at University of Mediserv (2006)</li><li>Master of Neoro Surgery at University of Mediserv (2002)</li><li>MBBS degree in Neurosciences at University of Mediserv (2002)</li><li>Higher Secondary Certificate at Mediserv collage (1991)</li></ul><p><br><br></p><p></p>', '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do \r\neiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum \r\nsuspendisse ultrices gravida. Risus commodo viverra maecenas accumsan \r\nlacus vel facilisis.Lorem ipsum dolor sit amet, consectetur adipiscing \r\nelit, sed do eiusmod tempor incididunt.</p><br>\r\n<p>Risus commodo viverra maecenas accumsan lacus vel facilisis.Lorem \r\nipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor\r\n incididunt.</p><p><br><br></p><p></p>', '1', '2024-08-15 12:22:37', '2024-08-15 12:22:37'),
+(12, 8, 3, 'uploads/images/doctors/depositphotos_12660354-stock-photo-smiling-doctor-at-work_689.png', '+1 (888) 820-3074', '4th Floor, 408 No Chamber', '#', '#', '#', '#', 'Dental Surgeon', 'MBBS in Neurology, PHD in Neurosurgeon.', NULL, NULL, NULL, '<ul class=\"time-sidual\"><li class=\"day\">Monday - Fridayp <span>8.00-20.00</span></li><li class=\"day\">Saturday <span>9.00-18.30</span></li><li class=\"day\">Monday - Thusday <span>9.00-15.00</span></li></ul><p></p>', '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do \r\neiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum \r\nsuspendisse ultrices gravida. Risus commodo viverra maecenas accumsan \r\nlacus vel facilisis.Lorem ipsum dolor sit amet, consectetur adipiscing \r\nelit, sed do eiusmod tempor incididunt.</p><br>\r\n<p>Risus commodo viverra maecenas accumsan lacus vel facilisis.Lorem \r\nipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor\r\n incididunt.</p><p><br><br></p><p></p>', '<ul><li>PHD degree in Neorology at University of Mediserv (2006)</li><li>Master of Neoro Surgery at University of Mediserv (2002)</li><li>MBBS degree in Neurosciences at University of Mediserv (2002)</li><li>Higher Secondary Certificate at Mediserv collage (1991)</li></ul><p><br><br></p><p></p>', '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do \r\neiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum \r\nsuspendisse ultrices gravida. Risus commodo viverra maecenas accumsan \r\nlacus vel facilisis.Lorem ipsum dolor sit amet, consectetur adipiscing \r\nelit, sed do eiusmod tempor incididunt.</p><br>\r\n<p>Risus commodo viverra maecenas accumsan lacus vel facilisis.Lorem \r\nipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor\r\n incididunt.</p><p><br><br></p><p></p>', '1', '2024-08-15 12:26:44', '2024-08-15 12:26:44'),
+(13, 22, 5, 'uploads/images/doctors/istockphoto-1387312234-612x612_981.png', '+1 (888) 820-3074', '4th Floor, 408 No Chamber', '#', '#', '#', '#', 'Neurosurgeon.', 'MBBS in Neurology, PHD in Neurosurgeon.', NULL, NULL, NULL, '<ul class=\"time-sidual\"><li class=\"day\">Monday - Fridayp <span>8.00-20.00</span></li><li class=\"day\">Saturday <span>9.00-18.30</span></li><li class=\"day\">Monday - Thusday <span>9.00-15.00</span></li></ul><p></p>', '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do \r\neiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum \r\nsuspendisse ultrices gravida. Risus commodo viverra maecenas accumsan \r\nlacus vel facilisis.Lorem ipsum dolor sit amet, consectetur adipiscing \r\nelit, sed do eiusmod tempor incididunt.</p><br>\r\n<p>Risus commodo viverra maecenas accumsan lacus vel facilisis.Lorem \r\nipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor\r\n incididunt.</p><p><br><br></p><p></p>', '<ul><li>PHD degree in Neorology at University of Mediserv (2006)</li><li>Master of Neoro Surgery at University of Mediserv (2002)</li><li>MBBS degree in Neurosciences at University of Mediserv (2002)</li><li>Higher Secondary Certificate at Mediserv collage (1991)</li></ul><p><br><br></p><p></p>', '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do \r\neiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum \r\nsuspendisse ultrices gravida. Risus commodo viverra maecenas accumsan \r\nlacus vel facilisis.Lorem ipsum dolor sit amet, consectetur adipiscing \r\nelit, sed do eiusmod tempor incididunt.</p><br>\r\n<p>Risus commodo viverra maecenas accumsan lacus vel facilisis.Lorem \r\nipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor\r\n incididunt.</p><p><br><br></p><p></p>', '1', '2024-08-15 12:30:17', '2024-08-15 12:30:17'),
+(14, 23, 4, 'uploads/images/doctors/depositphotos_12660354-stock-photo-smiling-doctor-at-work_130.png', '+1 (888) 820-3074', 'Anywhere', '#', '#', '#', '#', 'Neurosurgeon.', 'MBBS in Neurology, PHD in Neurosurgeon.', NULL, NULL, NULL, '<ul class=\"time-sidual\"><li class=\"day\">Monday - Fridayp <span>8.00-20.00</span></li><li class=\"day\">Saturday <span>9.00-18.30</span></li><li class=\"day\">Monday - Thusday <span>9.00-15.00</span></li></ul><p></p>', '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do \r\neiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum \r\nsuspendisse ultrices gravida. Risus commodo viverra maecenas accumsan \r\nlacus vel facilisis.Lorem ipsum dolor sit amet, consectetur adipiscing \r\nelit, sed do eiusmod tempor incididunt.</p><br>\r\n<p>Risus commodo viverra maecenas accumsan lacus vel facilisis.Lorem \r\nipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor\r\n incididunt.</p><p><br><br></p><p></p>', '<ul><li>PHD degree in Neorology at University of Mediserv (2006)</li><li>Master of Neoro Surgery at University of Mediserv (2002)</li><li>MBBS degree in Neurosciences at University of Mediserv (2002)</li><li>Higher Secondary Certificate at Mediserv collage (1991)</li></ul><p><br><br></p><p></p>', '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do \r\neiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum \r\nsuspendisse ultrices gravida. Risus commodo viverra maecenas accumsan \r\nlacus vel facilisis.Lorem ipsum dolor sit amet, consectetur adipiscing \r\nelit, sed do eiusmod tempor incididunt.</p><br>\r\n<p>Risus commodo viverra maecenas accumsan lacus vel facilisis.Lorem \r\nipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor\r\n incididunt.</p><p><br><br></p><p></p>', '1', '2024-08-15 12:35:14', '2024-08-24 11:46:03'),
+(15, 27, 2, 'uploads/images/doctors/doctor-details_936.jpg', '+1 (888) 820-3074', 'Anywhere', '#', '#', '#', '#', 'Dental Surgeon', 'MBBS in Neurology, PHD in Neurosurgeon.', NULL, NULL, NULL, '<ul class=\"time-sidual\"><li class=\"day\">Monday - Fridayp <span>8.00-20.00</span></li><li class=\"day\">Saturday <span>9.00-18.30</span></li><li class=\"day\">Monday - Thusday <span>9.00-15.00</span></li></ul><p></p>', '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do \r\neiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum \r\nsuspendisse ultrices gravida. Risus commodo viverra maecenas accumsan \r\nlacus vel facilisis.Lorem ipsum dolor sit amet, consectetur adipiscing \r\nelit, sed do eiusmod tempor incididunt.</p><br>\r\n<p>Risus commodo viverra maecenas accumsan lacus vel facilisis.Lorem \r\nipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor\r\n incididunt.</p><p><br><br></p><p></p>', '<ul><li>PHD degree in Neorology at University of Mediserv (2006)</li><li>Master of Neoro Surgery at University of Mediserv (2002)</li><li>MBBS degree in Neurosciences at University of Mediserv (2002)</li><li>Higher Secondary Certificate at Mediserv collage (1991)</li></ul><p><br><br></p><p></p>', '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do \r\neiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum \r\nsuspendisse ultrices gravida. Risus commodo viverra maecenas accumsan \r\nlacus vel facilisis.Lorem ipsum dolor sit amet, consectetur adipiscing \r\nelit, sed do eiusmod tempor incididunt.</p><br>\r\n<p>Risus commodo viverra maecenas accumsan lacus vel facilisis.Lorem \r\nipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor\r\n incididunt.</p><p><br><br></p><p></p>', '0', '2024-08-15 12:36:21', '2024-08-15 13:00:49');
 
 -- --------------------------------------------------------
 
@@ -398,6 +405,22 @@ INSERT INTO `fun_facts` (`id`, `icons`, `counter`, `title`, `order_by`, `status`
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `jobs`
+--
+
+CREATE TABLE `jobs` (
+  `id` bigint UNSIGNED NOT NULL,
+  `queue` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `payload` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `attempts` tinyint UNSIGNED NOT NULL,
+  `reserved_at` int UNSIGNED DEFAULT NULL,
+  `available_at` int UNSIGNED NOT NULL,
+  `created_at` int UNSIGNED NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `menus`
 --
 
@@ -478,7 +501,38 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (59, '2024_07_28_175057_create_slot_models_table', 39),
 (61, '2024_08_06_170949_create_time_tables_table', 40),
 (62, '2024_08_07_165449_create_time_page_models_table', 41),
-(63, '2024_08_07_172426_create_user_locations_table', 42);
+(63, '2024_08_07_172426_create_user_locations_table', 42),
+(64, '2024_08_14_162023_create_visitors_table', 43),
+(65, '2024_08_19_161416_create_notifications_table', 44),
+(66, '2024_08_23_171851_create_jobs_table', 45);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `notifications`
+--
+
+CREATE TABLE `notifications` (
+  `id` char(36) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `notifiable_type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `notifiable_id` bigint UNSIGNED NOT NULL,
+  `data` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `read_at` timestamp NULL DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `notifications`
+--
+
+INSERT INTO `notifications` (`id`, `type`, `notifiable_type`, `notifiable_id`, `data`, `read_at`, `created_at`, `updated_at`) VALUES
+('10b56b1f-03f8-489d-9bea-a57aea7a2c2b', 'App\\Notifications\\UserRegisteredNotification', 'App\\Models\\User', 1, '{\"user_id\":81,\"message\":\"A New User Has Registered: Herrod\",\"status\":\"new_user_create\"}', NULL, '2024-08-24 11:45:02', '2024-08-24 11:45:02'),
+('155a480e-2018-4d5a-95e7-1549d1a94f36', 'App\\Notifications\\UserRegisteredNotification', 'App\\Models\\User', 1, '{\"user_id\":80,\"message\":\"A New User Has Registered: Cassidy\",\"status\":\"new_user_create\"}', NULL, '2024-08-24 11:43:41', '2024-08-24 11:43:41'),
+('38e13a27-a90d-4592-96fb-2d1fb47f20bd', 'App\\Notifications\\UserRegisteredNotification', 'App\\Models\\User', 1, '{\"user_id\":83,\"message\":\"A New User Has Registered: Carson\",\"status\":\"new_user_create\"}', NULL, '2024-08-24 11:46:45', '2024-08-24 11:46:45'),
+('5473bc9e-3791-4654-8772-81589092f481', 'App\\Notifications\\UserRegisteredNotification', 'App\\Models\\User', 1, '{\"user_id\":82,\"message\":\"A New User Has Registered: Kalia\",\"status\":\"new_user_create\"}', NULL, '2024-08-24 11:45:25', '2024-08-24 11:45:25'),
+('c27ae0d4-19d1-4454-a732-cd42a3c6f31c', 'App\\Notifications\\UserRegisteredNotification', 'App\\Models\\User', 1, '{\"user_id\":79,\"message\":\"A New User Has Registered: Yvonne\",\"status\":\"new_user_create\"}', NULL, '2024-08-24 11:40:09', '2024-08-24 11:40:09');
 
 -- --------------------------------------------------------
 
@@ -995,7 +1049,16 @@ INSERT INTO `subscribers` (`id`, `email`, `status`, `created_at`, `updated_at`) 
 (1, 'qicy@mailinator.com', '1', '2024-02-02 11:00:39', '2024-02-02 11:00:39'),
 (2, 'mamurjorbd@gmail.com', '1', '2024-02-02 11:04:11', '2024-02-02 11:04:11'),
 (3, 'macefe4099@ikuromi.com', '1', '2024-02-02 11:05:24', '2024-02-02 11:05:24'),
-(4, 'mamurjor.emon@gmail.com', '1', '2024-02-02 11:05:46', '2024-02-02 11:05:46');
+(4, 'mamurjor.emon@gmail.com', '1', '2024-02-02 11:05:46', '2024-02-02 11:05:46'),
+(5, 'hynycyfyg@mailinator.com', '1', '2024-08-15 13:11:38', '2024-08-15 13:11:38'),
+(6, 'nacy@mailinator.com', '1', '2024-08-17 12:15:13', '2024-08-17 12:15:13'),
+(7, 'pumicopagi@mailinator.com', '1', '2024-08-17 12:15:22', '2024-08-17 12:15:22'),
+(8, 'kedijev@mailinator.com', '1', '2024-08-17 12:15:30', '2024-08-17 12:15:30'),
+(9, 'xojeve@mailinator.com', '1', '2024-08-17 12:15:37', '2024-08-17 12:15:37'),
+(10, 'xelehuwop@mailinator.com', '1', '2024-08-17 12:16:10', '2024-08-17 12:16:10'),
+(11, 'zefuqohe@mailinator.com', '1', '2024-08-17 12:16:11', '2024-09-16 18:00:00'),
+(12, 'cobocufo@mailinator.com', '1', '2024-08-17 12:16:18', '2024-08-17 12:16:18'),
+(13, 'gapurus@mailinator.com', '1', '2024-08-17 12:16:24', '2024-08-17 12:16:24');
 
 -- --------------------------------------------------------
 
@@ -1012,6 +1075,28 @@ CREATE TABLE `time_page_models` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `time_page_models`
+--
+
+INSERT INTO `time_page_models` (`id`, `user_id`, `day_id`, `time_id`, `status`, `created_at`, `updated_at`) VALUES
+(19, 3, 2, 1, '1', '2024-08-09 11:59:46', '2024-08-09 11:59:46'),
+(20, 9, 2, 3, '1', '2024-08-09 12:00:03', '2024-08-09 12:00:03'),
+(21, 25, 3, 1, '1', '2024-08-09 12:00:22', '2024-08-09 12:00:22'),
+(22, 14, 2, 6, '1', '2024-08-09 12:00:35', '2024-08-09 12:00:35'),
+(23, 17, 7, 2, '1', '2024-08-09 12:00:48', '2024-08-09 12:00:48'),
+(24, 14, 6, 2, '1', '2024-08-09 12:01:00', '2024-08-09 12:01:00'),
+(25, 11, 7, 3, '1', '2024-08-09 12:01:12', '2024-08-09 12:01:12'),
+(26, 17, 6, 6, '1', '2024-08-09 12:01:24', '2024-08-09 12:01:24'),
+(27, 14, 5, 3, '1', '2024-08-09 12:01:36', '2024-08-09 12:01:36'),
+(28, 15, 5, 2, '1', '2024-08-09 12:01:50', '2024-08-09 12:01:50'),
+(29, 17, 7, 6, '1', '2024-08-09 12:02:04', '2024-08-09 12:02:04'),
+(30, 14, 6, 3, '1', '2024-08-09 12:02:16', '2024-08-09 12:02:16'),
+(31, 25, 8, 4, '1', '2024-08-09 12:02:35', '2024-08-09 12:02:35'),
+(32, 25, 3, 3, '1', '2024-08-09 12:02:59', '2024-08-09 12:02:59'),
+(33, 10, 2, 4, '1', '2024-08-09 12:03:16', '2024-08-09 12:05:08'),
+(34, 15, 6, 1, '1', '2024-08-09 12:05:22', '2024-08-09 12:05:22');
 
 -- --------------------------------------------------------
 
@@ -1036,7 +1121,8 @@ INSERT INTO `time_tables` (`id`, `time`, `order_by`, `status`, `created_at`, `up
 (1, '09:00', '1', '1', '2024-08-07 10:14:53', '2024-08-07 10:26:14'),
 (2, '12:00', '2', '1', '2024-08-07 10:15:10', '2024-08-07 10:15:10'),
 (3, '15:00', '3', '1', '2024-08-07 10:16:15', '2024-08-07 10:26:06'),
-(4, '18:00', '4', '1', '2024-08-07 10:16:27', '2024-08-07 10:25:56');
+(4, '18:00', '4', '1', '2024-08-07 10:16:27', '2024-08-07 10:25:56'),
+(6, '23:00', '5', '1', '2024-08-09 10:55:29', '2024-08-09 10:55:29');
 
 -- --------------------------------------------------------
 
@@ -1070,10 +1156,10 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `role_id`, `fname`, `lname`, `email`, `email_verified_at`, `password`, `verify_code`, `avatar`, `phone`, `country`, `city`, `state`, `zip_code`, `status`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 1, 'Admin', 'Admin', 'admin@gmail.com', '2023-12-20 16:17:19', '$2y$12$WCOT8t1hYuLboqyPl2hEJ.6Eo8z2IffQrojipAvXHkP5Ubv4GbTZW', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1', NULL, '2023-12-20 10:16:03', '2023-12-20 10:16:03'),
-(2, 2, 'Doctor', 'Doctor', 'doctor@gmail.com', '2023-12-07 17:34:31', '$2y$12$3nyb4H9Azm9UScJsmNom4umMZfy764VVm0vCgApntQg.VEGZm3AMK', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1', NULL, '2023-12-20 10:16:03', '2023-12-20 10:16:03'),
+(1, 1, 'Ayon', 'Emon', 'admin@gmail.com', '2023-12-20 16:17:19', '$2y$12$8tCvwvtUZJdjplBQssk3DexCkx8MKpO9M27VQlK2QQkI9x7474Z/2', NULL, 'uploads/images/profile/team1_658.jpg', '01834507987', NULL, NULL, NULL, NULL, '1', NULL, '2023-12-20 10:16:03', '2024-08-12 11:37:24'),
+(2, 2, 'Doctor', 'Doctor', 'doctor@gmail.com', '2024-08-15 12:22:37', '$2y$12$3nyb4H9Azm9UScJsmNom4umMZfy764VVm0vCgApntQg.VEGZm3AMK', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1', NULL, '2023-12-20 10:16:03', '2024-08-15 12:22:37'),
 (3, 2, 'Client', 'Client', 'client@gmail.com', '2023-12-06 18:00:00', '$2y$12$BwK0UXDc1sJRkxj6n2/qsO.o8XTT/W.Ak/0fcbJECffN72j1kkHX.', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1', NULL, '2023-12-20 10:16:03', '2024-03-26 10:18:44'),
-(8, 2, 'Lee', 'Irma', 'magago9516@glaslack.com', '2024-03-26 17:20:06', '$2y$12$lhyHNf1CbBxhLp4HfLUdseB44XEVH.I3NN/gBbsT6mc6B87N1jXXW', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1', NULL, '2023-12-31 10:51:44', '2024-03-26 11:08:31'),
+(8, 2, 'Lee', 'Irma', 'magago9516@glaslack.com', '2024-08-15 12:26:44', '$2y$12$lhyHNf1CbBxhLp4HfLUdseB44XEVH.I3NN/gBbsT6mc6B87N1jXXW', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1', NULL, '2023-12-31 10:51:44', '2024-08-15 12:26:44'),
 (9, 2, 'Ifeoma', 'Fitzgerald', 'sebebav559@nimadir.com', '2024-03-25 18:00:00', '$2y$12$WCOT8t1hYuLboqyPl2hEJ.6Eo8z2IffQrojipAvXHkP5Ubv4GbTZW', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1', '4kLSVMK8Fx2MiaVJbhtd1AOgLFxVwMBNzrPPckpz4iPdtmAi5labJBn5jpnN', '2023-12-31 10:52:03', '2024-03-26 11:18:03'),
 (10, 2, 'Brenden', 'Celeste', 'nepeh@mailinator.com', '2024-05-16 11:49:49', '$2y$12$MwsrsGAMXrXY1AYeCPiS9.5xk1UVnpepA9qgLwRr49HfVtrYCIlKi', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1', 'wEdyLUlU13zucd5Fuhv1Xr9c0u6fg0d5cJrZiZMQCKN7LwEj2iKzuYCjpMMD', '2023-12-31 10:57:25', '2024-05-16 11:49:49'),
 (11, 2, 'Helen', 'Joseph', 'lyva@mailinator.com', '2024-05-16 11:48:38', '$2y$12$QW7eBByNOCB6CpMUGRLIHefsL5UU6QvpkL6Gw/It/WduBjCqdCPlu', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1', 'yiYmpm9NIv2vcZUL1rjnFA44QyL8Ejvj25MxDUlMsBq6AtDgi3vraj1DiLOa', '2023-12-31 10:58:16', '2024-05-16 11:48:38'),
@@ -1086,12 +1172,19 @@ INSERT INTO `users` (`id`, `role_id`, `fname`, `lname`, `email`, `email_verified
 (18, 3, 'TaShya', 'Ulysses', 'lirid18569@vkr1.com', NULL, '$2y$12$2domN.LD1QQDs4v4LeObDOqvPhlizy8CnCs9g7nkpNysrj2ZU9wrC', '6Ez0cDTwxW8ZEo0UaJFBZp1ILWq30IVYqOOdadBCjzgfjAFLsfS5KRfXafnxICTd', NULL, NULL, NULL, NULL, NULL, NULL, '1', 'nJH4jGIv3kwdPVkzXi4PA16v0c72ISbhOlZ9UjOSBZFfOFVq97Wz902pYHpU', '2024-01-02 08:00:50', '2024-01-02 08:00:50'),
 (19, 3, 'Amos', 'Kuame', 'rinagoj120@vkr1.com', NULL, '$2y$12$zMsSldAoDQFtejfHPkpNmeyJTVeBrhnT/cwu6sgZG3g9YoPOzMAGG', 'fvj7fzu6lZ06ET2yK37wEm24yvjVU93GHMxij8yv6teA976huI5lfrXscadpZpGK', NULL, NULL, NULL, NULL, NULL, NULL, '1', 'UhaA7V7SzYCRNxDebZ8ljULB47SVGY7hCv9SjqgwYzglBwXBUl12xFa8oi2R', '2024-01-02 08:07:43', '2024-01-02 08:07:43'),
 (20, 1, 'Colton', 'Hyatt', 'pyvylijab@mailinator.com', NULL, '$2y$12$2Qe.SmaMT5uq/.Eu5ZcRveXxZeL7Vr8gWVsMsff66esxtIF2FPn.S', 'uLRUtVXfgQm82PDMqGVUH4HWR7JafwORSTVSWkQkMQdkd1gkFI5Qd4CiYdFQwoZo', NULL, NULL, NULL, NULL, NULL, NULL, '1', NULL, '2024-01-02 08:12:05', '2024-03-01 09:52:48'),
-(21, 1, 'Basia', 'Fredericka', 'wopuropat@mailinator.com', NULL, '$2y$12$hUXd0aC9BnQfzdZPnKrWf.vHKDh.mm2So/pOxl2fTTUMayG.RTlJm', '1WzfDDU4V03hU2KjrEYjbFdv8QSB6VU6byHTDN02xEuBXwx2NiRarPq4o4XZWrjp', NULL, NULL, NULL, NULL, NULL, NULL, '3', NULL, '2024-01-02 08:13:48', '2024-03-01 09:51:39'),
-(22, 2, 'Hedy', 'Remedios', 'bowowej120@vkr1.com', NULL, '$2y$12$wSAxmvoeiPC7wrGbbYwVLOUxFuR2XsXGs9phzVbncxEJQu5KNjLN6', 'sbxDxEv9hXzTF9PlzK2nOQxOalMD6YnS9INYKh6MIBqWz6NNsNxgnx6G09SFUSXY', NULL, NULL, NULL, NULL, NULL, NULL, '3', 'rL4WFrDEosYJsnLTnvKUeheWueJR1kJMUcfIHpFxFmnTZF64UdHZu37RvsfG', '2024-01-02 08:14:31', '2024-03-01 09:21:10'),
-(23, 2, 'Kiara', 'Chaney', 'jesaji3487@watrf.com', '2024-01-01 20:19:09', '$2y$12$sz8QvoUaICDf2KKpMyJ7ku.T6Wr4pWuCPxLX2RrRAngTiBRkfCHHW', 'DQR2gdYV2bwpdSKu37uiH9lRxozgBomP7ogGh8h9KoaF279K3fXoERAPXF50Tn2Y', NULL, NULL, NULL, NULL, NULL, NULL, '2', 'lF0GWYiu0neHfE2OqwHwODEKyAp85iMoyvYc4xCMYptPHpmhOwkKFotc6xjQ', '2024-01-02 08:18:48', '2024-03-01 09:40:12'),
+(21, 3, 'Basia', 'Fredericka', 'wopuropat@mailinator.com', NULL, '$2y$12$hUXd0aC9BnQfzdZPnKrWf.vHKDh.mm2So/pOxl2fTTUMayG.RTlJm', '1WzfDDU4V03hU2KjrEYjbFdv8QSB6VU6byHTDN02xEuBXwx2NiRarPq4o4XZWrjp', NULL, NULL, NULL, NULL, NULL, NULL, '1', NULL, '2024-01-02 08:13:48', '2024-08-15 12:50:04'),
+(22, 2, 'Hedy', 'Remedios', 'bowowej120@vkr1.com', '2024-08-15 12:30:17', '$2y$12$wSAxmvoeiPC7wrGbbYwVLOUxFuR2XsXGs9phzVbncxEJQu5KNjLN6', 'sbxDxEv9hXzTF9PlzK2nOQxOalMD6YnS9INYKh6MIBqWz6NNsNxgnx6G09SFUSXY', NULL, NULL, NULL, NULL, NULL, NULL, '1', 'rL4WFrDEosYJsnLTnvKUeheWueJR1kJMUcfIHpFxFmnTZF64UdHZu37RvsfG', '2024-01-02 08:14:31', '2024-08-15 12:30:17'),
+(23, 2, 'Kiara', 'Chaney', 'jesaji3487@watrf.com', '2024-08-15 12:35:14', '$2y$12$sz8QvoUaICDf2KKpMyJ7ku.T6Wr4pWuCPxLX2RrRAngTiBRkfCHHW', 'DQR2gdYV2bwpdSKu37uiH9lRxozgBomP7ogGh8h9KoaF279K3fXoERAPXF50Tn2Y', NULL, NULL, NULL, NULL, NULL, NULL, '1', 'lF0GWYiu0neHfE2OqwHwODEKyAp85iMoyvYc4xCMYptPHpmhOwkKFotc6xjQ', '2024-01-02 08:18:48', '2024-08-15 12:35:14'),
 (24, 3, 'Chadwick', 'Dolan', 'rawigem876@mnsaf.com', '2024-03-20 22:58:00', '$2y$12$MezrAf.eWfnXthpXmPhiO.MUwnXzKTrjI7OHlUmsJF3F63955MNnC', 'q3YxwGmqpRS2aQ7w76LDs0mrASTzFHhDA38PO6ICpKO41coIkZVJJWoq1xva', NULL, NULL, NULL, NULL, NULL, NULL, '1', 'o5t81VetIZ5vi5aoEB5O81lWscOTptV3dANW7jbb2XuzHQVHNDpYMzuSKHon', '2024-03-21 10:57:40', '2024-03-21 11:17:34'),
 (25, 2, 'Lara', 'Kelly', 'foyixe6394@nimadir.com', '2024-05-12 11:55:26', '$2y$12$K5fDLwEhJLCvs70yKIzUDOJhJGWLMmimBofWFxo/vzx/P3E3.2cQy', '', NULL, NULL, NULL, NULL, NULL, NULL, '1', 'xhciNEQb8WRB8WEWu199sCGhhCHq15bIuSSXUbvx0sAFxVEoW71kUqJGGX0T', '2024-03-22 02:25:32', '2024-05-12 11:55:26'),
-(26, 3, 'Amanda', 'Mercedes', 'sahep77561@kinsef.com', '2024-07-03 00:20:12', '$2y$12$94uCxeFjF2RmlVuxT0YCjuKkeyDRJSrEwwe3wvsuXmN6PkiGjKpxa', '1ojcxRNt3RDhFFn16UP5wvNBwN9vqzSM4rbjdcHVZ0oOy5kBGXKeSUMX6HE9Q6qk', NULL, NULL, NULL, NULL, NULL, NULL, '1', 'xpyB8LIrWfDcyG76ZzS4lREnMqXz5Gmffg109KQ8L2jbyPk3bUTGtwONqi4n', '2024-07-03 00:19:51', '2024-07-03 00:20:12');
+(26, 3, 'Amanda', 'Mercedes', 'sahep77561@kinsef.com', '2024-07-03 00:20:12', '$2y$12$94uCxeFjF2RmlVuxT0YCjuKkeyDRJSrEwwe3wvsuXmN6PkiGjKpxa', '1ojcxRNt3RDhFFn16UP5wvNBwN9vqzSM4rbjdcHVZ0oOy5kBGXKeSUMX6HE9Q6qk', NULL, NULL, NULL, NULL, NULL, NULL, '1', 'xpyB8LIrWfDcyG76ZzS4lREnMqXz5Gmffg109KQ8L2jbyPk3bUTGtwONqi4n', '2024-07-03 00:19:51', '2024-07-03 00:20:12'),
+(27, 2, 'Rina', 'Herrod', 'pamisen673@mvpalace.com', '2024-08-15 12:36:21', '$2y$12$3WXt49hTwbde4QMpseJjGOAI24O15uCBpnsKKghjPlKZ7wXFs0WdW', 'jUGhUyqWQ5vmUAefaDj01GsvvvfCsmvnsz4iFYMVzPisyGp5IIc7EK3TVhMVB5wY', NULL, NULL, NULL, NULL, NULL, NULL, '1', 'd5NVuEGx8kPdM22192nXvLhDFmpLIZqIIdzzHLCuXClXmiaLQt1cHzUtnQe7', '2024-08-09 12:25:27', '2024-08-15 12:36:21'),
+(28, 1, 'Dale', 'Eric', 'nicasik181@acpeak.com', '2024-08-12 23:20:05', '$2y$12$HnDV4HryNQOmqHhiCZwX3ugy/AUjQEaQdGxkinF0BBEIzmS03Ymwa', 'lKiCtTQuOicI8NpMMgjKDXY47YgR5dUIsJuxGAIok7DFet8RRZ2xV0m8rduPhuFY', NULL, NULL, NULL, NULL, NULL, NULL, '1', 'SY0m1SsJOyWS8dbGexCqL2030Mjt29dJtwqkDEN8bYoDNQ8kyi8bRRhdu8V7', '2024-08-13 11:19:44', '2024-08-15 12:50:47'),
+(79, 3, 'Yvonne', 'Branden', 'muhy@mailinator.com', NULL, '$2y$12$XaF1htDWbiRZEbE2bUgiCOvnDXu3t1z3l6hLOaxYtsVpjVuIPj5Gu', 'pU7PCGEy9Pwdyw3SL171SLBSVlbIzQLUPZ74NubPZbVnmXfsTkEgTAOJcPfLHRiF', NULL, NULL, NULL, NULL, NULL, NULL, '1', 'BSTaqCStm8zWbSTDcRUQ2XwQK01dYFsmmnF5BArhIt1rz4PyRrLFIPTRV5vy', '2024-08-24 11:40:08', '2024-08-24 11:40:08'),
+(80, 3, 'Cassidy', 'Iona', 'kopedypet@mailinator.com', NULL, '$2y$12$GM1xbe9/kQC4RPIU5pGtquLrXugn2BJDh3rQQjxRis9D.rjw3hcgW', 'IkE15Sbrf2fhBUOAf2o5HiZ9mFg2lZoh1Pm9dCYhaYY3VF085Gt2U0UJRZISk5Y1', NULL, NULL, NULL, NULL, NULL, NULL, '1', 'wcI5Wpjw7nWjIZuXsc2ODe3b3oxue8x9lKOVkTzqYMZvL2fWvz1upxmE5Tcv', '2024-08-24 11:43:40', '2024-08-24 11:43:40'),
+(81, 3, 'Herrod', 'Hope', 'laseboja@mailinator.com', NULL, '$2y$12$5jATXvYf62EV76ZScKGEbOvJOSPed9ThGyXA/UmV8gCr7PbIPpX2O', '0VmLpvmDtH22frPFUQUrfbYzfCDLNl06O92zGKlP7KPLidKB1kyOZ0hQKfOSZh0i', NULL, NULL, NULL, NULL, NULL, NULL, '1', '4SUiSUkyw2xKoC2eJX7eWHNynJQbOQVaJGTiW9tk3Wrsf0bKPIIW8IqioLIt', '2024-08-24 11:45:01', '2024-08-24 11:45:01'),
+(82, 3, 'Kalia', 'Helen', 'kypuwyge@mailinator.com', NULL, '$2y$12$/fT5VUYiawdD.eRJi9Srqe5sTjj0/kkaK0I2b.5EDXGnnTyTRz6yS', '6Zhd8AgvOUqrqTZVDG2A4YWjmUGjcyClXcEhh7OeZ2Do6Pw8IrjTaeQZSUfi7ivK', NULL, NULL, NULL, NULL, NULL, NULL, '1', 'Snw2O6qidoZJ8Tu3Ql4N6YW0S1IyIRD6vioo1jMLc5QN2sg8mqoi776II98Q', '2024-08-24 11:45:24', '2024-08-24 11:45:24'),
+(83, 3, 'Carson', 'Alfreda', 'dykos@mailinator.com', NULL, '$2y$12$lemANgMmKp6L5U03HDD6q.HEIMmFsLZiDNvonHVOx1wK08fns3hl2', '876cj5FY5ONykh2w6bZcvGedbZjnwoqMKN0K61IurK2AbkP74LQJ5dIUm8nQsdza', NULL, NULL, NULL, NULL, NULL, NULL, '1', 'YfYhmbpyUE0i7vq1vdNtZX8J1nfk3UbO0NB2vwha4R3tBpz7tagHZpejCJX9', '2024-08-24 11:46:45', '2024-08-24 11:46:45');
 
 -- --------------------------------------------------------
 
@@ -1113,6 +1206,39 @@ CREATE TABLE `user_locations` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `user_locations`
+--
+
+INSERT INTO `user_locations` (`id`, `user_id`, `ip_address`, `country`, `country_code`, `region_code`, `city_name`, `zip_code`, `postal_code`, `area_code`, `created_at`, `updated_at`) VALUES
+(1, 27, '8.8.8.8', 'United States', 'US', 'VA', 'Ashburn', '20149', NULL, 'VA', '2024-08-09 12:25:28', '2024-08-09 12:25:28'),
+(2, 28, '8.8.8.8', 'United States', 'US', 'VA', 'Ashburn', '20149', NULL, 'VA', '2024-08-13 11:19:46', '2024-08-13 11:19:46'),
+(53, 79, '8.8.8.8', 'United States', 'US', 'VA', 'Ashburn', '20149', NULL, 'VA', '2024-08-24 11:40:09', '2024-08-24 11:40:09'),
+(54, 80, '8.8.8.8', 'United States', 'US', 'VA', 'Ashburn', '20149', NULL, 'VA', '2024-08-24 11:43:41', '2024-08-24 11:43:41'),
+(55, 81, '8.8.8.8', 'United States', 'US', 'VA', 'Ashburn', '20149', NULL, 'VA', '2024-08-24 11:45:02', '2024-08-24 11:45:02'),
+(56, 82, '8.8.8.8', 'United States', 'US', 'VA', 'Ashburn', '20149', NULL, 'VA', '2024-08-24 11:45:25', '2024-08-24 11:45:25'),
+(57, 83, '8.8.8.8', 'United States', 'US', 'VA', 'Ashburn', '20149', NULL, 'VA', '2024-08-24 11:46:45', '2024-08-24 11:46:45');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `visitors`
+--
+
+CREATE TABLE `visitors` (
+  `id` bigint UNSIGNED NOT NULL,
+  `ip_address` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `visitors`
+--
+
+INSERT INTO `visitors` (`id`, `ip_address`, `created_at`, `updated_at`) VALUES
+(2, '127.0.0.1', '2024-08-14 11:43:58', '2024-08-14 11:43:58');
 
 --
 -- Indexes for dumped tables
@@ -1206,6 +1332,13 @@ ALTER TABLE `fun_facts`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `jobs`
+--
+ALTER TABLE `jobs`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `jobs_queue_index` (`queue`);
+
+--
 -- Indexes for table `menus`
 --
 ALTER TABLE `menus`
@@ -1216,6 +1349,13 @@ ALTER TABLE `menus`
 --
 ALTER TABLE `migrations`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `notifications`
+--
+ALTER TABLE `notifications`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `notifications_notifiable_type_notifiable_id_index` (`notifiable_type`,`notifiable_id`);
 
 --
 -- Indexes for table `password_resets`
@@ -1353,6 +1493,13 @@ ALTER TABLE `user_locations`
   ADD KEY `user_locations_user_id_foreign` (`user_id`);
 
 --
+-- Indexes for table `visitors`
+--
+ALTER TABLE `visitors`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `visitors_ip_address_unique` (`ip_address`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -1360,7 +1507,7 @@ ALTER TABLE `user_locations`
 -- AUTO_INCREMENT for table `blogs`
 --
 ALTER TABLE `blogs`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `blog_categories`
@@ -1408,7 +1555,7 @@ ALTER TABLE `department_models`
 -- AUTO_INCREMENT for table `doctor_models`
 --
 ALTER TABLE `doctor_models`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `email_templates`
@@ -1435,6 +1582,12 @@ ALTER TABLE `fun_facts`
   MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
+-- AUTO_INCREMENT for table `jobs`
+--
+ALTER TABLE `jobs`
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
+
+--
 -- AUTO_INCREMENT for table `menus`
 --
 ALTER TABLE `menus`
@@ -1444,7 +1597,7 @@ ALTER TABLE `menus`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=64;
+  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=67;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`
@@ -1528,31 +1681,37 @@ ALTER TABLE `socal_media`
 -- AUTO_INCREMENT for table `subscribers`
 --
 ALTER TABLE `subscribers`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `time_page_models`
 --
 ALTER TABLE `time_page_models`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 --
 -- AUTO_INCREMENT for table `time_tables`
 --
 ALTER TABLE `time_tables`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=84;
 
 --
 -- AUTO_INCREMENT for table `user_locations`
 --
 ALTER TABLE `user_locations`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
+
+--
+-- AUTO_INCREMENT for table `visitors`
+--
+ALTER TABLE `visitors`
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Constraints for dumped tables

@@ -29,7 +29,7 @@
                                 </button>
                                 <div class="dropdown-menu">
                                     @if (Auth::check() && Auth::user()->role->slug == 'admin')
-                                        <li><a class="dropdown-item" style="line-height: 32px;" href="{{ route('admin.dashboard') }}">Dashboard</a></li>
+                                        <li><a class="dropdown-item" style="line-height: 32px;" href="{{ route('admin.dashboard.index') }}">Dashboard</a></li>
                                     @elseif(Auth::check() && Auth::user()->role->slug == 'doctor')
                                         <li><a class="dropdown-item" style="line-height: 32px;" href="{{ route('doctor.dashboard') }}">Dashboard</a></li>
                                     @else

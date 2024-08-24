@@ -24042,26 +24042,26 @@ address p {
     color: #000;
 }
 
-.mdc-top-app-bar .mdc-top-app-bar__section-right button button .count-indicator,
-.mdc-top-app-bar .mdc-top-app-bar__section-right .menu-button-container button .count-indicator {
-    width: 13px;
-    height: 13px;
-    border-radius: 13px;
-    display: -webkit-flex;
-    display: flex;
-    -webkit-align-items: center;
-    align-items: center;
-    -webkit-justify-content: center;
-    justify-content: center;
-    position: absolute;
-    top: 5px;
-    left: 18px;
-    background: #ff420f;
+.mdc-top-app-bar .mdc-top-app-bar__section-right button button .count-indicator, .mdc-top-app-bar .mdc-top-app-bar__section-right .menu-button-container button .count-indicator {
+	width: 18px;
+	height: 18px;
+	border-radius: 50%;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-align-items: center;
+	align-items: center;
+	-webkit-justify-content: center;
+	justify-content: center;
+	position: absolute;
+	top: 0px;
+	left: 16px;
+	background: #3a94ec;
+	align-items: center;
 }
 
 .mdc-top-app-bar .mdc-top-app-bar__section-right button button .count-indicator .count,
 .mdc-top-app-bar .mdc-top-app-bar__section-right .menu-button-container button .count-indicator .count {
-    font-size: 7px;
+    font-size: 11px;
     color: #fff;
 }
 
@@ -24147,15 +24147,16 @@ address p {
 }
 
 .mdc-top-app-bar .mdc-top-app-bar__section-right .menu-button-container .mdc-menu .mdc-list .mdc-list-item .item-thumbnail.item-thumbnail-icon {
-    height: 40px;
-    width: 40px;
-    border-radius: 36px;
-    display: -webkit-flex;
-    display: flex;
-    -webkit-justify-content: center;
-    justify-content: center;
-    -webkit-align-items: center;
-    align-items: center;
+	height: 35px;
+	width: 40px;
+	border-radius: 5px;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-justify-content: center;
+	justify-content: center;
+	-webkit-align-items: center;
+	align-items: center;
+	margin-right: 10px;
 }
 
 .mdc-top-app-bar .mdc-top-app-bar__section-right .menu-button-container .mdc-menu .mdc-list .mdc-list-item .item-thumbnail.item-thumbnail-icon i {
@@ -24598,5 +24599,15 @@ footer .vertical-divider {
 
 .upload-label {
     margin-bottom: 0rem !important
+}
+
+#admin_notification {
+	height: 40vh;
+	overflow-x: auto;
+}
+#admin_notification {
+	scroll-behavior: smooth;
+	scrollbar-width: thin;
+	scrollbar-color: #269ffb white;
 }
 /* Verify User Blade End */

@@ -87,7 +87,7 @@ class AuthController extends Controller
         $message = [
             'sender' => $user->id,
             'to' => $admin->id,
-            'message' => 'A new user has Registered: ' . $request->fname . ' ' . $request->lname,
+            'message' => 'A New User Has Registered: ' . $request->fname . ' ' . $request->lname,
         ];
         Broadcast(new NotificationBroadcast($message))->toOthers();
         $admin->notify(new UserRegisteredNotification($user));

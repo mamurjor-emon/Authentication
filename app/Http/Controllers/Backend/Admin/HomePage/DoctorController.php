@@ -3,15 +3,17 @@
 namespace App\Http\Controllers\Backend\Admin\HomePage;
 
 use App\Models\User;
+use App\Models\Roles;
 use App\Mail\NewDoctorMail;
 use App\Models\DoctorModel;
 use Illuminate\Http\Request;
 use App\Models\DepartmentModel;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\DoctorRequest;
-use App\Models\Roles;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Mail;
+use App\Events\NotificationBroadcast;
+use App\Notifications\DoctorRegisterNotification;
 use Yajra\DataTables\Facades\DataTables;
 
 class DoctorController extends Controller
@@ -174,7 +176,7 @@ class DoctorController extends Controller
             $heading = emailHeadingTemplate('NEW_DOCTOR_MAIL', $request);
 
             $userMail = ['subject' => $subject, 'body' => $body, 'heading' => $heading];
-            Mail::to($user->email)->send(new NewDoctorMail($userMail));
+            Mail::to($request->email)->later(now()->addSeconds(10), new NewDoctorMail($userMail));
             return redirect()->route('admin.doctor.index')->with('success', 'Doctor Create Successfuly Done..!');
         } else {
             abort(401);
