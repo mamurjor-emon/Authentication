@@ -6,7 +6,7 @@
                     <div class="section-title">
                         <h2>{{ config('settings.appointment_section_title') ?? '' }}</h2>
                         <img src="{{ asset(config('settings.common_image')) }}" alt="#">
-                       <p>{{ config('settings.appointment_section_description') ?? ''}}</p>
+                        <p>{{ config('settings.appointment_section_description') ?? '' }}</p>
                     </div>
                 </div>
             </div>
@@ -32,13 +32,14 @@
                             <div class="col-lg-6 col-md-6 col-12">
                                 <div class="form-group">
                                     <div class="nice-select form-control wide" tabindex="0"><span
-                                            class="current">Department</span>
-                                        <ul class="list">
-                                            <li data-value="1" class="option selected ">Department</li>
-                                            <li data-value="2" class="option">Cardiac Clinic</li>
-                                            <li data-value="3" class="option">Neurology</li>
-                                            <li data-value="4" class="option">Dentistry</li>
-                                            <li data-value="5" class="option">Gastroenterology</li>
+                                            class="current">Select Department</span>
+                                        <ul class="list" id="departments">
+                                            @forelse ($departments as $department)
+                                                <li data-value="{{ $department->id ?? '' }}" class="option">
+                                                    {{ $department->name ?? '' }}</li>
+                                            @empty
+                                             <li class="text-danger text-center" data-value="" class="option">No Department Found !</li>
+                                            @endforelse
                                         </ul>
                                     </div>
                                 </div>
@@ -46,12 +47,8 @@
                             <div class="col-lg-6 col-md-6 col-12">
                                 <div class="form-group">
                                     <div class="nice-select form-control wide" tabindex="0"><span
-                                            class="current">Doctor</span>
-                                        <ul class="list">
-                                            <li data-value="1" class="option selected ">Doctor</li>
-                                            <li data-value="2" class="option">Dr. Akther Hossain</li>
-                                            <li data-value="3" class="option">Dr. Dery Alex</li>
-                                            <li data-value="4" class="option">Dr. Jovis Karon</li>
+                                            class="current">Select Doctor</span>
+                                        <ul class="list" id="departmentdoctors">
                                         </ul>
                                     </div>
                                 </div>
@@ -71,7 +68,8 @@
                             <div class="col-lg-5 col-md-4 col-12">
                                 <div class="form-group">
                                     <div class="button">
-                                        <button type="submit" class="btn">{{ config('settings.appointment_btn_title') ?? '' }}</button>
+                                        <button type="submit"
+                                            class="btn">{{ config('settings.appointment_btn_title') ?? '' }}</button>
                                     </div>
                                 </div>
                             </div>
@@ -90,3 +88,30 @@
         </div>
     </section>
     <!-- End Appointment -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#departments').on('click', '.option', function() {
+                var departmentId = $(this).data('value');
+                $.ajax({
+                    url: "{{ route('frontend.department.doctor') }}",
+                    type: 'POST',
+                    dataType: 'json',
+                    data:{
+                        id : departmentId,
+                    },
+                    async: true,
+                    cache: false,
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    success: function(data) {
+                        $('#departmentdoctors').html('');
+                        if(data.status == 'success'){
+                            $('#departmentdoctors').html(data.doctors);
+                        }
+                    }
+                });
+            });
+        });
+    </script>

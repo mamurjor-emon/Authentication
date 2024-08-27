@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\AuthController;
+use App\Http\Controllers\Frontend\AppointmentController;
 use App\Http\Controllers\VerifyUserController;
 use App\Http\Controllers\Frontend\BlogController;
 use App\Http\Controllers\Frontend\DoctorController;
@@ -80,10 +81,10 @@ Route::prefix('frontend')->name('frontend.')->group(function () {
     Route::get('contact',[ContactController::class,'contact'])->name('frontend.contact');
     Route::post('contact/store',[ContactController::class,'store'])->name('frontend.contact.store');
     Route::get('time-table',[ContactController::class,'timeTable'])->name('frontend.time.table');
+
+    //------------ Contact  ------------//
+    Route::post('department',[AppointmentController::class,'departmentDoctor'])->name('department.doctor');
 });
-
-
-
 
 //------------ Subscribe  ------------//
 Route::prefix('subscribe')->name('subscribe.')->group(function () {
