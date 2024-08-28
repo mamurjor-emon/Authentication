@@ -35,14 +35,14 @@
                                 @csrf
                                 <div class="row">
                                     <x-form.textbox parantClass="col-12 col-md-6" name="name" required="required"
-                                        placeholder="Enter Name..!" errorName="name" class="py-2"></x-form.textbox>
+                                        placeholder="Enter Name..!" errorName="name" class="py-2" value="{{ Auth::user()->fname ?? '' }}"></x-form.textbox>
 
                                     <x-form.textbox parantClass="col-12 col-md-6" name="email" required="required"
-                                        placeholder="Enter Email..!" errorName="email" class="py-2"
+                                        placeholder="Enter Email..!" value="{{ Auth::user()->email ?? '' }}" errorName="email" class="py-2"
                                        ></x-form.textbox>
 
                                     <x-form.textbox parantClass="col-12 col-md-6" name="phone" required="required"
-                                        placeholder="Enter Phone..!" errorName="phone" class="py-2" type="tel"
+                                        placeholder="Enter Phone..!" value="{{ Auth::user()->phone ?? '' }}" errorName="phone" class="py-2" type="tel"
                                         ></x-form.textbox>
 
                                     <x-form.textbox parantClass="col-12 col-md-6" name="subject" required="required"

@@ -27,7 +27,7 @@ class ContactController extends Controller
             'phone'     => $request->phone,
             'subject'   => $request->subject,
             'message'   => $request->message,
-            'condition' => $request->condition ?? 0,
+            'condition' => $request->condition,
        ]);
        return back()->with('success','Contact Store Successfully !!');
     }

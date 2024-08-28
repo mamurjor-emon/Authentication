@@ -4,7 +4,7 @@ Author Name: Naimur Rahman
 Website: http://wpthemesgrid.com/
 Description: Mediplus - Doctor HTML Template.
 Version:	1.1
-========================================*/   
+========================================*/
 /*=======================================
 [Start Activation Code]
 =========================================
@@ -31,11 +31,11 @@ Version:	1.1
 * Preloader JS
 =========================================
 [End Activation Code]
-=========================================*/ 
+=========================================*/
 (function($) {
     "use strict";
      $(document).on('ready', function() {
-	
+
         jQuery(window).on('scroll', function() {
 			if ($(this).scrollTop() > 200) {
 				$('#header .header-inner').addClass("sticky");
@@ -43,10 +43,10 @@ Version:	1.1
 				$('#header .header-inner').removeClass("sticky");
 			}
 		});
-		
+
 		/*====================================
 			Sticky Header JS
-		======================================*/ 
+		======================================*/
 		jQuery(window).on('scroll', function() {
 			if ($(this).scrollTop() > 100) {
 				$('.header').addClass("sticky");
@@ -54,30 +54,30 @@ Version:	1.1
 				$('.header').removeClass("sticky");
 			}
 		});
-		
+
 		$('.pro-features .get-pro').on( "click", function(){
 			$('.pro-features').toggleClass('active');
 		});
-		
+
 		/*====================================
 			Search JS
-		======================================*/ 
+		======================================*/
 		$('.search a').on( "click", function(){
 			$('.search-top').toggleClass('active');
 		});
-		
+
 		/*====================================
 			Mobile Menu
-		======================================*/ 	
+		======================================*/
 		$('.menu').slicknav({
 			prependTo:".mobile-nav",
 			duration: 300,
 			closeOnClick:true,
 		});
-		
+
 		/*===============================
 			Hero Slider JS
-		=================================*/ 
+		=================================*/
 		$(".hero-slider").owlCarousel({
 			loop:true,
 			autoplay:true,
@@ -93,7 +93,7 @@ Version:	1.1
 
 		/*===============================
 			Testimonial Slider JS
-		=================================*/ 
+		=================================*/
 		$('.testimonial-slider').owlCarousel({
 			items:3,
 			autoplay:true,
@@ -122,10 +122,10 @@ Version:	1.1
 				},
 			}
 		});
-		
+
 		/*===============================
 			Portfolio Slider JS
-		=================================*/ 
+		=================================*/
 		$('.portfolio-slider').owlCarousel({
 			autoplay:true,
 			autoplayTimeout:4000,
@@ -150,7 +150,7 @@ Version:	1.1
 				},
 			}
 		});
-		
+
 		/*=====================================
 			Counter Up JS
 		======================================*/
@@ -158,10 +158,10 @@ Version:	1.1
 			delay:20,
 			time:2000
 		});
-		
+
 		/*===============================
 			Clients Slider JS
-		=================================*/ 
+		=================================*/
 		$('.clients-slider').owlCarousel({
 			items:5,
 			autoplay:true,
@@ -187,10 +187,10 @@ Version:	1.1
 				},
 			}
 		});
-		
+
 		/*====================================
 			Single Portfolio Slider JS
-		======================================*/ 
+		======================================*/
 		$('.pf-details-slider').owlCarousel({
 			items:1,
 			autoplay:false,
@@ -203,10 +203,10 @@ Version:	1.1
 			dots:false,
 			navText: ['<i class="icofont-rounded-left"></i>', '<i class="icofont-rounded-right"></i>'],
 		});
-		
+
 		/*===================
 			Accordion JS
-		=====================*/ 
+		=====================*/
 		$('.accordion > li:eq(0) a').addClass('active').next().slideDown();
 		$('.accordion a').on('click', function(j) {
 			var dropDown = $(this).closest('li').find('p');
@@ -220,24 +220,28 @@ Version:	1.1
 			dropDown.stop(false, true).slideToggle(300);
 			j.preventDefault();
 		});
-		
+
 		/*====================================
 			Nice Select JS
-		======================================*/ 	
+		======================================*/
 		$('select').niceSelect();
-		
+
 		/*=====================================
 			Date Picker JS
-		======================================*/ 
-		$( function() {
-			$( "#datepicker" ).datepicker();
-		} );
-		
-		
-		
+		======================================*/
+		$(function() {
+            $('#datepicker').datepicker({
+                startDate: '28/08/2024',
+                endDate: '5/09/2024'
+            });
+        });
+
+
+
+
 		/*===============================
 			Checkbox JS
-		=================================*/  
+		=================================*/
 		$('input[type="checkbox"]').change(function(){
 			if($(this).is(':checked')){
 				$(this).parent("label").addClass("checked");
@@ -245,32 +249,32 @@ Version:	1.1
 				$(this).parent("label").removeClass("checked");
 			}
 		});
-		
+
 		/*===============================
 			Right Bar JS
-		=================================*/ 
+		=================================*/
 		$('.right-bar .bar').on( "click", function(){
 			$('.sidebar-menu').addClass('active');
 		});
 		$('.sidebar-menu .cross').on( "click", function(){
 			$('.sidebar-menu').removeClass('active');
 		});
-		
+
 		/*=====================
 			Video Popup JS
-		=======================*/ 
+		=======================*/
 		$('.video-popup').magnificPopup({
-			type: 'video',	
+			type: 'video',
 		});
-		
+
 		/*================
 			Wow JS
-		==================*/		
-		var window_width = $(window).width();   
+		==================*/
+		var window_width = $(window).width();
 			if(window_width > 767){
             new WOW().init();
 		}
-	
+
 		/*===================
 			Scroll Up JS
 		=====================*/
@@ -279,7 +283,7 @@ Version:	1.1
 			easingType: 'easeInOutExpo',
 			scrollSpeed: 900,
 			animation: 'fade'
-		}); 
+		});
 
 		/*=======================
 			Animate Scroll JS
@@ -291,7 +295,7 @@ Version:	1.1
 				}, 1000);
 			e.preventDefault();
 		});
-		
+
 		/*=======================
 			Stellar JS
 		=========================*/
@@ -316,16 +320,16 @@ Version:	1.1
 				infoWindow: {
 				content: '<p>welcome to Medipro</p>'
 			}
-		
+
 		});
 	});
-	
+
 	/*====================
 		Preloader JS
 	======================*/
 	$(window).on('load', function() {
 		$('.preloader').addClass('preloader-deactivate');
 	});
-	
-	
+
+
 })(jQuery);

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Frontend;
 use App\Models\Client;
 use App\Models\Service;
 use App\Models\Appointment;
+use App\Models\DepartmentModel;
 use App\Http\Controllers\Controller;
 
 class ServiceController extends Controller
@@ -14,6 +15,7 @@ class ServiceController extends Controller
         $data['breadcrumb']         = ['Home' => url('/'), 'Services' => ''];
         $data['servicesDatas']      = Service::where('status', '1')->orderBy('order_by','asc')->get();
         $data['clientDatas']        = Client::where('status', '1')->orderBy('order_by','asc')->get();
+        $data['departments']        = DepartmentModel::where('status','1')->orderBy('order_by','asc')->get();
         return view('frontend.pages.services.index', $data);
    }
 

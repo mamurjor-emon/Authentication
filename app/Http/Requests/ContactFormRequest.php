@@ -26,6 +26,7 @@ class ContactFormRequest extends FormRequest
             'email'     => ['required','unique:contact_form_models,email'],
             'phone'     => ['required'],
             'subject'   => ['required'],
+            'condition' => ['required'],
         ];
     }
 }
