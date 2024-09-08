@@ -32,7 +32,7 @@
     <!-- Owl Carousel CSS -->
     <link rel="stylesheet" href="{{ asset('frontend/assets/css/owl-carousel.css') }}">
     <!-- Datepicker CSS -->
-    <link rel="stylesheet" href="{{ asset('frontend/assets/css/datepicker.css') }}">
+    {{-- <link rel="stylesheet" href="{{ asset('frontend/assets/css/datepicker.css') }}"> --}}
     <!-- Animate CSS -->
     <link rel="stylesheet" href="{{ asset('frontend/assets/css/animate.min.css') }}">
     <!-- Magnific Popup CSS -->
@@ -44,6 +44,9 @@
     <link rel="stylesheet" href="{{ asset('frontend/assets/css/responsive.css') }}">
     <!-- Toastr CSS-->
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/smoothness/jquery-ui.css">
+
     <style>
         .toast-success {
             background-color: #51A351;
@@ -148,7 +151,7 @@
         @endif
     </script>
     <!-- jquery Min JS -->
-    <script src="{{ asset('frontend/assets/js/jquery.min.js') }}"></script>
+    {{-- <script src="{{ asset('frontend/assets/js/jquery.min.js') }}"></script> --}}
     <!-- jquery Migrate JS -->
     <script src="{{ asset('frontend/assets/js/jquery-migrate-3.0.0.js') }}"></script>
     <!-- jquery Ui JS -->
@@ -160,7 +163,7 @@
     <!-- Popper JS -->
     <script src="{{ asset('frontend/assets/js/popper.min.js') }}"></script>
     <!-- Bootstrap Datepicker JS -->
-    <script src="{{ asset('frontend/assets/js/bootstrap-datepicker.js') }}"></script>
+    {{-- <script src="{{ asset('frontend/assets/js/bootstrap-datepicker.js') }}"></script> --}}
     <!-- Jquery Nav JS -->
     <script src="{{ asset('frontend/assets/js/jquery.nav.js') }}"></script>
     <!-- Slicknav JS -->
@@ -188,7 +191,7 @@
     <!-- Main JS -->
     <script src="{{ asset('frontend/assets/js/main.js') }}"></script>
     <!-- Ajax CDN -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script> --}}
     <script>
         var _token = "{{ csrf_token() }}";
     </script>

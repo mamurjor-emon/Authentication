@@ -229,12 +229,12 @@ Version:	1.1
 		/*=====================================
 			Date Picker JS
 		======================================*/
-		$(function() {
-            $('#datepicker').datepicker({
-                startDate: '28/08/2024',
-                endDate: '5/09/2024'
-            });
-        });
+		// $(function() {
+        //     $('#datepicker').datepicker({
+        //         startDate: '28/08/2024',
+        //         endDate: '5/09/2024'
+        //     });
+        // });
 
 
 

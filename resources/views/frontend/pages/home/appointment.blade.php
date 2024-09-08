@@ -1,3 +1,4 @@
+
 <!-- Start Appointment -->
 <section class="appointment">
     <div class="container">
@@ -31,8 +32,8 @@
                         </div>
                         <div class="col-lg-6 col-md-6 col-12">
                             <div class="form-group">
-                                <div class="nice-select form-control wide" tabindex="0"><span
-                                        class="current">Select Department</span>
+                                <div class="nice-select form-control wide" tabindex="0"><span class="current">Select
+                                        Department</span>
                                     <ul class="list" id="departments">
                                         @forelse ($departments as $department)
                                             <li data-value="{{ $department->id ?? '' }}" class="option">
@@ -47,8 +48,8 @@
                         </div>
                         <div class="col-lg-6 col-md-6 col-12">
                             <div class="form-group">
-                                <div class="nice-select form-control wide" tabindex="0"><span
-                                        class="current">Select Doctor</span>
+                                <div class="nice-select form-control wide" tabindex="0"><span class="current">Select
+                                        Doctor</span>
                                     <ul class="list" id="departmentdoctors">
                                     </ul>
                                 </div>
@@ -56,7 +57,7 @@
                         </div>
                         <div class="col-lg-6 col-md-6 col-12">
                             <div class="form-group">
-                                <input type="text" placeholder="Date" id="datepicker" readonly>
+                                <input type="text" placeholder="Date" class="js-ui-datepicker" readonly>
                             </div>
                         </div>
                         <div class="col-lg-12 col-md-12 col-12">
@@ -92,29 +93,49 @@
 
 <!-- Include jQuery and jQuery UI -->
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-    <script>
-        $(document).ready(function() {
-            $('#departments').on('click', '.option', function() {
-                var departmentId = $(this).data('value');
-                $.ajax({
-                    url: "{{ route('frontend.department.doctor') }}",
-                    type: 'POST',
-                    dataType: 'json',
-                    data: {
-                        id: departmentId,
-                    },
-                    async: true,
-                    cache: false,
-                    headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                    },
-                    success: function(data) {
-                        $('#departmentdoctors').html('');
-                        if (data.status == 'success') {
-                            $('#departmentdoctors').html(data.doctors);
-                        }
+<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+
+<script>
+     $('.js-ui-datepicker').one('focus', function() {
+        $(this).datepicker({
+            minDate: 0,
+            showButtonPanel: true,
+            beforeShowDay: function(date) {
+                var today = new Date();
+                today.setHours(0, 0, 0, 0);
+                date.setHours(0, 0, 0, 0);
+                var dayDiff = Math.floor((date - today) / (1000 * 60 * 60 * 24));
+                console.log("Day Difference:", dayDiff);
+                if (dayDiff >= 0 && dayDiff < 10) {
+                    return [true];
+                }
+                return [false];
+            }
+        }).datepicker('show');
+    });
+
+    $(document).ready(function() {
+        $('#departments').on('click', '.option', function() {
+            var departmentId = $(this).data('value');
+            $.ajax({
+                url: "{{ route('frontend.department.doctor') }}",
+                type: 'POST',
+                dataType: 'json',
+                data: {
+                    id: departmentId,
+                },
+                async: true,
+                cache: false,
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                success: function(data) {
+                    $('#departmentdoctors').html('');
+                    if (data.status == 'success') {
+                        $('#departmentdoctors').html(data.doctors);
                     }
-                });
+                }
             });
         });
-    </script>
+    });
+</script>
