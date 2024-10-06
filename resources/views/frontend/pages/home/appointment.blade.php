@@ -57,7 +57,7 @@
                         </div>
                         <div class="col-lg-6 col-md-6 col-12">
                             <div class="form-group">
-                                <input type="text" placeholder="Date" class="js-ui-datepicker" readonly>
+                                <input type="text" placeholder="Date"  id="datepicker" class="js-ui-datepicker" readonly>
                             </div>
                         </div>
                         <div class="col-lg-12 col-md-12 col-12">
@@ -97,7 +97,7 @@
 
 <script>
      $('.js-ui-datepicker').one('focus', function() {
-        $(this).datepicker({
+        $('.js-ui-datepicker').datepicker({
             minDate: 0,
             showButtonPanel: true,
             beforeShowDay: function(date) {

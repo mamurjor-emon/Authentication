@@ -32,7 +32,7 @@
     <!-- Owl Carousel CSS -->
     <link rel="stylesheet" href="{{ asset('frontend/assets/css/owl-carousel.css') }}">
     <!-- Datepicker CSS -->
-    {{-- <link rel="stylesheet" href="{{ asset('frontend/assets/css/datepicker.css') }}"> --}}
+    <link rel="stylesheet" href="{{ asset('frontend/assets/css/datepicker.css') }}">
     <!-- Animate CSS -->
     <link rel="stylesheet" href="{{ asset('frontend/assets/css/animate.min.css') }}">
     <!-- Magnific Popup CSS -->
