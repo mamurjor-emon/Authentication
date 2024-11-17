@@ -28,7 +28,7 @@
                         @endforelse
                         @endif
                     </div>
-                   <div class="mt-5" id="blogs_pagination">
+                   <div class="mt-5 d-flex justify-content-end align-items-center" id="blogs_pagination">
                         {{ $blogs->links() }}
                    </div>
                 </div>

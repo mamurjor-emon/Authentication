@@ -11,7 +11,7 @@ class DoctorController extends Controller
     {
         $this->setPageTitle('Medical And Doctors');
         $data['breadcrumb']         = ['Home' => url('/'), 'Meet Our Qualified Doctors' => ''];
-        $data['doctors']            = DoctorModel::with(['user','department'])->where('status','1')->get();
+        $data['doctors']            = DoctorModel::with(['user','department'])->where('status','1')->paginate(9);
         return view('frontend.pages.doctors.all-doctors', $data);
     }
 

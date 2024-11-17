@@ -16,7 +16,9 @@
                             </div>
                             <div class="t-bottom">
                                 <p>{{ $doctor->department->name }}</p>
-                                <h2><a href="{{ route('frontend.single.doctors',['id' => $doctor->id]) }}">{{ $doctor->user->fname .' '. $doctor->user->lname }}</a></h2>
+                                <h2><a
+                                        href="{{ route('frontend.single.doctors', ['id' => $doctor->id]) }}">{{ $doctor->user->fname . ' ' . $doctor->user->lname }}</a>
+                                </h2>
                             </div>
                         </div>
                         <!-- End Single Team -->
@@ -25,9 +27,12 @@
                     <p class="text-center text-danger">No Doctor Found</p>
                 @endforelse
             </div>
+            <div class="mt-4 d-flex justify-content-end">
+                {{ $doctors->links() ?? '' }}
+            </div>
         </div>
     </section>
-     <!--  Newsletter Area -->
-     @include('frontend.pages.home.newsletter')
-     <!-- /End Newsletter Area -->
+    <!--  Newsletter Area -->
+    @include('frontend.pages.home.newsletter')
+    <!-- /End Newsletter Area -->
 @endsection

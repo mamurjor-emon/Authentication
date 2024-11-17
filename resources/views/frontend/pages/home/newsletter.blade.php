@@ -17,7 +17,7 @@
                            @csrf
                            <input name="email" placeholder="Your email address" class="common-input"
                                onfocus="this.placeholder = ''" onblur="this.placeholder = 'Your email address'"
-                               required type="email">
+                               required type="email" value="{{ Auth::check() ? Auth::user()->email : '' }}">
                            <button type="submit" class="btn">Subscribe</button>
                        </form>
                    </div>

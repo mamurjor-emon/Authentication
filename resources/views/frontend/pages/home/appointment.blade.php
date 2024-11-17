@@ -1,5 +1,37 @@
-
 <!-- Start Appointment -->
+<style>
+    .appointment .ui-state-highlight,
+    .ui-widget-content .ui-state-highlight,
+    .ui-widget-header .ui-state-highlight {
+        border: 1px solid var(--primary-color) !important;
+        background: var(--primary-color) !important;
+        color: var(--white) !important;
+        display: flex;
+        justify-content: center;
+        align-items: ;
+    }
+
+    .appointment .ui-state-default,
+    .ui-widget-content .ui-state-default,
+    .ui-widget-header .ui-state-default,
+    .ui-button,
+    html .ui-button.ui-state-disabled:hover,
+    html .ui-button.ui-state-disabled:active {
+        border: 1px solid #c5c5c5;
+        background: #f6f6f6;
+        font-weight: normal;
+        color: #454545;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .appointment  .ui-state-active, .ui-widget-content .ui-state-active, .ui-widget-header .ui-state-active, a.ui-button:active, .ui-button:active, .ui-button.ui-state-active:hover {
+	border: 1px solid transparent;
+	background: #007fff;
+	font-weight: normal;
+	color: #ffffff;
+}
+</style>
 <section class="appointment">
     <div class="container">
         <div class="row">
@@ -13,51 +45,66 @@
         </div>
         <div class="row">
             <div class="col-lg-6 col-md-12 col-12">
-                <form class="form" action="#">
+                <form method="POST" class="form" action="{{ route('appointment.booking.store') }}">
+                    @csrf
                     <div class="row">
                         <div class="col-lg-6 col-md-6 col-12">
                             <div class="form-group">
-                                <input name="name" type="text" placeholder="Name">
+                                <input name="name" type="text" placeholder="Name" value="{{ Auth::check() ? Auth::user()->fname : old('name') }}">
                             </div>
                         </div>
                         <div class="col-lg-6 col-md-6 col-12">
                             <div class="form-group">
-                                <input name="email" type="email" placeholder="Email">
+                                <input name="email" type="email" placeholder="Email" value="{{ Auth::check() ? Auth::user()->email : old('email') }}">
                             </div>
                         </div>
                         <div class="col-lg-6 col-md-6 col-12">
                             <div class="form-group">
-                                <input name="phone" type="text" placeholder="Phone">
+                                <input name="phone" type="text" placeholder="Phone" value="{{ Auth::check() ? Auth::user()->phone : old('phone') }}">
                             </div>
                         </div>
                         <div class="col-lg-6 col-md-6 col-12">
                             <div class="form-group">
-                                <div class="nice-select form-control wide" tabindex="0"><span class="current">Select
-                                        Department</span>
+                                <div class="nice-select form-control wide" tabindex="0">
+                                    <span class="current">Select Department</span>
                                     <ul class="list" id="departments">
                                         @forelse ($departments as $department)
                                             <li data-value="{{ $department->id ?? '' }}" class="option">
-                                                {{ $department->name ?? '' }}</li>
+                                                {{ $department->name ?? '' }}
+                                            </li>
                                         @empty
-                                            <li class="text-danger text-center" data-value="" class="option">No
-                                                Department Found !</li>
+                                            <li class="text-danger text-center" data-value="" class="option">
+                                                No Department Found!
+                                            </li>
                                         @endforelse
                                     </ul>
                                 </div>
+                                <input type="hidden" name="department_id" id="selectedDepartment">
                             </div>
                         </div>
                         <div class="col-lg-6 col-md-6 col-12">
                             <div class="form-group">
-                                <div class="nice-select form-control wide" tabindex="0"><span class="current">Select
-                                        Doctor</span>
+                                <div class="nice-select form-control wide" tabindex="0">
+                                    <span class="current">Select Doctor</span>
                                     <ul class="list" id="departmentdoctors">
                                     </ul>
                                 </div>
+                                <input type="hidden" name="doctor_id" id="selectedDoctor">
                             </div>
                         </div>
                         <div class="col-lg-6 col-md-6 col-12">
                             <div class="form-group">
-                                <input type="text" placeholder="Date"  id="datepicker" class="js-ui-datepicker" readonly>
+                                <input type="text" name="date" placeholder="Date" id="datepicker" class="js-ui-datepicker" readonly>
+                            </div>
+                        </div>
+                        <div class="col-lg-12 col-md-12 col-12">
+                            <div class="form-group">
+                                <div class="nice-select form-control wide" tabindex="0">
+                                    <span class="current">Select Slot</span>
+                                    <ul class="list" id="slots">
+                                    </ul>
+                                </div>
+                                <input type="hidden" name="slot_id" id="selectedSlots">
                             </div>
                         </div>
                         <div class="col-lg-12 col-md-12 col-12">
@@ -92,33 +139,36 @@
 <!-- End Appointment -->
 
 <!-- Include jQuery and jQuery UI -->
+<!-- Include jQuery -->
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<!-- Include jQuery UI -->
 <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+<!-- Include jQuery UI CSS -->
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
 
 <script>
-     $('.js-ui-datepicker').one('focus', function() {
-        $('.js-ui-datepicker').datepicker({
-            minDate: 0,
-            showButtonPanel: true,
-            beforeShowDay: function(date) {
-                var today = new Date();
-                today.setHours(0, 0, 0, 0);
-                date.setHours(0, 0, 0, 0);
-                var dayDiff = Math.floor((date - today) / (1000 * 60 * 60 * 24));
-                console.log("Day Difference:", dayDiff);
-                if (dayDiff >= 0 && dayDiff < 10) {
-                    return [true];
-                }
-                return [false];
-            }
-        }).datepicker('show');
+    $(document).ready(function () {
+        $('#departments').on('click', '.option', function () {
+            const selectedValue = $(this).data('value');
+            $('#selectedDepartment').val(selectedValue);
+        });
+
+        $('#departmentdoctors').on('click', '.option', function () {
+            const selectedValue = $(this).data('value');
+            $('#selectedDoctor').val(selectedValue);
+        });
+
+        $('#slots').on('click', '.option', function () {
+            const selectedValue = $(this).data('value');
+            $('#selectedSlots').val(selectedValue);
+        });
     });
 
     $(document).ready(function() {
         $('#departments').on('click', '.option', function() {
             var departmentId = $(this).data('value');
             $.ajax({
-                url: "{{ route('frontend.department.doctor') }}",
+                url: "{{ route('appointment.booking.department.doctor') }}",
                 type: 'POST',
                 dataType: 'json',
                 data: {
@@ -139,3 +189,43 @@
         });
     });
 </script>
+<script>
+    jQuery.noConflict();
+    jQuery(document).ready(function($) {
+        $('.js-ui-datepicker').datepicker({
+            minDate: 0,
+            showButtonPanel: true,
+            beforeShowDay: function(date) {
+                var today = new Date();
+                today.setHours(0, 0, 0, 0);
+                date.setHours(0, 0, 0, 0);
+                var dayDiff = Math.floor((date - today) / (1000 * 60 * 60 * 24));
+                return dayDiff >= 0 && dayDiff < 10 ? [true] : [false];
+            },
+            onSelect: function(selectedDate) {
+                var doctorId = $('#selectedDoctor').val();
+                $.ajax({
+                    url: "{{ route('appointment.booking.slots') }}",
+                    type: 'POST',
+                    dataType: 'json',
+                    data: {
+                        selectedDate: selectedDate,
+                        doctorId: doctorId,
+                    },
+                    async: true,
+                    cache: false,
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    success: function(data) {
+                        $('#slots').html('');
+                        if (data.status == 'success') {
+                            $('#slots').html(data.slots);
+                        }
+                    }
+                });
+            }
+        });
+    });
+</script>
+

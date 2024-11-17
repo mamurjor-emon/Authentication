@@ -18,6 +18,12 @@
     <link rel="shortcut icon" href="{{ asset('frontend/assets/img/favicon.png') }}" />
     <!-- Toastr CSS-->
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+    <!--  Custom Style  -->
+    <style>
+        .main-wrapper #forgetpassword {
+            color: #1a76d1 !important;
+        }
+    </style>
 </head>
 
 <body>
@@ -89,7 +95,7 @@
                                                 </div>
                                                 <div
                                                     class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-6-desktop d-flex align-items-center justify-content-end">
-                                                    <a href="{{ route('forgot.password') }}">Forgot Password</a>
+                                                    <a id="forgetpassword" href="{{ route('forgot.password') }}">Forgot Password</a>
                                                 </div>
                                                 <div
                                                     class="mdc-form-field mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-12 align-items-center">

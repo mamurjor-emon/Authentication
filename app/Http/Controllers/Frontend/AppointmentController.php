@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\FrontedApppontmentRequest;
 use App\Models\DoctorModel;
+use App\Models\SlotModel;
 use Illuminate\Http\Request;
 
 class AppointmentController extends Controller
@@ -24,5 +26,30 @@ class AppointmentController extends Controller
                 'doctors' => $doctorsData,
             ],200);
         }
+    }
+    public function appointmentSolts(Request $request){
+        if($request->ajax()){
+            $request->validate([
+                'selectedDate'  => ['required'],
+                'doctorId'      => ['required'],
+            ]);
+            $slots = SlotModel::where('status','1')->get();
+            $slotsData = '';
+            if($slots->count() > 0){
+                foreach($slots as $slot){
+                    $slotsData .= '<li data-value="' . ($slot->id ?? '') . '" class="option">' . ($slot->start_time ?? '') .'-'. ($slot->start_zone ?? ''). '--'.($slot->end_time ?? '') .'-'. ($slot->end_zone ?? '').'</li>';
+                }
+            }else{
+                $slotsData .= '<li class="text-danger text-center" data-value="" class="option">No Slot Found !</li>';
+            }
+            return response()->json([
+                'status' => 'success',
+                'slots' => $slotsData,
+            ],200);
+        }
+    }
+    // FrontedApppontmentRequest
+    public function appointmentBooking(Request $request){
+        dd($request->all());
     }
 }

@@ -68,7 +68,7 @@
                             @csrf
                             <input name="email" placeholder="Email Address" class="common-input"
                                 onfocus="this.placeholder = ''" onblur="this.placeholder = 'Your email address'"
-                                type="email" name="email">
+                                type="email" name="email" value="{{ Auth::check() ? Auth::user()->email : '' }}">
                             <button type="submit" class="button"><i class="icofont icofont-paper-plane"></i></button>
                         </form>
                     </div>

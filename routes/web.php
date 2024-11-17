@@ -81,12 +81,21 @@ Route::prefix('frontend')->name('frontend.')->group(function () {
     Route::get('contact',[ContactController::class,'contact'])->name('frontend.contact');
     Route::post('contact/store',[ContactController::class,'store'])->name('frontend.contact.store');
     Route::get('time-table',[ContactController::class,'timeTable'])->name('frontend.time.table');
-
-    //------------ Contact  ------------//
-    Route::post('department',[AppointmentController::class,'departmentDoctor'])->name('department.doctor');
 });
 
 //------------ Subscribe  ------------//
 Route::prefix('subscribe')->name('subscribe.')->group(function () {
     Route::post('store', [SubscriberController::class, 'store'])->name('store');
 });
+
+//------------ Appointment Booking  ------------//
+Route::group(['prefix' => 'appointment-booking','as' => 'appointment.booking.','middleware' => ['auth']], function () {
+    //------------ Department  ------------//
+    Route::post('department',[AppointmentController::class,'departmentDoctor'])->name('department.doctor');
+
+    //------------ Slots  ------------//
+    Route::post('slots',[AppointmentController::class,'appointmentSolts'])->name('slots');
+
+    Route::post('/store', [AppointmentController::class, 'appointmentBooking'])->name('store');
+});
+

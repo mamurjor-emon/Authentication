@@ -16,7 +16,7 @@ class BlogController extends Controller
     public function blogs()
     {
         $this->setPageTitle('Blogs');
-        $data['blogs']        = Blog::with(['user', 'categorie'])->paginate(6);
+        $data['blogs']        = Blog::with(['user', 'categorie'])->paginate(9);
         $data['tags']         = BlogTag::where('status', '1')->get();
         $data['categories']   = BlogCategories::where('status', '1')->get();
         $data['breadcrumb']   = ['Home' => url('/'), 'Blogs' => ''];
