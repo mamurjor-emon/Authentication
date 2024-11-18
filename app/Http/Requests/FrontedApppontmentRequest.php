@@ -22,10 +22,11 @@ class FrontedApppontmentRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'phone'         => ['required'],
             'department_id' => ['required'],
+            'date'          => ['required'],
             'doctor_id'     => ['required'],
             'slot_id'       => ['required'],
+            'message'       => ['required'],
         ];
     }
 }

@@ -68,6 +68,7 @@ class EmailTemplatesController extends Controller
             abort(401);
         }
     }
+
     public function edit($id)
     {
         if (Gate::allows('isAdmin')) {

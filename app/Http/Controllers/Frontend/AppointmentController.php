@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers\Frontend;
 
-use App\Http\Controllers\Controller;
-use App\Http\Requests\FrontedApppontmentRequest;
-use App\Models\DoctorModel;
 use App\Models\SlotModel;
+use App\Models\DoctorModel;
 use Illuminate\Http\Request;
+use App\Models\PatientAppontment;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\FrontedApppontmentRequest;
 
 class AppointmentController extends Controller
 {
@@ -27,6 +29,7 @@ class AppointmentController extends Controller
             ],200);
         }
     }
+
     public function appointmentSolts(Request $request){
         if($request->ajax()){
             $request->validate([
@@ -40,7 +43,7 @@ class AppointmentController extends Controller
                     $slotsData .= '<li data-value="' . ($slot->id ?? '') . '" class="option">' . ($slot->start_time ?? '') .'-'. ($slot->start_zone ?? ''). '--'.($slot->end_time ?? '') .'-'. ($slot->end_zone ?? '').'</li>';
                 }
             }else{
-                $slotsData .= '<li class="text-danger text-center" data-value="" class="option">No Slot Found !</li>';
+                    $slotsData .= '<li class="text-danger text-center" data-value="" class="option">No Slot Found !</li>';
             }
             return response()->json([
                 'status' => 'success',
@@ -48,8 +51,45 @@ class AppointmentController extends Controller
             ],200);
         }
     }
-    // FrontedApppontmentRequest
-    public function appointmentBooking(Request $request){
-        dd($request->all());
+
+    public function appointmentBooking(FrontedApppontmentRequest $request){
+        if($request->date != null){
+            $getAppontment = PatientAppontment::where('date', $request->data)->where('id',Auth::id())->first();
+            if(!$getAppontment){
+                PatientAppontment::create([
+                    'user_id'     => Auth::id(),
+                    'doctor_id'   => $request->doctor_id,
+                    'slot_id'     => $request->slot_id,
+                    'date'        => $request->date,
+                    'description' => $request->description,
+                    'status'      => '1',
+                ]);
+
+                // $request['roleName'] = $role->name;
+                // $request['full_name'] = $request->fname . ' ' . $request->lname;
+                // $request['button_url'] = URL::temporarySignedRoute('verify.code', now()->addHours(1), ['token' => $verify_code]);
+                // $request['button_title'] = 'Click Here To Verify Email';
+
+                // User mail
+                $subject = emailSubjectTemplate('NEW_USER_MAIL', $request);
+                $body    = emailBodyTemplate('NEW_USER_MAIL', $request);
+                $heading = emailHeadingTemplate('NEW_USER_MAIL', $request);
+
+                // $userMail = ['subject' => $subject, 'body' => $body, 'heading' => $heading];
+                // Mail::to($request->email)->later(now()->addSeconds(10), new VerifyUserMail($userMail));
+                // $message = [
+                //     'sender' => $user->id,
+                //     'to' => $admin->id,
+                //     'message' => 'A New User Has Registered: ' . $request->fname . ' ' . $request->lname,
+                // ];
+                // Broadcast(new NotificationBroadcast($message))->toOthers();
+                // $admin->notify(new UserRegisteredNotification($user));
+
+
+                return back()->with('success', 'Your Appointment Submit Successfully !');
+            }else{
+                return back()->with('warning', "Your Can't Appointment For Today !");
+            }
+        }
     }
 }

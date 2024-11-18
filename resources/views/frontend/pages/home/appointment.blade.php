@@ -60,11 +60,6 @@
                         </div>
                         <div class="col-lg-6 col-md-6 col-12">
                             <div class="form-group">
-                                <input name="phone" type="text" placeholder="Phone" value="{{ Auth::check() ? Auth::user()->phone : old('phone') }}">
-                            </div>
-                        </div>
-                        <div class="col-lg-6 col-md-6 col-12">
-                            <div class="form-group">
                                 <div class="nice-select form-control wide" tabindex="0">
                                     <span class="current">Select Department</span>
                                     <ul class="list" id="departments">
@@ -80,6 +75,9 @@
                                     </ul>
                                 </div>
                                 <input type="hidden" name="department_id" id="selectedDepartment">
+                                @error('department_id')
+                                <span class="text-danger">{{ $message }}</span>
+                                @enderror
                             </div>
                         </div>
                         <div class="col-lg-6 col-md-6 col-12">
@@ -90,14 +88,20 @@
                                     </ul>
                                 </div>
                                 <input type="hidden" name="doctor_id" id="selectedDoctor">
+                                @error('doctor_id')
+                                <span class="text-danger">{{ $message }}</span>
+                                @enderror
                             </div>
                         </div>
                         <div class="col-lg-6 col-md-6 col-12">
                             <div class="form-group">
                                 <input type="text" name="date" placeholder="Date" id="datepicker" class="js-ui-datepicker" readonly>
+                                @error('date')
+                                <span class="text-danger">{{ $message }}</span>
+                                @enderror
                             </div>
                         </div>
-                        <div class="col-lg-12 col-md-12 col-12">
+                        <div class="col-lg-6 col-md-6 col-12">
                             <div class="form-group">
                                 <div class="nice-select form-control wide" tabindex="0">
                                     <span class="current">Select Slot</span>
@@ -105,11 +109,17 @@
                                     </ul>
                                 </div>
                                 <input type="hidden" name="slot_id" id="selectedSlots">
+                                @error('slot_id')
+                                <span class="text-danger">{{ $message }}</span>
+                                @enderror
                             </div>
                         </div>
                         <div class="col-lg-12 col-md-12 col-12">
                             <div class="form-group">
-                                <textarea name="message" placeholder="Write Your Message Here....."></textarea>
+                                <textarea name="message" placeholder="Write Your Reason Here....."></textarea>
+                                @error('message')
+                                <span class="text-danger">{{ $message }}</span>
+                                @enderror
                             </div>
                         </div>
                     </div>
