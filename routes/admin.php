@@ -4,6 +4,7 @@ use App\Models\TitleDiscrption;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Broadcast;
 use App\Http\Controllers\Backend\Admin\DayController;
+use App\Http\Controllers\Backend\Admin\RoomController;
 use App\Http\Controllers\Backend\Admin\SlotController;
 use App\Http\Controllers\Backend\Admin\TimePageController;
 use App\Http\Controllers\Backend\Admin\DashboardController;
@@ -181,6 +182,14 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth', 'i
 
     //------------------------ Doctors Section -----------------------//
     Route::prefix('doctor')->name('doctor.')->group(function () {
+        Route::get('/room', [RoomController::class, 'index'])->name('room.index');
+        Route::post('room/getdata', [RoomController::class, 'getData'])->name('room.get.data');
+        Route::get('room/create', [RoomController::class, 'create'])->name('room.create');
+        Route::post('room/store', [RoomController::class, 'store'])->name('room.store');
+        Route::get('room/edit/{id}', [RoomController::class, 'edit'])->name('room.edit');
+        Route::post('room/update', [RoomController::class, 'update'])->name('room.update');
+        Route::get('room/delete/{id}', [RoomController::class, 'delete'])->name('room.delete');
+
         Route::get('/slot', [SlotController::class, 'index'])->name('slot.index');
         Route::post('slot/getdata', [SlotController::class, 'getData'])->name('slot.get.data');
         Route::get('slot/create', [SlotController::class, 'create'])->name('slot.create');
