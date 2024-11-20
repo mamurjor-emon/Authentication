@@ -108,6 +108,11 @@
                    <div class="mdc-expansion-panel" id="ui-sub-menu-time-table" {!! $parentTimeTableSubMenu ?? '' !!}>
                        <nav class="mdc-list mdc-drawer-submenu">
                            <div class="mdc-list-item mdc-drawer-item">
+                               <a class="mdc-drawer-link {{ $addBullding ?? '' }}" href="{{ route('admin.doctor.bullding.index') }}">
+                                   Add Bullding
+                               </a>
+                           </div>
+                           <div class="mdc-list-item mdc-drawer-item">
                                <a class="mdc-drawer-link {{ $addRoom ?? '' }}" href="{{ route('admin.doctor.room.index') }}">
                                    Add Room
                                </a>

@@ -16,6 +16,7 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained('users')->cascadeOnDelete();
             $table->foreignId('department_id')->constrained('department_models')->cascadeOnDelete();
             $table->foreignId('room_id')->constrained('rooms')->cascadeOnDelete();
+            $table->foreignId('bullding_id')->constrained('bulldings')->cascadeOnDelete();
             $table->string('image');
             $table->string('phone');
             $table->string('location');

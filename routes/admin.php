@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Broadcast;
 use App\Http\Controllers\Backend\Admin\DayController;
 use App\Http\Controllers\Backend\Admin\RoomController;
 use App\Http\Controllers\Backend\Admin\SlotController;
+use App\Http\Controllers\Backend\Admin\BulldingController;
 use App\Http\Controllers\Backend\Admin\TimePageController;
 use App\Http\Controllers\Backend\Admin\DashboardController;
 use App\Http\Controllers\Backend\Admin\TimeTableController;
@@ -182,6 +183,14 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth', 'i
 
     //------------------------ Doctors Section -----------------------//
     Route::prefix('doctor')->name('doctor.')->group(function () {
+        Route::get('/bullding', [BulldingController::class, 'index'])->name('bullding.index');
+        Route::post('bullding/getdata', [BulldingController::class, 'getData'])->name('bullding.get.data');
+        Route::get('bullding/create', [BulldingController::class, 'create'])->name('bullding.create');
+        Route::post('bullding/store', [BulldingController::class, 'store'])->name('bullding.store');
+        Route::get('bullding/edit/{id}', [BulldingController::class, 'edit'])->name('bullding.edit');
+        Route::post('bullding/update', [BulldingController::class, 'update'])->name('bullding.update');
+        Route::get('bullding/delete/{id}', [BulldingController::class, 'delete'])->name('bullding.delete');
+
         Route::get('/room', [RoomController::class, 'index'])->name('room.index');
         Route::post('room/getdata', [RoomController::class, 'getData'])->name('room.get.data');
         Route::get('room/create', [RoomController::class, 'create'])->name('room.create');
