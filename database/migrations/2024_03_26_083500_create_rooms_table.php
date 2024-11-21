@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('rooms', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('bullding_id')->constrained('bulldings')->cascadeOnDelete();
             $table->string('room_no');
             $table->string('order_by');
             $table->enum('status',[0,1])->comment('0 = Pending , 1 = Publish');

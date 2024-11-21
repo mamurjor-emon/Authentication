@@ -242,6 +242,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth', 'i
 
         Route::get('/', [DoctorController::class, 'index'])->name('index');
         Route::post('getdata', [DoctorController::class, 'getData'])->name('get.data');
+        Route::post('get-room', [DoctorController::class, 'getRoom'])->name('get.room');
         Route::get('create', [DoctorController::class, 'create'])->name('create');
         Route::post('store', [DoctorController::class, 'store'])->name('store');
         Route::get('edit/{id}', [DoctorController::class, 'edit'])->name('edit');

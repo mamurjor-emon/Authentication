@@ -14,8 +14,13 @@ class Room extends Model
      * @var array
      */
     protected $fillable = [
+        'bullding_id',
         'room_no',
         'order_by',
         'status',
     ];
+
+    public function bullding(){
+        return $this->belongsTo(Bullding::class);
+    }
 }

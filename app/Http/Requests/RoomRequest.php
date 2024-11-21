@@ -21,15 +21,11 @@ class RoomRequest extends FormRequest
      */
     public function rules(): array
     {
-        $roles = [
-            'order_by' => ['required'],
-            'status'   => ['required'],
+        return [
+            'room_no'     => ['required'],
+            'bullding_id' => ['required'],
+            'order_by'    => ['required'],
+            'status'      => ['required'],
         ];
-        if (request()->update_id) {
-            $roles['room_no']  = ['required'];
-        } else {
-            $roles['room_no']   = ['required', 'unique:rooms,room_no,'];
-        }
-        return $roles;
     }
 }

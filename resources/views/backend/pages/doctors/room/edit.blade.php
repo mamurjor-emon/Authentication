@@ -13,19 +13,27 @@
                         <input type="hidden" name="update_id" value="{{ $editRoom->id ?? '' }}">
                         <div class="row g-5 mt-2">
                             <x-form.textbox labelName="Room Number" parantClass="col-12 col-md-6" name="room_no"
-                            type="number" required="required" placeholder="Enter Room Number..!" errorName="room_no" class="py-2"
-                            value="{{ $editRoom->room_no ??  old('room_no') }}"></x-form.textbox>
+                                type="number" required="required" placeholder="Enter Room Number..!" errorName="room_no"
+                                class="py-2" value="{{ $editRoom->room_no ?? old('room_no') }}"></x-form.textbox>
 
-                            <x-form.textbox labelName="Order By" parantClass="col-12 col-md-6" name="order_by"
-                            type="number" required="required" placeholder="Enter Order By..!" errorName="order_by" class="py-2"
-                            value="{{ $editRoom->order_by ??  old('order_by') }}"></x-form.textbox>
+                            <x-form.selectbox parantClass="col-12 col-md-6" class="form-control" name="bullding_id"
+                                required="required" labelName="Bullding" errorName="bullding_id">
+                                @forelse ($bulldings as $bullding)
+                                    <option value="{{ $bullding->id ?? '' }}" {{ $bullding->id ==  $editRoom->bullding_id ? 'selected' : ''}}>{{ $bullding->name ?? '' }}</option>
+                                @empty
+                                @endforelse
+                            </x-form.selectbox>
                         </div>
                         <div class="row g-5 mt-2">
+                            <x-form.textbox labelName="Order By" parantClass="col-12 col-md-6" name="order_by"
+                                type="number" required="required" placeholder="Enter Order By..!" errorName="order_by"
+                                class="py-2" value="{{ $editRoom->order_by ?? old('order_by') }}"></x-form.textbox>
+
                             <x-form.selectbox parantClass="col-12 col-md-6" class="form-control" name="status"
-                                    required="required" labelName="Status" errorName="status">
-                                    <option value="0" {{ $editRoom->status == '0' ? 'selected' : '' }}>Pending</option>
-                                    <option value="1" {{ $editRoom->status == '1' ? 'selected' : '' }}>Publish</option>
-                                </x-form.selectbox>
+                                required="required" labelName="Status" errorName="status">
+                                <option value="0" {{ $editRoom->status == '0' ? 'selected' : '' }}>Pending</option>
+                                <option value="1" {{ $editRoom->status == '1' ? 'selected' : '' }}>Publish</option>
+                            </x-form.selectbox>
                         </div>
 
                         <div class="d-flex justify-content-end align-items-center mt-3">

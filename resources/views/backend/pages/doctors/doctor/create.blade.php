@@ -32,6 +32,25 @@
                                 @endforelse
                             </x-form.selectbox>
                         </div>
+                        <div class="row g-5 mt-2">
+                            <x-form.selectbox parantClass="col-12 col-md-6" class="form-control" name="bullding_id"
+                                required="required" id="bullding_id" labelName="Select Bullding" errorName="bullding_id">
+                                <option value="">Select Bullding</option>
+                                @forelse ($allBulldings as $bullding)
+                                    <option value="{{ $bullding->id }}">{{ $bullding->name ?? ''}} - {{ $bullding->location ?? '' }}</option>
+                                @empty
+                                @endforelse
+                            </x-form.selectbox>
+
+                            <x-form.selectbox parantClass="col-12 col-md-6" class="form-control" name="department_id"
+                                required="required" labelName="Select Department" errorName="department_id">
+                                <option value="">Select Department</option>
+                                @forelse ($allDepartments as $department)
+                                    <option value="{{ $department->id }}">{{ $department->name }}</option>
+                                @empty
+                                @endforelse
+                            </x-form.selectbox>
+                        </div>
 
                         <div class="row g-5 mt-2">
                             <x-form.textbox labelName="Phone" parantClass="col-12 col-md-6" name="phone"
@@ -137,6 +156,29 @@
     </div>
 @endsection
 @push('scripts')
+<script>
+    $(document).ready(function () {
+        $('#bullding_id').on('change', function() {
+            var bullding_id = $(this).val();
+           $.ajax({
+            type: "POST",
+            url: "{{ route('admin.doctor.get.room') }}",
+            data: {
+                id : bullding_id,
+            },
+            dataType: 'json',
+            async: true,
+            cache: false,
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            success: function (res) {
+                console.log(res.data);
+            }
+           });
+        });
+    });
+</script>
 <script>
     function summerNote(id, title) {
         $(id).summernote({

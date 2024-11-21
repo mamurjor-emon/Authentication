@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Backend\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\RoomRequest;
+use App\Models\Bullding;
 use App\Models\Room;
 use Illuminate\Support\Facades\Gate;
 use Yajra\DataTables\Facades\DataTables;
@@ -35,15 +36,28 @@ class RoomController extends Controller
     {
         if (Gate::allows('isAdmin')) {
             if ($request->ajax()) {
-                $getData = Room::latest('id');
+                $getData = Room::with(['bullding'])->latest('id');
                 return DataTables::eloquent($getData)
                     ->addIndexColumn()
                     ->filter(function ($query) use ($request) {
                         if (!empty($request->search)) {
-                            $query->when($request->search, function ($query, $value) {
-                                $query->where('room_no', 'like', "%{$value}%");
+                            $query->where(function ($query) use ($request) {
+                                $query->where('room_no', 'like', "%{$request->search}%")
+                                    ->orWhereHas('bullding', function ($query) use ($request) {
+                                        $query->where('name', 'like', "%{$request->search}%")
+                                              ->orWhere('location', 'like', "%{$request->search}%");
+                                    });
                             });
                         }
+                    })
+                    ->addColumn('name', function ($data) {
+                        return $data->bullding->name;
+                    })
+                    ->addColumn('location', function ($data) {
+                        return $data->bullding->location;
+                    })
+                    ->addColumn('image', function ($data) {
+                        return '<img class="bg-dark" id="getDataImage" src="' . asset($data->bullding->image) . '" alt="image">';
                     })
                     ->addColumn('room_no', function ($data) {
                         return $data->room_no;
@@ -61,7 +75,7 @@ class RoomController extends Controller
                     @csrf
                     @method("DELETE") </form></div>';
                     })
-                    ->rawColumns(['status', 'action'])
+                    ->rawColumns(['image','status', 'action'])
                     ->make(true);
             }
         } else {
@@ -76,6 +90,7 @@ class RoomController extends Controller
             $data['parentTimeTable']        = 'expanded';
             $data['parentTimeTableSubMenu'] = 'style="display: block;"';
             $data['addRoom']                = 'active';
+            $data['bulldings']              = Bullding::where('status','1')->get();
             $data['totalRooms']             = Room::get();
             $data['breadcrumb']             = ['Rooms' => route('admin.doctor.room.index'), 'Create Rooom' => '',];
             return view('backend.pages.doctors.room.create', $data);
@@ -89,9 +104,10 @@ class RoomController extends Controller
     {
         if (Gate::allows('isAdmin')) {
             Room::create([
-                'room_no'  => $request->room_no,
-                'order_by' => $request->order_by,
-                'status'   => $request->status,
+                'bullding_id' => $request->bullding_id,
+                'room_no'     => $request->room_no,
+                'order_by'    => $request->order_by,
+                'status'      => $request->status,
             ]);
             return redirect()->route('admin.doctor.room.index')->with('success', 'Room Create Successfuly Done..!');
         } else {
@@ -106,6 +122,7 @@ class RoomController extends Controller
             $data['parentTimeTable']        = 'expanded';
             $data['parentTimeTableSubMenu'] = 'style="display: block;"';
             $data['addRoom']                = 'active';
+            $data['bulldings']              = Bullding::where('status','1')->get();
             $data['editRoom']               = Room::find($id);
             $data['breadcrumb']             = ['Rooms' => route('admin.doctor.room.index'), 'Edit Room' => '',];
             return view('backend.pages.doctors.room.edit', $data);
@@ -119,9 +136,10 @@ class RoomController extends Controller
         if (Gate::allows('isAdmin')) {
             $editRoom = Room::find($request->update_id);
             $editRoom->update([
-                'room_no'  => $request->room_no,
-                'order_by' => $request->order_by,
-                'status'   => $request->status,
+                'bullding_id' => $request->bullding_id,
+                'room_no'     => $request->room_no,
+                'order_by'    => $request->order_by,
+                'status'      => $request->status,
             ]);
             return redirect()->route('admin.doctor.room.index')->with('success', 'Room Update Successfuly Done..!');
         } else {

@@ -26,6 +26,9 @@
                 <thead>
                     <tr>
                         <th>Sl</th>
+                        <th>Bullding Name</th>
+                        <th>Location</th>
+                        <th>Image</th>
                         <th>Room No</th>
                         <th>Status</th>
                         <th class="text-right">Action</th>
@@ -65,6 +68,9 @@
         },
         columns: [
             {data: 'DT_RowIndex',orderable: false, searchable: false},
+            {data: 'name'},
+            {data: 'location'},
+            {data: 'image'},
             {data: 'room_no'},
             {data: 'status'},
             {data: 'action'},

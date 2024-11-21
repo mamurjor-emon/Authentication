@@ -13,6 +13,8 @@ use App\Http\Requests\DoctorRequest;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Mail;
 use App\Events\NotificationBroadcast;
+use App\Models\Bullding;
+use App\Models\Room;
 use App\Notifications\DoctorRegisterNotification;
 use Yajra\DataTables\Facades\DataTables;
 
@@ -124,7 +126,20 @@ class DoctorController extends Controller
             $data['breadcrumb']             = ['Doctors' => route('admin.doctor.index'), 'Create Doctor' => '',];
             $data['allActiveClients']       = User::where('role_id', 3)->where('status', '1')->get();
             $data['allDepartments']         = DepartmentModel::where('status', '1')->get();
+            $data['allBulldings']           = Bullding::where('status', '1')->get();
             return view('backend.pages.doctors.doctor.create', $data);
+        } else {
+            abort(401);
+        }
+    }
+
+    public function getRoom(Request $request)
+    {
+        if (Gate::allows('isAdmin')) {
+            if($request->ajax()){
+                $getRooms = Room::where('bullding_id',$request->id)->get();
+                dd($getRooms);
+            }
         } else {
             abort(401);
         }
