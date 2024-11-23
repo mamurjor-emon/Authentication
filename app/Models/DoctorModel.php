@@ -16,6 +16,8 @@ class DoctorModel extends Model
     protected $fillable = [
         'user_id',
         'department_id',
+        'room_id',
+        'bullding_id',
         'image',
         'phone',
         'location',
@@ -39,5 +41,11 @@ class DoctorModel extends Model
     }
     public function department(){
         return $this->belongsTo(DepartmentModel::class,'department_id','id');
+    }
+    public function bullding(){
+        return $this->belongsTo(Bullding::class,'bullding_id','id');
+    }
+    public function room(){
+        return $this->belongsTo(Room::class,'room_id','id');
     }
 }

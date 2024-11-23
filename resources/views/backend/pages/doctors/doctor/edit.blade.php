@@ -31,6 +31,22 @@
                         </div>
 
                         <div class="row g-5 mt-2">
+                            <x-form.selectbox parantClass="col-12 col-md-6" class="form-control" name="bullding_id"
+                                required="required" id="bullding_id" labelName="Select Bullding" errorName="bullding_id">
+                                <option value="">Select Bullding</option>
+                                @forelse ($allBulldings as $bullding)
+                                    <option value="{{ $bullding->id }}" {{ $bullding->id == $editDoctor->bullding_id ? 'selected' : '' }}>{{ $bullding->name ?? ''}} - {{ $bullding->location ?? '' }}</option>
+                                @empty
+                                @endforelse
+                            </x-form.selectbox>
+
+                            <x-form.selectbox parantClass="col-12 col-md-6" class="form-control" name="room_id"
+                                required="required" id="room_id" labelName="Select Room" errorName="room_id">
+                                {!! $editResponRoom ?? '' !!}
+                            </x-form.selectbox>
+                        </div>
+
+                        <div class="row g-5 mt-2">
                             <x-form.textbox labelName="Phone" parantClass="col-12 col-md-6" name="phone"
                             required="required" placeholder="Enter Phone Number..!" errorName="phone" class="py-2"
                             value="{{ $editDoctor->phone ?? old('phone') }}"></x-form.textbox>

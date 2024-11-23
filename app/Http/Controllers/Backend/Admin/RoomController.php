@@ -36,7 +36,7 @@ class RoomController extends Controller
     {
         if (Gate::allows('isAdmin')) {
             if ($request->ajax()) {
-                $getData = Room::with(['bullding'])->latest('id');
+                $getData = Room::with(['bullding'])->latest('room_no');
                 return DataTables::eloquent($getData)
                     ->addIndexColumn()
                     ->filter(function ($query) use ($request) {

@@ -32,6 +32,7 @@
                                 @endforelse
                             </x-form.selectbox>
                         </div>
+
                         <div class="row g-5 mt-2">
                             <x-form.selectbox parantClass="col-12 col-md-6" class="form-control" name="bullding_id"
                                 required="required" id="bullding_id" labelName="Select Bullding" errorName="bullding_id">
@@ -42,13 +43,9 @@
                                 @endforelse
                             </x-form.selectbox>
 
-                            <x-form.selectbox parantClass="col-12 col-md-6" class="form-control" name="department_id"
-                                required="required" labelName="Select Department" errorName="department_id">
-                                <option value="">Select Department</option>
-                                @forelse ($allDepartments as $department)
-                                    <option value="{{ $department->id }}">{{ $department->name }}</option>
-                                @empty
-                                @endforelse
+                            <x-form.selectbox parantClass="col-12 col-md-6" class="form-control" name="room_id"
+                                required="required" id="room_id" labelName="Select Room" errorName="room_id">
+                                <option value="">Select Room</option>
                             </x-form.selectbox>
                         </div>
 
@@ -173,7 +170,10 @@
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },
             success: function (res) {
-                console.log(res.data);
+                var getId = $('#room_id').html('');
+                if(res.status == 'success'){
+                    getId.html(res.data);
+                }
             }
            });
         });

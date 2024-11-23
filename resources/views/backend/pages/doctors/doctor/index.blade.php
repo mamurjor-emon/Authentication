@@ -29,6 +29,8 @@
                         <th>Name</th>
                         <th>Email</th>
                         <th>Department</th>
+                        <th>Bullding</th>
+                        <th>Room No</th>
                         <th>Phone</th>
                         <th>Image</th>
                         <th>Position</th>
@@ -73,6 +75,8 @@
             {data: 'name'},
             {data: 'email'},
             {data: 'department'},
+            {data: 'bullding'},
+            {data: 'room'},
             {data: 'phone'},
             {data: 'image'},
             {data: 'position'},
@@ -110,7 +114,7 @@
                     orientation: "landscape",
                     pageSize: "A4",
                     exportOptions: {
-                        columns: '0,1,2'
+                        columns: '0,1,2,3,4,5,6,7'
                     },
                     customize: function(doc) {
                         doc.defaultStyle.alignment = 'center';
@@ -123,7 +127,7 @@
                     text: '<i class="fa fa-file-excel-o" aria-hidden="true"></i> Excel',
                     className: 'excelButton mdc-button mdc-button--raised filled-button--info mdc-ripple-upgraded mb-3',
                     exportOptions: {
-                        columns: '0,1,2'
+                        columns: '0,1,2,3,4,5,6,7'
                     },
                 },
                 {
@@ -133,7 +137,7 @@
                     orientation: "landscape",
                     pageSize: "A4",
                     exportOptions: {
-                        columns: '0,1,2'
+                        columns: '0,1,2,3,4,5,6,7'
                     }
                 }
             ]

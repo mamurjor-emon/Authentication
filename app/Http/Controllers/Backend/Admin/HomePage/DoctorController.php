@@ -44,7 +44,7 @@ class DoctorController extends Controller
     {
         if (Gate::allows('isAdmin')) {
             if ($request->ajax()) {
-                $getData = DoctorModel::with(['user', 'department'])->latest('id');
+                $getData = DoctorModel::with(['user', 'department', 'room', 'bullding'])->latest('id');
                 return DataTables::eloquent($getData)
                     ->addIndexColumn()
                     ->filter(function ($query) use ($request) {
@@ -56,9 +56,16 @@ class DoctorController extends Controller
                                         ->orWhere('lname', 'like', "%{$search}%")
                                         ->orWhere('email', 'like', "%{$search}%");
                                 })
-                                ->orWhereHas('department', function ($query) use ($search) {
-                                    $query->where('name', 'like', "%{$search}%");
-                                });
+                                    ->orWhereHas('department', function ($query) use ($search) {
+                                        $query->where('name', 'like', "%{$search}%");
+                                    })
+                                    ->orWhereHas('room', function ($query) use ($search) {
+                                        $query->where('room_no', 'like', "%{$search}%");
+                                    })
+                                    ->orWhereHas('bullding', function ($query) use ($search) {
+                                        $query->where('name', 'like', "%{$search}%")
+                                            ->OrWhere('location', 'like', "%{$search}%");
+                                    });
                             });
                         }
                     })
@@ -70,6 +77,12 @@ class DoctorController extends Controller
                     })
                     ->addColumn('department', function ($data) {
                         return $data->department ? $data->department->name : '--';
+                    })
+                    ->addColumn('bullding', function ($data) {
+                        return $data->bullding ? $data->bullding->name : '--';
+                    })
+                    ->addColumn('room', function ($data) {
+                        return $data->room ? $data->room->room_no : '--';
                     })
                     ->addColumn('phone', function ($data) {
                         return $data->phone ? $data->phone : '--';
@@ -84,7 +97,7 @@ class DoctorController extends Controller
                         return status($data->status);
                     })
                     ->addColumn('action', function ($data) {
-                        if($data->status == 1){
+                        if ($data->status == 1) {
                             return '<div class="text-right" ><a href="' . route('admin.doctor.edit', ['id' => $data->id]) . '" class="rounded mdc-button mdc-button--raised icon-button filled-button--success">
                             <i class="material-icons mdc-button__icon">colorize</i>
                             </a> <a href="' . route('frontend.single.doctors', ['id' => $data->id]) . '" class="mdc-button mdc-button--raised icon-button mdc-ripple-upgraded">
@@ -95,7 +108,7 @@ class DoctorController extends Controller
                             id="delete-form-' . $data->id . '" method="DELETE" class="d-none">
                             @csrf
                             @method("DELETE") </form></div>';
-                        }else{
+                        } else {
                             return '<div class="text-right">
                             </a> <a href="' . route('admin.doctor.edit', ['id' => $data->id]) . '" class="mdc-button mdc-button--raised icon-button mdc-ripple-upgraded filled-button--success">
                             <i class="material-icons mdc-button__icon">colorize</i>
@@ -106,7 +119,6 @@ class DoctorController extends Controller
                             @csrf
                             @method("DELETE") </form></div>';
                         }
-
                     })
                     ->rawColumns(['image', 'status', 'action'])
                     ->make(true);
@@ -136,9 +148,23 @@ class DoctorController extends Controller
     public function getRoom(Request $request)
     {
         if (Gate::allows('isAdmin')) {
-            if($request->ajax()){
-                $getRooms = Room::where('bullding_id',$request->id)->get();
-                dd($getRooms);
+            if ($request->ajax()) {
+                $getUseRoom = DoctorModel::where('bullding_id', $request->id)->pluck('room_id')->toArray();
+                $getRooms = Room::where('bullding_id', $request->id)->get();
+                $responRoom = '<option value="">Select Room</option>';
+                if ($getRooms->isNotEmpty()) {
+                    foreach ($getRooms as $room) {
+                        if (in_array($room->id, $getUseRoom)) {
+                            continue;
+                        } else {
+                            $responRoom .= '<option value="' . $room->id . '">'. 'Room No : ' . $room->room_no . '</option>';
+                        }
+                    }
+                }
+                return response()->json([
+                    'status' => 'success',
+                    'data'   => $responRoom
+                ]);
             }
         } else {
             abort(401);
@@ -158,6 +184,8 @@ class DoctorController extends Controller
             DoctorModel::create([
                 'user_id'       => $request->user_id,
                 'department_id' => $request->department_id,
+                'room_id'       => $request->room_id,
+                'bullding_id'   => $request->bullding_id,
                 'image'         => $image,
                 'phone'         => $request->phone,
                 'location'      => $request->location,
@@ -209,6 +237,22 @@ class DoctorController extends Controller
             $data['editDoctor']             = DoctorModel::where('id', $id)->first();
             $data['allActiveClients']       = User::where('role_id', 3)->where('status', '1')->get();
             $data['allDepartments']         = DepartmentModel::where('status', '1')->get();
+            $data['allBulldings']           = Bullding::where('status', '1')->get();
+            $getUseRoom = DoctorModel::where('bullding_id', $data['editDoctor']->bullding_id)->pluck('room_id')->toArray();
+            $getRooms = Room::where('bullding_id', $data['editDoctor']->bullding_id)->get();
+            $responRoom = '<option value="">Select Room</option>';
+            if ($getRooms->isNotEmpty()) {
+                foreach ($getRooms as $room) {
+                    if (in_array($room->id, $getUseRoom)) {
+                    }if($room->id === $data['editDoctor']->room_id){
+                        dd($data['editDoctor']->room_id);
+                        $responRoom .= '<option value="' . $room->id . '" selected>'. 'Room No : ' . $room->room_no . '</option>';
+                    } else {
+                        $responRoom .= '<option value="' . $room->id . '">'. 'Room No : ' . $room->room_no . '</option>';
+                    }
+                }
+            }
+            $data['editResponRoom'] = $responRoom;
             return view('backend.pages.doctors.doctor.edit', $data);
         } else {
             abort(401);
