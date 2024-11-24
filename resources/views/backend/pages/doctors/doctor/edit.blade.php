@@ -145,6 +145,32 @@
 @endsection
 @push('scripts')
 <script>
+    $(document).ready(function () {
+        $('#bullding_id').on('change', function() {
+            var bullding_id = $(this).val();
+           $.ajax({
+            type: "POST",
+            url: "{{ route('admin.doctor.get.room') }}",
+            data: {
+                id : bullding_id,
+            },
+            dataType: 'json',
+            async: true,
+            cache: false,
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            success: function (res) {
+                var getId = $('#room_id').html('');
+                if(res.status == 'success'){
+                    getId.html(res.data);
+                }
+            }
+           });
+        });
+    });
+</script>
+<script>
     function summerNote(id, title) {
         $(id).summernote({
             placeholder: title,

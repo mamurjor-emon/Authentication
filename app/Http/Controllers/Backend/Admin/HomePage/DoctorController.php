@@ -82,7 +82,7 @@ class DoctorController extends Controller
                         return $data->bullding ? $data->bullding->name : '--';
                     })
                     ->addColumn('room', function ($data) {
-                        return $data->room ? $data->room->room_no : '--';
+                        return  $data->room->room_no ?? '--';
                     })
                     ->addColumn('phone', function ($data) {
                         return $data->phone ? $data->phone : '--';
@@ -149,12 +149,13 @@ class DoctorController extends Controller
     {
         if (Gate::allows('isAdmin')) {
             if ($request->ajax()) {
-                $getUseRoom = DoctorModel::where('bullding_id', $request->id)->pluck('room_id')->toArray();
                 $getRooms = Room::where('bullding_id', $request->id)->get();
+                $getUseRoom = DoctorModel::where('bullding_id', $request->id)->pluck('room_id')->toArray();
+                $getRoomsId = Room::whereIn('id', $getUseRoom)->pluck('room_no')->toArray();
                 $responRoom = '<option value="">Select Room</option>';
                 if ($getRooms->isNotEmpty()) {
                     foreach ($getRooms as $room) {
-                        if (in_array($room->id, $getUseRoom)) {
+                        if (in_array($room->room_no, $getRoomsId)) {
                             continue;
                         } else {
                             $responRoom .= '<option value="' . $room->id . '">'. 'Room No : ' . $room->room_no . '</option>';
@@ -238,14 +239,16 @@ class DoctorController extends Controller
             $data['allActiveClients']       = User::where('role_id', 3)->where('status', '1')->get();
             $data['allDepartments']         = DepartmentModel::where('status', '1')->get();
             $data['allBulldings']           = Bullding::where('status', '1')->get();
-            $getUseRoom = DoctorModel::where('bullding_id', $data['editDoctor']->bullding_id)->pluck('room_id')->toArray();
+
             $getRooms = Room::where('bullding_id', $data['editDoctor']->bullding_id)->get();
+            $getUseRoom = DoctorModel::where('bullding_id', $data['editDoctor']->bullding_id)->pluck('room_id')->toArray();
+            $getRoomsId = Room::where('id','!=',$data['editDoctor']->room_id)->whereIn('id', $getUseRoom)->pluck('room_no')->toArray();
             $responRoom = '<option value="">Select Room</option>';
             if ($getRooms->isNotEmpty()) {
                 foreach ($getRooms as $room) {
-                    if (in_array($room->id, $getUseRoom)) {
-                    }if($room->id === $data['editDoctor']->room_id){
-                        dd($data['editDoctor']->room_id);
+                    if (in_array($room->room_no, $getRoomsId)) {
+                        continue;
+                    }else if($room->id == $data['editDoctor']->room_id){
                         $responRoom .= '<option value="' . $room->id . '" selected>'. 'Room No : ' . $room->room_no . '</option>';
                     } else {
                         $responRoom .= '<option value="' . $room->id . '">'. 'Room No : ' . $room->room_no . '</option>';
@@ -271,6 +274,8 @@ class DoctorController extends Controller
             }
             $editDoctor->update([
                 'department_id' => $request->department_id,
+                'room_id'       => $request->room_id,
+                'bullding_id'   => $request->bullding_id,
                 'image'         => $image,
                 'phone'         => $request->phone,
                 'location'      => $request->location,
