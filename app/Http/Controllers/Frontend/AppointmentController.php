@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Models\PatientAppontment;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use App\Http\Requests\FrontedApppontmentRequest;
 
 class AppointmentController extends Controller
@@ -56,27 +57,30 @@ class AppointmentController extends Controller
         if($request->date != null){
             $getAppontment = PatientAppontment::where('date', $request->data)->where('id',Auth::id())->first();
             if(!$getAppontment){
-                PatientAppontment::create([
-                    'user_id'     => Auth::id(),
-                    'doctor_id'   => $request->doctor_id,
-                    'slot_id'     => $request->slot_id,
-                    'date'        => $request->date,
-                    'description' => $request->description,
-                    'status'      => '1',
-                ]);
+                // $appointment  = PatientAppontment::create([
+                //     'user_id'     => Auth::id(),
+                //     'doctor_id'   => $request->doctor_id,
+                //     'slot_id'     => $request->slot_id,
+                //     'date'        => $request->date,
+                //     'description' => $request->description,
+                //     'status'      => '1',
+                // ]);
 
-                // $request['roleName'] = $role->name;
-                // $request['full_name'] = $request->fname . ' ' . $request->lname;
-                // $request['button_url'] = URL::temporarySignedRoute('verify.code', now()->addHours(1), ['token' => $verify_code]);
-                // $request['button_title'] = 'Click Here To Verify Email';
+                $request['full_name'] = Auth::user()->fname . ' ' . Auth::user()->lname;
+                // $request['appointment_button_url'] = route('client.appontment.view',['id' =>  $appointment->id ]);
+                $request['appointment_button_title'] = 'Click Here To See You Appointment';
 
                 // User mail
-                $subject = emailSubjectTemplate('NEW_USER_MAIL', $request);
-                $body    = emailBodyTemplate('NEW_USER_MAIL', $request);
-                $heading = emailHeadingTemplate('NEW_USER_MAIL', $request);
+                $subject = emailSubjectTemplate('PATIENT_APPONTMENT_MAIL', $request);
+                $body    = emailBodyTemplate('PATIENT_APPONTMENT_MAIL', $request);
+                $heading = emailHeadingTemplate('PATIENT_APPONTMENT_MAIL', $request);
 
-                // $userMail = ['subject' => $subject, 'body' => $body, 'heading' => $heading];
+                dd($body);
+
+                $userMail = ['subject' => $subject, 'body' => $body, 'heading' => $heading];
                 // Mail::to($request->email)->later(now()->addSeconds(10), new VerifyUserMail($userMail));
+
+
                 // $message = [
                 //     'sender' => $user->id,
                 //     'to' => $admin->id,

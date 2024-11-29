@@ -32,7 +32,7 @@ class AuthServiceProvider extends ServiceProvider
         });
 
         /* define a manager role */
-        Gate::define('doctor', function($user) {
+        Gate::define('isDoctor', function($user) {
             if($user->role->slug == 'doctor'){
                 return true;
             }
@@ -40,7 +40,7 @@ class AuthServiceProvider extends ServiceProvider
         });
 
         /* define a contractor role */
-        Gate::define('client', function($user) {
+        Gate::define('isClient', function($user) {
             if ($user->role->slug == 'client') {
                 return true;
             }
