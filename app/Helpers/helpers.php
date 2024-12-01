@@ -262,9 +262,16 @@ if (!function_exists('emailBodyTemplate')) {
         $shortcode = str_replace('[name]', $request->full_name, $data->body);
         $shortcode = str_replace('[email]', $request->email, $shortcode);
         $shortcode = str_replace('[role-name]', $request->roleName, $shortcode);
+        $shortcode = str_replace('[appointment_date]', $request->appointment_date, $shortcode);
+        $shortcode = str_replace('[appointment_time]', $request->appointment_time, $shortcode);
+        $shortcode = str_replace('[appointment_location]', $request->appointment_location, $shortcode);
+        $shortcode = str_replace('[doctor_name]', $request->doctor_name, $shortcode);
+        $shortcode = str_replace('[bullding_name]', $request->bullding_name, $shortcode);
+        $shortcode = str_replace('[room_no]', $request->room_no, $shortcode);
+        $shortcode = str_replace('[contact_email]', $request->contact_email, $shortcode);
+        $shortcode = str_replace('[company_name]', $request->company_name, $shortcode);
 
-
-
+        // Button Replace
         $shortcode = str_replace('[view-appointmetn-button]', $appointmentViewBtn, $shortcode);
         $shortcode = str_replace('[verify-token-button]', $emailVerifyBtn, $shortcode);
         $shortcode = str_replace('[full-profile-button]', $emailNotyBtn, $shortcode);

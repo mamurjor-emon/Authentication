@@ -66,28 +66,20 @@ class AppointmentController extends Controller
                     'status'      => '1',
                 ]);
 
-                $slot =
+                $slot = SlotModel::where('id',$request->slot_id)->first();
+                $doctor = DoctorModel::with(['user','bullding','room'])->where('id',$request->doctor_id)->first();
 
-                $request['full_name'] = Auth::user()->fname . ' ' . Auth::user()->lname;
-                $request['appointment_date'] = $request->date;
-                $request['appointment_time'] = $request->date;
-                $request['appointment_button_url'] = route('client.appontment.view',['id' =>  $appointment->id ]);
+                $request['full_name']                = Auth::user()->fname . ' ' . Auth::user()->lname;
+                $request['appointment_date']         = $request->date;
+                $request['appointment_time']         = $slot->start_time.' '. $slot->start_zone .' To '. $slot->end_time.' '.$slot->end_zone;
+                $request['appointment_location']     = $doctor->bullding->location ?? '-----';
+                $request['doctor_name']              = $doctor->user->fname .' '. $doctor->user->lname;
+                $request['bullding_name']            = $doctor->bullding->name;
+                $request['room_no']                  = $doctor->room->room_no;
+                $request['contact_email']            = $doctor->user->email;
+                $request['company_name']             = 'MADIPLUS';
+                $request['appointment_button_url']   = route('client.appontment.view',['id' =>  $appointment->id ]);
                 $request['appointment_button_title'] = 'Click Here To See You Appointment';
-
-
-
-// <p>Date: []</p>
-// <p>Time: []</p>
-// <p>Location: [appointment_location]</p>
-// <p>Doctor Name : [doctor_name]</p>
-// <p>Bullding Name : [bullding_name]</p>
-// <p>Room No : [room_no]</p>
-// <p align="center">[view-appointmetn-button]</p>
-// <p>If you have any questions or need to reschedule, please don’t hesitate to contact us at [contact_email].
-// <p>Thank you for choosing [company_name]. We look forward to seeing you!</p><br>
-// <p>Best Regards,</p>
-// </p><b><br>Sincerely yours,<br>MADIPLUS Team</b><br></p>
-
 
                 // User mail
                 $subject = emailSubjectTemplate('PATIENT_APPONTMENT_MAIL', $request);

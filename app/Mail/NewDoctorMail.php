@@ -37,7 +37,7 @@ class NewDoctorMail extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'mail.new-doctor',
+            view: 'mail.commonmail',
         );
     }
 
