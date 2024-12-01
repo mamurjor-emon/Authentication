@@ -66,7 +66,7 @@ class AppointmentController extends Controller
                     'status'      => '1',
                 ]);
 
-                $slot = 
+                $slot =
 
                 $request['full_name'] = Auth::user()->fname . ' ' . Auth::user()->lname;
                 $request['appointment_date'] = $request->date;
@@ -76,17 +76,17 @@ class AppointmentController extends Controller
 
 
 
-<p>Date: []</p>
-<p>Time: []</p>
-<p>Location: [appointment_location]</p>
-<p>Doctor Name : [doctor_name]</p>
-<p>Bullding Name : [bullding_name]</p>
-<p>Room No : [room_no]</p>
-<p align="center">[view-appointmetn-button]</p>
-<p>If you have any questions or need to reschedule, please don’t hesitate to contact us at [contact_email].
-<p>Thank you for choosing [company_name]. We look forward to seeing you!</p><br>
-<p>Best Regards,</p>
-</p><b><br>Sincerely yours,<br>MADIPLUS Team</b><br></p>
+// <p>Date: []</p>
+// <p>Time: []</p>
+// <p>Location: [appointment_location]</p>
+// <p>Doctor Name : [doctor_name]</p>
+// <p>Bullding Name : [bullding_name]</p>
+// <p>Room No : [room_no]</p>
+// <p align="center">[view-appointmetn-button]</p>
+// <p>If you have any questions or need to reschedule, please don’t hesitate to contact us at [contact_email].
+// <p>Thank you for choosing [company_name]. We look forward to seeing you!</p><br>
+// <p>Best Regards,</p>
+// </p><b><br>Sincerely yours,<br>MADIPLUS Team</b><br></p>
 
 
                 // User mail
