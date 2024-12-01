@@ -263,16 +263,9 @@ if (!function_exists('emailBodyTemplate')) {
         $shortcode = str_replace('[email]', $request->email, $shortcode);
         $shortcode = str_replace('[role-name]', $request->roleName, $shortcode);
 
-        // email verify token
-// Date:
-// Time:
-// Location:
-// Service/Reason:
-// Doctor Name
-// Bullding
-// Room 
 
-        $shortcode = str_replace('[appointment-view-button]', $appointmentViewBtn, $shortcode);
+
+        $shortcode = str_replace('[view-appointmetn-button]', $appointmentViewBtn, $shortcode);
         $shortcode = str_replace('[verify-token-button]', $emailVerifyBtn, $shortcode);
         $shortcode = str_replace('[full-profile-button]', $emailNotyBtn, $shortcode);
         $shortcode = str_replace('[account-login-button]', $emailApprovedBtn, $shortcode);
