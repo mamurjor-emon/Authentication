@@ -95,7 +95,6 @@ Route::group(['prefix' => 'appointment-booking','as' => 'appointment.booking.','
 
     //------------ Slots  ------------//
     Route::post('slots',[AppointmentController::class,'appointmentSolts'])->name('slots');
-
     Route::post('/store', [AppointmentController::class, 'appointmentBooking'])->name('store');
 });
 

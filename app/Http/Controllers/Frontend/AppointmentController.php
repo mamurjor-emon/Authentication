@@ -82,9 +82,9 @@ class AppointmentController extends Controller
                 $request['appointment_button_title'] = 'Click Here To See You Appointment';
 
                 // User mail
-                $subject = emailSubjectTemplate('PATIENT_APPONTMENT_MAIL', $request);
-                $body    = emailBodyTemplate('PATIENT_APPONTMENT_MAIL', $request);
-                $heading = emailHeadingTemplate('PATIENT_APPONTMENT_MAIL', $request);
+                $subject = emailSubjectTemplate('PATIENT_APPONITMENT_MAIL', $request);
+                $body    = emailBodyTemplate('PATIENT_APPONITMENT_MAIL', $request);
+                $heading = emailHeadingTemplate('PATIENT_APPONITMENT_MAIL', $request);
 
                 dd($body);
 
