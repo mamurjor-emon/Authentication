@@ -1,9 +1,8 @@
 @extends('layouts.app')
 @section('title',$title)
 @section('content')
-<main class="content-wrapper">
-    <div class="mdc-layout-grid">
-        <div class="mdc-layout-grid__inner">
+    @if (Auth::user()->status == '1')
+        <div class="mdc-layout-grid__inner mt-4">
             <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-3-desktop mdc-layout-grid__cell--span-4-tablet">
                 <div class="mdc-card info-card info-card--success">
                     <div class="card-inner">
@@ -298,6 +297,9 @@
                 </div>
             </div>
         </div>
-    </div>
-</main>
+    @else
+        <div class="alert alert-warning mt-4" role="alert">
+           Your Account is Not Approved . Contact To : {{ $admin->email ?? '' }}
+        </div>
+    @endif
 @endsection

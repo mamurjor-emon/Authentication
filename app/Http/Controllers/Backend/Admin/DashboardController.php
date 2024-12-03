@@ -27,7 +27,9 @@ class DashboardController extends Controller
             $data['totalUsers']    = User::all();
             $data['verify_users']  = User::whereNotNull('email_verified_at')->get();
             $data['allDoctors']    = DoctorModel::where('status', '1')->get();
-            $data['cancelDoctors'] = DoctorModel::where('status', '0')->get();;
+            $data['cancelDoctors'] = DoctorModel::where('status', '0')->get();
+            $data['breadcrumb']    = ['Admin Dashboard' => '',];
+            $data['admin']         = User::where('role_id',1)->first();
             return view('backend.pages.dashboard.back', $data);
         } else {
             abort(401);

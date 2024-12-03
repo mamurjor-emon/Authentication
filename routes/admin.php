@@ -35,7 +35,6 @@ use App\Http\Controllers\Backend\Admin\HomePage\PortfolioCategorieController;
 Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth', 'is_verify', 'is_admin']], function () {
     //------------------------ Dashboard -----------------------//
     Broadcast::routes();
-
     Route::prefix('dashboard')->name('dashboard.')->group(function () {
         Route::get('/', [DashboardController::class, 'dashboard'])->name('index');
         Route::post('users-count', [DashboardController::class, 'dashboardUserChatCount'])->name('users.count');
@@ -45,8 +44,6 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth', 'i
         Route::post('subscriber-count', [DashboardController::class, 'dashboardSubscribersChatCount'])->name('subscriber.count');
         Route::post('blog-count', [DashboardController::class, 'dashboardBlogsChatCount'])->name('blog.count');
         Route::get('notification-count', [DashboardController::class, 'dashboardNotificationsCount'])->name('notification.count');
-
-
 
         Route::get('profile/', [DashboardController::class, 'profile'])->name('profile');
         Route::post('profile-update', [DashboardController::class, 'profileUpdate'])->name('profile.update');

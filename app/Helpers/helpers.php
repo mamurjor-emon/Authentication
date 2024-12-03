@@ -270,6 +270,8 @@ if (!function_exists('emailBodyTemplate')) {
         $shortcode = str_replace('[room_no]', $request->room_no, $shortcode);
         $shortcode = str_replace('[contact_email]', $request->contact_email, $shortcode);
         $shortcode = str_replace('[company_name]', $request->company_name, $shortcode);
+        $shortcode = str_replace('[account_created_date]', $request->account_created_date, $shortcode);
+        $shortcode = str_replace('[admin_name]', $request->admin_name, $shortcode);
 
         // Button Replace
         $shortcode = str_replace('[view-appointmetn-button]', $appointmentViewBtn, $shortcode);

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Events\NotificationBroadcast;
+use Carbon\Carbon;
 use App\Models\User;
 use App\Models\Roles;
 use Illuminate\Support\Str;
@@ -16,9 +16,11 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
+use App\Events\NotificationBroadcast;
 use App\Http\Requests\RegisterRequest;
-use App\Notifications\UserRegisteredNotification;
+use App\Mail\AdminNewUserMail;
 use Stevebauman\Location\Facades\Location;
+use App\Notifications\UserRegisteredNotification;
 
 class AuthController extends Controller
 {
@@ -57,6 +59,7 @@ class AuthController extends Controller
             'email'              => $request->email,
             'password'           => Hash::make($request->password),
             'verify_code'        => $verify_code,
+            'status'             => '2',
         ]);
         // $location = Location::get($request->ip());
         $location = Location::get('8.8.8.8');
@@ -72,18 +75,28 @@ class AuthController extends Controller
             'area_code'    => $location->areaCode
         ]);
 
-        $request['roleName'] = $role->name;
-        $request['full_name'] = $request->fname . ' ' . $request->lname;
-        $request['button_url'] = URL::temporarySignedRoute('verify.code', now()->addHours(1), ['token' => $verify_code]);
-        $request['button_title'] = 'Click Here To Verify Email';
+        $request['roleName']             = $role->name;
+        $request['full_name']            = $request->fname . ' ' . $request->lname;
+        $request['email']                = $request->email;
+        $request['admin_name']           = $admin->fname . ' ' . $admin->lname;
+        $request['account_created_date'] = Carbon::now()->format('j M Y h:i A');
+        $request['button_url']           = URL::temporarySignedRoute('verify.code', now()->addHours(1), ['token' => $verify_code]);
+        $request['button_title']         = 'Click Here To Verify Email';
 
         // User mail
         $subject = emailSubjectTemplate('NEW_USER_MAIL', $request);
         $body    = emailBodyTemplate('NEW_USER_MAIL', $request);
         $heading = emailHeadingTemplate('NEW_USER_MAIL', $request);
-
         $userMail = ['subject' => $subject, 'body' => $body, 'heading' => $heading];
         Mail::to($request->email)->later(now()->addSeconds(10), new VerifyUserMail($userMail));
+
+        // Admin mail
+        $subject = emailSubjectTemplate('NEW_USER_ADMIN_MAIL', $request);
+        $body    = emailBodyTemplate('NEW_USER_ADMIN_MAIL', $request);
+        $heading = emailHeadingTemplate('NEW_USER_ADMIN_MAIL', $request);
+        $adminMail = ['subject' => $subject, 'body' => $body, 'heading' => $heading];
+        Mail::to($admin->email)->later(now()->addSeconds(15), new AdminNewUserMail($adminMail));
+
         $message = [
             'sender' => $user->id,
             'to' => $admin->id,
@@ -91,7 +104,6 @@ class AuthController extends Controller
         ];
         Broadcast(new NotificationBroadcast($message))->toOthers();
         $admin->notify(new UserRegisteredNotification($user));
-        Auth::login($user, true);
         DB::commit();
         return redirect()->route('login')->with('success', 'Registration Successfull!');
     }

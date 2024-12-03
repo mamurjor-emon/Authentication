@@ -103,7 +103,7 @@ class AppointmentController extends Controller
 
                 return back()->with('success', 'Your Appointment Submit Successfully !');
             }else{
-                return back()->with('warning', "Your Can't Appointment For Today !");
+                return back()->with('warning', "Your Can't Appointment Book For Today !");
             }
         }
     }

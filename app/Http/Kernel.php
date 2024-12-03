@@ -3,6 +3,7 @@
 namespace App\Http;
 
 use App\Http\Middleware\AdminMiddleware;
+use App\Http\Middleware\CheckAccountStatuMiddleware;
 use App\Http\Middleware\ClientMiddleware;
 use App\Http\Middleware\DoctorMiddleware;
 use App\Http\Middleware\SuperAdminMiddleware;

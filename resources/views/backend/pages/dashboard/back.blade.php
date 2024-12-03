@@ -24,136 +24,138 @@
     </style>
 @endpush
 @section('content')
-    <main class="content-wrapper">
-        <div class="mdc-layout-grid">
-            <div class="mdc-layout-grid__inner">
-                <div
-                    class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-3-desktop mdc-layout-grid__cell--span-4-tablet">
-                    <div class="mdc-card info-card info-card--primary">
-                        <div class="card-inner">
-                            <h5 class="card-title">Total Users</h5>
-                            <h5 class="pb-2 mb-1 border-bottom fw-bolder">
-                                {{ $totalUsers->count() > 0 ? $totalUsers->count() . ' +' : '0' }}</h5>
-                            <div class="card-icon-wrapper">
-                                <i class="material-icons">group_add</i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div
-                    class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-3-desktop mdc-layout-grid__cell--span-4-tablet">
-                    <div class="mdc-card info-card info-card--success">
-                        <div class="card-inner">
-                            <h5 class="card-title">Verified User</h5>
-                            <h5 class="pb-2 mb-1 border-bottom fw-bolder">
-                                {{ $verify_users->count() > 0 ? $verify_users->count() . ' +' : '0' }}</h5>
-                            <div class="card-icon-wrapper">
-                                <i class="material-icons">verified_user</i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div
-                    class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-3-desktop mdc-layout-grid__cell--span-4-tablet">
-                    <div class="mdc-card info-card info-card--primary">
-                        <div class="card-inner">
-                            <h5 class="card-title">Total Doctors</h5>
-                            <h5 class="pb-2 mb-1 border-bottom fw-bolder">
-                                {{ $allDoctors->count() > 0 ? $allDoctors->count() . ' +' : '0' }}</h5>
-                            <div class="card-icon-wrapper">
-                                <i class="material-icons">group_add</i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div
-                    class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-3-desktop mdc-layout-grid__cell--span-4-tablet">
-                    <div class="mdc-card info-card info-card--danger">
-                        <div class="card-inner">
-                            <h5 class="card-title">Cancel Doctors</h5>
-                            <h5 class="pb-2 mb-1 border-bottom fw-bolder">
-                                {{ $cancelDoctors->count() > 0 ? $cancelDoctors->count() . ' +' : '0' }}</h5>
-                            <div class="card-icon-wrapper">
-                                <i class="material-icons">group_add</i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-6">
-                    <div class="mdc-card">
-                        <div>
-                            <h4 class="card-title mb-2 mb-sm-0">Last 30 Days Visitors</h4>
-                            <p>Visitors Overview</p>
-                        </div>
-                        <div class="chart-container">
-                            <div id="visitorUsers"></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-6">
-                    <div class="mdc-card">
-                        <div>
-                            <h4 class="card-title mb-2 mb-sm-0">Last 12 Months Doctors</h4>
-                            <p>Doctors Overview</p>
-                        </div>
-                        <div class="chart-container">
-                            <div id="createdDoctors"></div>
-                        </div>
-                    </div>
-                </div>
-
-
-                <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-8">
-                    <div class="mdc-card">
-                        <div>
-                            <h4 class="card-title mb-2 mb-sm-0">Last 12 Months Overview</h4>
-                            <p>User Create Overview</p>
-                        </div>
-                        <div class="chart-container mt-4">
-                            <div id="MonthlyUserCreateReport" class="mt-3"></div>
-                        </div>
-                    </div>
-                </div>
-                <div
-                    class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-4 mdc-layout-grid__cell--span-8-tablet">
-                    <div class="mdc-card">
-                        <div class="d-flex d-lg-block d-xl-flex justify-content-between">
-                            <div>
-                                <h4 class="card-title">Active Docotors</h4>
-                                <h6 class="card-sub-title"> Total Active Doctors : {{ $allDoctors->count() }}</h6>
-                            </div>
-                        </div>
-                        <div class="chart-container mt-4">
-                            <div id="activeDocotorsChats"></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-6">
-                    <div class="mdc-card">
-                        <div>
-                            <h4 class="card-title mb-2 mb-sm-0">Last 12 Months Subscribers</h4>
-                            <p>Subscribers Overview</p>
-                        </div>
-                        <div class="chart-container">
-                            <div id="monthlySubscribers"></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-6">
-                    <div class="mdc-card">
-                        <div>
-                            <h4 class="card-title mb-2 mb-sm-0">Last 12 Months Blogs</h4>
-                            <p>Blogs Overview</p>
-                        </div>
-                        <div class="chart-container">
-                            <div id="monthlyBlogsChart"></div>
+    @if (Auth::user()->status == '1')
+        <div class="mdc-layout-grid__inner mt-4">
+            <div
+                class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-3-desktop mdc-layout-grid__cell--span-4-tablet">
+                <div class="mdc-card info-card info-card--primary">
+                    <div class="card-inner">
+                        <h5 class="card-title">Total Users</h5>
+                        <h5 class="pb-2 mb-1 border-bottom fw-bolder">
+                            {{ $totalUsers->count() > 0 ? $totalUsers->count() . ' +' : '0' }}</h5>
+                        <div class="card-icon-wrapper">
+                            <i class="material-icons">group_add</i>
                         </div>
                     </div>
                 </div>
             </div>
+            <div
+                class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-3-desktop mdc-layout-grid__cell--span-4-tablet">
+                <div class="mdc-card info-card info-card--success">
+                    <div class="card-inner">
+                        <h5 class="card-title">Verified User</h5>
+                        <h5 class="pb-2 mb-1 border-bottom fw-bolder">
+                            {{ $verify_users->count() > 0 ? $verify_users->count() . ' +' : '0' }}</h5>
+                        <div class="card-icon-wrapper">
+                            <i class="material-icons">verified_user</i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div
+                class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-3-desktop mdc-layout-grid__cell--span-4-tablet">
+                <div class="mdc-card info-card info-card--primary">
+                    <div class="card-inner">
+                        <h5 class="card-title">Total Doctors</h5>
+                        <h5 class="pb-2 mb-1 border-bottom fw-bolder">
+                            {{ $allDoctors->count() > 0 ? $allDoctors->count() . ' +' : '0' }}</h5>
+                        <div class="card-icon-wrapper">
+                            <i class="material-icons">group_add</i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div
+                class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-3-desktop mdc-layout-grid__cell--span-4-tablet">
+                <div class="mdc-card info-card info-card--danger">
+                    <div class="card-inner">
+                        <h5 class="card-title">Cancel Doctors</h5>
+                        <h5 class="pb-2 mb-1 border-bottom fw-bolder">
+                            {{ $cancelDoctors->count() > 0 ? $cancelDoctors->count() . ' +' : '0' }}</h5>
+                        <div class="card-icon-wrapper">
+                            <i class="material-icons">group_add</i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-6">
+                <div class="mdc-card">
+                    <div>
+                        <h4 class="card-title mb-2 mb-sm-0">Last 30 Days Visitors</h4>
+                        <p>Visitors Overview</p>
+                    </div>
+                    <div class="chart-container">
+                        <div id="visitorUsers"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-6">
+                <div class="mdc-card">
+                    <div>
+                        <h4 class="card-title mb-2 mb-sm-0">Last 12 Months Doctors</h4>
+                        <p>Doctors Overview</p>
+                    </div>
+                    <div class="chart-container">
+                        <div id="createdDoctors"></div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-8">
+                <div class="mdc-card">
+                    <div>
+                        <h4 class="card-title mb-2 mb-sm-0">Last 12 Months Overview</h4>
+                        <p>User Create Overview</p>
+                    </div>
+                    <div class="chart-container mt-4">
+                        <div id="MonthlyUserCreateReport" class="mt-3"></div>
+                    </div>
+                </div>
+            </div>
+            <div
+                class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-4 mdc-layout-grid__cell--span-8-tablet">
+                <div class="mdc-card">
+                    <div class="d-flex d-lg-block d-xl-flex justify-content-between">
+                        <div>
+                            <h4 class="card-title">Active Docotors</h4>
+                            <h6 class="card-sub-title"> Total Active Doctors : {{ $allDoctors->count() }}</h6>
+                        </div>
+                    </div>
+                    <div class="chart-container mt-4">
+                        <div id="activeDocotorsChats"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-6">
+                <div class="mdc-card">
+                    <div>
+                        <h4 class="card-title mb-2 mb-sm-0">Last 12 Months Subscribers</h4>
+                        <p>Subscribers Overview</p>
+                    </div>
+                    <div class="chart-container">
+                        <div id="monthlySubscribers"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-6">
+                <div class="mdc-card">
+                    <div>
+                        <h4 class="card-title mb-2 mb-sm-0">Last 12 Months Blogs</h4>
+                        <p>Blogs Overview</p>
+                    </div>
+                    <div class="chart-container">
+                        <div id="monthlyBlogsChart"></div>
+                    </div>
+                </div>
+            </div>
         </div>
-    </main>
+    @else
+        <div class="alert alert-warning mt-4" role="alert">
+           Your Account is Not Approved . Contact To : {{ $admin->email ?? '' }}
+        </div>
+    @endif
 @endsection
 @push('scripts')
     <script>
