@@ -254,6 +254,7 @@ if (!function_exists('emailBodyTemplate')) {
         $emailResetBtn = '<a href="' . $request->button_reset_url . '" class="account-button" target="_blank" ><span class="account-span"><span style="font-size: 18px; line-height: 21.6px;">' . $request->button_reset_title . '</span></span></a>';
 
         $appointmentViewBtn = '<a href="' . $request->appointment_button_url . '" class="account-button" target="_blank" ><span class="account-span"><span style="font-size: 18px; line-height: 21.6px;">' . $request->appointment_button_title . '</span></span></a>';
+        $newpatientViewBtn = '<a href="' . $request->new_patient_btn_url . '" class="account-button" target="_blank" ><span class="account-span"><span style="font-size: 18px; line-height: 21.6px;">' . $request->new_patient_btn_title . '</span></span></a>';
 
         $verifyToken = '<a href="' . $request->button_url . '" target="_blank" >' . $request->button_url . '</a>';
 
@@ -274,6 +275,7 @@ if (!function_exists('emailBodyTemplate')) {
         $shortcode = str_replace('[admin_name]', $request->admin_name, $shortcode);
 
         // Button Replace
+        $shortcode = str_replace('[new_patient_btn]', $newpatientViewBtn, $shortcode);
         $shortcode = str_replace('[view-appointmetn-button]', $appointmentViewBtn, $shortcode);
         $shortcode = str_replace('[verify-token-button]', $emailVerifyBtn, $shortcode);
         $shortcode = str_replace('[full-profile-button]', $emailNotyBtn, $shortcode);
