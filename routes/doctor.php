@@ -8,6 +8,7 @@ use App\Http\Controllers\Backend\Doctor\PatientController;
 Route::group(['prefix' => 'doctor', 'as'=>'doctor.','middleware'=>['auth','is_verify','is_doctor']], function(){
     //------------------------ Dashboard -----------------------//
     Route::get('dashboard/', [DashboardController::class, 'dashboard'])->name('dashboard');
+    Route::get('notification-count', [DashboardController::class, 'dashboardNotificationsCount'])->name('notification.count');
     Route::prefix('patient')->name('patient.')->group(function () {
         Route::get('index', [PatientController::class, 'index'])->name('index');
         Route::get('view/{id}', [PatientController::class, 'view'])->name('view');

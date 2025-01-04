@@ -85,12 +85,12 @@ class AppointmentController extends Controller
                 $request['bullding_name']            = $doctor->bullding->name;
                 $request['room_no']                  = $doctor->room->room_no;
                 $request['contact_email']            = $doctor->user->email;
+                $request['admin_name']               = $admin->fname.' '.$admin->fname;
                 $request['company_name']             = 'MADIPLUS';
                 $request['appointment_button_url']   = route('client.appontment.view',['id' =>  $appointment->id ]);
                 $request['new_patient_btn_url']      = route('doctor.patient.view',['id' =>  $appointment->id ]);
                 $request['new_patient_btn_title']    = 'Click Here To See New Patient';
                 $request['appointment_button_title'] = 'Click Here To See You Appointment';
-
 
                 // User mail
                 $subject = emailSubjectTemplate('PATIENT_APPOINTMENT_MAIL', $request);
@@ -98,22 +98,22 @@ class AppointmentController extends Controller
                 $heading = emailHeadingTemplate('PATIENT_APPOINTMENT_MAIL', $request);
 
                 $userMail = ['subject' => $subject, 'body' => $body, 'heading' => $heading];
-                Mail::to('mamurjor.emon@gmail.com')->later(now()->addSeconds(10), new AppointmentMail($userMail));
+                Mail::to(Auth::user()->email)->later(now()->addSeconds(10), new AppointmentMail($userMail));
 
                 // Doctor Mail
-                $subjectDoctor = emailSubjectTemplate('NEW_PATIENT_APPOINTED', $request);
-                $bodyDoctor    = emailBodyTemplate('NEW_PATIENT_APPOINTED', $request);
-                $headingDoctor = emailHeadingTemplate('NEW_PATIENT_APPOINTED', $request);
+                $subjectDoctor = emailSubjectTemplate('NEW_PATIENT_APPOINTED_DOCTOR_MAIL', $request);
+                $bodyDoctor    = emailBodyTemplate('NEW_PATIENT_APPOINTED_DOCTOR_MAIL', $request);
+                $headingDoctor = emailHeadingTemplate('NEW_PATIENT_APPOINTED_DOCTOR_MAIL', $request);
                 $doctorMail = ['subject' => $subjectDoctor, 'body' => $bodyDoctor, 'heading' => $headingDoctor];
-                Mail::to('mamurjor.emon@gmail.com')->later(now()->addSeconds(10), new AppointedDocotorMail($doctorMail));
+                Mail::to($doctor->user->email)->later(now()->addSeconds(10), new AppointedDocotorMail($doctorMail));
 
 
-                // Admin Mail
-                $subjectAdmin = emailSubjectTemplate('NEW_PATIENT_ADMIN_MAIL', $request);
-                $bodyAdmin    = emailBodyTemplate('NEW_PATIENT_ADMIN_MAIL', $request);
-                $headingAdmin = emailHeadingTemplate('NEW_PATIENT_ADMIN_MAIL', $request);
+                // // Admin Mail
+                $subjectAdmin = emailSubjectTemplate('PATIENT_APPOINTMENT_ADMIN_MAIL', $request);
+                $bodyAdmin    = emailBodyTemplate('PATIENT_APPOINTMENT_ADMIN_MAIL', $request);
+                $headingAdmin = emailHeadingTemplate('PATIENT_APPOINTMENT_ADMIN_MAIL', $request);
                 $adminMail = ['subject' => $subjectAdmin, 'body' => $bodyAdmin, 'heading' => $headingAdmin];
-                Mail::to('mamurjor.emon@gmail.com')->later(now()->addSeconds(10), new AppointedAdminMail($adminMail));
+                Mail::to($admin->email)->later(now()->addSeconds(10), new AppointedAdminMail($adminMail));
 
                 $adminMessage = [
                     'sender' => Auth::id(),
