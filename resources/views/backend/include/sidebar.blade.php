@@ -308,18 +308,19 @@
                     </div>
 
                     <div class="mdc-list-item mdc-drawer-item">
-                        <a class="mdc-expansion-panel-link {{ $parentHomeMenu ?? '' }}" href="#" data-toggle="expansionPanel"
+                        <a class="mdc-expansion-panel-link {{ $parentPatientMenu ?? '' }}" href="#" data-toggle="expansionPanel"
                             data-target="ui-sub-menu">
                             <i class="material-icons mdc-list-item__start-detail mdc-drawer-item-icon"
-                                aria-hidden="true">home</i>
-                            Home Settings
+                                aria-hidden="true">airline_seat_individual_suite
+                                </i>
+                            Patient Setting
                             <i class="mdc-drawer-arrow material-icons">chevron_right</i>
                         </a>
-                        <div class="mdc-expansion-panel" id="ui-sub-menu" {!! $parentHomeSubMenu ?? '' !!}>
+                        <div class="mdc-expansion-panel" id="ui-sub-menu" {!! $parentPatientSubMenu ?? '' !!}>
                             <nav class="mdc-list mdc-drawer-submenu">
                                 <div class="mdc-list-item mdc-drawer-item">
-                                    <a class="mdc-drawer-link {{ $Menus ?? '' }}" href="">
-                                        Menu Settings
+                                    <a class="mdc-drawer-link {{ $activePatient ?? '' }}" href="{{ route('doctor.patient.index') }}">
+                                        Appointed Patient
                                     </a>
                                 </div>
                             </nav>

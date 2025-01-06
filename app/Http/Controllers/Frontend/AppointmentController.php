@@ -61,7 +61,7 @@ class AppointmentController extends Controller
 
     public function appointmentBooking(FrontedApppontmentRequest $request){
         if($request->date != null){
-            $getAppontment = PatientAppontment::where('date', $request->data)->where('id',Auth::id())->first();
+            $getAppontment = PatientAppontment::where('date', $request->date)->where('user_id', Auth::id())->first();
             if($getAppontment == null){
                 $appointment  = PatientAppontment::create([
                     'user_id'     => Auth::id(),
@@ -69,7 +69,7 @@ class AppointmentController extends Controller
                     'slot_id'     => $request->slot_id,
                     'date'        => $request->date,
                     'description' => $request->message,
-                    'status'      => '1',
+                    'status'      => '0',
                 ]);
 
                 $slot = SlotModel::where('id',$request->slot_id)->first();

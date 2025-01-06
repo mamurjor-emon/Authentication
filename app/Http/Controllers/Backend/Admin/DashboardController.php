@@ -29,7 +29,7 @@ class DashboardController extends Controller
             $data['allDoctors']    = DoctorModel::where('status', '1')->get();
             $data['cancelDoctors'] = DoctorModel::where('status', '0')->get();
             $data['breadcrumb']    = ['Admin Dashboard' => '',];
-            $data['admin']         = User::where('role_id',1)->first();
+            $data['admin']         = User::where('role_id', 1)->first();
             return view('backend.pages.dashboard.back', $data);
         } else {
             abort(401);
@@ -92,115 +92,142 @@ class DashboardController extends Controller
 
     public function dashboardUserChatCount(Request $request)
     {
-        if ($request->ajax()) {
-            $month = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'];
-            $usersData = [];
-            foreach ($month as $value) {
-                $usersData[] = DB::table('users')->whereMonth('updated_at', '=', $value)->count();
+        if (Gate::allows('isAdmin')) {
+            if ($request->ajax()) {
+                $month = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'];
+                $usersData = [];
+                foreach ($month as $value) {
+                    $usersData[] = DB::table('users')->whereMonth('updated_at', '=', $value)->count();
+                }
+                return response()->json([
+                    'usersData'  => $usersData,
+                ]);
             }
-            return response()->json([
-                'usersData'  => $usersData,
-            ]);
+        } else {
+            abort(401);
         }
     }
 
     public function dashboardActiveDoctorCount()
     {
-        $data['totalDoctors']   =  DoctorModel::count();
-        $data['activeDoctors']  =  DoctorModel::where('status','1')->count();
-        $total = ($data['activeDoctors'] * 100) / $data['totalDoctors'];
-        $data['totalPersentage'] = floor($total);
-        return response()->json($data, 200);
+        if (Gate::allows('isAdmin')) {
+            $data['totalDoctors']   =  DoctorModel::count();
+            $data['activeDoctors']  =  DoctorModel::where('status', '1')->count();
+            $total = ($data['activeDoctors'] * 100) / $data['totalDoctors'];
+            $data['totalPersentage'] = floor($total);
+            return response()->json($data, 200);
+        } else {
+            abort(401);
+        }
     }
     public function dashboardVisitorsCount(Request $request)
     {
-        if ($request->ajax()) {
-
-            $dates = [];
-            for ($i = 0; $i < 30; $i++) {
-                $dates[] = Carbon::now()->subDays($i)->toDateString();
+        if (Gate::allows('isAdmin')) {
+            if ($request->ajax()) {
+                $dates = [];
+                for ($i = 0; $i < 30; $i++) {
+                    $dates[] = Carbon::now()->subDays($i)->toDateString();
+                }
+                $dates = array_reverse($dates);
+                $visitors = [];
+                foreach ($dates as $date) {
+                    $visitors[] = Visitor::whereDate('created_at', '=', $date)->count();
+                }
+                return response()->json([
+                    'visitors' => $visitors,
+                ]);
             }
-            $dates = array_reverse($dates);
-            $visitors = [];
-            foreach ($dates as $date) {
-                $visitors[] = Visitor::whereDate('created_at', '=', $date)->count();
-            }
-            return response()->json([
-                'visitors' => $visitors,
-            ]);
+        } else {
+            abort(401);
         }
     }
 
     public function dashboardDoctorsChatCount(Request $request)
     {
-        if ($request->ajax()) {
-            $month = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'];
-            $doctorsData = [];
-            foreach ($month as $value) {
-                $doctorsData[] = DoctorModel::whereMonth('updated_at', '=', $value)->count();
+        if (Gate::allows('isAdmin')) {
+            if ($request->ajax()) {
+                $month = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'];
+                $doctorsData = [];
+                foreach ($month as $value) {
+                    $doctorsData[] = DoctorModel::whereMonth('updated_at', '=', $value)->count();
+                }
+                return response()->json([
+                    'doctorsData'  => $doctorsData,
+                ]);
             }
-            return response()->json([
-                'doctorsData'  => $doctorsData,
-            ]);
+        } else {
+            abort(401);
         }
     }
 
     public function dashboardSubscribersChatCount(Request $request)
     {
-        if ($request->ajax()) {
-            $month = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'];
-            $subscriberData = [];
-            foreach ($month as $value) {
-                $subscriberData[] = Subscriber::whereMonth('updated_at', '=', $value)->count();
+        if (Gate::allows('isAdmin')) {
+            if ($request->ajax()) {
+                $month = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'];
+                $subscriberData = [];
+                foreach ($month as $value) {
+                    $subscriberData[] = Subscriber::whereMonth('updated_at', '=', $value)->count();
+                }
+                return response()->json([
+                    'subscriberData'  => $subscriberData,
+                ]);
             }
-            return response()->json([
-                'subscriberData'  => $subscriberData,
-            ]);
+        } else {
+            abort(401);
         }
     }
 
     public function dashboardBlogsChatCount(Request $request)
     {
-        if ($request->ajax()) {
-            $month = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'];
-            $blogsData = [];
-            foreach ($month as $value) {
-                $blogsData[] = Blog::whereMonth('updated_at', '=', $value)->count();
+        if (Gate::allows('isAdmin')) {
+            if ($request->ajax()) {
+                $month = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'];
+                $blogsData = [];
+                foreach ($month as $value) {
+                    $blogsData[] = Blog::whereMonth('updated_at', '=', $value)->count();
+                }
+                return response()->json([
+                    'blogsData'  => $blogsData,
+                ]);
             }
-            return response()->json([
-                'blogsData'  => $blogsData,
-            ]);
+        } else {
+            abort(401);
         }
     }
 
     public function dashboardNotificationsCount(Request $request)
     {
-        if ($request->ajax()) {
-            $notificationCount = formatNumber(Auth::user()->unreadNotifications->count());
-            $notifications = Auth::user()->unreadNotifications;
-            $getNotification = '';
-            if (!empty($notifications)) {
-                foreach ($notifications as $notification) {
-                    $icon = '';
-                    if ($notification->data['status'] == 'new_user_create') {
-                        $icon = 'mdi-account-outline';
+        if (Gate::allows('isAdmin')) {
+            if ($request->ajax()) {
+                $notificationCount = formatNumber(Auth::user()->unreadNotifications->count());
+                $notifications = Auth::user()->unreadNotifications;
+                $getNotification = '';
+                if (!empty($notifications)) {
+                    foreach ($notifications as $notification) {
+                        $icon = '';
+                        if ($notification->data['status'] == 'new_user_create') {
+                            $icon = 'mdi-account-outline';
+                        }
+                        $getNotification .= '<li class="mdc-list-item" role="menuitem">';
+                        $getNotification .= '<div class="item-thumbnail item-thumbnail-icon">';
+                        $getNotification .= !empty($icon) ? '<i class="mdi ' . $icon . '"></i>' : '';
+                        $getNotification .= '</div>';
+                        $getNotification .= '<div class="item-content d-flex align-items-start flex-column justify-content-center">';
+                        $getNotification .= '<h6 class="item-subject font-weight-normal">' . ($notification->data['message'] ?? 'New Notification') . '</h6>';
+                        $getNotification .= '<small class="text-muted">' . $notification->created_at->diffForHumans() . '</small>';
+                        $getNotification .= '</div>';
+                        $getNotification .= '</li>';
                     }
-                    $getNotification .= '<li class="mdc-list-item" role="menuitem">';
-                    $getNotification .= '<div class="item-thumbnail item-thumbnail-icon">';
-                    $getNotification .= !empty($icon) ? '<i class="mdi ' . $icon . '"></i>' : '';
-                    $getNotification .= '</div>';
-                    $getNotification .= '<div class="item-content d-flex align-items-start flex-column justify-content-center">';
-                    $getNotification .= '<h6 class="item-subject font-weight-normal">' . ($notification->data['message'] ?? 'New Notification') . '</h6>';
-                    $getNotification .= '<small class="text-muted">' . $notification->created_at->diffForHumans() . '</small>';
-                    $getNotification .= '</div>';
-                    $getNotification .= '</li>';
                 }
+                return response()->json([
+                    'status'            => 'success',
+                    'notificationCount' => $notificationCount,
+                    'getNotification'   => $getNotification,
+                ]);
             }
-            return response()->json([
-                'status'            => 'success',
-                'notificationCount' => $notificationCount,
-                'getNotification'   => $getNotification,
-            ]);
+        } else {
+            abort(401);
         }
     }
 }
