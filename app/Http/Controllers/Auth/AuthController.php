@@ -48,7 +48,6 @@ class AuthController extends Controller
      */
     public function store(RegisterRequest $request)
     {
-
         $role = Roles::where('slug', 'client')->first();
         $admin = User::where('role_id', 1)->first();
         $verify_code = Str::random(64);
@@ -58,6 +57,7 @@ class AuthController extends Controller
             'lname'              => $request->lname,
             'email'              => $request->email,
             'password'           => Hash::make($request->password),
+            'phone'              => $request->phone,
             'verify_code'        => $verify_code,
             'status'             => '2',
         ]);

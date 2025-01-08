@@ -28,8 +28,8 @@ class PatientAppontment extends Model
     public function user(){
         return $this->belongsTo(User::class,);
     }
-    public function docotr(){
-        return $this->belongsTo(DoctorModel::class,);
+    public function doctor(){
+        return $this->belongsTo(User::class,'doctor_id','id');
     }
     public function slot(){
         return $this->belongsTo(SlotModel::class,);

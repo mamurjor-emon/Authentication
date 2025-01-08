@@ -20,7 +20,8 @@
     <link href="https://fonts.googleapis.com/css?family=Poppins:200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&display=swap" rel="stylesheet">
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="{{ asset('frontend/assets/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css">
+    {{-- <link rel="stylesheet" href="{{ asset('frontend/assets/css/bootstrap.min.css') }}"> --}}
     <!-- Nice Select CSS -->
     <link rel="stylesheet" href="{{ asset('frontend/assets/css/nice-select.css') }}">
     <!-- Font Awesome CSS -->
@@ -177,17 +178,20 @@
     <!-- Owl Carousel JS -->
     <script src="{{ asset('frontend/assets/js/owl-carousel.js') }}"></script>
     <!-- counterup JS -->
-    <script src="{{ asset('frontend/assets/js/jquery.counterup.min.js') }}"></script>
+    {{-- <script src="{{ asset('frontend/assets/js/jquery.counterup.min.js') }}"></script> --}}
     <!-- Steller JS -->
     <script src="{{ asset('frontend/assets/js/steller.js') }}"></script>
     <!-- Wow JS -->
-    <script src="{{ asset('frontend/assets/js/wow.min.js') }}"></script>
+    {{-- <script src="{{ asset('frontend/assets/js/wow.min.js') }}"></script> --}}
     <!-- Magnific Popup JS -->
-    <script src="{{ asset('frontend/assets/js/jquery.magnific-popup.min.js') }}"></script>
+    {{-- <script src="{{ asset('frontend/assets/js/jquery.magnific-popup.min.js') }}"></script> --}}
     <!-- Counter Up CDN JS -->
     <script src="http://cdnjs.cloudflare.com/ajax/libs/waypoints/2.0.3/waypoints.min.js"></script>
     <!-- Bootstrap JS -->
-    <script src="{{ asset('frontend/assets/js/bootstrap.min.js') }}"></script>
+    {{-- <script src="{{ asset('frontend/assets/js/bootstrap.min.js') }}"></script> --}}
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"></script>
     <!-- Main JS -->
     <script src="{{ asset('frontend/assets/js/main.js') }}"></script>
     <!-- Ajax CDN -->

@@ -25,7 +25,7 @@ class AppointmentController extends Controller
             $doctorsData = '';
             if($doctors->count() > 0){
                 foreach($doctors as $doctor){
-                    $doctorsData .= '<li data-value="' . ($doctor->id ?? '') . '" class="option">' . ($doctor->user->fname ?? '') .'-'. ($doctor->user->lname ?? '').'</li>';
+                    $doctorsData .= '<li data-value="' . ($doctor->user_id ?? '') . '" class="option">' . ($doctor->user->fname ?? '') .'-'. ($doctor->user->lname ?? '').'</li>';
                 }
             }else{
                 $doctorsData .= '<li class="text-danger text-center" data-value="" class="option">No Doctor Found !</li>';
@@ -71,9 +71,9 @@ class AppointmentController extends Controller
                     'description' => $request->message,
                     'status'      => '0',
                 ]);
-
+                
                 $slot = SlotModel::where('id',$request->slot_id)->first();
-                $doctor = DoctorModel::with(['user','bullding','room'])->where('id',$request->doctor_id)->first();
+                $doctor = DoctorModel::with(['user','bullding','room'])->where('user_id',$request->doctor_id)->first();
                 $admin = User::where('role_id', 1)->first();
 
                 $request['email']                    = $request->email;

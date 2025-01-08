@@ -73,6 +73,20 @@
                                                     class="mdc-layout-grid__cell  mdc-layout-grid__cell--span-12">
                                                     <div class="mdc-text-field w-100">
                                                         <input class="mdc-text-field__input" id="text-field-hero-input"
+                                                            name="phone" type="tel">
+                                                        <div class="mdc-line-ripple"></div>
+                                                        <label for="text-field-hero-input"
+                                                            class="mdc-floating-label">Phone <span
+                                                                class="required"></span></label>
+                                                    </div>
+                                                    @error('phone')
+                                                        <span class="text-danger error-text mt-2">{{ $message }}</span>
+                                                    @enderror
+                                                </div>
+                                                <div
+                                                    class="mdc-layout-grid__cell  mdc-layout-grid__cell--span-12">
+                                                    <div class="mdc-text-field w-100">
+                                                        <input class="mdc-text-field__input" id="text-field-hero-input"
                                                             name="email" type="email">
                                                         <div class="mdc-line-ripple"></div>
                                                         <label for="text-field-hero-input"

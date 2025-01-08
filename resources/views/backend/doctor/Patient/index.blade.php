@@ -58,9 +58,9 @@
             [5, 10, 15, 25, 50, 100, 1000, 10000, -1],
             [5, 10, 15, 25, 50, 100, 1000, 10000, "All"]
         ],
-        pageLength: 25, //number of data show per page
+        pageLength: 25, 
         ajax: {
-            url: "{{ route('admin.blog.tags.get.data') }}",
+            url: "{{ route('doctor.patient.get.data') }}",
             type: "POST",
             dataType: "JSON",
             data: function(d) {
@@ -70,8 +70,12 @@
         },
         columns: [
             {data: 'DT_RowIndex',orderable: false, searchable: false},
-            {data: 'tag_name'},
-            {data: 'order_by'},
+            {data: 'full_name'},
+            {data: 'email'},
+            {data: 'phone'},
+            {data: 'date'},
+            {data: 'slot'},
+            {data: 'image'},
             {data: 'status'},
             {data: 'action'},
         ],

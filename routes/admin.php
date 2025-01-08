@@ -48,6 +48,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth', 'i
         Route::get('profile/', [DashboardController::class, 'profile'])->name('profile');
         Route::post('profile-update', [DashboardController::class, 'profileUpdate'])->name('profile.update');
         Route::post('profile-password-update', [DashboardController::class, 'profilePasswordUpdate'])->name('profile.password.update');
+        
     });
 
 

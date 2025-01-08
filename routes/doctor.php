@@ -11,6 +11,7 @@ Route::group(['prefix' => 'doctor', 'as'=>'doctor.','middleware'=>['auth','is_ve
     Route::get('notification-count', [DashboardController::class, 'dashboardNotificationsCount'])->name('notification.count');
     Route::prefix('patient')->name('patient.')->group(function () {
         Route::get('index', [PatientController::class, 'index'])->name('index');
+        Route::post('get-data', [PatientController::class, 'getData'])->name('get.data');
         Route::get('view/{id}', [PatientController::class, 'view'])->name('view');
     });
 });

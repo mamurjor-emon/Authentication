@@ -38,7 +38,9 @@
                             <li class="mdc-list-item" role="menuitem">
                                 <div class="item-thumbnail item-thumbnail-icon">
                                     @if ($notification->data['status'] == 'new_user_create')
-                                    <i class="mdi mdi-account-outline"></i>
+                                         <i class="mdi mdi-account-outline"></i>
+                                    @elseif ($notification->data['status'] == 'new_patient_appointed')
+                                        <i class="mdi mdi-seat-individual-suite"></i>
                                     @else
 
                                     @endif

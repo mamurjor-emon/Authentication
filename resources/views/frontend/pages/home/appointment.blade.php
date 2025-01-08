@@ -25,12 +25,18 @@
         justify-content: center;
         align-items: center;
     }
-    .appointment  .ui-state-active, .ui-widget-content .ui-state-active, .ui-widget-header .ui-state-active, a.ui-button:active, .ui-button:active, .ui-button.ui-state-active:hover {
-	border: 1px solid transparent;
-	background: #007fff;
-	font-weight: normal;
-	color: #ffffff;
-}
+
+    .appointment .ui-state-active,
+    .ui-widget-content .ui-state-active,
+    .ui-widget-header .ui-state-active,
+    a.ui-button:active,
+    .ui-button:active,
+    .ui-button.ui-state-active:hover {
+        border: 1px solid transparent;
+        background: #007fff;
+        font-weight: normal;
+        color: #ffffff;
+    }
 </style>
 <section class="appointment">
     <div class="container">
@@ -50,12 +56,14 @@
                     <div class="row">
                         <div class="col-lg-6 col-md-6 col-12">
                             <div class="form-group">
-                                <input name="name" type="text" placeholder="Name" value="{{ Auth::check() ? Auth::user()->fname : old('name') }}">
+                                <input name="name" type="text" placeholder="Name"
+                                    value="{{ Auth::check() ? Auth::user()->fname : old('name') }}">
                             </div>
                         </div>
                         <div class="col-lg-6 col-md-6 col-12">
                             <div class="form-group">
-                                <input name="email" type="email" placeholder="Email" value="{{ Auth::check() ? Auth::user()->email : old('email') }}">
+                                <input name="email" type="email" placeholder="Email"
+                                    value="{{ Auth::check() ? Auth::user()->email : old('email') }}">
                             </div>
                         </div>
                         <div class="col-lg-6 col-md-6 col-12">
@@ -76,7 +84,7 @@
                                 </div>
                                 <input type="hidden" name="department_id" id="selectedDepartment">
                                 @error('department_id')
-                                <span class="text-danger">{{ $message }}</span>
+                                    <span class="text-danger">{{ $message }}</span>
                                 @enderror
                             </div>
                         </div>
@@ -89,15 +97,16 @@
                                 </div>
                                 <input type="hidden" name="doctor_id" id="selectedDoctor">
                                 @error('doctor_id')
-                                <span class="text-danger">{{ $message }}</span>
+                                    <span class="text-danger">{{ $message }}</span>
                                 @enderror
                             </div>
                         </div>
                         <div class="col-lg-6 col-md-6 col-12">
                             <div class="form-group">
-                                <input type="text" name="date" placeholder="Date" id="datepicker" class="js-ui-datepicker" readonly>
+                                <input type="text" name="date" placeholder="Date" id="datepicker"
+                                    class="js-ui-datepicker" readonly>
                                 @error('date')
-                                <span class="text-danger">{{ $message }}</span>
+                                    <span class="text-danger">{{ $message }}</span>
                                 @enderror
                             </div>
                         </div>
@@ -110,7 +119,7 @@
                                 </div>
                                 <input type="hidden" name="slot_id" id="selectedSlots">
                                 @error('slot_id')
-                                <span class="text-danger">{{ $message }}</span>
+                                    <span class="text-danger">{{ $message }}</span>
                                 @enderror
                             </div>
                         </div>
@@ -118,20 +127,23 @@
                             <div class="form-group">
                                 <textarea name="message" placeholder="Write Your Reason Here....."></textarea>
                                 @error('message')
-                                <span class="text-danger">{{ $message }}</span>
+                                    <span class="text-danger">{{ $message }}</span>
                                 @enderror
                             </div>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-lg-5 col-md-4 col-12">
-                            <div class="form-group">
-                                <div class="button">
-                                    <button type="submit"
-                                        class="btn">{{ config('settings.appointment_btn_title') ?? '' }}</button>
+                        @if ((Auth::check() && Auth::user()->role_id == 1) || (Auth::check() && Auth::user()->role_id == 2))
+                        @else
+                            <div class="col-lg-5 col-md-4 col-12">
+                                <div class="form-group">
+                                    <div class="button">
+                                        <button type="submit"
+                                            class="btn">{{ config('settings.appointment_btn_title') ?? '' }}</button>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                        @endif
                         <div class="col-lg-7 col-md-8 col-12">
                             <p>{{ config('settings.appointment_title') ?? '' }}</p>
                         </div>
@@ -157,18 +169,18 @@
 <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
 
 <script>
-    $(document).ready(function () {
-        $('#departments').on('click', '.option', function () {
+    $(document).ready(function() {
+        $('#departments').on('click', '.option', function() {
             const selectedValue = $(this).data('value');
             $('#selectedDepartment').val(selectedValue);
         });
 
-        $('#departmentdoctors').on('click', '.option', function () {
+        $('#departmentdoctors').on('click', '.option', function() {
             const selectedValue = $(this).data('value');
             $('#selectedDoctor').val(selectedValue);
         });
 
-        $('#slots').on('click', '.option', function () {
+        $('#slots').on('click', '.option', function() {
             const selectedValue = $(this).data('value');
             $('#selectedSlots').val(selectedValue);
         });
@@ -238,4 +250,3 @@
         });
     });
 </script>
-
