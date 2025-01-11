@@ -33,7 +33,7 @@ class PatientController extends Controller
     {
         if (Gate::allows('isDoctor')) {
             if ($request->ajax()) {
-                $getData = PatientAppontment::with(['user', 'doctor','slot'])->where('doctor_id', Auth::id())->latest('id');
+                $getData = PatientAppontment::with(['user', 'doctor', 'slot'])->where('doctor_id', Auth::id())->latest('id');
                 return DataTables::eloquent($getData)
                     ->addIndexColumn()
                     ->filter(function ($query) use ($request) {
@@ -59,7 +59,7 @@ class PatientController extends Controller
                         return $data->date;
                     })
                     ->addColumn('slot', function ($data) {
-                        return $data->slot->start_time.' '.$data->slot->start_zone.' - '.$data->slot->end_time.' '.$data->slot->end_zone;
+                        return $data->slot->start_time . ' ' . $data->slot->start_zone . ' - ' . $data->slot->end_time . ' ' . $data->slot->end_zone;
                     })
                     ->addColumn('image', function ($data) {
                         if ($data->user->avatar) {
@@ -72,23 +72,16 @@ class PatientController extends Controller
                         return appointStatus($data->status);
                     })
                     ->addColumn('action', function ($data) {
-                        return '<div class="btn-group dropleft">
-                            <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Dropleft
-                            </button>
-                            <div class="dropdown-menu">
-                               <div class="btn-group dropleft">
-                                <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    Dropleft
-                                </button>
-                                <div class="dropdown-menu">
-                                    <!-- Dropdown menu links -->
-                                </div>
-                                </div>
-                            </div>
-                            </div>';
+                        return '<div class="text-right" ><a href="' . route('admin.doctor.bullding.edit', ['id' => $data->id]) . '" class="rounded mdc-button mdc-button--raised icon-button filled-button--success">
+                    <i class="material-icons mdc-button__icon">colorize</i>
+                    </a> <button class="mdc-button mdc-button--raised icon-button filled-button--secondary" onclick="delete_data(' . $data->id . ')">
+                    <i class="material-icons mdc-button__icon">delete</i>
+                    </button><form action="' . route('admin.doctor.bullding.delete', ['id' => $data->id]) . '"
+                    id="delete-form-' . $data->id . '" method="DELETE" class="d-none">
+                    @csrf
+                    @method("DELETE") </form></div>';
                     })
-                    ->rawColumns(['slot','image', 'status', 'action'])
+                    ->rawColumns(['slot', 'image', 'status', 'action'])
                     ->make(true);
             }
         } else {
