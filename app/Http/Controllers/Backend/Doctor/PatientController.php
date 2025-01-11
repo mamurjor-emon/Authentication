@@ -72,18 +72,73 @@ class PatientController extends Controller
                         return appointStatus($data->status);
                     })
                     ->addColumn('action', function ($data) {
-                        return '<div class="text-right" ><a href="' . route('admin.doctor.bullding.edit', ['id' => $data->id]) . '" class="rounded mdc-button mdc-button--raised icon-button filled-button--success">
-                    <i class="material-icons mdc-button__icon">colorize</i>
-                    </a> <button class="mdc-button mdc-button--raised icon-button filled-button--secondary" onclick="delete_data(' . $data->id . ')">
-                    <i class="material-icons mdc-button__icon">delete</i>
-                    </button><form action="' . route('admin.doctor.bullding.delete', ['id' => $data->id]) . '"
-                    id="delete-form-' . $data->id . '" method="DELETE" class="d-none">
-                    @csrf
-                    @method("DELETE") </form></div>';
+                        if($data->status == '0'){
+                            $action = '<a title="Publish" href="' . route('doctor.patient.status.change', ['id' => $data->id,'status' => '1']) . '" class="rounded mdc-button mdc-button--raised icon-button filled-button--success  mr-2">
+                            <i class="material-icons mdc-button__icon">done</i>
+                            </a><a title="Cancel" href="' . route('doctor.patient.status.change', ['id' => $data->id,'status' => '2']) . '" class="rounded mdc-button mdc-button--raised icon-button filled-button--danger  mr-2">
+                            <i class="material-icons mdc-button__icon">clear</i>
+                            </a><a title="Suspend" href="' . route('doctor.patient.status.change', ['id' => $data->id,'status' => '3']) . '" class="rounded mdc-button mdc-button--raised icon-button filled-button--info mr-2">
+                            <i class="material-icons mdc-button__icon">do_not_disturb_on</i>
+                            </a>';
+                        }else if ($data->status == '1'){
+                            $action = '<a title="Pending" href="' . route('doctor.patient.status.change', ['id' => $data->id,'status' => '0']) . '" class="rounded mdc-button mdc-button--raised icon-button filled-button--warning  mr-2">
+                            <i class="material-icons mdc-button__icon">hourglass_full</i>
+                            </a><a title="Cancel" href="' . route('doctor.patient.status.change', ['id' => $data->id,'status' => '2']) . '" class="rounded mdc-button mdc-button--raised icon-button filled-button--danger  mr-2">
+                            <i class="material-icons mdc-button__icon">clear</i>
+                            </a><a title="Suspend" href="' . route('doctor.patient.status.change', ['id' => $data->id,'status' => '3']) . '" class="rounded mdc-button mdc-button--raised icon-button filled-button--info mr-2">
+                            <i class="material-icons mdc-button__icon">do_not_disturb_on</i>
+                            </a>';
+                        }else if($data->status == '2'){
+                            $action = '<a title="Pending" href="' . route('doctor.patient.status.change', ['id' => $data->id,'status' => '0']) . '" class="rounded mdc-button mdc-button--raised icon-button filled-button--warning  mr-2">
+                            <i class="material-icons mdc-button__icon">hourglass_full</i>
+                            </a><a title="Publish" href="' . route('doctor.patient.status.change', ['id' => $data->id,'status' => '1']) . '" class="rounded mdc-button mdc-button--raised icon-button filled-button--success  mr-2">
+                            <i class="material-icons mdc-button__icon">done</i>
+                            </a><a title="Suspend" href="' . route('doctor.patient.status.change', ['id' => $data->id,'status' => '3']) . '" class="rounded mdc-button mdc-button--raised icon-button filled-button--info mr-2">
+                            <i class="material-icons mdc-button__icon">do_not_disturb_on</i>
+                            </a>';
+                        }else{
+                            $action = '<a title="Pending" href="' . route('doctor.patient.status.change', ['id' => $data->id,'status' => '0']) . '" class="rounded mdc-button mdc-button--raised icon-button filled-button--warning  mr-2">
+                            <i class="material-icons mdc-button__icon">hourglass_full</i>
+                            </a><a title="Publish" href="' . route('doctor.patient.status.change', ['id' => $data->id,'status' => '1']) . '" class="rounded mdc-button mdc-button--raised icon-button filled-button--success  mr-2">
+                            <i class="material-icons mdc-button__icon">done</i>
+                            </a><a title="Cancel" href="' . route('doctor.patient.status.change', ['id' => $data->id,'status' => '2']) . '" class="rounded mdc-button mdc-button--raised icon-button filled-button--danger  mr-2">
+                            <i class="material-icons mdc-button__icon">clear</i>
+                            </a>';
+                        }
+                        return '<div class="text-right" >'. $action .'<button class="mdc-button mdc-button--raised icon-button filled-button--secondary" onclick="delete_data(' . $data->id . ')">
+                        <i class="material-icons mdc-button__icon">delete</i>
+                        </button><form action="' . route('doctor.patient.delete', ['id' => $data->id]) . '"
+                        id="delete-form-' . $data->id . '" method="DELETE" class="d-none">
+                        @csrf
+                        @method("DELETE") </form></div>';
                     })
                     ->rawColumns(['slot', 'image', 'status', 'action'])
                     ->make(true);
             }
+        } else {
+            abort(401);
+        }
+    }
+
+    public function statusChange($id,$status)
+    {
+        if (Gate::allows('isDoctor')) {
+            $getAppointment = PatientAppontment::where('id',$id)->first();
+            $getAppointment->update([
+                'status'  => $status,
+            ]);
+            return back()->with('success','Status update Successfully !');
+        } else {
+            abort(401);
+        }
+    }
+
+    public function delete($id)
+    {
+        if (Gate::allows('isDoctor')) {
+            $getAppointment = PatientAppontment::where('id',$id)->first();
+            $getAppointment->delete();
+            return back()->with('success','Appontment delete Successfully !');
         } else {
             abort(401);
         }

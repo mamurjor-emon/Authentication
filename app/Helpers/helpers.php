@@ -128,16 +128,16 @@ if (!function_exists('appointStatus')) {
     function appointStatus($status)
     {
         if ($status == 0) {
-            $badgeClass = 'badge-danger';
+            $badgeClass = 'badge-warning text-white';
             $badgeTitle = 'Pending';
         } else if ($status == 1) {
-            $badgeClass = 'badge-success';
+            $badgeClass = 'badge-success text-white';
             $badgeTitle = 'Active';
         } else if ($status == 2) {
-            $badgeClass = 'badge-danger';
+            $badgeClass = 'badge-danger text-white';
             $badgeTitle = 'Cancel';
         } else {
-            $badgeClass = 'badge-danger';
+            $badgeClass = 'badge-info text-white';
             $badgeTitle = 'Suspend';
         }
         return '<span class="badge badge-sm ' . $badgeClass . ' py-1 px-2">' . $badgeTitle . '</span>';

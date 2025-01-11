@@ -58,7 +58,7 @@
             [5, 10, 15, 25, 50, 100, 1000, 10000, -1],
             [5, 10, 15, 25, 50, 100, 1000, 10000, "All"]
         ],
-        pageLength: 25, 
+        pageLength: 25,
         ajax: {
             url: "{{ route('doctor.patient.get.data') }}",
             type: "POST",

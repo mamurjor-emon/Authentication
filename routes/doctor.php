@@ -13,5 +13,7 @@ Route::group(['prefix' => 'doctor', 'as'=>'doctor.','middleware'=>['auth','is_ve
         Route::get('index', [PatientController::class, 'index'])->name('index');
         Route::post('get-data', [PatientController::class, 'getData'])->name('get.data');
         Route::get('view/{id}', [PatientController::class, 'view'])->name('view');
+        Route::get('status/{id}/{status}',[PatientController::class,'statusChange'])->name('status.change');
+        Route::get('delete/{id}',[PatientController::class,'delete'])->name('delete');
     });
 });

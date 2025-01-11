@@ -210,6 +210,7 @@
     </script>
     {{-- <script type="text/javascript">window.$crisp=[];window.CRISP_WEBSITE_ID="92305a0a-5dea-4c9f-be48-796f1b7add2e";(function(){d=document;s=d.createElement("script");s.src="https://client.crisp.chat/l.js";s.async=1;d.getElementsByTagName("head")[0].appendChild(s);})();</script> --}}
     <!-- Custome Js -->
+    {{-- <script type="text/javascript">window.$crisp=[];window.CRISP_WEBSITE_ID="63779fd5-f44b-4134-9835-426e2e450a2e";(function(){d=document;s=d.createElement("script");s.src="https://client.crisp.chat/l.js";s.async=1;d.getElementsByTagName("head")[0].appendChild(s);})();</script> --}}
     @stack('scripts')
 </body>
 
