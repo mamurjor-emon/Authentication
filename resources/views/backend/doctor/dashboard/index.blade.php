@@ -15,8 +15,7 @@
                     </div>
                 </div>
             </div>
-            <div
-                class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-3-desktop mdc-layout-grid__cell--span-4-tablet">
+            <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-3-desktop mdc-layout-grid__cell--span-4-tablet">
                 <div class="mdc-card info-card info-card--danger">
                     <div class="card-inner">
                         <h5 class="card-title">Annual Profit</h5>
@@ -28,8 +27,7 @@
                     </div>
                 </div>
             </div>
-            <div
-                class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-3-desktop mdc-layout-grid__cell--span-4-tablet">
+            <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-3-desktop mdc-layout-grid__cell--span-4-tablet">
                 <div class="mdc-card info-card info-card--primary">
                     <div class="card-inner">
                         <h5 class="card-title">Lead Conversion</h5>
@@ -41,8 +39,7 @@
                     </div>
                 </div>
             </div>
-            <div
-                class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-3-desktop mdc-layout-grid__cell--span-4-tablet">
+            <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-3-desktop mdc-layout-grid__cell--span-4-tablet">
                 <div class="mdc-card info-card info-card--info">
                     <div class="card-inner">
                         <h5 class="card-title">Average Income</h5>
@@ -146,8 +143,7 @@
                     </div>
                 </div>
             </div>
-            <div
-                class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-6-desktop mdc-layout-grid__cell--span-4-tablet">
+            <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-6-desktop mdc-layout-grid__cell--span-4-tablet">
                 <div class="mdc-card bg-success text-white">
                     <div class="d-flex justify-content-between">
                         <h3 class="font-weight-normal">Impressions</h3>
@@ -168,8 +164,7 @@
                     </div>
                 </div>
             </div>
-            <div
-                class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-6-desktop mdc-layout-grid__cell--span-4-tablet">
+            <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-6-desktop mdc-layout-grid__cell--span-4-tablet">
                 <div class="mdc-card bg-info text-white">
                     <div class="d-flex justify-content-between">
                         <h3 class="font-weight-normal">Traffic</h3>
@@ -283,8 +278,7 @@
                     </div>
                 </div>
             </div>
-            <div
-                class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-4 mdc-layout-grid__cell--span-8-tablet">
+            <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-4 mdc-layout-grid__cell--span-8-tablet">
                 <div class="mdc-card">
                     <div class="d-flex d-lg-block d-xl-flex justify-content-between">
                         <div>

@@ -18,6 +18,7 @@ class PatientController extends Controller
             $data['parentPatientMenu']    = 'expanded';
             $data['parentPatientSubMenu'] = 'style="display: block;"';
             $data['activePatient']        = 'active';
+            $data['breadcrumb']           = ['Patients' => ''];
             return view('backend.doctor.patient.index', $data);
         } else {
             abort(401);
@@ -79,6 +80,8 @@ class PatientController extends Controller
                             <i class="material-icons mdc-button__icon">clear</i>
                             </a><a title="Suspend" href="' . route('doctor.patient.status.change', ['id' => $data->id,'status' => '3']) . '" class="rounded mdc-button mdc-button--raised icon-button filled-button--info mr-2">
                             <i class="material-icons mdc-button__icon">do_not_disturb_on</i>
+                            </a><a title="View Patient" href="' . route('doctor.patient.view', ['id' => $data->id]) . '" class="rounded mdc-button mdc-button--raised icon-button filled-button--primary mr-2">
+                            <i class="material-icons mdc-button__icon">remove_red_eye</i>
                             </a>';
                         }else if ($data->status == '1'){
                             $action = '<a title="Pending" href="' . route('doctor.patient.status.change', ['id' => $data->id,'status' => '0']) . '" class="rounded mdc-button mdc-button--raised icon-button filled-button--warning  mr-2">
@@ -87,6 +90,8 @@ class PatientController extends Controller
                             <i class="material-icons mdc-button__icon">clear</i>
                             </a><a title="Suspend" href="' . route('doctor.patient.status.change', ['id' => $data->id,'status' => '3']) . '" class="rounded mdc-button mdc-button--raised icon-button filled-button--info mr-2">
                             <i class="material-icons mdc-button__icon">do_not_disturb_on</i>
+                            </a><a title="View Patient" href="' . route('doctor.patient.view', ['id' => $data->id]) . '" class="rounded mdc-button mdc-button--raised icon-button filled-button--primary mr-2">
+                            <i class="material-icons mdc-button__icon">remove_red_eye</i>
                             </a>';
                         }else if($data->status == '2'){
                             $action = '<a title="Pending" href="' . route('doctor.patient.status.change', ['id' => $data->id,'status' => '0']) . '" class="rounded mdc-button mdc-button--raised icon-button filled-button--warning  mr-2">
@@ -95,6 +100,8 @@ class PatientController extends Controller
                             <i class="material-icons mdc-button__icon">done</i>
                             </a><a title="Suspend" href="' . route('doctor.patient.status.change', ['id' => $data->id,'status' => '3']) . '" class="rounded mdc-button mdc-button--raised icon-button filled-button--info mr-2">
                             <i class="material-icons mdc-button__icon">do_not_disturb_on</i>
+                            </a><a title="View Patient" href="' . route('doctor.patient.view', ['id' => $data->id]) . '" class="rounded mdc-button mdc-button--raised icon-button filled-button--primary mr-2">
+                            <i class="material-icons mdc-button__icon">remove_red_eye</i>
                             </a>';
                         }else{
                             $action = '<a title="Pending" href="' . route('doctor.patient.status.change', ['id' => $data->id,'status' => '0']) . '" class="rounded mdc-button mdc-button--raised icon-button filled-button--warning  mr-2">
@@ -103,6 +110,8 @@ class PatientController extends Controller
                             <i class="material-icons mdc-button__icon">done</i>
                             </a><a title="Cancel" href="' . route('doctor.patient.status.change', ['id' => $data->id,'status' => '2']) . '" class="rounded mdc-button mdc-button--raised icon-button filled-button--danger  mr-2">
                             <i class="material-icons mdc-button__icon">clear</i>
+                            </a><a title="View Patient" href="' . route('doctor.patient.view', ['id' => $data->id]) . '" class="rounded mdc-button mdc-button--raised icon-button filled-button--primary mr-2">
+                            <i class="material-icons mdc-button__icon">remove_red_eye</i>
                             </a>';
                         }
                         return '<div class="text-right" >'. $action .'<button class="mdc-button mdc-button--raised icon-button filled-button--secondary" onclick="delete_data(' . $data->id . ')">
@@ -133,12 +142,27 @@ class PatientController extends Controller
         }
     }
 
+    public function view($id)
+    {
+        if (Gate::allows('isDoctor')) {
+            $this->setPageTitle('Patient Information');
+            $data['parentPatientMenu']    = 'expanded';
+            $data['parentPatientSubMenu'] = 'style="display: block;"';
+            $data['activePatient']        = 'active';
+            $data['breadcrumb']           = ['Patients' => route('doctor.patient.index'), 'Patient Information' => ''];
+            $data['getData']              = PatientAppontment::with(['user', 'doctor', 'slot'])->where('id', $id)->first();
+            return view('backend.doctor.patient.view', $data);
+        } else {
+            abort(401);
+        }
+    }
+
     public function delete($id)
     {
         if (Gate::allows('isDoctor')) {
             $getAppointment = PatientAppontment::where('id',$id)->first();
             $getAppointment->delete();
-            return back()->with('success','Appontment delete Successfully !');
+            return back()->with('success','Appointment delete Successfully !');
         } else {
             abort(401);
         }
