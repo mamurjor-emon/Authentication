@@ -93,6 +93,12 @@ class DoctorController extends Controller
                     ->addColumn('position', function ($data) {
                         return $data->position ? $data->position : '--';
                     })
+                    ->addColumn('pervisit', function ($data) {
+                        return $data->pervisit ? $data->pervisit : '--';
+                    })
+                    ->addColumn('discountpervisit', function ($data) {
+                        return $data->discountpervisit ? $data->discountpervisit : '--';
+                    })
                     ->addColumn('status', function ($data) {
                         return status($data->status);
                     })
@@ -183,27 +189,29 @@ class DoctorController extends Controller
                 $image = null;
             }
             DoctorModel::create([
-                'user_id'       => $request->user_id,
-                'department_id' => $request->department_id,
-                'room_id'       => $request->room_id,
-                'bullding_id'   => $request->bullding_id,
-                'image'         => $image,
-                'phone'         => $request->phone,
-                'location'      => $request->location,
-                'facebook'      => $request->facebook,
-                'twitter'       => $request->twitter,
-                'vimo'          => $request->vimo,
-                'pinterest'     => $request->pinterest,
-                'position'      => $request->position,
-                'fdegree'       => $request->fdegree,
-                'sdegree'       => $request->sdegree,
-                'tdegree'       => $request->tdegree,
-                'ldegree'       => $request->ldegree,
-                'workday'       => $request->workday,
-                'fbiography'    => $request->fbiography,
-                'education'     => $request->education,
-                'lbiography'    => $request->lbiography,
-                'status'        => $request->status,
+                'user_id'          => $request->user_id,
+                'department_id'    => $request->department_id,
+                'room_id'          => $request->room_id,
+                'bullding_id'      => $request->bullding_id,
+                'image'            => $image,
+                'phone'            => $request->phone,
+                'location'         => $request->location,
+                'facebook'         => $request->facebook,
+                'twitter'          => $request->twitter,
+                'vimo'             => $request->vimo,
+                'pinterest'        => $request->pinterest,
+                'position'         => $request->position,
+                'fdegree'          => $request->fdegree,
+                'sdegree'          => $request->sdegree,
+                'tdegree'          => $request->tdegree,
+                'ldegree'          => $request->ldegree,
+                'pervisit'         => $request->pervisit,
+                'discountpervisit' => $request->discountpervisit,
+                'workday'          => $request->workday,
+                'fbiography'       => $request->fbiography,
+                'education'        => $request->education,
+                'lbiography'       => $request->lbiography,
+                'status'           => $request->status,
             ]);
             $user = User::where('id', $request->user_id)->first();
             $role = Roles::where('slug', 'doctor')->first();
@@ -288,6 +296,8 @@ class DoctorController extends Controller
                 'sdegree'       => $request->sdegree,
                 'tdegree'       => $request->tdegree,
                 'ldegree'       => $request->ldegree,
+                'pervisit'         => $request->pervisit,
+                'discountpervisit' => $request->discountpervisit,
                 'workday'       => $request->workday,
                 'fbiography'    => $request->fbiography,
                 'education'     => $request->education,

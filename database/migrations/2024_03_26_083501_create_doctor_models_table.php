@@ -29,6 +29,8 @@ return new class extends Migration
             $table->string('sdegree')->nullable();
             $table->string('tdegree')->nullable();
             $table->string('ldegree')->nullable();
+            $table->double('pervisit');
+            $table->double('discountpervisit');
             $table->longText('workday');
             $table->longText('fbiography');
             $table->longText('education');

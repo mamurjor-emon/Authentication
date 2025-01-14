@@ -22,16 +22,18 @@ class DoctorRequest extends FormRequest
     public function rules(): array
     {
         $roles = [
-            'user_id'       => ['required'],
-            'department_id' => ['required'],
-            'phone'         => ['required'],
-            'location'      => ['required'],
-            'position'      => ['required'],
-            'fdegree'       => ['required'],
-            'workday'       => ['required'],
-            'fbiography'    => ['required'],
-            'education'     => ['required'],
-            'status'        => ['required'],
+            'user_id'          => ['required'],
+            'department_id'    => ['required'],
+            'phone'            => ['required'],
+            'location'         => ['required'],
+            'position'         => ['required'],
+            'fdegree'          => ['required'],
+            'pervisit'         => ['required', 'numeric'],
+            'discountpervisit' => ['nullable', 'numeric', 'lt:pervisit'],
+            'workday'          => ['required'],
+            'fbiography'       => ['required'],
+            'education'        => ['required'],
+            'status'           => ['required'],
         ];
         if (request()->update_id) {
             $roles['image'] = ['image', 'mimes:jpeg,png,jpg,gif', 'max:2048', 'dimensions:min_width=704,min_height=827,max_width=704,max_height=827'];

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Backend\Doctor;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\PatientAppontment;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
 
@@ -15,8 +16,11 @@ class DashboardController extends Controller
         if (Gate::allows('isDoctor')) {
             $this->setPageTitle('Doctor Dashboard');
             $data['docotorDashboard']         = 'active';
-            $data['breadcrumb']               = ['Doctor Dashboard' => ''];
             $data['admin']                    = User::where('role_id', 1)->first();
+            $data['totalAppointments']        = PatientAppontment::where('doctor_id',Auth::id())->count();
+            $data['totalPendingAppointments'] = PatientAppontment::where('doctor_id',Auth::id())->where('status','0')->count();
+            $data['totalVisitedAppointments'] = PatientAppontment::where('doctor_id',Auth::id())->where('status','1')->count();
+            $data['totalAnnualProfits']       = PatientAppontment::where('doctor_id',Auth::id())->where('status','1')->count();
             return view('backend.doctor.dashboard.index', $data);
         } else {
             abort(401);

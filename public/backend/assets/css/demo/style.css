@@ -15,6 +15,7 @@ a {
 /*=========================
 	End Login  CSS
 ===========================*/
+
 .mdc-button {
     font-family: Roboto, sans-serif;
     -moz-osx-font-smoothing: grayscale;
@@ -24609,5 +24610,8 @@ footer .vertical-divider {
 	scroll-behavior: smooth;
 	scrollbar-width: thin;
 	scrollbar-color: #269ffb white;
+}
+.fw-bolder {
+    font-weight: 600;
 }
 /* Verify User Blade End */

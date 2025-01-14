@@ -100,6 +100,16 @@
                         </div>
 
                         <div class="row g-5 mt-2">
+                            <x-form.textbox labelName="Per Visit Ret" parantClass="col-12 col-md-6" name="pervisit"
+                            required="required" placeholder="Enter Per Visit Ret..!" errorName="pervisit" class="py-2"
+                            value="{{ old('pervisit') }}"></x-form.textbox>
+
+                            <x-form.textbox labelName="Discount Per Visit" parantClass="col-12 col-md-6" name="discountpervisit"
+                            placeholder="Enter Discount Per Visit..!" errorName="discountpervisit" class="py-2"
+                            value="{{ old('discountpervisit') }}"></x-form.textbox>
+                        </div>
+
+                        <div class="row g-5 mt-2">
                              <x-form.textarea labelName="First Biography" parantClass="col-md-6" name="fbiography"
                                 required="required" errorName="fbiography"></x-form.textarea>
 

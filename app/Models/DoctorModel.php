@@ -30,6 +30,8 @@ class DoctorModel extends Model
         'sdegree',
         'tdegree',
         'ldegree',
+        'pervisit',
+        'discountpervisit',
         'workday',
         'fbiography',
         'education',

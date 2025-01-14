@@ -34,6 +34,8 @@
                         <th>Phone</th>
                         <th>Image</th>
                         <th>Position</th>
+                        <th>Per Visit</th>
+                        <th>Discount Per Visit</th>
                         <th>Status</th>
                         <th class="text-right">Action</th>
                     </tr>
@@ -80,6 +82,8 @@
             {data: 'phone'},
             {data: 'image'},
             {data: 'position'},
+            {data: 'pervisit'},
+            {data: 'discountpervisit'},
             {data: 'status'},
             {data: 'action'},
         ],
