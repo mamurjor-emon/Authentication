@@ -21,15 +21,20 @@
                             @if ($singleDoctor->location)
                              <li> <i class="icofont-location-pin"></i> Location : {{ $singleDoctor->location }}</li>
                             @endif
+                            @if ($singleDoctor->discountpervisit != null)
+                                <li><i class="icofont-dollar"></i>Visit Rete : {{ $singleDoctor->discountpervisit ?? '' }} <del>{{ $singleDoctor->pervisit ?? '' }}</del></li>
+                            @else
+                                <li><i class="icofont-dollar"></i>Visit Rete : {{ $singleDoctor->pervisit ?? '' }}</li>
+                            @endif
                         </ul>
                         <!-- Social -->
                         <ul class="social">
                             @if ($singleDoctor->facebook)
                              <li><a href="{{ $singleDoctor->facebook }}"><i class="icofont-facebook"></i></a></li>
                             @endif
-                            {{-- @if ($singleDoctor->user->email)
+                            @if ($singleDoctor->user->email)
                             <li><a href="{{ $singleDoctor->user->email }}" target="_blank"><i class="icofont-google-plus"></i></a></li>
-                            @endif --}}
+                            @endif
                             @if ($singleDoctor->twitter)
                             <li><a href="{{  $singleDoctor->twitter }}"><i class="icofont-twitter"></i></a></li>
                             @endif

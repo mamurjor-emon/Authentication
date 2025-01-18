@@ -66,9 +66,9 @@
                         {!! config('settings.newslettter_title') ?? '' !!}
                         <form action="{{ route('subscribe.store') }}" method="POST" class="newsletter-inner">
                             @csrf
-                            <input name="email" placeholder="Email Address" class="common-input"
-                                onfocus="this.placeholder = ''" onblur="this.placeholder = 'Your email address'"
-                                type="email" name="email" value="{{ Auth::check() ? Auth::user()->email : '' }}">
+                            <input name="email" placeholder="Your Email Address" class="common-input"
+                                onfocus="this.placeholder = ''" onblur="this.placeholder = 'Your Email Address'"
+                                type="email" name="email">
                             <button type="submit" class="button"><i class="icofont icofont-paper-plane"></i></button>
                         </form>
                     </div>
